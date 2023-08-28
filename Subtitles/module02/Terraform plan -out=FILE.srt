@@ -1,0 +1,44 @@
+1
+00:00:00 --> 00:00:08
+- In this video we will delve deeper into the use of the different commands that we briefly touched upon in our first deployment of a resource. 
+
+2
+00:00:09 --> 00:00:14
+- Some of it will be repetition, but we will try to further develop the techniques we have already learned.
+
+3
+00:00:16 --> 00:00:19
+- If I firstly go to my Visual Studio Code environment.
+
+4
+00:00:20 --> 00:00:25
+- My folder structure is based on the course materials, and then iterating through each module. 
+
+5
+00:00:25 --> 00:00:32
+- I'll then go to my second folder as we are expanding upon the previous lecture. 
+
+6
+00:00:33 --> 00:00:36
+- I will basically create everything anew,
+
+7
+00:00:37 --> 00:00:44
+- because as we continue on in this course we will learn how to make better folder and file structures,
+
+8
+00:00:44 --> 00:00:50
+- for development, testing and production environments. 
+
+9
+00:00:50 --> 00:00:54
+- But for now, we will keep the simple structure,
+
+10
+00:00:54 --> 00:00:57
+- where I start in an empty folder for each deployment. 
+
+11
+00:00:58 --> 00:01:04
+How you want to do it is up to you, but here you can see an example setup.  
+
