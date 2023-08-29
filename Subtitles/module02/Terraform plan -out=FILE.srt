@@ -40,5 +40,520 @@
 
 11
 00:00:58 --> 00:01:04
-How you want to do it is up to you, but here you can see an example setup.  
+- How you want to do it is up to you, but here you can see an example setup.  
 
+12
+00:01:06 --> 00:01:11
+- What I will look at now is the Terraform Documentation,
+
+13
+00:01:11 --> 00:01:18
+- and if you navigate to the link or just go to documention on Terraform.io,
+
+14
+00:01:18 --> 00:01:22
+- then we have configuration language and Terraform CLI.
+
+15
+00:01:22 --> 00:01:26
+- You can check out the basics of configuration language.
+
+16
+00:01:26 --> 00:01:29
+- Basic CLI featues, where you get a quick overview of the different commands.
+
+17
+00:01:29 --> 00:01:32
+- Need to know, switching directories, and similar. 
+
+18
+00:01:33 --> 00:01:48
+- But for our sake we will primarily look at the Terraform CLI.
+
+19
+00:01:49 --> 00:01:55
+- Terraform CLI is the interface we use to run the commands,
+
+20
+00:01:55 --> 00:02:08
+- when we deploy our infrastructure to Azure. 
+
+21
+00:02:09 --> 00:02:13
+- What have already been through initializing working directory, 
+
+22
+00:02:13 --> 00:02:21
+- which means we initialize a folder and see what folders are created. 
+
+23
+00:02:22 --> 00:02:34
+- That is the "terraform init" command, which will download the required providers that we specifcy in the main.tf file. 
+
+24
+00:02:35 --> 00:02:43
+- You can also update with "terraform init update" to update the files with more information after the previous initialization. 
+
+25
+00:02:44 --> 00:02:50
+- As you can see here, we have "terraform init [options]"; what you can add to the command.
+
+26
+00:02:51 --> 00:03:00
+- And as you can see, we have "terraform init -upgrade" to upgrade modules and plugins. 
+
+27
+00:03:01 --> 00:03:08
+- So that is a possibility if you edit things that are already initialized. 
+
+28
+00:03:09 --> 00:03:12
+- In addition, we will go into more detail of Provisioning Infrastructure. 
+
+29
+00:03:13 --> 00:03:19
+- I recommend everyone take a look at the overview, plan, apply, and destroy,
+
+30
+00:03:19 --> 00:03:22
+- but we will go through these step by step in this video as well. 
+
+31
+00:03:23 --> 00:03:26
+- So, if we start with the initialization first,
+
+32
+00:03:26 --> 00:03:35
+- we can see that the "terraform init" command is used to initialize a working directory, that contains terraform configuration. 
+
+33
+00:03:36 --> 00:03:42
+- If we run a "terraform init" on a folder that doesnt contain anything, it won't do anything. 
+
+34
+00:03:43 --> 00:03:57
+- Therefore we now go to our module and create a new folder, and a new "main.tf" file within that folder. 
+
+35
+00:03:58 --> 00:04:04
+- Then we see we have a folder "module2", and another folder with "main.tf" within that folder.
+
+36
+00:04:05 --> 00:04:07
+- And as we remember from the previous lecture, 
+
+37
+00:04:07 --> 00:04:12
+- we need a bunch of information to deploy a resource to Azure.
+
+38
+00:04:13 --> 00:04:17
+- So I'm just gonna paste that information in here from the previous module. 
+
+39
+00:04:18 --> 00:04:24
+- And as you can see, we have terraform required providers and the Azure provider.
+
+40
+00:04:25 --> 00:04:30
+- We were talking about looking at the use cases of "plan",
+
+41
+00:04:30 --> 00:04:40
+- to ensure that the infrastructure we are deploying is deployed as we want. 
+
+42
+00:04:40 --> 00:04:45
+- There are then ways to ensure this which is part of good practice,
+
+43
+00:04:45 --> 00:04:49
+- without running into changes that we don't want to happen.
+
+44
+00:04:50 --> 00:04:55
+- But firstly we will run "terraform init" to initialize the folder.
+
+45
+00:04:55 --> 00:05:00
+- Here it is important to be in the right folder when you run the command. 
+
+46
+00:05:01 --> 00:05:10
+- If done correctly it will look similar to what is shown on screen. 
+
+47
+00:05:10 --> 00:05:25
+- Once that is done terraform will have downloaded everything we need from the provider, as well as other information. 
+
+48
+00:05:26 --> 00:05:31
+- Once that is done we will jump back to registry.terraform.io, and the Azure documentation.
+
+49
+00:05:31 --> 00:05:35
+- Some repetition will follow; as we search for resource group. 
+
+50
+00:05:36 --> 00:05:44
+- We will then go to the resource group documentation and grab the example. 
+
+51
+00:05:45 --> 00:05:48
+- Paste that into the main.tf file, and remember the mandatory fields. 
+
+52
+00:05:49 --> 00:05:51
+- You have name, and location as the mandatory fields.
+
+53
+00:05:51 --> 00:05:53
+- I'm just gonna grab some more things that we will use,
+
+54
+00:05:53 --> 00:05:54
+- namely "virtual network".
+
+55
+00:05:55 --> 00:06:01
+- We scroll down to "azure_virtual_network" and grab the example.
+
+56
+00:06:02 --> 00:06:15
+- The example includes a resource group, a security group, and a virtual network.
+
+57
+00:06:16 --> 00:06:22
+- So we'll grab the entire snippet. 
+
+58
+00:06:23 --> 00:06:31
+- Here we have information about supported arguments, as well as required arguments. 
+
+59
+00:06:32 --> 00:06:38
+- What we have to keep in mind now is that, 
+
+60
+00:06:38 --> 00:06:46
+- security groups have their own documentation if we can find it.
+
+61
+00:06:47 --> 00:06:55
+- But we'll keep it simple for ourselves and just paste the example in our main.tf file. 
+
+62
+00:06:55 --> 00:07:00
+- I'll save the file, and we will of course edit the names in a bit. 
+
+63
+00:07:00 --> 00:07:08
+- First, I'll show that if we search for "security group" we will find the documentation.
+
+64
+00:07:11 --> 00:07:18
+- This has it's own inforation page that could be useful to look at.
+
+65
+00:07:19 --> 00:07:24
+- Here we also have required arguments, and supported arguments,
+
+66
+00:07:24 --> 00:07:27. 
+- if you want to add a rule that can be seen here. 
+
+67
+00:07:28 --> 00:07:33
+- We don't need to do that now, but it is good to know that it is there.
+
+68
+00:07:33 --> 00:07:39
+- As we know from the previous lecture when we deployed a test resource, 
+
+69
+00:07:39 --> 00:07:44
+- is that this is dependent on the provider, and is not to be changed. 
+
+70
+00:07:44 --> 00:07:48
+- This is the way Azure and Terraform communicate to know what to deploy.
+
+71
+00:07:49 --> 00:07:56
+- This name is the one we reference throughout our configuration file. 
+
+72
+00:07:57 --> 00:08:06
+- For now I'll just call this "rgwe", Resouce Group West Europe,
+
+73
+00:08:06 --> 00:08:12
+- and then we have a name that we give to the resource group: "rg-vnet-we". 
+
+74
+00:08:13 --> 00:08:16
+- If we have multiple then we can add a number to the end of the name.
+
+75
+00:08:16 --> 00:08:21
+- There is lots of documentation on Azure about naming conventions. 
+
+76
+00:08:25 --> 00:08:40
+- We'll reference our security group as "nsg", and name it "nsg-vnet-we".
+
+77
+00:08:43 --> 00:08:48
+- More vnets can exist but this one will be relevant for this vnet. 
+
+78
+00:08:49 --> 00:08:54
+- Here, location, we want it to use the location of our resource group.
+
+79
+00:08:54 --> 00:09:00
+- So we will reference the resource group, and then the location of that resource group.
+
+80
+00:09:02 --> 00:09:07
+- We will do the same for the resource group name. 
+
+81
+00:09:08 --> 00:09:14
+- This references the information we provide in the resource group, to show dependencies. 
+
+82
+00:09:15 --> 00:09:24
+- We'll reference our virtual network as "vnet", and name it "vnet-01-we".
+
+83
+00:09:25 --> 00:09:38
+- We will also reference the resource group and location of the resource group, same as above.
+
+84
+00:09:39 --> 00:09:44
+- If you are unfamiliar with addressing and address spaces you can look it up, 
+
+85
+00:09:44 --> 00:09:52
+- but this will give ~64.000 addresses for us to work with (/16). 
+
+86
+00:09:53 --> 00:09:56
+- The dns servers set on the virtual network will be the ones provided by Azure,
+
+87
+00:09:57 --> 00:10:03
+- and we have a subnet that we can call "sn-01-we",
+
+88
+00:10:03 --> 00:10:06
+- and define the address space for that subnet. 
+
+89
+00:10:06 --> 00:10:12
+- We'll name our second subnet similarly "sn-02-we",
+
+90
+00:10:12 --> 00:10:21
+- and the security group which we want to append to the subnet.
+
+91
+00:10:22 --> 00:10:27
+- With a security group we have to specifcy the ID of the security group,
+
+92
+00:10:27 --> 00:10:32
+- which will in this case be "nsg.id", and save the file.
+
+93
+00:10:33 --> 00:10:38
+- We can remove the tags for now, and save the file.
+
+94
+00:10:39 --> 00:10:43
+- Then our file is ready to plan a deployment.
+
+95
+00:10:43 --> 00:10:49
+- We'll head over to the documentation for "plan" again and see what it says.
+
+96
+00:10:50 --> 00:10:57
+- We know why we want to run a plan; to see what is being changed. 
+
+97
+00:10:58 --> 00:11:02
+- Now we'll test it with the "-out=FILE" option.
+
+98
+00:11:02 --> 00:11:10
+- If we scroll quite far down until we reach the "out" option,
+
+99
+00:11:10 --> 00:11:15
+- we'll see what it does and that we have to specify a file.
+
+100
+00:11:16 --> 00:11:28
+- Worth to notice: use the name "tfplan", and not something else that Terraform can mistake for something else.
+
+101
+00:11:29 --> 00:11:32
+- That is what we will do now,
+
+102
+00:11:32 --> 00:11:38
+- and if we remember why we want to use this plan, 
+
+103
+00:11:38 --> 00:11:44
+- it is because if we use this you will create a file. 
+
+104
+00:11:45 --> 00:12:05
+- But (reads the paragraph in english).
+
+105
+00:12:06 --> 00:12:13
+- This means that this two-step workflow is primarily intended for when running Terraform in automation,
+
+106
+00:12:13 --> 00:12:15
+- so we want to move towards that.
+
+107
+00:12:15 --> 00:12:21
+- We can already start to implement this in our workflow,
+
+108
+00:12:21 --> 00:12:25
+- so that we can use it in the future.
+
+109
+00:12:25 --> 00:12:30
+- Remember that "-out=FIlE" and filename is required.
+
+110
+00:12:34 --> 00:12:38
+- Then we can run this on our main.tf file, ensuring we have saved it. 
+
+111
+00:12:39 --> 00:12:47
+- If we then run "terraform plan -out=main.tfplan", 
+
+112
+00:12:48 --> 00:12:53
+- we will see a "terraform.tfstate" file is created.
+
+113
+00:12:53 --> 00:12:57
+- This will be the expected state of the infrastructure we are deploying.
+
+114
+00:12:57 --> 00:13:00
+- We'll let the command finish. 
+
+115
+00:13:00 --> 00:13:06
+- And when the command has finished we can see that a plan is saved to "main.tfplan".
+
+116
+00:13:12 --> 00:13:20
+- Running this uses the plan as a baseline, and will show us what is being changed.
+
+117
+00:13:21 --> 00:13:25
+- Then you can be sure that if there are any changes that are done in the meantime,
+
+118
+00:13:25 --> 00:13:29
+- the plan will be what is deployed.
+
+119
+00:13:30 --> 00:13:35
+- If we quickly scroll up we can look at what is actually being changed/done. 
+
+120
+00:13:36 --> 00:13:54
+- (Listing up all the changes that is showcased in the terminal)
+
+121
+00:13:55 --> 00:14:00
+- We'll now run "terraform apply main.tfplan" to apply the plan,
+
+122
+00:14:00 --> 00:14:03
+- and let the plan deploy the infrastructure.
+
+123
+00:14:03 --> 00:14:08
+- I am of course connected to my Azure environment right now, using "az login",
+
+124
+00:14:08 --> 00:14:12
+- which means I can easily deploy this infrastructure to that environment. 
+
+125
+00:14:14 --> 00:14:20
+- Before you run apply you have to be connected to your Azure tenant.
+
+126
+00:14:21 --> 00:14:25
+- When the command has finished running, we can see that the apply has been completed. 
+
+127
+00:14:29 --> 00:14:35
+- If we then go to our Azure portal, we can see that the resource group has been created. 
+
+128
+00:14:36 --> 00:14:43
+- We can also see it has the resources we specified under the resource group. 
+
+129
+00:14:44 --> 00:14:48
+- So we have our NSG and our virtual network,
+
+130
+00:14:48 --> 00:14:54
+- and if we click on our virtual network we can see that we have two subnets.
+
+131
+00:14:55 --> 00:14:59
+- Under subnets we can see that we have subnet01 and subnet02,
+
+132
+00:14:59 --> 00:15:08
+- and we also see the Security Group is attatched to subnet02, as we defined in our configuration file.
+
+133
+00:15:09 --> 00:15:12
+- Here everything has happened as we intended. 
+
+134
+00:15:12 --> 00:15:18
+- The entire purpose of this was to test the use of the plan command with and "-out" file,
+
+135
+00:15:18 --> 00:15:22
+- so that we could see how that is done as well. 
+
+136
+00:15:22 --> 00:15:28
+- As I have said previously, after every deployment we should run "terraform destroy",
+
+137
+00:15:28 --> 00:15:32
+- but we will not do that now as we will use this in the next video.
+
+138
+00:15:33 --> 00:15:38
+- We will continue to develop our infrastructure further,
+
+139
+00:15:38 --> 00:15:41
+- but remember to always destroy when you are completely done testing. 
+
+140
+00:15:41 --> 00:15:46
+- Then we reduce costs and don't have resources running that we don't need.
