@@ -1,0 +1,356 @@
+1
+00:00:00 --> 00:00:05
+- In the previous video we deployed a resource group with a vnet, 
+
+2
+00:00:05 --> 00:00:09
+- two subnets, and appended a security group to one of the subnets. 
+
+3
+00:00:09 --> 00:00:15
+- At the same time we created a plan using the "-out" flag and wrote it to "main.tfplan",
+
+4
+00:00:15 --> 00:00:18
+- and applied it to our environment. 
+
+5
+00:00:18 --> 00:00:21
+- But what do we do if we want to edit this file? 
+
+6
+00:00:21 --> 00:00:24
+- Add resources, change something, and similar, 
+
+7
+00:00:24 --> 00:00:27
+- how do we relate this to the plan file. 
+
+8
+00:00:27 --> 00:00:37
+- We can for example append the Security Group to one of the subnets,
+
+9
+00:00:39 --> 00:00:45
+- or we can realize we have made a mistake and want to remove the Security Group from the subnets.
+
+10
+00:00:45 --> 00:00:49
+- We did not want to use them in the first place.
+
+11
+00:00:49 --> 00:00:52
+- As you can see we have made a change,
+
+12
+00:00:52 --> 00:00:55
+- and perhaps we want to create another vnet.
+
+13
+
+00:00:55 --> 00:01:03
+- So if we can grab the entire resouce, utilizing the minimize function in VSCode, and copy it.
+
+14
+00:01:03 --> 00:01:08
+- Now you might notice this is a bit backwards if you keep Infrastructure as Code in mind, 
+
+15
+00:01:08 --> 00:01:11
+- is it not supposed to be a bit more simple?
+
+16
+00:01:11 --> 00:01:14
+- Well, yes, but we are going to use this as an example to showcase "plan".
+
+17
+00:01:15 --> 00:01:23
+- What I'll do now is creating a new vnet, and call it "vnet02".
+
+18
+00:01:24 --> 00:01:31
+- And then we can see here that we can start using a new address space, as this one is already used.
+
+19
+00:01:31 --> 00:01:34
+- If we then for example use "10.10".
+
+20
+00:01:34 --> 00:01:38
+- The reason I can write "10.10" here is because if we check out an IP calculator, 
+
+21
+00:01:38 --> 00:01:44
+- you can write the subnet you have and IP addresses you use and figure out how many usable IP addresses you have.
+
+22
+00:01:44 --> 00:01:49
+- Then you can see that we use from "10.0.0.1 - 10.0.255.254".
+
+23
+00:01:49 --> 00:01:54
+- For that reason we know that "10.10" is outside of the range. 
+
+24
+00:01:54 --> 00:01:58
+- So we'll replace the needed addresses,
+
+25
+00:01:58 --> 00:02:02
+- and rename the subnets to "sn-02-01" and "sn-02-02".
+
+26
+00:02:02 --> 00:02:07
+- We also could have renamed the other subnets to "sn-01-01" and "sn-01-02".
+
+27
+00:02:07 --> 00:02:15
+- And then you have the correct address for the subnets as well, so that should be in order.
+
+28
+00:02:15 --> 00:02:17
+- Remember to save your work :D
+
+29
+00:02:17 --> 00:02:25
+- But what happens now, if I now write "terraform plan -out main.tfplan"?
+
+30
+00:02:26 --> 00:02:34
+- Well, if I execute this command I will overwrite the already existing plan, which means that the old plan is unavailable after.
+
+31
+00:02:34 --> 00:02:39
+- Then I dont have the ability to see what I have previously done.
+
+32
+00:02:39 --> 00:02:43
+- There are advantages and disadvantages to this,
+
+33
+00:02:43 --> 00:02:49
+- the advantage being you only need to keep track of one plan file, and its not complicated nor creates confusion. 
+
+34
+00:02:49 --> 00:02:57
+- The disadvantage being you cannot revert to a previous plan should something go wrong. 
+
+35
+00:02:57 --> 00:03:03
+- Because if I now for example write this to "main_v2.tfplan" I will have a new file instead. 
+
+36
+00:03:03 --> 00:03:14
+- Then I can deploy this plan, and if something goes wrong I can revert to the previous plan using "apply".
+
+37
+00:03:14 --> 00:03:17
+- There are advantages and disadvantage to this as well. 
+
+38
+00:03:17 --> 00:03:21
+- The advantages being that you can have more files to revert to,
+
+39
+00:03:21 --> 00:03:25
+- and the disadvantage being is that you have to keep track of more files, and it will increase complexity.
+
+40
+00:03:25 --> 00:03:32
+- Therefore you need a robust and good naming convention to keep track of your files, and possibly documentation. 
+
+41
+00:03:32 --> 00:03:37
+- For our sake, in a single development environment, 
+
+42
+00:03:37 --> 00:03:42
+- we use my machine, my vscode and deploy to my tenant, without any extra hocus pocus,
+
+43
+00:03:42 --> 00:03:47
+- it is simple to just overwrite the main.tf file. 
+
+44
+00:03:47 --> 00:03:53
+- And one of the reasons for that is because its a small environment,
+
+45
+00:03:53 --> 00:04:00
+- and you can also say that in the future git and version control will be a topic that is covered,  
+
+46
+00:04:00 --> 00:04:09
+- where we can see multiple version of a file, and revert to a previous version if needed.
+
+47
+00:04:09 --> 00:04:14
+- For large, multi-environment and collaborations, 
+
+48
+00:04:14 --> 00:04:18
+- if you then work with development, testing/staging, and production, 
+
+49
+00:04:18 --> 00:04:24
+- its useful to have different plan files that represents the different environments.
+
+50
+00:04:24 --> 00:04:30
+- This approach makes it possible to have better control and auditing of the different environments.
+
+51
+00:04:30 --> 00:04:40
+- In addition, you have to follow good and consice naming conventions for the plan files. 
+
+52
+00:04:40 --> 00:04:45
+- But again, you can solve this easily using version control and git,
+
+53
+00:04:45 --> 00:04:50
+- where you can overwrite the "main.tfplan" file, that way you only keep track of one. 
+
+54
+00:04:50 --> 00:04:56
+- Since I only have to keep my own machine in mind, I will overwrite the "main.tfplan" file.
+
+55
+00:04:56 --> 00:05:01
+- Simply run "terraform plan -out main.tfplan" and it will overwrite the existing plan file.
+
+56
+00:05:03 --> 00:05:06
+- And when the plan is finished we can see that we have a new plan file, and what changes have been made. 
+
+57
+00:05:06 --> 00:05:08
+- We have 1 to add, 1 to change,
+
+58
+00:05:08 --> 00:05:18
+- the change will be the NSG that was removed, and the add will be the new vnet. 
+
+59
+00:05:18 --> 00:05:25
+- And as you can see here that we have the information about the changes that will be made.
+
+60
+00:05:28 --> 00:05:36
+- The update will be that the security groups are removed, showcased by the minuses. 
+
+61
+00:05:36 --> 00:05:40
+- The plus signs means that we are adding something. 
+
+62
+00:05:40 --> 00:05:46
+- Great, then we'll apply the plan using "terraform apply main.tfplan",
+
+63
+00:05:46 --> 00:05:51
+- and head over to the Azure Portal later to see the status of the deployment.
+
+64
+00:05:51 --> 00:06:00
+- When we see that the apply has been completed we can head over to the Azure Portal.
+
+65
+00:06:00 --> 00:06:11
+- Here we can see that under the resource group we have two vnets; "vnet-01-we" and "vnet-02-we". 
+
+66
+00:06:11 --> 00:06:21
+- If we enter the subnets we can see that the security group has been removed.
+
+67
+00:06:21 --> 00:06:24
+- What we have essentially done is edited the infrascture. 
+
+68
+00:06:24 --> 00:06:31
+- The entire purpose was to get an overview of the terraform plan -out possibilities we have. 
+
+69
+00:06:31 --> 00:06:39
+- And now we have updated and created more resources using the same plan file.
+
+70
+00:06:39 --> 00:06:43
+- And then only one thing remains, which is to tear it down again, 
+
+71
+00:06:43 --> 00:06:48
+- because we don't need anything running as long as we are not using it. 
+
+72
+00:06:48 --> 00:06:53
+- The thought here was to look at "plan", but we have also done an "apply". 
+
+73
+00:06:53 --> 00:06:57
+- So if we quickly go to the documentation for the "apply" command,
+
+74
+00:06:57 --> 00:07:01
+- we have already touched on "plan" and looked at the possibilities using "-out" flag. 
+
+75
+00:07:01 --> 00:07:08
+- Below apply we see the same explanation; we can have options and a plan file. 
+
+76
+00:07:08 --> 00:07:18
+- There are then also several options we can use, for example "-auto-approve".
+
+77
+00:07:18 --> 00:07:28
+- So if you haven't run a plan you can use "-auto-approve" to approve the changes automatically.
+
+78
+00:07:28 --> 00:07:32
+- If you want to have a look at all the possibilities for apply then go have a look, 
+
+79
+00:07:32 --> 00:07:38
+- but the final thing we will do now before we round off this video is to run a "destroy". 
+
+80
+00:07:43 --> 00:07:51
+- Keep in mind that "terraform destroy" is an alias for "terraform apply -destroy".
+
+81
+00:07:51 --> 00:07:58
+- So I can just copy the "terraform apply -destroy" command and paste it in the terminal.
+
+82
+00:07:59 --> 00:08:05
+- You of course have to confirm that you want to destroy the resources.
+
+83
+00:08:05 --> 00:08:09
+- It is a pretty large and destructive task that is being performed,
+
+84
+00:08:09 --> 00:08:13
+- so you have to be certain that you actually want to tear everyting down. 
+
+85
+00:08:13 --> 00:08:18
+- It's possible it was run on a production environment by mistake, and confirming it is a good idea.
+
+86
+00:08:18 --> 00:08:22
+- The destroy is complete, 4 resources destroyed.
+
+87
+00:08:22 --> 00:08:27
+- Then we can also take a quick look at the Azure Portal to see that everything is gone.
+
+88
+00:08:27 --> 00:08:37
+- Go to the Azure Portal, and resource groups, and we can see that the resource group is gone.
+
+89
+00:08:38 --> 00:08:46
+- Then we have created, edited, added and destroyed resources using "plan", "apply" and "destroy".
