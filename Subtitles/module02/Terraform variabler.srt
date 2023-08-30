@@ -1,0 +1,239 @@
+1
+00:00:00 --> 00:00:02
+In this video we will start looking at variables.
+
+2
+00:00:02 --> 00:00:08
+There are of course a lot of information in a terraform file that is hard coded, like we have now. 
+
+3
+00:00:08 --> 00:00:14
+And that is quite unfavourable, because it makes it less flexible than we want it to be.
+
+4
+00:00:14 --> 00:00:20
+So through a small series of videos we will take a look at how we can tackle this problem. 
+
+5
+00:00:21 --> 00:00:28
+The first thing you can do is add the variables directly into the "main.tf" file. 
+
+6
+00:00:28 --> 00:00:35
+I have created a new a new folder below module02 called "demo-variabel", because that is what I am going to showcase. 
+
+7
+00:00:35 --> 00:00:41
+And then as you can see we have in our main.tf file the terraform block,
+
+8
+00:00:41 --> 00:00:46
+we have the provider block, the resource group and a resource storage account. 
+
+9
+00:00:46 --> 00:00:49
+This is just to showcase the example right now, 
+
+10
+00:00:49 --> 00:00:52
+but we can of course take this further with more resources and more variables. 
+
+11
+00:00:52 --> 00:01:00
+We can start by typing "vare", and two options will appear that we can choose between.
+
+12
+00:01:00 --> 00:01:03
+We have an empty variable and we have a variable block.
+
+13
+00:01:03 --> 00:01:09
+If we choose the second option, a variable with quotes and squiggly brackets will appear.
+
+14
+00:01:09 --> 00:01:15
+That perhaps does not have everything we want or need,
+
+15
+00:01:15 --> 00:01:21
+so we will rather choose the empty variable, which includes more information that we can use.
+
+16
+00:01:21 --> 00:01:27
+Now we get the type, the description, and where we have to write the name of the variable.
+
+17
+00:01:27 --> 00:01:33
+In this context we can showcase how we define our location, 
+
+18
+00:01:33 --> 00:01:39
+if we want a static place where everything should be deployed to.
+
+19
+00:01:39 --> 00:01:45
+So if we write "location" then that will be the name of the variable in our code,
+
+20
+00:01:45 --> 00:01:51
+and this has nothing to do with the location name, but just what we reference in our terraform file. 
+
+21
+00:01:51 --> 00:01:56
+The types of variables we can have is string, boolean or integer/number, 
+
+22
+00:01:56 --> 00:02:03
+so if we remove this we can set it as "string", "number" or "bool",
+
+23
+00:02:03 --> 00:02:10
+and that is the type of variable based on whether it should be a text string, false or true or a number.
+
+24
+00:02:10 --> 00:02:19
+In our case it will be a string, and we can now write a description of the variable, if we want to add it. 
+
+25
+00:02:19 --> 00:02:30
+We can also add a default value, if no other value is given it will use the default value we set. 
+
+26
+00:02:30 --> 00:02:36
+We can set it to be "West Europe", which will then be our default value, 
+
+27
+00:02:36 --> 00:02:43
+and as long as the location does not have an input it will choose "West Europe". 
+
+28
+00:02:43 --> 00:02:49
+And then we can see that under location in our resrouce group, we can use our variable. 
+
+29
+00:02:49 --> 00:02:55
+If we write "var", it will suggest what variables we can use, and we can choose "location".
+
+30
+00:02:55 --> 00:03:03
+And our terraform file we can now see that changing the variable will change the location of the resource group, 
+
+31
+00:03:03 --> 00:03:10
+and our storage account we have set to be dependent on the resource groups location, so that will change as well.
+
+32
+00:03:10 --> 00:03:15
+Because here we reference, as we remember, the location of the resource group.
+
+33
+00:03:15 --> 00:03:21
+Then everything that is defined by the variable will be affected by a change in the variable itself.
+
+34
+00:03:21 --> 00:03:30
+But, we can do a quick run down of using variables for the name of our storage account, and the name of our resource group. 
+
+35
+00:03:30 --> 00:03:41
+So we can start by getting a new empty variable, and call it "rgname", like this.
+
+36
+00:03:41 --> 00:03:46
+It will be the type of string, and we'll let the description remain the same. 
+
+37
+00:03:46 --> 00:03:52
+Actually, we can add a description, so we can write "Resource Group Name",
+
+38
+00:03:53 --> 00:03:59
+And we'll do the same for the location variable, and call it "Deployment Location".
+
+39
+00:03:59 --> 00:04:08
+We'll also add a default value to the resource group name variable; "rg-demo-terraform",
+
+40
+00:04:08 --> 00:04:12
+to keep in line with some good naming conventions. 
+
+41
+00:04:14 --> 00:04:20
+We'll then add a variable for our storage account the same way as before
+
+42
+00:04:20 --> 00:04:26
+(Follow along on screen)
+
+43
+00:04:26 --> 00:04:32
+There, now we have the variable name, type and description. 
+
+44
+00:04:32 --> 00:04:37
+You also have to remember to reference the variables where they should be used,
+
+45
+00:04:37 --> 00:04:41
+both in the storage account and the resource group respectively.
+
+46
+00:04:41 --> 00:04:44
+Now we have utilized some variables in our terraform configuration. 
+
+47
+00:04:45 --> 00:04:51
+So to test this now we can run "terraform plan", and see what happens.
+
+48
+00:04:51 --> 00:04:57
+It is important now that since its a new folder we have to run "terraform init" first.
+
+49
+00:04:57 --> 00:05:07
+(Navigating around the folders to find the right one)
+
+50
+00:05:07 --> 00:05:13
+When the command has finished running we can run "terraform plan", 
+
+51
+00:05:13 --> 00:05:25
+but firstly I'll run a "terraform fmt" to make sure the code is formatted correctly.
+
+52
+00:05:25 --> 00:05:38
+Then, we'll run the "terraform plan -var=''", making sure to specify the variables we want to use.
+
+53
+00:05:38 --> 00:05:47
+What should rgname be? "terraform plan -var='rgname=rg-demo-var-01'",
+
+54
+00:05:47 --> 00:06:03
+and then we also have to add a var for the saname, which has to be globally unique.
+
+55
+00:06:03 --> 00:06:10
+So we'll call it "satim123567", and remember that only small letters and numbers for a specific length is allowed. 
+
+56
+00:06:10 --> 00:06:18
+Right, the final command will be "terraform plan -var='rgname=rg-demo-var-01' -var='saname=satim123567'".
+
+57
+00:06:18 --> 00:06:27
+As you remember, what we now have is the default location, and we have specified the resource group name and storage account name in our "plan".
+
+58
+00:06:27 --> 00:06:40
+When the plan has finished, we can review what will be added, and verify that the names we set correspond to what the plan shows. 
+
+59
+00:06:40 --> 00:06:46
+The resource group will have the name we set, as will the storage account. 
+
+60
+00:06:46 --> 00:06:57
+We have not deployed this yet, but we'll take a look in the next video on how to do this with a seperate variable file. 
