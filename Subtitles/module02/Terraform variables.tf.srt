@@ -1,0 +1,103 @@
+1
+00:00:00 --> 00:00:04
+In the previous video we looked at how we can use variables directly in our .tf file, 
+
+2
+00:00:04 --> 00:00:06
+but now we will implement a standalone variable file. 
+
+3
+00:00:06 --> 00:00:11
+The way we do that is, standing in the same folder as the previous video, create a new file, 
+
+4
+00:00:11 --> 00:00:15
+and call it "variables.tf".
+
+5
+00:00:15 --> 00:00:24
+And then ill cut the variables from the main.tf file and paste them in the new variables.tf file. 
+
+6
+00:00:24 --> 00:00:30
+The thing that is important to note now is that is that every tf file under the same folder, 
+
+7
+00:00:30 --> 00:00:34
+when we run terraform init, counts as a single config. 
+
+8
+00:00:34 --> 00:00:43
+So that main.tf, variables.tf, output.tf and everything else will be considered as one and the same config.
+
+9
+00:00:44 --> 00:00:54
+Now we have our main.tf and our variables.tf file, the dot signifiying its not saved yet, so remember to do so. 
+
+10
+00:00:57 --> 00:01:08
+If we want more comments we can use a "#" sign, and then write our comments in our files. 
+
+11
+00:01:08 --> 00:01:22
+Now that we have exported our variables to a separate file, we can run terraform init again,
+
+12
+00:01:22 --> 00:01:27
+to initiate the new variables.tf file, and the new config. 
+
+13
+00:01:27 --> 00:01:32
+As I already said, everything within here is what represents the configuration. 
+
+14
+00:01:32 --> 00:01:39
+When that is done, we now have the variable file, 
+
+15
+00:01:39 --> 00:01:45
+and if we then run the same command as earlier, (terraform plan ...), it will still be applicable,
+
+16
+00:01:45 --> 00:01:50
+if we give it the same values as before.
+
+17
+00:01:50 --> 00:01:59
+But we can give it some other input just to show that it works even though we moved the variables.
+
+18
+00:01:59 --> 00:02:05
+So we'll edit some of the values, and run the plan it will create a plan. 
+
+19
+00:02:05 --> 00:02:12
+Then we will see we'll get the same outcome whether we have a separate variable file or not.
+
+20
+00:02:13 --> 00:02:20
+If we scroll up we can see that the variables have changed according to what we did in the plan command. 
+
+21
+00:02:21 --> 00:02:24
+This makes everything much more readable.
+
+22
+00:02:24 --> 00:02:30
+Had we had everything in a long main.tf file, it would have become messy and hard to read.
+
+23
+00:02:30 --> 00:02:35
+But when we have a separate file for our variables, we keep it condensed into bite-sized, readable chunks,
+
+24
+00:02:35 --> 00:02:39
+which makes it easier to read and understand, when we manage a larger infrastructure.
+
+25
+00:02:40 --> 00:02:46
+We don't have to deploy this either, as its the first step on how we can use variables, 
+
+26
+00:02:46 --> 00:02:52
+in the next video we'll take the next step and have a look at a .tfvars file. 
