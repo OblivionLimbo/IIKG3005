@@ -1,0 +1,103 @@
+1
+00:00:00 --> 00:00:07
+Now we have looked at how to use variables directly in our main.tf file, a standalone variable file, 
+
+2
+00:00:07 --> 00:00:13
+and with input directly in the command line, when we run and plan the deployment. 
+
+3
+00:00:13 --> 00:00:16
+But, there is another way to do this; 
+
+4
+00:00:16 --> 00:00:24
+we can create a new file that we'll call "terraform.tfvars".
+
+5
+00:00:24 --> 00:00:27
+Then we see that we have another terraform file,
+
+6
+00:00:27 --> 00:00:33
+which will then contain the configuration of our variables. 
+
+7
+00:00:33 --> 00:00:41
+We'll then have our resources in main, our variables in variables, and the content of the variables in terraform.tfvars.
+
+8
+00:00:42 --> 00:00:50
+A smart way to proceed is to split the screen into the variable file and the tfvars file. 
+
+9
+00:00:50 --> 00:00:55
+So if we then click on this icon in the top right, we can split the screen vertically,
+
+10
+00:00:55 --> 00:00:59
+we'll keep the tfvars file on one side and the variable file on the other. 
+
+11
+00:00:59 --> 00:01:06
+Because what we have to do is bring these variables into the tfvars file.
+
+12
+00:01:06 --> 00:01:14
+And since everything is a string, the file will look like shown on screen. 
+
+13
+00:01:14 --> 00:01:19
+Had we had integers or booleans there would not be quotes around the values.
+
+14
+00:01:19 --> 00:01:26
+Location will then be "West Europe", and the resource group name will be "rg-tfvar-demo",
+
+15
+00:01:26 --> 00:01:36
+and storage account name will be "satfvardemo123".
+
+16
+00:01:36 --> 00:01:47
+Now we have prepared the content of the tfvars file, and we have to remember to save all the files,
+
+17
+00:01:47 --> 00:01:50
+so that everything is correct and up to date. 
+
+18
+00:01:50 --> 00:01:52
+Then we'll run a "terraform init" again,
+
+19
+00:01:52 --> 00:01:56
+and then the only thing that remains is running a "terraform plan",
+
+20
+00:01:56 --> 00:02:02
+just to see if we receive the information from the tfvars file as we expect.
+
+21
+00:02:03 --> 00:02:06
+Scrolling through the plan we can verify that everything is as expected; 
+
+22
+00:02:06 --> 00:02:14
+the resource group name has changed to what we set it as. 
+
+23
+00:02:14 --> 00:02:22
+Same goes for the storage account name and the location.
+
+24
+00:02:22 --> 00:02:24
+Then everything works as expected.
+
+25
+00:02:24 --> 00:02:29
+Now we have main for our resources, variables for our defined variables,
+
+26
+00:02:29 --> 00:02:34
+and terraform.tfvars for the values of the variables.
