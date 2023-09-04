@@ -1,0 +1,223 @@
+1
+00:00:00,000 --> 00:00:02,840
+I denne videoen skal vi se litt mer på variabler.
+
+2
+00:00:02,840 --> 00:00:09,580
+Vi har jo allerede vært igjennom typ variabler som er av formen String, Polygon, Integr.
+
+3
+00:00:09,580 --> 00:00:14,000
+Men vi har også mer avansert og flere typer av variabler.
+
+4
+00:00:14,000 --> 00:00:16,000
+Vi kan begynne å ta i Terraform.
+
+5
+00:00:16,000 --> 00:00:17,520
+En er da Locals.
+
+6
+00:00:17,520 --> 00:00:24,760
+Som vi ser her i dokumentasjonen for Terraform-languageen er at local values, eller local value variables,
+
+7
+00:00:24,760 --> 00:00:31,000
+kan benyttes da for informasjon som skal kanskje være gjelde for en type konfigurasjon.
+
+8
+00:00:31,000 --> 00:00:39,960
+Det kan ja for eksempel være typisk et bedriftsnavn, eller liknande, som gjengående skal brukes gjennom denne infrastrukturen.
+
+9
+00:00:39,960 --> 00:00:49,200
+Og det er viktig å tenke på, sånn som det står nedover her, at man bør ikke overbruke for mye local variables.
+
+10
+00:00:49,200 --> 00:00:51,840
+For det kan jo da gjøre koden litt uoversiktlig og vanskelig å lese.
+
+11
+00:00:51,880 --> 00:00:58,760
+For det her er mer bruk til det som skal være ofte statisk, men skal være mulig å endre.
+
+12
+00:00:58,760 --> 00:01:04,720
+Så hvis man utvikler en kjempebra infrastrukturkonfigurasjon for en bedrift, så kan man for eksempel si,
+
+13
+00:01:04,720 --> 00:01:09,040
+ok, vi kan ta avansere en konfigurasjon her over til en annen bedrift, endrer vi bare Locals,
+
+14
+00:01:09,040 --> 00:01:13,560
+så får vi et annet navn på infrastrukturen, eller hvem som skal nå være eier, eller liknande.
+
+15
+00:01:13,560 --> 00:01:17,280
+Når vi implementerer en hos en annen bedrift da.
+
+16
+00:01:17,280 --> 00:01:19,440
+Og det er jo det vi skal gjøre nå.
+
+17
+00:01:19,440 --> 00:01:21,280
+Vi skal se litt på hvordan vi kan gjøre det her.
+
+18
+00:01:21,280 --> 00:01:26,520
+Så et fint eksempel på at variabler bruker vi f.eks. på en storage account type navn,
+
+19
+00:01:26,520 --> 00:01:34,680
+mens Locals kan brukes da på en bedrift, eller noe tags som skal være gjelde, og ganske statisk for hele konfigurasjonen.
+
+20
+00:01:34,680 --> 00:01:36,920
+Jeg hopper da bare over i Visual Studio Code.
+
+21
+00:01:36,920 --> 00:01:39,800
+Her ser vi bare, jeg har bare minimert provideren.
+
+22
+00:01:39,800 --> 00:01:44,640
+Nei, tar jeg form-blokken med provider, og så minimerer jeg dem, så får vi litt mindre å se.
+
+23
+00:01:44,640 --> 00:01:47,200
+Her har vi Resource Groupen og en storage account.
+
+24
+00:01:47,200 --> 00:01:49,960
+Så hvis vi bare begynner å skrive Locals,
+
+25
+00:01:49,960 --> 00:01:51,960
+så kan vi nå se at vi får opp eksempel.
+
+26
+00:01:51,960 --> 00:01:57,880
+En Local kan da inneholde forskjellige typer informasjon som vi ønsker å benytte oss av.
+
+27
+00:01:57,880 --> 00:02:00,360
+Det kan hende å dukke opp noen forslag,
+
+28
+00:02:00,360 --> 00:02:07,880
+etterhvert siden det var noen snille studenter som introduisert hvordan de kunne bruke Copilot sammen med VS Code.
+
+29
+00:02:07,880 --> 00:02:13,040
+Men det er ikke alltid at jeg vil benytte meg av de forslagene og informasjonene som kommer,
+
+30
+00:02:13,040 --> 00:02:18,400
+for man kan se her at her kommer det f.eks. forslag på Locals, men det er ikke alltid jeg vil bruke det da.
+
+31
+00:02:18,440 --> 00:02:27,880
+Men det som er tanken her nå, jeg kan bruke Name, så kan jeg da skrive her for eksempel at dette skal være LearnNate.
+
+32
+00:02:27,880 --> 00:02:32,200
+Så kan jeg også bruke for eksempel Tags, som skal være gildende.
+
+33
+00:02:32,200 --> 00:02:37,080
+Da må vi huske på Tags, Squarely Brackets, og så må vi gjøre sånn.
+
+34
+00:02:37,080 --> 00:02:40,480
+Og da kan vi for eksempel, her kommer det med et ganske godt forslag på Tags.
+
+35
+00:02:40,480 --> 00:02:43,760
+Environment or Production, det kan jo være greit.
+
+36
+00:02:43,840 --> 00:02:54,720
+Cost Center IT, så kan vi jo ta på Owner, så tabber vi den, så kan vi da skrive at vi har navnet våre, eller navnet mitt da.
+
+37
+00:02:54,720 --> 00:03:04,440
+Når det skal være Owner, da kan man jo bruke navn, eller man kan jo bruke User Principal Name, eller liknande, som er unikt for denne bedriften.
+
+38
+00:03:04,440 --> 00:03:11,880
+Så nå har vi jo da fått lagt inn to typer av informasjon i en Locals Variable, Lagriding.
+
+39
+00:03:11,920 --> 00:03:18,840
+Vi har jo fortsatt de variabler for i den som jeg tople med fra forrige modul, er nå i mappa modul 3.
+
+40
+00:03:18,840 --> 00:03:26,600
+Ingenfor Variables, så har jeg jo da Location, Ergename og Storage Account Name, og så har jeg jo innholdet i dem her.
+
+41
+00:03:26,600 --> 00:03:29,480
+Og så har jeg nå lagt en Local.
+
+42
+00:03:29,480 --> 00:03:34,720
+Kjør inn Terraform, inn hit, ser vi at det er oppe i kjøret, jeg kan jo huske.
+
+43
+00:03:34,760 --> 00:03:45,280
+Vi kan jo finne dem da, i Terraform, Console, så kan vi skrive local.name, local.tags, så ser vi her at vi har dem.
+
+44
+00:03:45,280 --> 00:03:51,920
+Så, men det var jo det vi skulle nå, vi tar Clear, og så kjører vi ned.
+
+45
+00:03:51,920 --> 00:03:56,520
+For, ja det er utsikkert vi bruker Name nå, men vi kan jo bare vise for eksempel for Tags da.
+
+46
+00:03:56,560 --> 00:04:02,120
+For, det kan jo være at man ønsker for eksempel å bruke Tags som er gjelde for all deploymenten sin,
+
+47
+00:04:02,120 --> 00:04:05,920
+så da kan vi jo si, ok, local, det er local.cdm hvor vi definerer Tags.
+
+48
+00:04:05,920 --> 00:04:13,440
+Så hvis vi da skriver her, Tags, jeg liker, nei, må selvfølgelig ta bort sånn, kan gjøre Tags.
+
+49
+00:04:13,440 --> 00:04:22,280
+Local.tags, sånn, kan vi legge til og det inn på resource-gruppen, tar vi Tags, jeg liker local.tags,
+
+50
+00:04:22,280 --> 00:04:30,920
+så kan vi skrive en Terraform-format, skjønner vi hvordan det aligner, alle samme som vi, jeg får samme bork.
+
+51
+00:04:30,920 --> 00:04:43,000
+Så, vi legger det inn, skriver vi save, sånn, der er vi det, og så kan vi da ta, og så kjør en Terraform,
+
+52
+00:04:43,040 --> 00:04:55,160
+main plan, out main tfplan, her har vi en Terraform, main plan, out main tfplan, skjønner vi hvordan det skal skje.
+
+53
+00:04:55,160 --> 00:05:03,280
+Sånn, før vi skjøtter at Tags blir det da det som står som localsen, og så har vi at navnene,
+
+54
+00:05:03,280 --> 00:05:09,960
+resource-group-name, er det som er fra variables-filen, waste-your-replication er fra variables-filen, et cetera.
+
+55
+00:05:09,960 --> 00:05:15,960
+Så da kunne vi jo bare kjøre til en apply, og så hadde vi dukket ut denne infrastrukturen TM.
+
+56
+00:05:15,960 --> 00:05:22,960
+Det var jo bare for å vise noe hvordan vi bruker local variables sammen med vanlige variables.

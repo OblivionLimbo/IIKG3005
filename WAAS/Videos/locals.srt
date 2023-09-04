@@ -1,0 +1,179 @@
+1
+00:00:00,000 --> 00:00:16,000
+In this video we will look a little more at variables. We have already been through types of variables that are of the form string, boolean, integer, but we have also more advanced and more types of variables that can be used in Terraform.
+
+2
+00:00:16,000 --> 00:00:31,000
+One of the locals that we see here in the documentation for the Terraform language is that local variables can be used for information that may be valid for a type of configuration.
+
+3
+00:00:31,000 --> 00:00:40,000
+It can, for example, be a typical company name or something like that, which is going to be used through this infrastructure.
+
+4
+00:00:40,000 --> 00:00:52,000
+And it is important to think about, as it says down here, that you should not overuse too much local variables, because that can also make the code a little confusing and difficult to read.
+
+5
+00:00:52,000 --> 00:01:08,000
+This is more use for what should often be static, but should be possible to change. So if you develop a very good infrastructure configuration for a company, then you can, for example, say OK, we can take this configuration over to another company.
+
+6
+00:01:08,000 --> 00:01:17,000
+If we just change the local, then we get a different name for the infrastructure or who is going to be the owner or something like that, when we implement it at another company.
+
+7
+00:01:17,000 --> 00:01:34,000
+And that's what we're going to do now. We're going to see a little bit of how we can do this. So a nice example of a variable we use, for example, on a storage account type name, while locals can be used on a company or some tags that should be valid and quite static for the whole configuration.
+
+8
+00:01:34,000 --> 00:01:44,000
+I just hop over in Visual Studio Code. Here we just see, I have just minimized the provider. No, I take the form block with the provider. I also minimize them, so we get a little less to see.
+
+9
+00:01:44,000 --> 00:01:57,000
+Here we have the resource group and a storage account. So if we just start writing locals, then we can see that we get an example. A local can then contain different types of information that we want to use.
+
+10
+00:01:57,000 --> 00:02:07,000
+It can help to open up some suggestions, especially since there were some nice students who introduced how they can use Copilot together with VS Code.
+
+11
+00:02:07,000 --> 00:02:18,000
+But it's not always that I want to use the suggestions and information that comes, because you can see here that here comes, for example, suggestions for locals, but I don't always want to use that.
+
+12
+00:02:18,000 --> 00:02:27,000
+But what's the idea here now? I can use a name, so I can then write here, for example, that this should be LearnIT.
+
+13
+00:02:27,000 --> 00:02:35,000
+And then I can also prepare, for example, tags that should be valid. Then we have to remember tags, squiggly brackets.
+
+14
+00:02:35,000 --> 00:02:40,000
+And then we have to do that. And then, for example, here comes a pretty good suggestion on tags.
+
+15
+00:02:41,000 --> 00:02:44,000
+"Environment = Production", that can work, "Costcenter = IT".
+
+16
+00:02:44,000 --> 00:03:04,000
+If you want to be an owner, then you can use the user principal name or something like that, which is unique to this company.
+
+17
+00:03:04,000 --> 00:03:11,000
+So now we have put in two types of information in a local variable.
+
+18
+00:03:11,000 --> 00:03:18,000
+We still have the variables from the last module, which is now in the map of module 3.
+
+19
+00:03:18,000 --> 00:03:26,000
+In the variables, I have location, rgname and start account name, and then I have content in them here.
+
+20
+00:03:26,000 --> 00:03:29,000
+And then I have now added a local.
+
+21
+00:03:29,000 --> 00:03:43,000
+Run a terraform init. We can also find them in Terraform console, then we can write local.name, local.tags.
+
+22
+00:03:43,000 --> 00:03:45,000
+Then we see here that I have them.
+
+23
+00:03:45,000 --> 00:03:51,000
+But that was not what we were going to do now. We take Clear and then we go down.
+
+24
+00:03:51,000 --> 00:03:56,000
+It's not certain we use the name now, but you can just show, for example, for tags.
+
+25
+00:03:56,000 --> 00:04:02,000
+Because it could be that you want, for example, to use tags that are valid for all of your deployment.
+
+26
+00:04:02,000 --> 00:04:06,000
+So then you can say, OK, local, it's local.cdm where you define tags.
+
+27
+00:04:06,000 --> 00:04:11,000
+So if you then write here, tags equals, no, of course, I have to remove it like that.
+
+28
+00:04:11,000 --> 00:04:13,000
+I can't have tags inside tags.
+
+29
+00:04:13,000 --> 00:04:16,000
+Local.tags.
+
+30
+00:04:16,000 --> 00:04:20,000
+So we can add it to the resource group and we take tags.
+
+31
+00:04:20,000 --> 00:04:22,000
+I'll write tags equals local.tags.
+
+32
+00:04:22,000 --> 00:04:27,000
+Then we can write a Terraform format.
+
+33
+00:04:27,000 --> 00:04:31,000
+We see that it aligns very much the same as we did for the same block.
+
+34
+00:04:31,000 --> 00:04:34,000
+Then we like it.
+
+35
+00:04:34,000 --> 00:04:36,000
+Then we save.
+
+36
+00:04:36,000 --> 00:04:38,000
+So we have it.
+
+37
+00:04:38,000 --> 00:04:42,000
+And then we can take and run.
+
+38
+00:04:42,000 --> 00:04:47,000
+Terraform plan -out=main.tfplan.
+
+39
+00:04:47,000 --> 00:04:53,000
+Here we have Terraform plan -out=main.tfplan.
+
+40
+00:04:53,000 --> 00:04:56,000
+Here we see what's going on.
+
+41
+00:04:56,000 --> 00:05:01,000
+Before we see that tags will be what stands as the local.
+
+42
+00:05:01,000 --> 00:05:07,000
+And then we have that the names, the resource group name is what is from the variables file.
+
+43
+00:05:07,000 --> 00:05:10,000
+The variable location is from the variables file, etc.
+
+44
+00:05:10,000 --> 00:05:17,000
+So then we could just run an apply and then deploy this infrastructure.
+
+45
+00:05:17,000 --> 00:05:23,000
+That was just to show you how we use local variables together with normal variables.
