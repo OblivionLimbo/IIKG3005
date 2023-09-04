@@ -1,0 +1,392 @@
+1
+00:00:00,000 --> 00:00:04,160
+Okay, in the previous video we saw locals, where we added  them to main.tf.
+
+2
+00:00:04,160 --> 00:00:09,480
+But of course, it is possible to make it more flexible than hardcoding the locals.
+
+3
+00:00:09,480 --> 00:00:15,000
+We can createa new file, which we are going to name "locals.tf".
+
+4
+00:00:15,000 --> 00:00:18,880
+And then we can take a look at the example of locals,
+
+5
+00:00:18,880 --> 00:00:24,120
+and move them away from main, and into this new "locals.tf" file.
+
+6
+00:00:24,280 --> 00:00:29,360
+In the case of the site, we are going to talk about a new site, which we are going to talk about.
+
+7
+00:00:29,360 --> 00:00:39,160
+We are going to talk about a new film, called Verbalse, where we are going to talk about the same site.
+
+8
+00:00:39,160 --> 00:00:45,480
+What we are going to do is to find out where we are going to talk about local sites and Verbalse.
+
+9
+00:00:45,640 --> 00:00:50,320
+This site located in place is for the west, the complex,ähl.
+
+10
+00:00:50,320 --> 00:00:52,500
+Not many of you know that.
+
+11
+00:00:52,500 --> 00:00:55,540
+But what they communicate is what they do this week.
+
+12
+00:00:55,540 --> 00:00:57,780
+And the label represents their origin.
+
+13
+00:00:57,780 --> 00:01:03,960
+So we are going to propose a practical example of the spots on which are known as Verbalse.
+
+14
+00:01:03,960 --> 00:01:07,060
+But Verbalse site is for the west.
+
+15
+00:01:07,060 --> 00:01:11,080
+The first thing is that we do aferbaruralalla.
+
+16
+00:01:11,080 --> 00:01:26,080
+and some new variables, so you can learn, for example, a company, type string, description, company name, variable, so we will write, for example, project,
+
+17
+00:01:26,080 --> 00:01:34,080
+and then we can now store that we take with the company name, and we are in TerraformWives,
+
+18
+00:01:34,080 --> 00:01:49,080
+and then we will learn and write a project, and then we will write project, Tf, and then the project, Terraform, and so on, and so on.
+
+19
+00:01:49,080 --> 00:01:55,080
+Let's see what we have, let's see variables, and then we have a local, which we are going to take at the end.
+
+20
+00:01:56,080 --> 00:02:10,080
+For today we have a variable, which is called a company name, and then we have input to the variable name, which is also not input via the command line, but we do it in the Terraform Tf.
+
+21
+00:02:10,080 --> 00:02:31,080
+Then we take the local number, and then we take and set a name to the company name, and then we will add a project name, but we might have more here, and then it is great that we can, for example,
+
+22
+00:02:31,080 --> 00:02:52,080
+this is a way we can take with it, or in the case of the Terraform, that we are going to have input from the variable name, so we are going to use a dollar time, and then we can go back to the scroll brackets, and then we can set the same name, and there is a variable, so we are going to take the company name,
+
+23
+00:02:52,080 --> 00:03:22,080
+and then we are going to take the company name, and then we are going to take the company name, and then we are going to take the company name, and then we are going to take the company name, and then we are going to take the company name, and then we are going to take the company name, and then we are going to take the company name, and then we are going to take the company name, and then we are going to take the company name, and then we are going to take the company name, and then we are going to take the company name, and then we are going to take the company name, and then we are going to take the company name, and then we are going to take the company name, and then we are going to take the company name, and then we are going to take the company name, and then we are going to take the company name, and then we are going to take the company name, and then we are going to take the company name, and then we are going to take the company name, and
+
+24
+00:03:22,080 --> 00:03:52,080
+then we are going to take the company name, and then we are going to take what is called company name, and then we are going to take the company name, and then we are going to take the company name, and then we are going to take the company name and then we are going to take the company name, and then we are going to film what is called company name, and then our company name is design name and we are going to film what is called project name, so is the company name and we are going to film what is called project name to film what is called project name, so sl платize the company name and we are going to film what is called project name and we are going to film what is called project name, and we are going to film what is called project name and the case number of data, and we am going to film what is called project name then we are going to film what is called project name and the case number of data, and then we are going to film what is called project name and then we will need to help some parts
+
+25
+00:03:52,080 --> 00:03:56,080
+And now it's important to know the real institute
+
+26
+00:03:56,080 --> 00:03:58,080
+and to tell you the question is
+
+27
+00:03:58,080 --> 00:04:01,080
+if the end is going to be a valid cause
+
+28
+00:04:01,080 --> 00:04:04,080
+that generates the cause we have on IDE IT.
+
+29
+00:04:04,080 --> 00:04:07,080
+And then we can see here that in the project
+
+30
+00:04:07,080 --> 00:04:10,080
+we can have a variable here.
+
+31
+00:04:10,080 --> 00:04:13,080
+Variable, we will call the building code
+
+32
+00:04:13,080 --> 00:04:16,080
+and then we can create a string
+
+33
+00:04:16,080 --> 00:04:19,080
+which we will see in the data.
+
+34
+00:04:19,080 --> 00:04:22,080
+And then we will call the building code
+
+35
+00:04:22,080 --> 00:04:25,080
+and then we will just set a number of numbers
+
+36
+00:04:25,080 --> 00:04:27,080
+and then we can represent
+
+37
+00:04:27,080 --> 00:04:31,080
+what we have with the institute of the building
+
+38
+00:04:31,080 --> 00:04:33,080
+for the end drift.
+
+39
+00:04:33,080 --> 00:04:35,080
+And then we will just use it
+
+40
+00:04:35,080 --> 00:04:37,080
+and then we will start to create a line.
+
+41
+00:04:37,080 --> 00:04:38,080
+And then we will see
+
+42
+00:04:38,080 --> 00:04:40,080
+and then we can see how we write
+
+43
+00:04:40,080 --> 00:04:42,080
+that this can be a tag
+
+44
+00:04:42,080 --> 00:04:44,080
+which is not supposed to be a specific tag for you
+
+45
+00:04:44,080 --> 00:04:46,080
+but it can be more like
+
+46
+00:04:46,080 --> 00:04:48,080
+a common tag
+
+47
+00:04:48,080 --> 00:04:50,080
+which is what we use
+
+48
+00:04:50,080 --> 00:04:52,080
+for this deployment
+
+49
+00:04:52,080 --> 00:04:54,080
+which we want in our company name
+
+50
+00:04:54,080 --> 00:04:56,080
+and in our project name name
+
+51
+00:04:56,080 --> 00:04:58,080
+which we do today
+
+52
+00:04:58,080 --> 00:05:00,080
+and we can only enter the information
+
+53
+00:05:00,080 --> 00:05:02,080
+if we want to deploy this
+
+54
+00:05:02,080 --> 00:05:04,080
+for an end drift
+
+55
+00:05:04,080 --> 00:05:06,080
+with an end to this name.
+
+56
+00:05:06,080 --> 00:05:08,080
+So let's take a little longer
+
+57
+00:05:08,080 --> 00:05:10,080
+to create a building code
+
+58
+00:05:10,080 --> 00:05:12,080
+and then we will create a tree
+
+59
+00:05:12,080 --> 00:05:14,080
+and then we will create a tree
+
+60
+00:05:14,080 --> 00:05:16,080
+on the next channel
+
+61
+00:05:16,080 --> 00:05:18,080
+and then you can see
+
+62
+00:05:18,080 --> 00:05:20,080
+the courseigers
+
+63
+00:05:22,080 --> 00:05:24,080
+to load that tree
+
+64
+00:05:24,080 --> 00:05:26,080
+and in it
+
+65
+00:05:26,080 --> 00:05:28,080
+we create everything thanks to it
+
+66
+00:05:28,080 --> 00:05:30,060
+we can first put a tree
+
+67
+00:05:30,060 --> 00:05:33,080
+to host the space
+
+68
+00:05:33,080 --> 00:05:36,800
+and then we can add
+
+69
+00:05:36,800 --> 00:05:40,080
+and the windows
+
+70
+00:05:40,080 --> 00:05:48,080
+Tags, we say that today we have tags that will be a billing code, a company project that can be set.
+
+71
+00:05:48,080 --> 00:05:53,080
+If we are going to set this up, we are going to go to my TF Fill-over-S.
+
+72
+00:05:53,080 --> 00:05:59,080
+And then we say here, here we are going to go from 4 to 5, so if we are going to go here today,
+
+73
+00:05:59,080 --> 00:06:08,080
+then we will write local, then we will write comment tags, because we are not going to write, then we will write local comment tags.
+
+74
+00:06:08,080 --> 00:06:15,080
+And then we want this resource to set their tags, so information on the resource that will be released,
+
+75
+00:06:15,080 --> 00:06:22,080
+with this information, then the company name, project, then the company name and project, and the billing code for this project.
+
+76
+00:06:22,080 --> 00:06:29,080
+So now we are going to write a third form, plan out, with TF plan.
+
+77
+00:06:29,080 --> 00:06:35,080
+So we are going to write a resource that will be released, and we can now choose a double check call.
+
+78
+00:06:35,080 --> 00:06:41,080
+There is a large account that will be released, so we are going to be a resource group, and there is a tag that will be set on it.
+
+79
+00:06:41,080 --> 00:06:47,080
+And then we can just say here, and tags that will be set on it, and it has a little bit of a local.
+
+80
+00:06:47,080 --> 00:06:55,080
+Here is a resource group name, which is from variable, and here is a name from variable, so it is location from variable.
+
+81
+00:06:55,080 --> 00:07:00,080
+There is a form, apply, name, plan.
+
+82
+00:07:00,080 --> 00:07:03,080
+So we want to install and deploy.
+
+83
+00:07:03,080 --> 00:07:07,080
+And when the deployment is released, we can now go to the portal.
+
+84
+00:07:07,080 --> 00:07:14,080
+We are going to take a resource group, we are going to create a new one, and here we are going to create a new one.
+
+85
+00:07:14,080 --> 00:07:20,080
+And here we are going to create a large account that will be released, and then we are going to write tags on the resource group.
+
+86
+00:07:20,080 --> 00:07:23,080
+Building code, company, and project.
+
+87
+00:07:23,080 --> 00:07:31,080
+And this is a nice way to structure resources in it, and make sure that you actually find a future for people like me, for example.
+
+88
+00:07:31,080 --> 00:07:36,080
+Or when you are there, you can have a building code that you are going to need to pay for this resource.
+
+89
+00:07:36,080 --> 00:07:39,080
+Can we company it, and project it, and the next thing.
+
+90
+00:07:39,080 --> 00:07:45,080
+In the same way, we have gotten your tags into a large account, for example, and have codes.
+
+91
+00:07:45,080 --> 00:07:48,080
+There are two types of tags, two types of form.
+
+92
+00:07:48,080 --> 00:07:53,080
+With this selection, it is used by variables, and by locals.
+
+93
+00:07:53,080 --> 00:08:02,080
+In my field, locals, in my own field, variables, variables, in my own field, and with Terraform TF, Vars, and Phil.
+
+94
+00:08:02,080 --> 00:08:05,080
+And that was actually what I was thinking about by locals.
+
+95
+00:08:05,080 --> 00:08:08,080
+This is a multi-house, and a Terraform.
+
+96
+00:08:08,080 --> 00:08:17,080
+Destroy for my community, so that I don't have a resource and a lot of money, when I don't have a lot of money.
+
+97
+00:08:17,080 --> 00:08:24,080
+After that, yes, I am going to take all the tags, and I am going to put them into a large account, and then I am going to say that the resource will be added.
+
+98
+00:08:24,080 --> 00:08:27,080
+Destroy it completely, then all the tags are done.
+
