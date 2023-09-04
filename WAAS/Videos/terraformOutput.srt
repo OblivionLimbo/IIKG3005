@@ -1,0 +1,420 @@
+1
+00:00:00,000 --> 00:00:09,000
+Now we are very well prepared to take on modules, but because we can start to buy them, we start to take a cart in your output.
+
+2
+00:00:09,000 --> 00:00:18,000
+Because it is possible to have modules with modules, such as road modules, child modules, and even if you are at a higher level with child modules.
+
+3
+00:00:18,000 --> 00:00:21,000
+It is possible to be able to use them and see information.
+
+4
+00:00:21,000 --> 00:00:28,000
+It is a module that allows you to do a training course, if you are going to talk about a network or a connected one module,
+
+5
+00:00:28,000 --> 00:00:32,000
+then you want to have more information, because it is also possible to talk about a module over it.
+
+6
+00:00:32,000 --> 00:00:33,000
+Maybe road modules.
+
+7
+00:00:33,000 --> 00:00:37,000
+We start with a module, maybe a few, but it is a bit like this.
+
+8
+00:00:37,000 --> 00:00:39,000
+We start first.
+
+9
+00:00:39,000 --> 00:00:42,000
+But we can start to buy the first output, and then we can think about the cost.
+
+10
+00:00:42,000 --> 00:00:44,000
+Now we can use this scene.
+
+11
+00:00:44,000 --> 00:00:54,000
+So what we are going to do is that we can create a output block, and then we can, for example, write here that it is going to be s-a-ide.
+
+12
+00:00:54,000 --> 00:01:01,000
+And then we can think that if we want to get a large account, then we will get a bit of ID.
+
+13
+00:01:01,000 --> 00:01:06,000
+We can now get a bit of ID, and then we have to get a bit of ID.
+
+14
+00:01:06,000 --> 00:01:12,000
+So therefore we have to get a bit of ID here, and then we have to get a bit of ID.
+
+15
+00:01:13,000 --> 00:01:17,000
+And then we have to get a bit of ID to get a bit of ID.
+
+16
+00:01:17,000 --> 00:01:21,000
+From the copy-election, we have to get a bit of ID.
+
+17
+00:01:21,000 --> 00:01:24,000
+And that is also possible to get a bit of ID.
+
+18
+00:01:24,000 --> 00:01:30,000
+I want to get a value, I want a value, I want a value, I want a value, I want a s-a-dm storage account,
+
+19
+00:01:30,000 --> 00:01:33,000
+a s-a-dm, which is a name on this one.
+
+20
+00:01:33,000 --> 00:01:37,000
+So this is the s-a-dm, and we have to get a bit of ID.
+
+21
+00:01:37,000 --> 00:01:42,000
+Now we can start writing this as we see that we have a whole deal with ask for an answer
+
+22
+00:01:42,000 --> 00:01:46,000
+which we actually read, especially since we are sent out But everything is still on our account.
+
+23
+00:01:46,000 --> 00:01:49,000
+But have to get a large account, and then we have to get an ID I-a-dm.
+
+24
+00:01:49,000 --> 00:01:53,680
+That's right, now we have to object to pick something a new thing like
+
+25
+00:01:53,680 --> 00:01:59,000
+If we have to run on Terraform and RAID subway TerraformIo, then we have to get a BEST in Transure documentation.
+
+26
+00:01:59,000 --> 00:02:03,000
+So now we have to write storage accounts.
+
+27
+00:02:03,000 --> 00:02:09,000
+I'm going to write a story, and then we'll search for a review of the references.
+
+28
+00:02:09,000 --> 00:02:13,000
+So let's say here that we have all the things that we can do on the back,
+
+29
+00:02:13,000 --> 00:02:20,000
+to find the information that we're going to do on the outside.
+
+30
+00:02:20,000 --> 00:02:24,000
+So here was the idea, and that could be, for example, if you're going to talk about the network,
+
+31
+00:02:24,000 --> 00:02:27,000
+then you might be able to go into the network, like,
+
+32
+00:02:27,000 --> 00:02:31,000
+e-prange, or something like that, and that's very special, for example,
+
+33
+00:02:31,000 --> 00:02:38,000
+if you're going to talk about the network, then you're going to have to go into the network.
+
+34
+00:02:38,000 --> 00:02:42,000
+So that was actually what we had planned to do now,
+
+35
+00:02:42,000 --> 00:02:45,000
+to get an output, but now we have to check that it works.
+
+36
+00:02:45,000 --> 00:02:50,000
+That's what's important to think about now, that it's a value on output.
+
+37
+00:02:50,000 --> 00:02:55,000
+We don't want to come and show it to the audience, because it's that the resources don't exist,
+
+38
+00:02:55,000 --> 00:02:56,000
+when we do the plan.
+
+39
+00:02:56,000 --> 00:03:03,000
+Therefore, I think that we have to do the whole run with the plan and apply.
+
+40
+00:03:03,000 --> 00:03:06,000
+So let's do it for a minute.
+
+41
+00:03:06,000 --> 00:03:11,000
+So let's do it for the plan out.
+
+42
+00:03:11,000 --> 00:03:13,000
+Not for the plan.
+
+43
+00:03:13,000 --> 00:03:18,000
+When the plan is done, let's do it for the plan.
+
+44
+00:03:19,000 --> 00:03:22,000
+No, no.
+
+45
+00:03:22,000 --> 00:03:24,000
+Change, change the output.
+
+46
+00:03:24,000 --> 00:03:27,000
+Assault ID, no one after the plan.
+
+47
+00:03:27,000 --> 00:03:29,000
+Plan two, two that are dead.
+
+48
+00:03:29,000 --> 00:03:33,000
+And then we can see here that it's not...
+
+49
+00:03:33,000 --> 00:03:36,000
+Start check and resource group.
+
+50
+00:03:36,000 --> 00:03:39,000
+That's what will be applied.
+
+51
+00:03:39,000 --> 00:03:41,000
+So that's the plan.
+
+52
+00:03:41,000 --> 00:03:42,000
+So let's see if the story is over.
+
+53
+00:03:42,000 --> 00:03:44,000
+And maybe we have a lot of work to do.
+
+54
+00:03:45,000 --> 00:03:47,000
+Oh, no, we have heard for the apply.
+
+55
+00:03:47,000 --> 00:03:52,000
+So let's see here that we have completed resources to edit outputs.
+
+56
+00:03:52,000 --> 00:03:56,000
+Assault ID, and this is the entire ID that is represented.
+
+57
+00:03:56,000 --> 00:03:58,000
+Start check out.
+
+58
+00:03:58,000 --> 00:03:59,000
+So we have to do it.
+
+59
+00:03:59,000 --> 00:04:05,000
+We can go into the plan, but let's see if the resource has to do it.
+
+60
+00:04:05,000 --> 00:04:07,000
+Any resource groups, let's see here.
+
+61
+00:04:07,000 --> 00:04:08,000
+I'll give it a name.
+
+62
+00:04:08,000 --> 00:04:09,000
+I'll give it a name.
+
+63
+00:04:09,000 --> 00:04:11,000
+Assault Team Demo 2643.
+
+64
+00:04:11,000 --> 00:04:12,000
+I'll give it a name.
+
+65
+00:04:12,000 --> 00:04:13,000
+And I'll give it a name.
+
+66
+00:04:13,000 --> 00:04:14,000
+Find out.
+
+67
+00:04:14,000 --> 00:04:15,000
+For example, I'll give it a name.
+
+68
+00:04:15,000 --> 00:04:16,000
+Jason, I'll give it a name.
+
+69
+00:04:16,000 --> 00:04:19,000
+So that we have a large account,
+
+70
+00:04:19,000 --> 00:04:21,000
+which is the same one we got.
+
+71
+00:04:21,000 --> 00:04:23,000
+And now that we've got the name,
+
+72
+00:04:23,000 --> 00:04:25,000
+with the large account,
+
+73
+00:04:25,000 --> 00:04:27,000
+in the third form,
+
+74
+00:04:27,000 --> 00:04:29,000
+we can see the output,
+
+75
+00:04:29,000 --> 00:04:32,000
+and use the name in an A in the same name.
+
+76
+00:04:32,000 --> 00:04:35,000
+And if we have to configure the output,
+
+77
+00:04:35,000 --> 00:04:37,000
+or with the name, this resource,
+
+78
+00:04:37,000 --> 00:04:39,000
+we can refer this name,
+
+79
+00:04:39,000 --> 00:04:41,000
+because we have to set it up.
+
+80
+00:04:41,000 --> 00:04:44,000
+And if this resource has been represented
+
+81
+00:04:44,000 --> 00:04:45,000
+with an A in the module,
+
+82
+00:04:45,000 --> 00:04:47,000
+we can see this in the Over-Test.
+
+83
+00:04:47,000 --> 00:04:49,000
+It's a road module,
+
+84
+00:04:49,000 --> 00:04:51,000
+but we'll do it more with this resource.
+
+85
+00:04:51,000 --> 00:04:53,000
+That's what I'm thinking about.
+
+86
+00:04:53,000 --> 00:04:55,000
+I'll give it a name.
+
+87
+00:04:55,000 --> 00:04:57,000
+I'll give it a name.
+
+88
+00:04:57,000 --> 00:04:58,000
+I'll give it a name.
+
+89
+00:04:58,000 --> 00:05:00,000
+Map is a module 3,
+
+90
+00:05:00,000 --> 00:05:02,000
+but maybe the next module 4,
+
+91
+00:05:02,000 --> 00:05:04,000
+we'll have a top road module
+
+92
+00:05:04,000 --> 00:05:06,000
+with several smaller modules.
+
+93
+00:05:06,000 --> 00:05:08,000
+I just want to say a summary
+
+94
+00:05:08,000 --> 00:05:10,000
+of the four modules,
+
+95
+00:05:10,000 --> 00:05:12,000
+with a configuration,
+
+96
+00:05:12,000 --> 00:05:14,000
+set it up with the resource line in the same name.
+
+97
+00:05:14,000 --> 00:05:16,000
+But as always, the third form,
+
+98
+00:05:16,000 --> 00:05:18,000
+destroy, and then we can see
+
+99
+00:05:18,000 --> 00:05:20,000
+that we've done it.
+
+100
+00:05:20,000 --> 00:05:22,000
+We've got the name,
+
+101
+00:05:22,000 --> 00:05:24,000
+and then we've got the resource group,
+
+102
+00:05:24,000 --> 00:05:26,000
+and the resource group,
+
+103
+00:05:26,000 --> 00:05:28,000
+and then we're going to use the name,
+
+104
+00:05:28,000 --> 00:05:30,000
+and then we're going to use the name,
+
+105
+00:05:30,000 --> 00:05:32,000
+Erscher.
+
