@@ -1,0 +1,63 @@
+1
+00:00:00,000 --> 00:00:15,560
+In this video, we are going to talk about a new type, which we are going to talk about on variables maps, so we are going to talk about Veribulls again, so we are going to talk about, for example, a nice use case for how to get up, for example, VMSize, how many days do we have?
+
+2
+00:00:15,560 --> 00:00:21,240
+Maping is about the number of VMs and that is in, for example, Azure.
+
+3
+00:00:21,240 --> 00:00:33,560
+So, if we are talking about Azure, its VM number, like, Sizes, or Stockkeeping Unit, which we call, then we can also connect the map to the VMs we want to use.
+
+4
+00:00:33,560 --> 00:00:42,560
+So we can do that, but we have not used the VMs for the first time, but we can start with a example on that, but now we can see how we find a good use case here.
+
+5
+00:00:42,560 --> 00:01:11,560
+Because this is the standard of B2S, it will be very difficult to explain, so we know that in a configuration or in a set-up, we will just have a type of VM, so we can, for example, do something like this, that we write a type, like MAC, and then we will write a string, or no, we don't have anything with it, it is there, and then we will write a default, which we can only do like this.
+
+6
+00:01:11,560 --> 00:01:20,560
+And then we can see that if, for example, we do the VM there, then it will be your version, if we do the VM there, then it will be your version.
+
+7
+00:01:20,560 --> 00:01:28,560
+There is something like a checker that has a new type of information, and then based on that, then it will be your VM source over it.
+
+8
+00:01:28,560 --> 00:01:50,560
+We can, for example, write that we have a small, medium, and then we have a large, like this, and then we have some specificities that give variable VM size, and also say, for example, that I will have a small, medium or large, then we want it to be in VM, but the stock is not in the VM, but we have got it when we have deployed it.
+
+9
+00:01:50,560 --> 00:02:19,560
+So we can, for example, write a certain type of information, we can write in VM size, small, then we will say that we have got it, we will not have any choice, where the standard is, but in the VM, we will say that we can write a key pair, and then we have one, a value that is marked, so that it is a value, then you can choose it, so that it is a number, for example, very complex, or a little,
+
+10
+00:02:19,560 --> 00:02:30,000
+it經ically ему whole, an information such as suchangs. And then we can, for example, be able to write, for example want to test, and it will sometimes not be small, or that is a small, the praw Pull being directly connected
+
+11
+00:02:30,000 --> 00:02:38,500
+or on the VM size on the map, and then we may suspect that, we can specify whether we want string or number on maps in good conditions.
+
+12
+00:02:38,500 --> 00:02:44,260
+So, today we have set up both lists, maps and locals.
+
+13
+00:02:44,260 --> 00:02:46,580
+We have set up different variables.
+
+14
+00:02:46,580 --> 00:02:48,580
+We can get a lot of ground lag,
+
+15
+00:02:48,580 --> 00:02:49,780
+but we don't have to go to work,
+
+16
+00:02:49,780 --> 00:02:53,980
+and we will start with a complex infrastructure and use a module.
