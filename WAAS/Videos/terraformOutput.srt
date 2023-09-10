@@ -1,420 +1,136 @@
 1
 00:00:00,000 --> 00:00:09,000
-Now we are very well prepared to take on modules, but because we can start to buy them, we start to take a cart in your output.
+Now we are getting pretty well prepared to take a look at the modules, but before we can start looking at that, we should take a quick look at the outputs.
 
 2
 00:00:09,000 --> 00:00:18,000
-Because it is possible to have modules with modules, such as road modules, child modules, and even if you are at a higher level with child modules.
+Because it may be something when we start with the modules, that you have root modules and child modules, and possibly even more levels with child modules.
 
 3
-00:00:18,000 --> 00:00:21,000
-It is possible to be able to use them and see information.
+00:00:18,000 --> 00:00:33,000
+It may be that you want to send information between these modules, which means that if you expand a network or link one module, you will have information from what has been expanded in that module over in the root module.
 
 4
-00:00:21,000 --> 00:00:28,000
-It is a module that allows you to do a training course, if you are going to talk about a network or a connected one module,
+00:00:33,000 --> 00:00:39,000
+We are not going to start with the module right now, but it's a bit tricky where we start first here.
 
 5
-00:00:28,000 --> 00:00:32,000
-then you want to have more information, because it is also possible to talk about a module over it.
+00:00:39,000 --> 00:00:44,000
+But we can look at the output first, and then we can think about how we can reuse this later.
 
 6
-00:00:32,000 --> 00:00:33,000
-Maybe road modules.
+00:00:44,000 --> 00:00:55,000
+So what we are going to do is that we can create an output block, and then we can for example write here that it should be SAID.
 
 7
-00:00:33,000 --> 00:00:37,000
-We start with a module, maybe a few, but it is a bit like this.
+00:00:55,000 --> 00:01:02,000
+And then we can think that if we then wish that after making this storage edge, then we wish to know the ID.
 
 8
-00:00:37,000 --> 00:00:39,000
-We start first.
+00:01:02,000 --> 00:01:13,000
+Of course, we cannot know the ID to this storage account before it has been created, so therefore we have to wait until this storage account has been created, until we can eventually find the ID.
 
 9
-00:00:39,000 --> 00:00:42,000
-But we can start to buy the first output, and then we can think about the cost.
+00:01:13,000 --> 00:01:21,000
+And then we see here that I get a pretty good suggestion now from CoPilot, what I actually need.
 
 10
-00:00:42,000 --> 00:00:44,000
-Now we can use this scene.
+00:01:21,000 --> 00:01:27,000
+And that's actually what it says here. I need value. What do I need of value?
 
 11
-00:00:44,000 --> 00:00:54,000
-So what we are going to do is that we can create a output block, and then we can, for example, write here that it is going to be s-a-ide.
+00:01:27,000 --> 00:01:36,000
+Yes, I need Azurerm Storage Account, SADemo, which is the name of this one. So it's this resource's ID.
 
 12
-00:00:54,000 --> 00:01:01,000
-And then we can think that if we want to get a large account, then we will get a bit of ID.
+00:01:36,000 --> 00:01:46,000
+And if we take and write like this, then we see that we find a whole lot of attributes that we can actually list from or send to the output for a storage account.
 
 13
-00:01:01,000 --> 00:01:06,000
-We can now get a bit of ID, and then we have to get a bit of ID.
+00:01:46,000 --> 00:01:52,000
+But in our case now, we take an ID as an example. Where can I find the attributes I can use?
 
 14
-00:01:06,000 --> 00:01:12,000
-So therefore we have to get a bit of ID here, and then we have to get a bit of ID.
+00:01:52,000 --> 00:02:04,000
+Yes, if we go to Terraform or registry.terraform.io, and then we go into Azure Documentation, then we can here write storage account, scroll down to storage.
 
 15
-00:01:13,000 --> 00:01:17,000
-And then we have to get a bit of ID to get a bit of ID.
+00:02:04,000 --> 00:02:19,000
+And then if we then search for attribute references, then we see here that we have all the things we can add on the backend to find that type of information when we run to an output.
 
 16
-00:01:17,000 --> 00:01:21,000
-From the copy-election, we have to get a bit of ID.
+00:02:19,000 --> 00:02:29,000
+So here we had ID, and it could be, for example, if we run a network, then maybe we want to give that network IP range or something like that.
 
 17
-00:01:21,000 --> 00:01:24,000
-And that is also possible to get a bit of ID.
+00:02:29,000 --> 00:02:38,000
+And that's especially if you, for example, are going to set network rules on that network, then you would have the need to know the ID of that network.
 
 18
-00:01:24,000 --> 00:01:30,000
-I want to get a value, I want a value, I want a value, I want a value, I want a s-a-dm storage account,
+00:02:38,000 --> 00:02:45,000
+So that was actually what we needed to do now to get an output, but you have to check that it works.
 
 19
-00:01:30,000 --> 00:01:33,000
-a s-a-dm, which is a name on this one.
+00:02:45,000 --> 00:02:56,000
+What is important to think about now is that a value on the output will not be shown in the beginning of the plan, because the resource does not exist when we run the plan.
 
 20
-00:01:33,000 --> 00:01:37,000
-So this is the s-a-dm, and we have to get a bit of ID.
+00:02:56,000 --> 00:03:03,000
+Therefore, we have to run the whole round with plan and apply.
 
 21
-00:01:37,000 --> 00:01:42,000
-Now we can start writing this as we see that we have a whole deal with ask for an answer
+00:03:03,000 --> 00:03:22,000
+We run Terraform init, so we run Terraform plan -out main.tfplan. When the plan is ready, we run Terraform apply "main.tfplan"
 
 22
-00:01:42,000 --> 00:01:46,000
-which we actually read, especially since we are sent out But everything is still on our account.
+00:03:22,000 --> 00:03:39,000
+Changes to outputs: said, known after apply, plan two, two that are added, and then we can start to see here that the storage account and the resource group is what is being set up.
 
 23
-00:01:46,000 --> 00:01:49,000
-But have to get a large account, and then we have to get an ID I-a-dm.
+00:03:39,000 --> 00:03:59,000
+And when we have run apply, then we see here that we have apply completed, resources 2 added, outputs, here we have said, and this is the whole ID that represents the storage account that we have just set up.
 
 24
-00:01:49,000 --> 00:01:53,680
-That's right, now we have to object to pick something a new thing like
+00:03:59,000 --> 00:04:05,000
+Now we can go into the portal to see that our resource has been set up.
 
 25
-00:01:53,680 --> 00:01:59,000
-If we have to run on Terraform and RAID subway TerraformIo, then we have to get a BEST in Transure documentation.
+00:04:05,000 --> 00:04:14,000
+Under resource groups, we can see here now, rgdemo001, satimdemo7643 If we click on that, we will then be able to find out.
 
 26
-00:01:59,000 --> 00:02:03,000
-So now we have to write storage accounts.
+00:04:14,000 --> 00:04:21,000
+If we, for example, click on JSON view here, we see that we have the ID of the storage account, which is the same as we got the output.
 
 27
-00:02:03,000 --> 00:02:09,000
-I'm going to write a story, and then we'll search for a review of the references.
+00:04:21,000 --> 00:04:32,000
+And then it's like that, if we were to have done anything more with the storage account there now, in Terraform, then we could have sent this output and used this in another context.
 
 28
-00:02:09,000 --> 00:02:13,000
-So let's say here that we have all the things that we can do on the back,
+00:04:32,000 --> 00:04:41,000
+If we were to have set up, configured, or done anything with this resource, then we can refer to this ID, so that we have been able to continue.
 
 29
-00:02:13,000 --> 00:02:20,000
-to find the information that we're going to do on the outside.
+00:04:41,000 --> 00:04:50,000
+Yes, if this resource has been set up in another module, then we can send this ID over to the root module, if we were to do anything more with this resource itself.
 
 30
-00:02:20,000 --> 00:02:24,000
-So here was the idea, and that could be, for example, if you're going to talk about the network,
+00:04:50,000 --> 00:04:55,000
+That was actually what I was going to go through with you in connection with the output.
 
 31
-00:02:24,000 --> 00:02:27,000
-then you might be able to go into the network, like,
+00:04:55,000 --> 00:05:06,000
+Because then we can see here now, if we just enter one module 3, but maybe now in the next module 4, we will start to have one top root module with several sub-modules.
 
 32
-00:02:27,000 --> 00:02:31,000
-e-prange, or something like that, and that's very special, for example,
+00:05:06,000 --> 00:05:14,000
+That is to say a collection with Terraform files that makes up one configuration, a set of resources, etc.
 
 33
-00:02:31,000 --> 00:02:38,000
-if you're going to talk about the network, then you're going to have to go into the network.
+00:05:14,000 --> 00:05:22,000
+But as always, Terraform destroy at the end, and then we can see that we take out that one, confirm that we want it.
 
 34
-00:02:38,000 --> 00:02:42,000
-So that was actually what we had planned to do now,
-
-35
-00:02:42,000 --> 00:02:45,000
-to get an output, but now we have to check that it works.
-
-36
-00:02:45,000 --> 00:02:50,000
-That's what's important to think about now, that it's a value on output.
-
-37
-00:02:50,000 --> 00:02:55,000
-We don't want to come and show it to the audience, because it's that the resources don't exist,
-
-38
-00:02:55,000 --> 00:02:56,000
-when we do the plan.
-
-39
-00:02:56,000 --> 00:03:03,000
-Therefore, I think that we have to do the whole run with the plan and apply.
-
-40
-00:03:03,000 --> 00:03:06,000
-So let's do it for a minute.
-
-41
-00:03:06,000 --> 00:03:11,000
-So let's do it for the plan out.
-
-42
-00:03:11,000 --> 00:03:13,000
-Not for the plan.
-
-43
-00:03:13,000 --> 00:03:18,000
-When the plan is done, let's do it for the plan.
-
-44
-00:03:19,000 --> 00:03:22,000
-No, no.
-
-45
-00:03:22,000 --> 00:03:24,000
-Change, change the output.
-
-46
-00:03:24,000 --> 00:03:27,000
-Assault ID, no one after the plan.
-
-47
-00:03:27,000 --> 00:03:29,000
-Plan two, two that are dead.
-
-48
-00:03:29,000 --> 00:03:33,000
-And then we can see here that it's not...
-
-49
-00:03:33,000 --> 00:03:36,000
-Start check and resource group.
-
-50
-00:03:36,000 --> 00:03:39,000
-That's what will be applied.
-
-51
-00:03:39,000 --> 00:03:41,000
-So that's the plan.
-
-52
-00:03:41,000 --> 00:03:42,000
-So let's see if the story is over.
-
-53
-00:03:42,000 --> 00:03:44,000
-And maybe we have a lot of work to do.
-
-54
-00:03:45,000 --> 00:03:47,000
-Oh, no, we have heard for the apply.
-
-55
-00:03:47,000 --> 00:03:52,000
-So let's see here that we have completed resources to edit outputs.
-
-56
-00:03:52,000 --> 00:03:56,000
-Assault ID, and this is the entire ID that is represented.
-
-57
-00:03:56,000 --> 00:03:58,000
-Start check out.
-
-58
-00:03:58,000 --> 00:03:59,000
-So we have to do it.
-
-59
-00:03:59,000 --> 00:04:05,000
-We can go into the plan, but let's see if the resource has to do it.
-
-60
-00:04:05,000 --> 00:04:07,000
-Any resource groups, let's see here.
-
-61
-00:04:07,000 --> 00:04:08,000
-I'll give it a name.
-
-62
-00:04:08,000 --> 00:04:09,000
-I'll give it a name.
-
-63
-00:04:09,000 --> 00:04:11,000
-Assault Team Demo 2643.
-
-64
-00:04:11,000 --> 00:04:12,000
-I'll give it a name.
-
-65
-00:04:12,000 --> 00:04:13,000
-And I'll give it a name.
-
-66
-00:04:13,000 --> 00:04:14,000
-Find out.
-
-67
-00:04:14,000 --> 00:04:15,000
-For example, I'll give it a name.
-
-68
-00:04:15,000 --> 00:04:16,000
-Jason, I'll give it a name.
-
-69
-00:04:16,000 --> 00:04:19,000
-So that we have a large account,
-
-70
-00:04:19,000 --> 00:04:21,000
-which is the same one we got.
-
-71
-00:04:21,000 --> 00:04:23,000
-And now that we've got the name,
-
-72
-00:04:23,000 --> 00:04:25,000
-with the large account,
-
-73
-00:04:25,000 --> 00:04:27,000
-in the third form,
-
-74
-00:04:27,000 --> 00:04:29,000
-we can see the output,
-
-75
-00:04:29,000 --> 00:04:32,000
-and use the name in an A in the same name.
-
-76
-00:04:32,000 --> 00:04:35,000
-And if we have to configure the output,
-
-77
-00:04:35,000 --> 00:04:37,000
-or with the name, this resource,
-
-78
-00:04:37,000 --> 00:04:39,000
-we can refer this name,
-
-79
-00:04:39,000 --> 00:04:41,000
-because we have to set it up.
-
-80
-00:04:41,000 --> 00:04:44,000
-And if this resource has been represented
-
-81
-00:04:44,000 --> 00:04:45,000
-with an A in the module,
-
-82
-00:04:45,000 --> 00:04:47,000
-we can see this in the Over-Test.
-
-83
-00:04:47,000 --> 00:04:49,000
-It's a road module,
-
-84
-00:04:49,000 --> 00:04:51,000
-but we'll do it more with this resource.
-
-85
-00:04:51,000 --> 00:04:53,000
-That's what I'm thinking about.
-
-86
-00:04:53,000 --> 00:04:55,000
-I'll give it a name.
-
-87
-00:04:55,000 --> 00:04:57,000
-I'll give it a name.
-
-88
-00:04:57,000 --> 00:04:58,000
-I'll give it a name.
-
-89
-00:04:58,000 --> 00:05:00,000
-Map is a module 3,
-
-90
-00:05:00,000 --> 00:05:02,000
-but maybe the next module 4,
-
-91
-00:05:02,000 --> 00:05:04,000
-we'll have a top road module
-
-92
-00:05:04,000 --> 00:05:06,000
-with several smaller modules.
-
-93
-00:05:06,000 --> 00:05:08,000
-I just want to say a summary
-
-94
-00:05:08,000 --> 00:05:10,000
-of the four modules,
-
-95
-00:05:10,000 --> 00:05:12,000
-with a configuration,
-
-96
-00:05:12,000 --> 00:05:14,000
-set it up with the resource line in the same name.
-
-97
-00:05:14,000 --> 00:05:16,000
-But as always, the third form,
-
-98
-00:05:16,000 --> 00:05:18,000
-destroy, and then we can see
-
-99
-00:05:18,000 --> 00:05:20,000
-that we've done it.
-
-100
-00:05:20,000 --> 00:05:22,000
-We've got the name,
-
-101
-00:05:22,000 --> 00:05:24,000
-and then we've got the resource group,
-
-102
-00:05:24,000 --> 00:05:26,000
-and the resource group,
-
-103
-00:05:26,000 --> 00:05:28,000
-and then we're going to use the name,
-
-104
-00:05:28,000 --> 00:05:30,000
-and then we're going to use the name,
-
-105
-00:05:30,000 --> 00:05:32,000
-Erscher.
+00:05:22,000 --> 00:05:30,000
+And finally, we see now that the resource group and the resource group are deleted, and then we don't have to worry about something that will cost us in Azure.
 
