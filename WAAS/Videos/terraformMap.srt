@@ -1,63 +1,243 @@
 1
-00:00:00,000 --> 00:00:15,560
-In this video, we are going to talk about a new type, which we are going to talk about on variables maps, so we are going to talk about Veribulls again, so we are going to talk about, for example, a nice use case for how to get up, for example, VMSize, how many days do we have?
+00:00:00,000 --> 00:00:02,600
+In this video, we're going to look at a new type.
 
 2
-00:00:15,560 --> 00:00:21,240
-Maping is about the number of VMs and that is in, for example, Azure.
+00:00:02,600 --> 00:00:04,760
+We're going to look at Variables Maps.
 
 3
-00:00:21,240 --> 00:00:33,560
-So, if we are talking about Azure, its VM number, like, Sizes, or Stockkeeping Unit, which we call, then we can also connect the map to the VMs we want to use.
+00:00:04,760 --> 00:00:06,440
+As we said, we're going to write variables again.
 
 4
-00:00:33,560 --> 00:00:42,560
-So we can do that, but we have not used the VMs for the first time, but we can start with a example on that, but now we can see how we find a good use case here.
+00:00:06,440 --> 00:00:08,960
+We're going to write, for example,
 
 5
-00:00:42,560 --> 00:01:11,560
-Because this is the standard of B2S, it will be very difficult to explain, so we know that in a configuration or in a set-up, we will just have a type of VM, so we can, for example, do something like this, that we write a type, like MAC, and then we will write a string, or no, we don't have anything with it, it is there, and then we will write a default, which we can only do like this.
+00:00:08,960 --> 00:00:11,120
+a nice use case for using Maps.
 
 6
-00:01:11,560 --> 00:01:20,560
-And then we can see that if, for example, we do the VM there, then it will be your version, if we do the VM there, then it will be your version.
+00:00:11,120 --> 00:00:14,280
+For example, VM size.
 
 7
-00:01:20,560 --> 00:01:28,560
-There is something like a checker that has a new type of information, and then based on that, then it will be your VM source over it.
+00:00:14,280 --> 00:00:16,600
+Where you can have mapping between
 
 8
-00:01:28,560 --> 00:01:50,560
-We can, for example, write that we have a small, medium, and then we have a large, like this, and then we have some specificities that give variable VM size, and also say, for example, that I will have a small, medium or large, then we want it to be in VM, but the stock is not in the VM, but we have got it when we have deployed it.
+00:00:16,600 --> 00:00:18,680
+what the name of the VM is,
 
 9
-00:01:50,560 --> 00:02:19,560
-So we can, for example, write a certain type of information, we can write in VM size, small, then we will say that we have got it, we will not have any choice, where the standard is, but in the VM, we will say that we can write a key pair, and then we have one, a value that is marked, so that it is a value, then you can choose it, so that it is a number, for example, very complex, or a little,
+00:00:18,680 --> 00:00:21,160
+and what it is in, for example, Azure.
 
 10
-00:02:19,560 --> 00:02:30,000
-it經ically ему whole, an information such as suchangs. And then we can, for example, be able to write, for example want to test, and it will sometimes not be small, or that is a small, the praw Pull being directly connected
+00:00:21,160 --> 00:00:24,840
+If we look at Azure's VM name,
 
 11
-00:02:30,000 --> 00:02:38,500
-or on the VM size on the map, and then we may suspect that, we can specify whether we want string or number on maps in good conditions.
+00:00:24,840 --> 00:00:27,920
+i.e. Sizes, or Stock Keeping Unit, as it was called,
 
 12
-00:02:38,500 --> 00:02:44,260
-So, today we have set up both lists, maps and locals.
+00:00:28,000 --> 00:00:31,400
+we can easily make a mapping between
 
 13
-00:02:44,260 --> 00:02:46,580
-We have set up different variables.
+00:00:31,400 --> 00:00:33,680
+what type of VM we want to use.
 
 14
-00:02:46,580 --> 00:02:48,580
-We can get a lot of ground lag,
+00:00:33,680 --> 00:00:37,440
+We haven't used a VM with Terraform yet,
 
 15
-00:02:48,580 --> 00:02:49,780
-but we don't have to go to work,
+00:00:37,440 --> 00:00:39,520
+but I can just show you an example of it,
 
 16
-00:02:49,780 --> 00:02:53,980
-and we will start with a complex infrastructure and use a module.
+00:00:39,520 --> 00:00:42,520
+but you can also see if we find a good use case here.
+
+17
+00:00:42,520 --> 00:00:44,760
+Because this is standard B2S.
+
+18
+00:00:44,760 --> 00:00:46,120
+It will be difficult to remember,
+
+19
+00:00:46,120 --> 00:00:50,120
+so if we know that in a configuration, or in a setup,
+
+20
+00:00:50,120 --> 00:00:52,640
+we're just going to have a type of VM,
+
+21
+00:00:52,640 --> 00:00:55,640
+we can, for example, do something like this.
+
+22
+00:00:55,680 --> 00:01:00,200
+We type, type equals map,
+
+23
+00:01:00,200 --> 00:01:02,240
+and then we write a string.
+
+24
+00:01:02,240 --> 00:01:04,640
+No, we don't need to have that one there.
+
+25
+00:01:04,640 --> 00:01:08,560
+And then we write default, like this.
+
+26
+00:01:08,560 --> 00:01:11,600
+We can just do that.
+
+27
+00:01:11,600 --> 00:01:14,800
+And then we can see that if, for example,
+
+28
+00:01:14,800 --> 00:01:17,560
+we set up the VM there, it should be this version.
+
+29
+00:01:17,560 --> 00:01:20,240
+If we set up the VM there, it should be this version.
+
+30
+00:01:20,240 --> 00:01:24,640
+In a way, we can check what this type of info is,
+
+31
+00:01:24,640 --> 00:01:28,600
+and then based on that, this VM size will be selected.
+
+32
+00:01:28,600 --> 00:01:32,040
+We can also, for example, have written that it has been small,
+
+33
+00:01:32,040 --> 00:01:37,840
+medium, and then we add large, like that.
+
+34
+00:01:37,840 --> 00:01:40,880
+And then we have simply now been able to specify that,
+
+35
+00:01:40,880 --> 00:01:42,240
+ok, variable VM size,
+
+36
+00:01:42,240 --> 00:01:45,640
+and also said, for example, ok, should it be small, medium, or large,
+
+37
+00:01:45,640 --> 00:01:47,560
+then it would have been the VM,
+
+38
+00:01:47,560 --> 00:01:50,520
+the stock shipping unit of the VM we have received when we deployed it.
+
+39
+00:01:50,520 --> 00:01:53,560
+So then we can easily see here,
+
+40
+00:01:53,560 --> 00:01:57,360
+the shipping unit looks like we are sure of the format.
+
+41
+00:01:57,360 --> 00:02:03,160
+We can write var.vm-size.small.
+
+42
+00:02:03,160 --> 00:02:04,920
+Then we see here that we get,
+
+43
+00:02:04,920 --> 00:02:06,760
+the content will then be standard,
+
+44
+00:02:06,760 --> 00:02:10,120
+MB1S, medium, large.
+
+45
+00:02:10,120 --> 00:02:12,320
+Then we see that there is a key pair,
+
+46
+00:02:12,320 --> 00:02:15,840
+so we have one value that is mapped to another value,
+
+47
+00:02:15,840 --> 00:02:17,960
+and then we let go of the relationship to the names,
+
+48
+00:02:17,960 --> 00:02:19,320
+which, for example, is a bit complex,
+
+49
+00:02:19,320 --> 00:02:22,720
+or a bit difficult to remember in the past, which is such a setup.
+
+50
+00:02:22,720 --> 00:02:25,080
+So then we can, for example, if we are going to set up a test environment,
+
+51
+00:02:25,080 --> 00:02:27,080
+then we can say, ok, should it be small, or something like that,
+
+52
+00:02:27,080 --> 00:02:30,400
+then it is mapped directly to how much VM size we get.
+
+53
+00:02:30,400 --> 00:02:32,160
+So then we have looked at maps,
+
+54
+00:02:32,160 --> 00:02:34,720
+how we can, we can also specify
+
+55
+00:02:34,720 --> 00:02:38,520
+whether it should be string or number on maps in addition.
+
+56
+00:02:38,520 --> 00:02:41,760
+So then we have looked at both lists,
+
+57
+00:02:41,760 --> 00:02:44,200
+we have looked at maps, and we have looked at locals,
+
+58
+00:02:44,200 --> 00:02:46,080
+and we have looked at regular variables,
+
+59
+00:02:46,080 --> 00:02:49,640
+so then we are starting to get a pretty good basis for our further work,
+
+60
+00:02:49,640 --> 00:02:52,600
+where we are going to start building a little more complex infrastructure,
+
+61
+00:02:52,600 --> 00:02:54,080
+and use modules.
