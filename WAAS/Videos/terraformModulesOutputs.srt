@@ -1,0 +1,875 @@
+1
+00:00:00,000 --> 00:00:02,840
+Okay, in this video, we're going to take a look at the modules.
+
+2
+00:00:02,840 --> 00:00:09,200
+We're going to take a super simple, small example, just to try and get an idea of what the modules are.
+
+3
+00:00:09,200 --> 00:00:16,120
+And how we can use them, and how we can send information between the modules and up to the root module.
+
+4
+00:00:16,120 --> 00:00:25,280
+Simply explained, a module is actually a map with a set of terraform files inside it, which has a certain configuration.
+
+5
+00:00:25,280 --> 00:00:36,040
+We can call this terraform configuration by using the module block in main.tf, and we can also generate output from some of these sub-modules,
+
+6
+00:00:36,040 --> 00:00:40,360
+which is information we need to use in the root module or other sub-modules.
+
+7
+00:00:40,360 --> 00:00:50,880
+So, in the example I'm going to go through now, I have operated under module 4 now, a resource group map, a storage account map, and a main.tf file in sub-module 4.
+
+8
+00:00:50,880 --> 00:00:57,280
+So, I have my main.tf file under module 4 map, and I have two maps under module 4 map, resource group and storage account.
+
+9
+00:00:57,280 --> 00:01:01,520
+Of course, we can discuss whether it is appropriate to have your own map for a resource group.
+
+10
+00:01:01,520 --> 00:01:07,280
+Of course, we should actually have the resource group in the same map as the storage account,
+
+11
+00:01:07,280 --> 00:01:11,280
+and then we can set up the storage account, the resource group for the storage account, together with the storage account,
+
+12
+00:01:11,280 --> 00:01:16,640
+and possibly specify which resource group it should be, but this is to make it simple,
+
+13
+00:01:16,880 --> 00:01:22,560
+presented and demonstrated what we mean by modules and how we can send information between them.
+
+14
+00:01:22,560 --> 00:01:29,600
+We take the simple version first, and then we build ourselves out of more complex infrastructure modules,
+
+15
+00:01:29,600 --> 00:01:33,440
+as we see how we have done it through this first.
+
+16
+00:01:33,440 --> 00:01:39,360
+So, what we start with is that we then operate under the resource group folder, or first we have the main.tf file,
+
+17
+00:01:39,360 --> 00:01:43,120
+remember to have the terraform block with required providers,
+
+18
+00:01:43,120 --> 00:01:47,040
+and then we have the rm and provider block with the features block.
+
+19
+00:01:47,040 --> 00:01:51,120
+When we have done that, we go to the resource group, set up a main.tf and a variables.tf.
+
+20
+00:01:51,120 --> 00:01:55,040
+When we find the main.tf, we will then set up the resource group.
+
+21
+00:01:55,040 --> 00:01:59,840
+Let's start here, in the main.tf to the resource group, we take and find the one we want,
+
+22
+00:01:59,840 --> 00:02:04,000
+find the resource group in registry, then we can scroll down here, and take the one we want,
+
+23
+00:02:04,000 --> 00:02:07,760
+this is known, we can also copy from another file, like that.
+
+24
+00:02:07,760 --> 00:02:10,160
+Before we make any changes to the main.tf now, we go to variables,
+
+25
+00:02:10,160 --> 00:02:14,080
+where we then update the variables, i.e. name and location, which we will use.
+
+26
+00:02:14,080 --> 00:02:21,840
+Under variables, we then write here variable, and then we write what the name of the variable should be.
+
+27
+00:02:21,840 --> 00:02:27,680
+If we update an empty variable here, then we can have a type of string, and then we can write a descriptor.
+
+28
+00:02:27,680 --> 00:02:34,080
+The descriptor should in this case be something that I want this variable to be used
+
+29
+00:02:34,080 --> 00:02:39,920
+as a common name for all resources. If I call it, for example, for basename,
+
+30
+00:02:39,920 --> 00:02:43,760
+in addition, I can now write that this should be something like that.
+
+31
+00:02:43,760 --> 00:02:49,440
+Then we, because we now put a hectare on one string, which should be, like,
+
+32
+00:02:49,440 --> 00:02:53,280
+be there to identify the resources and the resource group.
+
+33
+00:02:53,280 --> 00:03:01,200
+In addition, we also need, of course, a location, variables, empty variable, location, string, like that.
+
+34
+00:03:01,280 --> 00:03:04,800
+Let's just save that. When we have done that, we go to main.tf again,
+
+35
+00:03:04,800 --> 00:03:09,280
+we take location, we just write var, location, then on name.
+
+36
+00:03:09,280 --> 00:03:14,160
+The suggestion that came up now was that it should be a string,
+
+37
+00:03:14,160 --> 00:03:16,000
+because it is a string we are going to use, so we have found it on the side.
+
+38
+00:03:16,000 --> 00:03:21,280
+The dollar sign to show that here comes a variable that will hit the same square brackets,
+
+39
+00:03:21,280 --> 00:03:23,920
+and then we hacked on, for example, that there should be a resource group.
+
+40
+00:03:23,920 --> 00:03:28,720
+It depends on how you want to name this. Some name combinations are that
+
+41
+00:03:28,720 --> 00:03:34,560
+what resource it is comes first, possibly it is a resource group, then you write it rg, etc.
+
+42
+00:03:34,560 --> 00:03:42,480
+And then you have storage account, and then vnet, subnet, or sn, etc.
+
+43
+00:03:42,480 --> 00:03:48,720
+So in that way, you have a name behind, with a follow-up, maybe location,
+
+44
+00:03:48,720 --> 00:03:51,120
+and then if there should be more and the like.
+
+45
+00:03:51,120 --> 00:03:57,040
+If you want to see how this is done, or want tips,
+
+46
+00:03:57,120 --> 00:04:02,320
+on how to name such a resource in Azure, there is of course a name combination
+
+47
+00:04:02,320 --> 00:04:06,320
+that you can go to in Azure. So if we just search under Microsoft Azure's
+
+48
+00:04:06,320 --> 00:04:10,640
+documentation and naming convention, so define your naming convention,
+
+49
+00:04:10,640 --> 00:04:15,600
+then we see here that we get a suggestion on how we can name our resources.
+
+50
+00:04:15,600 --> 00:04:20,800
+And here, for example, pip is a public IP, what the public IP is hacked on,
+
+51
+00:04:20,800 --> 00:04:24,960
+i.e. workload, if it is prod, location, and instance number.
+
+52
+00:04:25,040 --> 00:04:30,080
+So if we scroll down, we will get a suggestion for a lot of different resources,
+
+53
+00:04:30,080 --> 00:04:36,320
+how we can name them. Here we have virtual network gateway, how we can name them,
+
+54
+00:04:36,320 --> 00:04:40,960
+side-to-side VPN connections, routing table, virtual machines, etc.
+
+55
+00:04:40,960 --> 00:04:45,040
+So if you are going to build a naming convention in Terraform's infrastructure,
+
+56
+00:04:45,040 --> 00:04:48,800
+then you can take the starting point in, for example, this naming convention.
+
+57
+00:04:48,800 --> 00:04:52,400
+Of course, naming conventions are often defined by the place you work,
+
+58
+00:04:52,400 --> 00:04:55,440
+or the infrastructure you are going to set up, so you just have to follow the
+
+59
+00:04:55,440 --> 00:05:01,120
+same one that you might be working with, or you can start and define
+
+60
+00:05:01,120 --> 00:05:04,560
+the naming convention you are going to use, if it is a completely new infrastructure
+
+61
+00:05:04,560 --> 00:05:10,320
+that is going to be built. So back to VS Code. There are several ways to do this,
+
+62
+00:05:10,320 --> 00:05:24,080
+if we, for example, take and write rg %s, and then we can do like this, or we can also use
+
+63
+00:05:24,080 --> 00:05:33,520
+format, which means format, and then we can see, then we have rg %s, and then not like that,
+
+64
+00:05:33,520 --> 00:05:39,280
+no, what it does here now, it formats the same string, we can show that from the
+
+65
+00:05:39,280 --> 00:05:44,240
+documentation page to Terraform, how to find it, if we search for string functions format,
+
+66
+00:05:44,240 --> 00:05:49,200
+then we can show how to format the strings, for example, then we can see down here that we
+
+67
+00:05:49,200 --> 00:05:55,920
+find syntax for the use of %s, and for example, %s, what does that mean? Yes, %s converts
+
+68
+00:05:55,920 --> 00:06:01,680
+the string and inserts the string's characters. So what we do is that we format the rg
+
+69
+00:06:01,680 --> 00:06:06,160
+string, and then we say what base it is. So there are several ways to take custom
+
+70
+00:06:06,640 --> 00:06:13,680
+names in this context, but we can choose one and use them. We can, regardless of being
+
+71
+00:06:13,680 --> 00:06:19,040
+smart and double-checking in the Terraform console afterwards, that you get your content and
+
+72
+00:06:19,040 --> 00:06:25,920
+content, or your name, and the way you want your name to be. I just change it. I use,
+
+73
+00:06:25,920 --> 00:06:31,120
+back to the practice I have used, that I have the name of the resource I want first,
+
+74
+00:06:31,120 --> 00:06:35,280
+so I use to define it as resource group, or storage account, or whatever it is that comes first,
+
+75
+00:06:35,280 --> 00:06:40,000
+so it's easier to see what it is. Then we just store the main.tf file from resource group,
+
+76
+00:06:40,000 --> 00:06:44,720
+and then we just store it in the work. What we then have to do is go to the main.tf. It is important
+
+77
+00:06:44,720 --> 00:06:48,640
+that we have several main.tf files, one that is under resource group, and then we have one
+
+78
+00:06:48,640 --> 00:06:54,240
+that is under module 4. So if I go now to the main.tf, which is in what we call the root module,
+
+79
+00:06:54,240 --> 00:06:59,520
+then we can now call up the module with a module block. And then we see here, it comes with a
+
+80
+00:06:59,520 --> 00:07:06,800
+proposal that I have to call up the module by using a name. So if I write resource group,
+
+81
+00:07:07,360 --> 00:07:14,320
+and then we can say here that we write source, resource group, base name, then we can for example
+
+82
+00:07:14,320 --> 00:07:23,040
+write what the base name should be. Location should then be base name, it can then be Terraform,
+
+83
+00:07:23,840 --> 00:07:31,280
+demo, tf.demo, then that name will be added to all of the resources and the input of what I'm going to
+
+84
+00:07:31,280 --> 00:07:39,120
+use together with base name. You have to remember that this dot slash source is then that you are in the
+
+85
+00:07:39,120 --> 00:07:46,320
+existing folder and go to resource group folder. Source is then dot, which means the existing folder,
+
+86
+00:07:46,320 --> 00:07:51,600
+the existing folder, which is module 4 in this case. And then slash, which is up to resource group,
+
+87
+00:07:51,600 --> 00:08:00,160
+and this is a kind of form for Linux or what is known as how the file structure is in the Linux world.
+
+88
+00:08:00,160 --> 00:08:07,600
+For Windows, we are used to that there is such a type of reference to the track, but we will then
+
+89
+00:08:07,600 --> 00:08:12,080
+use this type. So standing in the map, we have had several sub-maps here, so we have had to refer
+
+90
+00:08:12,080 --> 00:08:16,480
+to it or something like that. So there is source, standing in the map and down to resource group. Just
+
+91
+00:08:16,480 --> 00:08:22,640
+put it in. Just run a Terraform init just to see. So we see that it runs successfully.
+
+92
+00:08:23,760 --> 00:08:32,960
+When Terraform init is run, we can now write Terraform plan out main tf plan.
+
+93
+00:08:34,000 --> 00:08:38,400
+So we see what happens. And then we see here that the location is correct. And then we see that the name
+
+94
+00:08:38,480 --> 00:08:46,720
+will then be the name we had put in base name and location plus what is in front of base name.
+
+95
+00:08:46,720 --> 00:08:51,600
+Now we see that we care a little about if we can, of course, and we will of course use
+
+96
+00:08:51,600 --> 00:08:56,320
+variable file and so on. This was just to show how we then picked up that module for resource group.
+
+97
+00:08:56,320 --> 00:09:02,800
+And then we can now then further hack on what we have with storage account. So what we do then,
+
+98
+00:09:02,880 --> 00:09:11,520
+that we go to storage account, create a main.tf. We go to the main.tf. So under main,
+
+99
+00:09:11,520 --> 00:09:17,120
+then we will then create a storage account. So then we can then just go and find it in Terraform
+
+100
+00:09:18,000 --> 00:09:24,800
+documentation. So there, storage account, resource. So we might think, oh, what's the difference
+
+101
+00:09:24,800 --> 00:09:29,360
+in doing this? Now we have learned a lot about how we should do it with variables and everything
+
+102
+00:09:29,360 --> 00:09:35,600
+together that has more good practice to do it. But as I said, I do it just to show
+
+103
+00:09:35,600 --> 00:09:40,320
+examples with modules, then we will of course take and use these different techniques we have
+
+104
+00:09:40,320 --> 00:09:45,520
+gone through earlier to make it as flexible as possible with our infrastructure.
+
+105
+00:09:45,520 --> 00:09:52,080
+Go to the variable file, write var, empty variable, storage account name, type string,
+
+106
+00:09:52,960 --> 00:10:02,800
+like that. And then we will have one. So we add to rg name. And then finally we add to location.
+
+107
+00:10:03,760 --> 00:10:10,240
+So there we have created the variables. And then we go and create all these files. But there is one
+
+108
+00:10:10,240 --> 00:10:13,680
+thing that we should perhaps address at once, and that is the storage account name. The storage
+
+109
+00:10:13,680 --> 00:10:20,000
+account name must be global unique. So therefore we should hack on a, which I have done manually
+
+110
+00:10:20,000 --> 00:10:26,000
+every time, just write random number back. We can also use a random generated string tv.
+
+111
+00:10:26,000 --> 00:10:31,360
+And then we need a random generator, or we need the provider to provide this randomization.
+
+112
+00:10:31,360 --> 00:10:36,480
+So if we go back to Terraform, search for random, then we see here, here it says random,
+
+113
+00:10:36,480 --> 00:10:40,560
+click on use provider, take room with us there. Then we can now look at the documentation. The random
+
+114
+00:10:40,560 --> 00:10:48,160
+provider has the random Terraform configuration. Let's see, yes, that's fine. And then we just take
+
+115
+00:10:48,160 --> 00:10:54,080
+Terraform as the main tv for Norway. And then the main tv file, then I mean the main tv file for
+
+116
+00:10:54,080 --> 00:10:58,320
+storage account. As I said, it can be a bit complicated with a lot of files, but we can do it.
+
+117
+00:10:58,320 --> 00:11:04,400
+Put the provider in the top there. We don't need that one there. There we do that. Let's save it.
+
+118
+00:11:04,400 --> 00:11:10,080
+When we have done that, we then have to add to the random block, or a resource, which is a random
+
+119
+00:11:10,080 --> 00:11:16,080
+block. So if we then start with resource, and then we can write random, the resource is
+
+120
+00:11:16,080 --> 00:11:25,280
+underscore string. Then we can just call it random string. Yes, so let's see. Here we have
+
+121
+00:11:25,280 --> 00:11:32,560
+what the values that are related to this random string are. So if we then take length,
+
+122
+00:11:33,200 --> 00:11:38,400
+then we can now say that it should then be, for example, six. And then we can have special
+
+123
+00:11:38,400 --> 00:11:43,600
+characters. We don't want that with special characters. I don't want a storage account.
+
+124
+00:11:43,600 --> 00:11:50,800
+It has lower letters and numbers that I want. In addition, upper, take out false, because upper
+
+125
+00:11:50,800 --> 00:11:56,240
+characters are either not supported in the name of a storage account. Then of course we have to change
+
+126
+00:11:56,240 --> 00:12:01,840
+what is here. And one way we can do it, then, is like we did last time. Dollars,
+
+127
+00:12:01,840 --> 00:12:12,560
+scroller brackets, there, and then we take base, no, what is it, dot, base, name, and then we
+
+128
+00:12:12,560 --> 00:12:17,280
+have to add another variable, and then we see that we have to delete the scroller brackets, and then a
+
+129
+00:12:17,280 --> 00:12:23,760
+new dollar, scroller brackets, and random string, dot, random string result. What this does is that it
+
+130
+00:12:23,760 --> 00:12:30,080
+puts together, let's see, was it with one of those as much, that it puts together the base name that we
+
+131
+00:12:30,080 --> 00:12:36,400
+give as a variable, together with the random string that is generated by the resource random string.
+
+132
+00:12:36,400 --> 00:12:42,000
+And then we see that we release and specify all the time the random generated names that we have
+
+133
+00:12:42,000 --> 00:12:46,800
+done. In addition, we can add, for example, SA or whatever, but now we're thinking, yes,
+
+134
+00:12:46,800 --> 00:12:50,480
+we just use the base name that we take for the storage account, because that is something that we
+
+135
+00:12:50,480 --> 00:13:00,240
+specify in the storage account. Let's see, yes, here we write, base name, like that, then we are
+
+136
+00:13:00,240 --> 00:13:05,840
+done. Oh yes, and one more thing, which I forgot in the beginning when we wrote this, it was that the base name
+
+137
+00:13:05,840 --> 00:13:12,560
+can actually be added that someone gives it uppercase letters, or uppercase letters, and then we can
+
+138
+00:13:12,560 --> 00:13:18,400
+hack on here now that we want this to be in lower, so that we release that there will be something wrong
+
+139
+00:13:18,400 --> 00:13:25,520
+with the name. So if we were to write lower, and then we just take and do one like that, and one like that,
+
+140
+00:13:25,520 --> 00:13:31,520
+then it would force the base name to be added to the uppercase. But we might start wondering what
+
+141
+00:13:31,520 --> 00:13:36,320
+we have base name in, both in variables here, and then we have base name in variables here. But what we have to
+
+142
+00:13:36,320 --> 00:13:43,760
+remember is that what is in each map belongs to the configuration for each map, or module,
+
+143
+00:13:44,720 --> 00:13:49,440
+and then I want to say that the base name here belongs to what is set up in the storage account,
+
+144
+00:13:49,440 --> 00:13:54,400
+and the base name that we have in here is also what belongs to the resource group. Again, a little stupid to
+
+145
+00:13:54,400 --> 00:13:58,960
+usually set up a resource group together with the resource, but it is now just to get two simple
+
+146
+00:13:58,960 --> 00:14:03,040
+and very small things to relate to, which makes it perhaps easier for us to get hold of it, and then we can
+
+147
+00:14:03,040 --> 00:14:09,600
+build it on Edible. So what we have done then, that we have set the name to be a lower case with a
+
+148
+00:14:09,600 --> 00:14:17,120
+random string, but resource group name, we also have var dot resource group name, location, we have var dot
+
+149
+00:14:18,080 --> 00:14:25,920
+location, tags, we have to take just that. So we're building it together, just remember to build it. So what we can do now,
+
+150
+00:14:25,920 --> 00:14:31,120
+is that we go to the main TF of ours on the root level, so under module 4, this is what we have
+
+151
+00:14:31,120 --> 00:14:38,480
+done, and now we have to hack the modules block again, and then we take and write here storage account,
+
+152
+00:14:38,480 --> 00:14:49,120
+and then source, it will be dot storage account, and then we have variable base name, name, I like, and then we can
+
+153
+00:14:49,120 --> 00:14:57,360
+write in what we want here, and then it can, for example, be anything here, then write TF demo with
+
+154
+00:14:57,360 --> 00:15:04,560
+large letters, or just like that, to show that we see that the variable here takes it down to lower case
+
+155
+00:15:04,960 --> 00:15:12,560
+But then comes a question, we can then take, because this one has to be set up under a resource group name,
+
+156
+00:15:12,560 --> 00:15:19,520
+and what is the challenge here now, we want to do that, or we can now see, it comes with a proposal here,
+
+157
+00:15:20,400 --> 00:15:25,600
+with how we can get out module resource group rg name, and that is one way, but we thought, oh, we
+
+158
+00:15:25,600 --> 00:15:30,080
+should look at how we can use output now, just to see that, okay, we can send information
+
+159
+00:15:30,160 --> 00:15:36,160
+from the resource group module, over and up to the root module, see, go to the resource group,
+
+160
+00:15:36,160 --> 00:15:46,720
+create a new file, output.tf, under here, we create a new output, and then we call it in for rg output, for example,
+
+161
+00:15:46,720 --> 00:15:53,600
+or we can take with the name, the value should then be what the resource group is from this one, and then we see that
+
+162
+00:15:53,680 --> 00:16:00,080
+we did not give it a name, so it will suggest example here now, so Azure resource group example name,
+
+163
+00:16:00,080 --> 00:16:05,600
+so if you look at the resource that we set up, then we would have just let it stand for example here,
+
+164
+00:16:05,600 --> 00:16:11,120
+we should of course give it a name, something that we can reuse later instead of using example,
+
+165
+00:16:11,120 --> 00:16:14,560
+but that was what was set up now, so then we just take it to stand for value,
+
+166
+00:16:14,560 --> 00:16:18,720
+Azure rm resource group example dot name, that is the name of the resource group,
+
+167
+00:16:19,360 --> 00:16:27,040
+go to main.tf, and then we can see here that it is the resource group module that runs first,
+
+168
+00:16:27,040 --> 00:16:36,800
+and then we can now write that we want to use module dot resource group dot rg name out,
+
+169
+00:16:36,800 --> 00:16:41,280
+because this is the one we picked up, so if we then look back at the resource group,
+
+170
+00:16:41,280 --> 00:16:46,720
+outputs, rg name outputs, that is the one that is sent from the resource group module, and then we have
+
+171
+00:16:46,720 --> 00:16:52,800
+the one we want to have as resource group name, for example, we can now write location,
+
+172
+00:16:54,160 --> 00:17:00,080
+we see, we should of course, again, this is for example, the location, we give it several times,
+
+173
+00:17:00,080 --> 00:17:06,560
+draw the principle, don't repeat yourself, yes, I agree, so the thing is that you just have to check here now,
+
+174
+00:17:06,560 --> 00:17:11,520
+that we actually get this to flow, that it operates the resource group, gets the resource group name output
+
+175
+00:17:11,520 --> 00:17:16,640
+in the storage account, and then we have the storage account that is set up based on a random
+
+176
+00:17:16,640 --> 00:17:22,160
+generated string that is hacked along with the base name, which should be lowercase, and then it will be
+
+177
+00:17:22,160 --> 00:17:29,280
+set up, yes, it will be set up as a resource group and a storage account, so go to main.tf at the top level,
+
+178
+00:17:29,280 --> 00:17:35,840
+type terraform init, make sure that you get a random provider, when we follow up with that,
+
+179
+00:17:36,080 --> 00:17:43,680
+terraform plan out main.tf plan, oops, two files left, the first one we can see,
+
+180
+00:17:43,680 --> 00:17:51,600
+arginame is required, great, I got the resource group name, sorry, like that, and then it says location is required,
+
+181
+00:17:51,600 --> 00:17:59,200
+I forgot to create a file, like that, now I create a file, let's start over, terraform plan,
+
+182
+00:18:00,000 --> 00:18:04,800
+when the plan is run, we see here, treat to add, see what you actually want to do,
+
+183
+00:18:05,520 --> 00:18:11,760
+scroll up to the top, resource group will be set up with rgtftmo, which is the base name,
+
+184
+00:18:11,760 --> 00:18:17,520
+and the resource group, which I set up first, storage account, and what we can see now,
+
+185
+00:18:17,520 --> 00:18:22,400
+which is different to add, is that name known after apply, it is because we know the names
+
+186
+00:18:22,400 --> 00:18:28,080
+after, or to the storage account before they have run the random string generation in addition,
+
+187
+00:18:28,080 --> 00:18:36,240
+so that will be run when we apply it, so that if we now run then, and terraform, apply main.tf plan,
+
+188
+00:18:37,120 --> 00:18:41,040
+we see that the resources are beginning to be prepared, when apply is done, then we can now see
+
+189
+00:18:41,040 --> 00:18:47,280
+right here, here it says supportlitten, tftmo, and then a random generate string, which is to
+
+190
+00:18:47,280 --> 00:18:54,080
+give a unique name to the storage account, so that it does not fail to break up the storage account,
+
+191
+00:18:54,080 --> 00:18:59,200
+now we have three resources added, we can now go to the Azure portal, under storage account,
+
+192
+00:18:59,200 --> 00:19:04,800
+we see here that we have rgtft, tftmo, which is the resource group with the base name,
+
+193
+00:19:04,800 --> 00:19:09,040
+in the bottom, we also see that we have the storage account with tftmo, always lowercase,
+
+194
+00:19:09,040 --> 00:19:16,960
+and random string pn4ur6, which of course I have selected several types, we specified that we
+
+195
+00:19:16,960 --> 00:19:22,240
+wanted to have six random generated strings behind our base name, so we could have specified that we
+
+196
+00:19:22,240 --> 00:19:29,200
+we actually get an 8. We could do worse if we go to the Torch account main.tfn.
+
+197
+00:19:29,200 --> 00:19:32,440
+Then we remember that we have specified the lengths.
+
+198
+00:19:32,440 --> 00:19:37,440
+And then we see that our resources and our resource group have been set up.
+
+199
+00:19:37,440 --> 00:19:44,800
+And we have received that we have picked up outputs from module.resourcegroup.rgname.output,
+
+200
+00:19:44,800 --> 00:19:48,080
+which means that we can then use it in the scene.
+
+201
+00:19:48,080 --> 00:19:53,280
+So then we have come through the setup of our used modules for our own part,
+
+202
+00:19:53,280 --> 00:20:00,480
+so that we can have several smaller parts to work with,
+
+203
+00:20:00,480 --> 00:20:03,280
+so that we can have, for example, the network in one place,
+
+204
+00:20:03,280 --> 00:20:06,480
+other types of resources in one place, and then we work separately with them,
+
+205
+00:20:06,480 --> 00:20:11,360
+and then put it together in another main.tf configuration.
+
+206
+00:20:11,360 --> 00:20:15,360
+So that is part of the principle of breaking down all the smaller parts
+
+207
+00:20:15,360 --> 00:20:18,800
+that we work with to make it as flexible as possible.
+
+208
+00:20:18,800 --> 00:20:25,840
+Then we have our own configuration with the file for a resource collection
+
+209
+00:20:25,840 --> 00:20:28,400
+that we want to reuse later, we can just take that map.
+
+210
+00:20:28,400 --> 00:20:32,080
+And as always, before we finish, we run a terraform destroy
+
+211
+00:20:32,080 --> 00:20:36,240
+to remove all the resources that we do not need to be in Azure.
+
+212
+00:20:36,240 --> 00:20:39,040
+Confirm with yes, pre-resources destroyed.
+
+213
+00:20:39,040 --> 00:20:42,240
+Confirm in the portal that it is removed.
+
+214
+00:20:42,320 --> 00:20:44,000
+Here we see under resource groups,
+
+215
+00:20:44,000 --> 00:20:47,200
+here we have no resource or resource group with that name.
+
+216
+00:20:47,200 --> 00:20:49,040
+And that was all I wanted to go through with this video.
+
+217
+00:20:49,040 --> 00:20:50,800
+This was just an introduction to modules,
+
+218
+00:20:50,800 --> 00:20:55,200
+how to use multiple maps with multiple separate config files,
+
+219
+00:20:55,200 --> 00:20:59,600
+and then you can see how we can put this together in a more complex environment afterwards.
