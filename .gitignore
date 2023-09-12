@@ -37,7 +37,7 @@ terraform.rc
 # Ignore audio files and non needed subtitles
 *.mp3
 *.mp4
-**/Videos/*.txt
-**/Videos/*.tsv 
-**/Videos/*.vtt
-**/Videos/*.json
+**/Subtitles/*/*.txt
+**/Subtitles/*/*.tsv 
+**/Subtitles/*/*.vtt
+**/Subtitles/*/*.json
