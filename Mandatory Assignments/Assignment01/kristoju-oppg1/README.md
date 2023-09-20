@@ -1,5 +1,27 @@
 # Mandatory Assignment 01 - IaC IIKG3005
 
+- The purpose of each module
+- How to use the Terraform scripts
+- Any pre-requisites or dependencies
+
+## Modules
+
+### Network Module
+
+The [Network Module](./kristoju-oppg1/network/main.tf) is used to provision a VNET, Subnet and Network Security Group. The module takes in the following variables:
+
+### Storage Account Module
+
+The [Storage Account Module](./kristoju-oppg1/storageaccount/main.tf) is used to create an Azure Storage Account and a Storage Container. The module takes in the following variables:
+
+### Virtual Machine Module
+
+The [Virtual Machine Module](./kristoju-oppg1/virtualmachine/main.tf) is used to provision an Azure Virtual Machine. The module takes in the following variables:
+
+### Key Vault Module
+
+The [Key Vault Module](./kristoju-oppg1/keyvault/main.tf) is used to provision Azure Key Vault and store secret. The module takes in the following variables:
+
 ## Dependencies & Prerequisites
 
 * [Terraform](https://www.terraform.io/downloads.html) >= 0.12.0
