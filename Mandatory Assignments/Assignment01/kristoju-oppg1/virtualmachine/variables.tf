@@ -27,3 +27,13 @@ variable "pip_name" {
     type = string
     description = "Public IP name"
 }
+
+variable "keyvault_secret_username" {
+    type = string
+    description = "Key Vault secret for username"
+}
+
+variable "keyvault_secret_password" {
+    type = string
+    description = "Key Vault secret for password"
+}
