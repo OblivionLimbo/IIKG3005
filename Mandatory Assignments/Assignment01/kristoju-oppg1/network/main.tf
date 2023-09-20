@@ -1,3 +1,5 @@
+# - VNET with at least one subnet
+
 resource "azurerm_resource_group" "vnet_rg" {
     name = var.vnet_rg_name
     location = var.vnet_rg_location
@@ -38,6 +40,20 @@ resource "azurerm_network_security_rule" "ssh_inbound_myIP" {
     source_port_range = "*"
     destination_port_range = "*"
     source_address_prefix = "85.252.215.82"
+    destination_address_prefix = "*"
+    resource_group_name = azurerm_resource_group.vnet_rg.name
+    network_security_group_name = azurerm_network_security_group.nsg.name
+}
+
+resource "azurerm_network_security_rule" "allow_internal_traffic" {
+    name = "AllowInternalTraffic"
+    priority = 200
+    direction = "Inbound"
+    access = "Allow"
+    protocol = "Tcp"
+    source_port_range = "*"
+    destination_port_range = "*"
+    source_address_prefix = "10.0.0.0/16"
     destination_address_prefix = "*"
     resource_group_name = azurerm_resource_group.vnet_rg.name
     network_security_group_name = azurerm_network_security_group.nsg.name
