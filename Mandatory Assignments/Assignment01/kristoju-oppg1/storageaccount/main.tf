@@ -1,3 +1,5 @@
+# - Azure Storage Account with at least one storage container
+
 terraform {
     required_providers {
         azurerm = {
