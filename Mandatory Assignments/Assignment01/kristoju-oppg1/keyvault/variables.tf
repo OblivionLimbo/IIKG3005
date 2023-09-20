@@ -22,3 +22,13 @@ variable "sa_base_name" {
     type = string
     description = "storage account name"
 }
+
+variable "vm_password" {
+    type = string
+    description = "Password for the VM"
+}
+
+variable "vm_username" {
+    type = string
+    description = "Username for the VM"
+}
