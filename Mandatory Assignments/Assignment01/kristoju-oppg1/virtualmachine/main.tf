@@ -1,3 +1,6 @@
+# - At least one VM connected to the subnet
+# - At least one NSG that protects the VM from outside threats
+
 resource "azurerm_resource_group" "vm_rg" {
     name = var.vm_rg_name
     location = var.vm_rg_location
@@ -23,13 +26,14 @@ resource "azurerm_network_interface" "vm_nic" {
     }
 }
 
+# - The VM should use the Key Vault VM secret with username and password
 resource "azurerm_linux_virtual_machine" "linux_vm" {
     name = var.vm_name
     resource_group_name = azurerm_resource_group.vm_rg.name
     location = azurerm_resource_group.vm_rg.location
     size = "Standard_F2"
-    admin_username = "adminuser"
-    admin_password = "Tfdsfd_WSDd21!"
+    admin_username = var.keyvault_secret_username
+    admin_password = var.keyvault_secret_password
     disable_password_authentication = false
     network_interface_ids = [
         azurerm_network_interface.vm_nic.id,
