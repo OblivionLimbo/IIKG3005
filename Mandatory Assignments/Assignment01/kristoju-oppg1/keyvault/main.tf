@@ -1,3 +1,7 @@
+#Azure Key Vault with the following secrets: 
+#  - A secret holding the VM username and password
+#  - A secret holding the Storage Account Access Key
+
 provider "azurerm" {
   features {
     key_vault {
@@ -56,4 +60,16 @@ resource "azurerm_key_vault_secret" "sa_accesskey" {
     depends_on = [
         var.sa_name
     ]
+}
+
+resource "azurerm_key_vault_secret" "vm_username" {
+    name = "vm-username"
+    value = var.vm_username
+    key_vault_id = azurerm_key_vault.kv.id
+}
+
+resource "azurerm_key_vault_secret" "vm_password" {
+    name = "vm-password"
+    value = var.vm_password
+    key_vault_id = azurerm_key_vault.kv.id
 }
