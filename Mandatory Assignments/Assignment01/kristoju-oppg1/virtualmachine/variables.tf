@@ -1,39 +1,54 @@
+variable "vm_name" {
+  type        = string
+  description = "Virtual machine name"
+}
+
+variable "vm_size" {
+  type        = string
+  description = "Virtual machine size"
+}
+
 variable "vm_rg_name" {
-    type = string
-    description = "Resource group name"
+  type        = string
+  description = "Resource group name"
 }
 
 variable "vm_rg_location" {
-    type = string
-    description = "Resource group location"
+  type        = string
+  description = "Resource group location"
 }
 
 variable "vm_nic_name" {
-    type = string
-    description = "Network interface name"
+  type        = string
+  description = "Network interface name"
 }
 
-variable "vm_subnet_id" {
-    type = string
-    description = "Subnet ID"
+variable "vm_nic_private_ip_address" {
+  type        = string
+  description = "Network interface private IP address"
 }
 
-variable "vm_name" {
-    type = string
-    description = "Virtual machine name"
+variable "vm_nic_public_ip_address" {
+  type        = string
+  description = "Network interface public IP address"
 }
 
 variable "pip_name" {
-    type = string
-    description = "Public IP name"
+  type        = string
+  description = "Public IP name"
 }
 
-variable "keyvault_secret_username" {
-    type = string
-    description = "Key Vault secret for username"
+variable "vm_subnet_id" {
+  type        = string
+  description = "Subnet ID"
 }
 
-variable "keyvault_secret_password" {
-    type = string
-    description = "Key Vault secret for password"
+variable "vm_username" {
+  type        = string
+  description = "Virtual machine username"
+}
+
+variable "vm_password" {
+  type        = string
+  description = "Virtual machine password"
 }
