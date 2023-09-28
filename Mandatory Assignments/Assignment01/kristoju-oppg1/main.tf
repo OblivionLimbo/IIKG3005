@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "=3.0.0"
+      version = ">=3.0.0"
     }
   }
 }
@@ -22,7 +22,6 @@ module "keyvault" {
   kv_location       = var.kv_location
   kv_base_name      = var.kv_base_name
   kv_sku_name       = var.kv_sku_name
-  kv_application_id = var.kv_application_id
   sa_access_key     = module.StorageAccount.primary_access_key_output
   sa_base_name      = module.StorageAccount.storage_account_name_output
   vm_username       = var.vm_username
@@ -31,7 +30,7 @@ module "keyvault" {
 
 module "StorageAccount" {
   source            = "./storageaccount"
-  sa_rgname         = var.sa_rgname
+  sa_rg_name         = var.sa_rg_name
   sa_location       = var.sa_location
   sa_base_name      = var.sa_base_name
   sa_container_name = var.sa_container_name
