@@ -54,8 +54,8 @@ module "VirtualMachine" {
   vm_nic_name               = var.vm_nic_name
   vm_size                   = var.vm_size
   pip_name                  = var.pip_name
-  vm_username               = module.keyvault.keyvault_secret_password
-  vm_password               = module.keyvault.keyvault_secret_username
+  vm_username               = module.keyvault.keyvault_secret_username
+  vm_password               = module.keyvault.keyvault_secret_password
   vm_subnet_id              = module.Network.subnet_id_output
 }
 
