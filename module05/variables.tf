@@ -33,7 +33,7 @@ variable "sa_base_name" {
   description = "The name of the storage account"
 }
 
-variable "sa_rgname" {
+variable "sa_rg_name" {
   type        = string
   description = "The name of the resource group"
 }
