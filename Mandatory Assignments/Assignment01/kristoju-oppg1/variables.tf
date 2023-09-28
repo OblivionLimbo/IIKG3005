@@ -58,6 +58,18 @@ variable "sa_container_name" {
   default     = "container"
 }
 
+variable "sa_account_tier" {
+  type        = string
+  description = "The storage account tier"
+  default     = "Standard"
+}
+
+variable "sa_replication_type" {
+  type        = string
+  description = "The storage account replication type"
+  default     = "GRS"
+}
+
 variable "vnet_rg_name" {
   type        = string
   description = "Resource group name"
@@ -131,11 +143,6 @@ variable "vm_nic_name" {
   type        = string
   description = "Name of the network interface"
   default     = "vm-nic"
-}
-
-variable "vm_nic_private_ip_address" {
-  type        = string
-  description = "Private IP address of the network interface"
 }
 
 variable "pip_name" {
