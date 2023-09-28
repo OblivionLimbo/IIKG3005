@@ -34,6 +34,8 @@ The [Storage Account Module](./kristoju-oppg1/storageaccount/main.tf) is used to
 | sa_rg_name | Storage Account Resource Group Name | string | sa-rg |
 | sa_location | Location of the Storage Account | string | westeurope |
 | sa_container_name | Name of the Storage Container | string | container |
+| sa_account_tier | Storage Account Tier | string | Standard | |
+| sa_replication_type | Storage Account Replication Type | string | GRS | |
 
 ### Virtual Machine Module
 
@@ -135,6 +137,8 @@ The following variables are required to run the configuration:
 | sa_rg_name | Storage Account Resource Group Name | string | sa-rg | |
 | sa_location | Location of the Storage Account | string | westeurope | |
 | sa_container_name | Name of the Storage Container | string | container | |
+| sa_account_tier | Storage Account Tier | string | Standard | |
+| sa_replication_type | Storage Account Replication Type | string | GRS | |
 | vnet_rg_name | VNET Resource Group Name | string | vnet-rg | |
 | vnet_rg_location | VNET Resource Group Location | string | westeurope | |
 | vnet_name | VNET Name | string | vnet | |
