@@ -25,8 +25,8 @@ The [Network Module](./kristoju-oppg1/network/main.tf) is used to provision a VN
 
 ### Storage Account Module
 
-The [Storage Account Module](./kristoju-oppg1/storageaccount/main.tf) is used to create an Azure Storage Account and a Storage Container. The module takes in the following variables:
-> These can also be found in the [variables.tf](./kristoju-oppg1/storageaccount/variables.tf) file.
+The [Storage Account Module](./storageaccount/main.tf) is used to create an Azure Storage Account and a Storage Container. The module takes in the following variables:
+> These can also be found in the [variables.tf](./storageaccount/variables.tf) file.
 
 | Variable | Description | Type | Default |
 | --- | --- | --- | --- |
@@ -39,8 +39,8 @@ The [Storage Account Module](./kristoju-oppg1/storageaccount/main.tf) is used to
 
 ### Virtual Machine Module
 
-The [Virtual Machine Module](./kristoju-oppg1/virtualmachine/main.tf) is used to provision an Azure Virtual Machine. The module takes in the following variables:
-> These can also be found in the [variables.tf](./kristoju-oppg1/virtualmachine/variables.tf) file.
+The [Virtual Machine Module](./virtualmachine/main.tf) is used to provision an Azure Virtual Machine. The module takes in the following variables:
+> These can also be found in the [variables.tf](./virtualmachine/variables.tf) file.
 
 | Variable | Description | Type | Default |
 | --- | --- | --- | --- |
@@ -57,8 +57,8 @@ The [Virtual Machine Module](./kristoju-oppg1/virtualmachine/main.tf) is used to
 
 ### Key Vault Module
 
-The [Key Vault Module](./kristoju-oppg1/keyvault/main.tf) is used to provision Azure Key Vault and store secret. The module takes in the following variables:
-> These can also be found in the [variables.tf](./kristoju-oppg1/keyvault/variables.tf) file.  
+The [Key Vault Module](./keyvault/main.tf) is used to provision Azure Key Vault and store secret. The module takes in the following variables:
+> These can also be found in the [variables.tf](./keyvault/variables.tf) file.  
 
 | Variable | Description | Type | Default |
 | --- | --- | --- | --- |
@@ -123,7 +123,7 @@ It can also be used to destroy the resources created by a plan file.
 ### Variables
 
 The following variables are required to run the configuration:
-> These can also be found in the [variables.tf](./kristoju-oppg1/variables.tf) file. (Will repeat from the [Modules](#modules) section) 
+> These can also be found in the [variables.tf](variables.tf) file. (Will repeat from the [Modules](#modules) section) 
 
 | Variable | Description | Type | Default | Note | 
 | --- | --- | --- | --- | --- |
