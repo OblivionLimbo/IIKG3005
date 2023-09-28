@@ -16,8 +16,10 @@ module "keyvault" {
   kv_rgname     = var.kv_rgname
   kv_location   = var.kv_location
   kv_base_name  = var.kv_base_name
+  kv_sku_name = var.kv_sku_name
+  kv_application_id = var.kv_application_id
   sa_access_key = module.StorageAccount.primary_access_key_output
-  sa_base_name  = var.sa_base_name
+  sa_base_name  = module.StorageAccount.storage_account_name_output
   vm_username   = var.vm_username
   vm_password   = var.vm_password
 }
@@ -40,6 +42,7 @@ module "Network" {
   nsg_name             = var.nsg_name
   subnet_name          = var.subnet_name
   subnet_address_space = var.subnet_address_space
+  my_ip = var.my_ip
 }
 
 module "VirtualMachine" {
@@ -50,7 +53,6 @@ module "VirtualMachine" {
   vm_nic_name               = var.vm_nic_name
   vm_size                   = var.vm_size
   vm_nic_private_ip_address = var.vm_nic_private_ip_address
-  vm_nic_public_ip_address  = var.vm_nic_public_ip_address
   pip_name                  = var.pip_name
   vm_username               = module.keyvault.keyvault_secret_password
   vm_password               = module.keyvault.keyvault_secret_username
