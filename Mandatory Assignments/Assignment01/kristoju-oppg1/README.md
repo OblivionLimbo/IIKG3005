@@ -8,8 +8,8 @@
 
 ### Network Module
 
-The [Network Module](./kristoju-oppg1/network/main.tf) is used to provision a VNET, Subnet and Network Security Group. The module takes in the following variables: 
-> These can also be found in the [variables.tf](./kristoju-oppg1/network/variables.tf) file.
+The [Network Module](./network/main.tf) is used to provision a VNET, Subnet and Network Security Group. The module takes in the following variables: 
+> These can also be found in the [variables.tf](./network/variables.tf) file.
 
 | Variable | Description | Type | Default |
 | --- | --- | --- | --- |
