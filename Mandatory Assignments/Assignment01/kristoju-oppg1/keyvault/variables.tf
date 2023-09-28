@@ -32,3 +32,13 @@ variable "vm_username" {
   type        = string
   description = "Username for the VM"
 }
+
+variable "kv_sku_name" {
+  type        = string
+  description = "SKU name for the Key Vault"
+}
+
+variable "kv_application_id" {
+  type        = string
+  description = "Application ID for the Key Vault"
+}

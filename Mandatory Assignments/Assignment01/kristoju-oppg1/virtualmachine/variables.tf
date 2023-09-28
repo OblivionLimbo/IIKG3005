@@ -28,11 +28,6 @@ variable "vm_nic_private_ip_address" {
   description = "Network interface private IP address"
 }
 
-variable "vm_nic_public_ip_address" {
-  type        = string
-  description = "Network interface public IP address"
-}
-
 variable "pip_name" {
   type        = string
   description = "Public IP name"

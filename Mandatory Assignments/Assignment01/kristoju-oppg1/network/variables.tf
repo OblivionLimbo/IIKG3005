@@ -38,3 +38,8 @@ variable "nsg_name" {
   type        = string
   description = "Network security group name"
 }
+
+variable "my_ip" {
+  type        = string
+  description = "My IP address"
+}

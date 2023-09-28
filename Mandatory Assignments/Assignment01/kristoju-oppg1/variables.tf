@@ -88,21 +88,6 @@ variable "nsg_name" {
   description = "Name of the network security group"
 }
 
-# variable "nsg_rules" {
-#   type = list(object({
-#     name                       = string
-#     priority                   = number
-#     direction                  = string
-#     access                     = string
-#     protocol                   = string
-#     source_port_range          = string
-#     destination_port_range     = string
-#     source_address_prefix      = string
-#     destination_address_prefix = string
-#   }))
-#   description = "List of network security group rules"
-# }
-
 variable "vm_name" {
   type        = string
   description = "Name of the virtual machine"
@@ -133,11 +118,6 @@ variable "vm_nic_private_ip_address" {
   description = "Private IP address of the network interface"
 }
 
-variable "vm_nic_public_ip_address" {
-  type        = string
-  description = "Public IP address of the network interface"
-}
-
 variable "pip_name" {
   type        = string
   description = "Name of the public IP address"
@@ -151,4 +131,19 @@ variable "vm_username" {
 variable "vm_password" {
   type        = string
   description = "Password of the virtual machine"
+}
+
+variable "kv_sku_name" {
+  type        = string
+  description = "SKU name for the Key Vault"
+}
+
+variable "kv_application_id" {
+  type        = string
+  description = "Application ID for the Key Vault"
+}
+
+variable "my_ip" {
+  type        = string
+  description = "My IP address"
 }
