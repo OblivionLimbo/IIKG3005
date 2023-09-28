@@ -21,3 +21,15 @@ variable "sa_container_name" {
   description = "The name of the storage container"
   default     = "container"
 }
+
+variable "sa_account_tier" {
+  type        = string
+  description = "The storage account tier"
+  default     = "Standard"
+}
+
+variable "sa_replication_type" {
+  type        = string
+  description = "The storage account replication type"
+  default     = "GRS"
+}
