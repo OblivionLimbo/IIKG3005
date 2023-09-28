@@ -33,24 +33,34 @@ resource "azurerm_key_vault" "kv" {
   soft_delete_retention_days  = 7
   purge_protection_enabled    = false
 
-  sku_name = "standard"
+  sku_name = var.kv_sku_name
 
-  access_policy = {
+  access_policy = [{
     tenant_id = data.azurerm_client_config.current.tenant_id
     object_id = data.azurerm_client_config.current.object_id
 
     key_permissions = [
-      "Get",
+      "get",
+      "list",
     ]
 
     secret_permissions = [
-      "Get", "Set", "List",
+      "get",
+      "list",
     ]
 
     storage_permissions = [
-      "Get", "Set", "List",
+      "get",
+      "list",
     ]
-  }
+
+    certificate_permissions = [
+      "get",
+      "list",
+    ]  
+
+    application_id = var.kv_application_id
+  }]
 }
 
 resource "azurerm_key_vault_secret" "sa_accesskey" {
@@ -58,7 +68,7 @@ resource "azurerm_key_vault_secret" "sa_accesskey" {
   value        = var.sa_access_key
   key_vault_id = azurerm_key_vault.kv.id
   depends_on = [
-    var.sa_name
+    var.sa_base_name
   ]
 }
 
