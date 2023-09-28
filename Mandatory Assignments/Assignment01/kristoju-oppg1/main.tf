@@ -9,11 +9,6 @@ terraform {
 
 provider "azurerm" {
   features {}
-
-  subscription_id = "5513747a-818d-4f48-83b0-da2b2fd4cb97"
-  tenant_id       = "623e75ec-1582-4648-9f24-1a4b587e45e0"
-  client_id       = "ba394190-c05b-4b8a-ab18-a331eaf9cf1c"
-  client_secret   = "YAg8Q~MG8syvJ1uO3vcgrsrVonoMthfQyHsfHaVu"
 }
 
 module "keyvault" {
@@ -34,6 +29,8 @@ module "StorageAccount" {
   sa_location       = var.sa_location
   sa_base_name      = var.sa_base_name
   sa_container_name = var.sa_container_name
+  sa_account_tier   = var.sa_account_tier
+  sa_replication_type = var.sa_replication_type
 }
 
 module "Network" {
@@ -56,7 +53,6 @@ module "VirtualMachine" {
   vm_rg_location            = var.vm_rg_location
   vm_nic_name               = var.vm_nic_name
   vm_size                   = var.vm_size
-  vm_nic_private_ip_address = var.vm_nic_private_ip_address
   pip_name                  = var.pip_name
   vm_username               = module.keyvault.keyvault_secret_password
   vm_password               = module.keyvault.keyvault_secret_username
