@@ -2,6 +2,15 @@
 #  - A secret holding the VM username and password
 #  - A secret holding the Storage Account Access Key
 
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "3.0.0"
+    }
+  }
+}
+
 provider "azurerm" {
   features {
     key_vault {
@@ -35,32 +44,23 @@ resource "azurerm_key_vault" "kv" {
 
   sku_name = var.kv_sku_name
 
-  access_policy = [{
+  access_policy {
     tenant_id = data.azurerm_client_config.current.tenant_id
     object_id = data.azurerm_client_config.current.object_id
 
     key_permissions = [
-      "get",
-      "list",
+      "Get",
+      "Create",
     ]
 
     secret_permissions = [
-      "get",
-      "list",
+      "Get",
+      "Set",
+      "Delete",
+      "Purge",
+      "Recover",
     ]
-
-    storage_permissions = [
-      "get",
-      "list",
-    ]
-
-    certificate_permissions = [
-      "get",
-      "list",
-    ]  
-
-    application_id = var.kv_application_id
-  }]
+  }
 }
 
 resource "azurerm_key_vault_secret" "sa_accesskey" {

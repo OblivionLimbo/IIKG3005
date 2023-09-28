@@ -1,18 +1,5 @@
 # - Azure Storage Account with at least one storage container
 
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "2.46.0"
-    }
-  }
-}
-
-provider "azurerm" {
-  features {}
-}
-
 resource "random_string" "random_string" {
   length  = 12
   special = false
