@@ -244,3 +244,10 @@ And then we are done.
 
 > **Note**: There were some issues with having the vm_password as a variable, so to set this up i put it directly in the [main.tf](./virtualmachine/main.tf) file of the virtualmachine module.   
 > I am not sure why this did not work, as it should have, perhaps it will work for you. 
+
+Error message I got: 
+```
+"admin_password" has to fulfill 3 out of these 4 conditions: Has lower characters, Has upper characters, Has a digit, Has a special character other than "_", fullfiled only 2 conditions
+```
+
+Password used in the [.tfvars](./terraform.tfvars) file: "SPF535aLf&6!Ro^^Z7#W^j#JEW4ye6"
