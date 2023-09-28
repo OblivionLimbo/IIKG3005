@@ -1,9 +1,10 @@
 # - Azure Storage Account with at least one storage container
 
 resource "random_string" "random_string" {
-  length  = 12
+  length  = 5
   special = false
   upper   = false
+  numeric = true
 }
 
 resource "azurerm_resource_group" "sa_rg" {
