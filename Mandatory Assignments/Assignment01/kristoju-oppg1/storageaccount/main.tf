@@ -1,5 +1,3 @@
-# - Azure Storage Account with at least one storage container
-
 resource "random_string" "random_string" {
   length  = 5
   special = false

@@ -1,5 +1,3 @@
-# - VNET with at least one subnet
-
 resource "azurerm_resource_group" "vnet_rg" {
   name     = var.vnet_rg_name
   location = var.vnet_rg_location

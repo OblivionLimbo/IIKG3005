@@ -1,7 +1,3 @@
-#Azure Key Vault with the following secrets: 
-#  - A secret holding the VM username and password
-#  - A secret holding the Storage Account Access Key
-
 terraform {
   required_providers {
     azurerm = {
