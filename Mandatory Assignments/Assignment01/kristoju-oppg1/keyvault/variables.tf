@@ -1,16 +1,19 @@
 variable "kv_rgname" {
   type        = string
   description = "Key Vault Resource Group Name"
+  default     = "kv-rg"
 }
 
 variable "kv_location" {
   type        = string
   description = "location of the Key Vault"
+  default     = "westeurope"
 }
 
 variable "kv_base_name" {
   type        = string
-  description = "Name of the Key Vault"
+  description = "Base name of the Key Vault"
+  default     = "kv"
 }
 
 variable "sa_access_key" {
@@ -20,7 +23,8 @@ variable "sa_access_key" {
 
 variable "sa_base_name" {
   type        = string
-  description = "storage account name"
+  description = "base storage account name"
+  default     = "sa"
 }
 
 variable "vm_password" {
@@ -36,9 +40,5 @@ variable "vm_username" {
 variable "kv_sku_name" {
   type        = string
   description = "SKU name for the Key Vault"
-}
-
-variable "kv_application_id" {
-  type        = string
-  description = "Application ID for the Key Vault"
+  default     = "standard"
 }

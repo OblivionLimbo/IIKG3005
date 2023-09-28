@@ -11,19 +11,22 @@ provider "azurerm" {
   features {}
 
   subscription_id = "5513747a-818d-4f48-83b0-da2b2fd4cb97"
+  tenant_id       = "623e75ec-1582-4648-9f24-1a4b587e45e0"
+  client_id       = "ba394190-c05b-4b8a-ab18-a331eaf9cf1c"
+  client_secret   = "YAg8Q~MG8syvJ1uO3vcgrsrVonoMthfQyHsfHaVu"
 }
 
 module "keyvault" {
-  source        = "./keyvault"
-  kv_rgname     = var.kv_rgname
-  kv_location   = var.kv_location
-  kv_base_name  = var.kv_base_name
-  kv_sku_name = var.kv_sku_name
+  source            = "./keyvault"
+  kv_rgname         = var.kv_rgname
+  kv_location       = var.kv_location
+  kv_base_name      = var.kv_base_name
+  kv_sku_name       = var.kv_sku_name
   kv_application_id = var.kv_application_id
-  sa_access_key = module.StorageAccount.primary_access_key_output
-  sa_base_name  = module.StorageAccount.storage_account_name_output
-  vm_username   = var.vm_username
-  vm_password   = var.vm_password
+  sa_access_key     = module.StorageAccount.primary_access_key_output
+  sa_base_name      = module.StorageAccount.storage_account_name_output
+  vm_username       = var.vm_username
+  vm_password       = var.vm_password
 }
 
 module "StorageAccount" {
@@ -44,7 +47,7 @@ module "Network" {
   nsg_name             = var.nsg_name
   subnet_name          = var.subnet_name
   subnet_address_space = var.subnet_address_space
-  my_ip = var.my_ip
+  my_ip                = var.my_ip
 }
 
 module "VirtualMachine" {
