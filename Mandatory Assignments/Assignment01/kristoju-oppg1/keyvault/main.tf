@@ -6,7 +6,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "3.0.0"
+      version = ">=3.0.0"
     }
   }
 }
@@ -21,9 +21,10 @@ provider "azurerm" {
 }
 
 resource "random_string" "random_string" {
-  length  = 12
+  length  = 5
   special = false
   upper   = false
+  numeric = true
 }
 
 data "azurerm_client_config" "current" {}
@@ -34,7 +35,7 @@ resource "azurerm_resource_group" "kv_rg" {
 }
 
 resource "azurerm_key_vault" "kv" {
-  name                        = "${var.kv_base_name}-${random_string.random_string.result}-${var.kv_location}"
+  name                        = "${var.kv_base_name}-${random_string.random_string.result}"
   location                    = azurerm_resource_group.kv_rg.location
   resource_group_name         = azurerm_resource_group.kv_rg.name
   enabled_for_disk_encryption = true
@@ -50,6 +51,7 @@ resource "azurerm_key_vault" "kv" {
 
     key_permissions = [
       "Get",
+      "List",
       "Create",
     ]
 
@@ -59,7 +61,13 @@ resource "azurerm_key_vault" "kv" {
       "Delete",
       "Purge",
       "Recover",
+      "List",
     ]
+
+    certificate_permissions = [ 
+      "Get",
+      "List",
+     ]
   }
 }
 
