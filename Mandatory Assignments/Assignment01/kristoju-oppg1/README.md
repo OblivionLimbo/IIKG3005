@@ -81,38 +81,38 @@ The [Key Vault Module](./kristoju-oppg1/keyvault/main.tf) is used to provision A
 ### Setup
 
 1. Clone the repository
-2. Create a `terraform.tfvars` file in the root of the repository and fill in the variables in the [Variables](#variables) section below.
+2. Create a **terraform.tfvars** file in the root of the repository and fill in the variables in the [Variables](#variables) section below.
 3. Login to Azure using the Azure CLI
-   1. Run `az login`
+   1. Run **az login**
    2. Follow the instructions on the screen
    3. Alternatively, you can login using a Service Principal
-      * Run `az login --service-principal -u <service-principal-id> -p <service-principal-password> --tenant <tenant-id>`
-4. Run `terraform init` to initialize the project
-5. Run `terraform plan` to see what resources will be created
-6. Run `terraform apply` to create the resources
-7. Run `terraform destroy` to destroy the resources
+      * Run **az login --service-principal -u <service-principal-id> -p <service-principal-password> --tenant <tenant-id>**
+4. Run **terraform init** to initialize the project
+5. Run **terraform plan** to see what resources will be created
+6. Run **terraform apply** to create the resources
+7. Run **terraform destroy** to destroy the resources
 
 **Terraform Plan**  
-Used to see what resources will be created before running `terraform apply`.  
-Can be used in combination with `-out` to save the plan to a file, which can be used later to apply the plan.  
-**Example:** `terraform plan -var-file="terraform.tfvars" -out="terraform.tfplan"`  
-Using the `-var-file` flag to specify the `terraform.tfvars` file, and the `-out` flag to specify the output file.
+Used to see what resources will be created before running **terraform apply**.  
+Can be used in combination with **-out** to save the plan to a file, which can be used later to apply the plan.  
+Example: **terraform plan -var-file="terraform.tfvars" -out="terraform.tfplan"**  
+Using the **-var-file** flag to specify the **terraform.tfvars** file, and the **-out** flag to specify the output file.
 
 Using plan is smart because it will show you what resources will be created, and if there are any errors in the configuration.  
 You can also keep track of the plan files in a version control system, and use them to apply the plan later.  
-**Example:** `terraform apply "terraform.tfplan"`  
+Example: **terraform apply "terraform.tfplan"**  
 
 This way, you can make sure you have a plan to fall back to if something goes wrong, and you can also use the plan to apply the configuration to multiple environments.
 
-**Terraform Apply**
+**Terraform Apply**  
 Used to apply the configuration to the environment.  
-You can specify a plan file to apply, or you can just run `terraform apply` and it will apply the configuration in the current directory.
+You can specify a plan file to apply, or you can just run **terraform apply** and it will apply the configuration in the current directory.
 
 **Terraform Destroy**  
 Used to destroy the resources created by the configuration.  
-It is actually an alias for `terraform apply -destroy`, which means that it will apply the configuration, but destroy the resources instead of creating them.    
-Using this command will prompt you to confirm the destruction of the resources, unless you use the `-auto-approve` flag.  
-**Example:** `terraform destroy -auto-approve`
+It is actually an alias for **terraform apply -destroy**, which means that it will apply the configuration, but destroy the resources instead of creating them.    
+Using this command will prompt you to confirm the destruction of the resources, unless you use the **-auto-approve** flag.  
+Example: **terraform destroy -auto-approve**
 
 The main reason for using this command is to make sure that you don't leave any resources running that you don't need.  
 This saves you money, as well as making sure nothing collides with the resources you create later.  
@@ -164,7 +164,7 @@ The VM subnet ID is not specified in the variables, as it is not needed, it will
 
 ### Terraform
 
-After finishing the configurations and setup of the modules, and running `terraform init` i ran the following command:   
+After finishing the configurations and setup of the modules, and running **terraform init** i ran the following command:   
 **terraform plan -var-file="terraform.tfvars" -out="terraform.tfplan"** 
 
 ![terraform plan](https://cdn.discordapp.com/attachments/1156933138828759111/1156933309276880896/image.png?ex=6516c59b&is=6515741b&hm=2a7c98f7a9affc9012faef820ea713aa086e7b2c7f0e42a1ef96f63815e3e80a&)
