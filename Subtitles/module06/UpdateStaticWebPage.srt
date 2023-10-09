@@ -1,0 +1,268 @@
+1
+00:00:00,000 --> 00:00:05,360
+Okay, in the last video, we saw how we set up a dev, stage and prod environment
+
+2
+00:00:05,360 --> 00:00:10,120
+in Microsoft Azure with a static web page using Terraform.
+
+3
+00:00:10,120 --> 00:00:13,560
+And here we see that we have all three of our resource groups.
+
+4
+00:00:13,560 --> 00:00:20,040
+We have the backend resource group, which hosts all of the state files for these three environments.
+
+5
+00:00:20,040 --> 00:00:25,200
+And if we go into each of these resource groups, we see that we have the storage account
+
+6
+00:00:25,200 --> 00:00:32,640
+which is located with this static web page available for the environment.
+
+7
+00:00:32,640 --> 00:00:38,520
+If we open static web, we see here that we have the URL and that is the endpoint for this site and index.
+
+8
+00:00:38,520 --> 00:00:46,960
+So what we're going to do in this video is that we're going to see how we can push an change to such a site.
+
+9
+00:00:46,960 --> 00:00:54,640
+It was very simple. We saw here that we have made in Terraform, say, stage, dev, prod, etc.
+
+10
+00:00:54,760 --> 00:01:02,800
+So if I now want to make a change, I can, for example, very easily just change the content that is to be in this site and push it.
+
+11
+00:01:02,800 --> 00:01:10,880
+So if I now just take here and write del update del 1, then I take and paste it in.
+
+12
+00:01:10,880 --> 00:01:13,600
+Then I would get the opportunity to push it in.
+
+13
+00:01:13,600 --> 00:01:18,440
+Then just web content update del 1.
+
+14
+00:01:19,400 --> 00:01:26,040
+Then we jump back after we have synced these changes, then we can jump back to our GitHub.
+
+15
+00:01:26,040 --> 00:01:27,520
+Then we go back.
+
+16
+00:01:27,520 --> 00:01:31,480
+And if we go to action, we see here that now it has started a new trigger.
+
+17
+00:01:31,480 --> 00:01:36,880
+Or the trigger is that it has been changed, now the file in the repository for static web.
+
+18
+00:01:36,880 --> 00:01:44,280
+So when we then go to web content update del 1, we see here that now it will run through all the steps that we were used to and saw instead.
+
+19
+00:01:44,280 --> 00:01:47,960
+Now that everything is done, we see here that it took a few seconds.
+
+20
+00:01:47,960 --> 00:01:52,120
+Now I can just go to the stage or stageprod part here now just to check.
+
+21
+00:01:52,120 --> 00:01:58,200
+Because it's a bit like the test, what the test does is just to check if they are still there.
+
+22
+00:01:58,200 --> 00:02:02,880
+So this one will be approved as long as it is a website that responds.
+
+23
+00:02:02,880 --> 00:02:09,440
+Because it just wants to try to do curl against the web address or URL to this site.
+
+24
+00:02:09,440 --> 00:02:12,560
+And then if we just take this one with us just to show it.
+
+25
+00:02:12,560 --> 00:02:19,200
+So if we take curl like this, then we see that we get the content on the website.
+
+26
+00:02:19,200 --> 00:02:27,760
+So if we also take curl 100% vntnu.no, then we see that we get the content that is on that site.
+
+27
+00:02:27,760 --> 00:02:36,400
+So what you can do, you can use curl to run more extensive tests on what, for example, is the correct content there, the site comes up in the right way.
+
+28
+00:02:36,400 --> 00:02:39,760
+What we actually just do now is to show that we can make a test.
+
+29
+00:02:39,760 --> 00:02:43,320
+And as long as the test is checked, it jumps to the next step.
+
+30
+00:02:43,320 --> 00:02:45,560
+And that would be for our part.
+
+31
+00:02:45,560 --> 00:02:48,520
+Just check if it's a website on that stage.
+
+32
+00:02:48,520 --> 00:02:49,520
+Yes, it's a website.
+
+33
+00:02:49,520 --> 00:02:50,400
+Open to stageprod.
+
+34
+00:02:50,400 --> 00:02:52,680
+Is it a website on stageprod?
+
+35
+00:02:52,680 --> 00:02:53,800
+Yes, it's a website.
+
+36
+00:02:53,800 --> 00:02:55,440
+And then it goes into prod.
+
+37
+00:02:55,440 --> 00:03:02,600
+And there is the manual process where a person has to go in and actually review.
+
+38
+00:03:02,600 --> 00:03:09,720
+I can also go in and see what is actually happening.
+
+39
+00:03:09,720 --> 00:03:12,080
+So that's it.
+
+40
+00:03:12,080 --> 00:03:16,600
+And then we're going to see here under production.
+
+41
+00:03:16,600 --> 00:03:21,040
+Then we see that we see web content update part 1.
+
+42
+00:03:21,040 --> 00:03:27,560
+Then we see here that the content or changes that have been made are source content and default value of that.
+
+43
+00:03:27,560 --> 00:03:29,600
+And default value changes the update part.
+
+44
+00:03:29,600 --> 00:03:35,440
+And then I can go in and approve that, because it seems fine in this context.
+
+45
+00:03:35,440 --> 00:03:41,280
+I could also start all waiting jobs, since there is a possibility for that, since there is only one job waiting for me.
+
+46
+00:03:41,280 --> 00:03:44,200
+So, and then I deploy the website to production.
+
+47
+00:03:44,200 --> 00:03:49,560
+And that should go very fast, since it's just a change of source content to the website.
+
+48
+00:03:49,560 --> 00:03:56,920
+So what we're doing now, we're making very, very small changes with very small infrastructure.
+
+49
+00:03:56,920 --> 00:04:03,240
+Where we see that, yes, we're just running Terraform, yes, we're just running Tencent, yes, we're just updating the content.
+
+50
+00:04:03,240 --> 00:04:05,360
+But that's because we want to get tested here.
+
+51
+00:04:05,360 --> 00:04:07,960
+Simple now, just with simple infrastructure.
+
+52
+00:04:07,960 --> 00:04:13,160
+The process actually happens in it, because it's the Terraform or the infrastructure as a code, the thought process.
+
+53
+00:04:13,160 --> 00:04:17,120
+And the process we go through now, then something should happen, implement it here.
+
+54
+00:04:17,120 --> 00:04:22,000
+More infrastructure, more tests, etc., of course.
+
+55
+00:04:22,000 --> 00:04:28,680
+Since this will only be a demonstration of how we do it with GitHub Workflows, with GitHub Actions.
+
+56
+00:04:28,680 --> 00:04:33,760
+And there we see, the web point is checked, so if we then take, for example, TestBroad.
+
+57
+00:04:33,760 --> 00:04:39,440
+Here we also see that we need to update DLN, getWebEndPoint, since we want to have URN, we can now click on that.
+
+58
+00:04:39,440 --> 00:04:42,720
+And here we see that we get middle Terraform, CCD, update DLN.
+
+59
+00:04:42,720 --> 00:04:46,560
+We can see that we have just started updating the site speedruns here.
+
+60
+00:04:46,560 --> 00:04:48,440
+There we see that we have updated DLN.
+
+61
+00:04:48,440 --> 00:04:52,480
+There we have previously updated DLN, and there we have previously updated DLN.
+
+62
+00:04:52,480 --> 00:04:56,160
+So now we have Prod, Stage, Stage, and Dev.
+
+63
+00:04:56,160 --> 00:04:58,200
+Now we have three websites that we can relate to.
+
+64
+00:04:58,200 --> 00:05:02,600
+And test it with Dev, or develop it with Dev.
+
+65
+00:05:02,600 --> 00:05:07,440
+Test it in Stage, and then when it is verified and tested correctly in Stage, you can deploy it to Prod.
+
+66
+00:05:07,440 --> 00:05:15,800
+Of course, it is both tested on the Terraform code, tested on the infrastructure, and a lot that can be implemented on this type of CCD.
+
+67
+00:05:15,800 --> 00:05:17,800
+But that's more we'll come to afterwards.
+
