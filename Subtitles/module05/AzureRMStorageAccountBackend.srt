@@ -1,0 +1,640 @@
+1
+00:00:00,000 --> 00:00:05,780
+Now it's a bit of a headache problem again. What should you do first to get it running?
+
+2
+00:00:05,780 --> 00:00:11,960
+You should then upgrade the resources manually in Terraform, no, manually in Azure Portal
+
+3
+00:00:11,960 --> 00:00:17,560
+to get it available in the resources you need to make sure that it is secure deployment
+
+4
+00:00:17,560 --> 00:00:23,280
+or that you have a place to store all the information or the Terraform state files
+
+5
+00:00:23,280 --> 00:00:25,280
+so that they do not get logged in.
+
+6
+00:00:25,440 --> 00:00:30,700
+Or we can do it in Terraform, step by step, and then we can make the backend and use it in the backend.
+
+7
+00:00:30,700 --> 00:00:34,780
+There are many approaches you can do here. You can upgrade in Terraform,
+
+8
+00:00:34,780 --> 00:00:42,680
+you can upgrade in Azure Portal, and you can use Terraform to get already existing resources from Azure
+
+9
+00:00:42,680 --> 00:00:45,880
+and use it, take it and use it. So there are many approaches you can do here.
+
+10
+00:00:45,880 --> 00:00:52,160
+But since we're getting started with Terraform, I think it might be a good idea to take a look at how to upgrade.
+
+11
+00:00:52,160 --> 00:00:55,340
+Upgrading here is known. We have already upgraded storage accounts.
+
+12
+00:00:55,340 --> 00:00:58,760
+We can just upgrade the backend quickly and quickly now, but it will be like this.
+
+13
+00:00:58,760 --> 00:01:05,640
+We see something that we are managing things in plain text, which is because we will probably get it later.
+
+14
+00:01:05,640 --> 00:01:12,200
+I can show quickly and quickly now what I mean, because what we can do is that we see a resource group
+
+15
+00:01:12,200 --> 00:01:18,440
+or we see in Azure Portal where we have a resource group that is actually designed for storage accounts.
+
+16
+00:01:18,440 --> 00:01:22,600
+Under this resource group, there is a storage account that is operating.
+
+17
+00:01:22,600 --> 00:01:32,120
+Inside this storage account again, there is a storage container that contains the backend for a Terraform configuration that I have set up.
+
+18
+00:01:32,120 --> 00:01:47,320
+The name of it is tfstate, and under it we see that we find Terraform.tfstate, which is the file that is the backend for the file that represents the Terraform state to the infrastructure as it is perno in Azure.
+
+19
+00:01:47,320 --> 00:01:52,600
+If we click on it, we see that it will be status unlocked.
+
+20
+00:01:52,600 --> 00:01:58,760
+If I now start to run Terraform plan Terraform apply, then this will be locked and unavailable.
+
+21
+00:01:58,760 --> 00:02:08,080
+That's because we don't want there to be more people running at the same time deployments or apply to the same state, because then it will be a mismatch.
+
+22
+00:02:08,080 --> 00:02:18,160
+If I have now taken out the Terraform configuration that has been used by this backend, then this will be changed status to locked if I have run Terraform plan.
+
+23
+00:02:18,160 --> 00:02:24,880
+I can just take a quick look at that too, but we will see that when we start with it in our infrastructure in addition.
+
+24
+00:02:24,880 --> 00:02:36,320
+So then, if we can scroll up and look at edit on the file, then we want to see here that we find the state file, here we see the infrastructure as it is with all the information.
+
+25
+00:02:36,320 --> 00:02:48,800
+And here it could be sensitive information that we do not want to push, but then it is stored in a storage account, where we have access control, and it is limited to those who can write and read to this file.
+
+26
+00:02:48,800 --> 00:02:53,520
+What is important to think about with this approach now is, as I said, high-end.
+
+27
+00:02:53,520 --> 00:03:04,080
+If you implement Terraform backend in your Terraform configuration, then you can at some point risk that you will end up with this with a destroy.
+
+28
+00:03:04,080 --> 00:03:13,680
+But the best case scenario is to take and use Terraform for version control, then it is better to release it manually, and you can also reuse it later.
+
+29
+00:03:13,680 --> 00:03:18,560
+For example, if you have several projects that need one or the other backend, then you can easily use it.
+
+30
+00:03:18,560 --> 00:03:29,680
+What we can do is start by setting up our own folder, which we call backend, and under backend we can then set up a new file.
+
+31
+00:03:29,680 --> 00:03:34,720
+Now we are going to set up a storage account and a key vault.
+
+32
+00:03:34,720 --> 00:03:45,520
+We can simply run them together in one and the same config, or we could also set up a folder called key vault and a folder called storage account.
+
+33
+00:03:45,520 --> 00:03:54,160
+But for the sake of simplicity, we just take a new file, main.tf, and then we take ...
+
+34
+00:03:54,160 --> 00:04:06,480
+The problem is that we need to save this main file, no, this backend.tf, backend.tf, so it will be local in this case.
+
+35
+00:04:06,480 --> 00:04:17,920
+But we will then set up the resources that will be added further down now, so if we say that we set up new folders under here, which represent the modules, the main configuration, then we will see that later.
+
+36
+00:04:17,920 --> 00:04:29,360
+So, I'll just take this side by side, so that I don't mess up. I have tried to configure the file to this other place as well, but I can just show you something so that I can do it through.
+
+37
+00:04:29,360 --> 00:04:39,200
+So, this is form registry. Here we go to documentation, we can search for all resources, write something, storage account, here it is, storage account.
+
+38
+00:04:39,200 --> 00:04:48,080
+Here we have the data, we take the data, we have to take the provider and the true block, and then we have the data.
+
+39
+00:04:48,080 --> 00:05:03,600
+Resource group, here we are, backend, var, dot, rk, again, no, location, and then we are here, var, and I said backend, again, no,
+
+40
+00:05:03,680 --> 00:05:10,000
+over with you, please do die, please do die, count here, g, redundant, great, thanks.
+
+41
+00:05:10,000 --> 00:05:16,320
+I could of course have specified more info here as well, and taken with this in the variables now, but I'm not going through here.
+
+42
+00:05:16,320 --> 00:05:24,560
+So, now we have created the resource group for the backend, we have created the storage account for the backend, then we need a container, we need one,
+
+43
+00:05:24,640 --> 00:05:30,480
+if something happens, I get a proposal based on what I've done before, so what we're actually going to do now is we're going to create a resource,
+
+44
+00:05:30,480 --> 00:05:40,960
+an Azure storage account, we take a look at that, we see that we get up, scroll down to resources, storage account,
+
+45
+00:05:40,960 --> 00:05:48,560
+and here we see that if we are going to create a container within a storage account, then we need the resource group, we need the storage account, of course,
+
+46
+00:05:48,560 --> 00:05:56,000
+then we update the container with a name, including how the storage account should be, and how the access type should be, then we go back here,
+
+47
+00:05:56,000 --> 00:06:05,600
+we see here, storage account, container, storage, container, backend, name, what is it, storage, container, backend,
+
+48
+00:06:05,600 --> 00:06:14,640
+and it belongs to storage account, backend, name, and it is private, yes, we have to win something, and so we can take it a little bigger,
+
+49
+00:06:14,720 --> 00:06:22,320
+then we have the beginning and already found some variables, then we divide it in, for example, then we have RG,
+
+50
+00:06:22,320 --> 00:06:33,360
+backend, name, the first thing we need to do is to put them in here, for that it will be the input to, the next thing we need to do is to get the key vault in place,
+
+51
+00:06:33,360 --> 00:06:40,240
+the key vault can be used to store, yes, for example, I use some passwords that are encrypted, which is not available to everyone,
+
+52
+00:06:40,240 --> 00:06:48,800
+who can use our deployment, and not least the access key for the storage account, what we then do is bring up Azure Key Vault in the Terraform registry,
+
+53
+00:06:48,800 --> 00:06:58,800
+scroll down, for example, use provider, and here we see that we must have a field at the top, push soft delete on destroy,
+
+54
+00:06:58,800 --> 00:07:06,320
+and recover soft delete on key vaults, what this means, I recommend that you go to the key vault documentation and look at the information around it,
+
+55
+00:07:06,400 --> 00:07:18,560
+so if you are going to go through it all in detail in the video, it will be too long, and then just read up what it means, basically it means it has an effect on how it behaves when you delete a key vault,
+
+56
+00:07:18,560 --> 00:07:27,280
+so what we can do then, is that we take it with us here, this would mean that it takes and picks up all the conditions for the current connection,
+
+57
+00:07:28,240 --> 00:07:35,920
+so we can see if we find the app registration, the tenant ID, the subscription ID, etc, etc, we just take it with us here, here we have the resource,
+
+58
+00:07:35,920 --> 00:07:40,960
+and here we have the permissions that are set on access policies, I find the storage account, paste it just in there,
+
+59
+00:07:40,960 --> 00:07:47,680
+it happens here now that I must of course not have my own resource group for it, because I'm going to start new with this one,
+
+60
+00:07:47,680 --> 00:07:58,160
+we can now put it in the top, so then we will have Azure key vault, we can take kv back end,
+
+61
+00:07:58,160 --> 00:08:08,320
+our name, here is rg back end location, so the tenant ID, now I have the tenant ID for the current config,
+
+62
+00:08:08,320 --> 00:08:14,080
+that is client config, soft delete retention days 7, now you have how long it lasts after you have deleted it,
+
+63
+00:08:14,080 --> 00:08:23,200
+so write down the name, standard, access policy, then you give how the access policy you are going to give to the registration that operates here,
+
+64
+00:08:23,200 --> 00:08:30,320
+because it does not necessarily give the rights, or all the rights during the operation, so what happens here is key permissions,
+
+65
+00:08:30,320 --> 00:08:37,440
+secrets, or secret permissions and storage permissions, and they are set for this storage account,
+
+66
+00:08:37,520 --> 00:08:44,640
+so if I now take a look here, then I can now see how the possibilities are, or what is it that can be set according to the different ones here,
+
+67
+00:08:44,640 --> 00:08:51,840
+then I can go down to here, then I see key permissions, secret permissions, storage permissions, and so it is a little small,
+
+68
+00:08:51,840 --> 00:08:57,840
+and then we see here that this is what gives our app registration another option,
+
+69
+00:08:57,840 --> 00:09:04,960
+so it can not, for example, if I update this one here, I have to specifically set it to have the option to list out,
+
+70
+00:09:04,960 --> 00:09:15,520
+or set the different secrets, so if I can not update a secret in this one, then I have to update the key vault itself,
+
+71
+00:09:15,520 --> 00:09:20,320
+which is to specify what an app registration or an identity is allowed to,
+
+72
+00:09:20,400 --> 00:09:25,280
+and then I can see key permissions, create, list, and get, is what I might want to have,
+
+73
+00:09:25,280 --> 00:09:31,040
+and secret permissions, get list, set, and get list, and set for storage permissions,
+
+74
+00:09:31,040 --> 00:09:36,640
+so when I have done that, I am done with my access policy, but there is still something I have to do,
+
+75
+00:09:36,640 --> 00:09:45,840
+and that is that I would like to, as I talked about, I would like to have access skins that are operated in the storage account,
+
+76
+00:09:46,000 --> 00:09:52,640
+as part of an information or put it in the key vault, which you can reuse later,
+
+77
+00:09:52,640 --> 00:09:58,160
+because that is a value I need to be able to use, and this storage backend,
+
+78
+00:09:58,160 --> 00:10:05,200
+and there are several ways we can move forward to get it, but I can now take a quick look at how to get access to,
+
+79
+00:10:05,200 --> 00:10:10,480
+or set up your storage account access key in the key vault,
+
+80
+00:10:10,640 --> 00:10:15,680
+one of the things is that they have prepared the security that will be the access key for the storage account,
+
+81
+00:10:15,680 --> 00:10:20,560
+so when I go back here, I see that I have RM key vault secrets,
+
+82
+00:10:20,560 --> 00:10:25,680
+we see here that if we scroll down past the resource group, we have the key vault, we have the access policy,
+
+83
+00:10:25,680 --> 00:10:31,280
+secret permissions, set, get, delete, yes, we can have, because we have seen several of them here too,
+
+84
+00:10:31,280 --> 00:10:37,840
+and then we see here that this is the one we need, so if we paste that in,
+
+85
+00:10:37,840 --> 00:10:44,960
+and then we think that we will have a different name here, I said back end access key, the name on that,
+
+86
+00:10:44,960 --> 00:10:51,680
+but first I see here a value, it will be the access key to the storage account, but I forgot a little
+
+87
+00:10:51,680 --> 00:10:58,800
+when I set up the storage account back end name, this can't be like that, because it needs a random string,
+
+88
+00:10:58,800 --> 00:11:04,320
+because it should be globally unique, so we have to type random as we have done earlier,
+
+89
+00:11:04,320 --> 00:11:08,960
+we add to resource, random string, random string, how many characters they should be,
+
+90
+00:11:08,960 --> 00:11:15,680
+special, upper, false, false, so we can then give the backend a different name, or storage account back end,
+
+91
+00:11:15,680 --> 00:11:23,840
+so then we just take and we see, and then we do like that, then I make sure that it is just lower, so it can be added,
+
+92
+00:11:23,840 --> 00:11:29,280
+and then I see here base name, since I have used it earlier, so if we just take, I said back end name,
+
+93
+00:11:29,840 --> 00:11:37,200
+and then press the random string in addition, then we will get a correct name on it,
+
+94
+00:11:37,200 --> 00:11:43,680
+because then we can see, if we go to variables, then we have here rg backend name, rg backend recognition,
+
+95
+00:11:43,680 --> 00:11:49,280
+s a backend name, storage account backend name, string, if you look here, storage account backend name,
+
+96
+00:11:49,280 --> 00:11:53,920
+storage account backend, terraform state, and then comes the random string in the back, so that should be good,
+
+97
+00:11:54,880 --> 00:12:00,480
+storage account, storage container, backend name, tf state, and then we have a grid, then we are in
+
+98
+00:12:01,200 --> 00:12:08,320
+morning with it, because then we have to make sure that the key vault also gets a unique name, so then we can
+
+99
+00:12:08,320 --> 00:12:15,360
+also throw on, for example, let's see what we put in here, then we just take key vault backend,
+
+100
+00:12:16,000 --> 00:12:23,920
+and then we do that, then we move away, then we get a unique name on this one, then we understand,
+
+101
+00:12:23,920 --> 00:12:30,160
+then there will be a suggestion on how we can name it with a key vault random string, we can, for example,
+
+102
+00:12:30,160 --> 00:12:36,160
+then write key vault, and then we could have taken the location and so on, but we take something
+
+103
+00:12:36,160 --> 00:12:45,440
+just to do it in the same way as we have done before, no, not backend name, but key vault,
+
+104
+00:12:46,640 --> 00:12:56,800
+backend, so then we want to set that name to be k key vault backend, then random characters,
+
+105
+00:12:58,000 --> 00:13:05,120
+it's okay, then we have to go further down to our key vault, because here we can also say that we
+
+106
+00:13:05,120 --> 00:13:17,120
+want to have a y.storageaccount backend access key name, so we take with us stain variables,
+
+107
+00:13:20,080 --> 00:13:26,480
+main, sheswan, in any case the value we are going to have here, what we are going to have is then
+
+108
+00:13:26,480 --> 00:13:36,720
+asher rm storageaccount.sa backend, just take with us stain, like that, like that, also like that, also key vault id,
+
+109
+00:13:36,720 --> 00:13:45,520
+here it is kbbackend.id, then we can try to deploy this backend of ours, save all the files,
+
+110
+00:13:45,520 --> 00:13:54,160
+then we make sure that we are on the right map, we take it like that, then we take a
+
+111
+00:13:54,160 --> 00:14:01,120
+thread, if the subtitle comes, we take a form, init, initializing backend,
+
+112
+00:14:01,600 --> 00:14:10,880
+care, platform, plan, outs, yes, like that, we are going to declare it, we are going to see, variables,
+
+113
+00:14:12,000 --> 00:14:22,800
+all the, name, clean, m key, save it, let's try again, we are going to see, it was not agree
+
+114
+00:14:22,800 --> 00:14:33,360
+in an input variable, main, 49, resource, asher key vault, key vault backend, key vault backend, name,
+
+115
+00:14:33,360 --> 00:14:42,640
+was not fan of, so if you look at line 49, name, lower, variable, key vault backend name,
+
+116
+00:14:42,640 --> 00:14:51,040
+check for variables, no, here it was of course nothing that was declared, then we take key vault, yes,
+
+117
+00:14:51,040 --> 00:15:00,800
+something like that, let's go again, when the plan is done, we see that we have a part of the resources plan,
+
+118
+00:15:00,800 --> 00:15:08,000
+6 to add, then it would be that it updates the storage account for our backend, it helps the resource
+
+119
+00:15:08,000 --> 00:15:13,840
+group for our backend, it helps the key vault for our backend, it helps the access key in the key vault
+
+120
+00:15:13,840 --> 00:15:20,720
+for our backend, and then I actually think it should be that, yes storage container of course in
+
+121
+00:15:21,040 --> 00:15:31,600
+this one, so if I then run terraform by main.txt, and after a while we will see that it is ready to
+
+122
+00:15:31,600 --> 00:15:38,000
+update all the resources, so then we can go to the portal, just to see quickly what has happened there,
+
+123
+00:15:38,000 --> 00:15:46,080
+resource group backend tested, in under this resource group we have now got a storage account,
+
+124
+00:15:46,080 --> 00:15:53,120
+we have also got a key vault, so if we just go into the storage account first, then something can happen here,
+
+125
+00:15:53,120 --> 00:16:01,440
+that we have also got a container that has been set up, it is called tfstate, of course there is nothing in
+
+126
+00:16:01,440 --> 00:16:08,320
+this container yet, because we are going to use it for the other resources we are going to set up,
+
+127
+00:16:08,320 --> 00:16:13,440
+or as a backend for the other states we are going to operate, we can of course add the state to
+
+128
+00:16:13,440 --> 00:16:18,880
+itself in this one, so we can do that, and then we can go and see that the key vault is ready,
+
+129
+00:16:18,880 --> 00:16:24,480
+and here we can see that the key vault is ready, but under secrets now, we can see that I have not yet
+
+130
+00:16:24,480 --> 00:16:32,160
+my user who is logged into this container, it does not have any right to be allowed to see
+
+131
+00:16:32,160 --> 00:16:38,400
+what is available, so that would mean that I do not have the opportunity to list out which key is
+
+132
+00:16:38,560 --> 00:16:47,360
+there, a quick demonstration of how I can for example now also choose access policies,
+
+133
+00:16:47,360 --> 00:16:53,920
+here we see only the application that we had that was current, when we run Terraform, it has
+
+134
+00:16:53,920 --> 00:17:02,080
+got the permissions that are set, so if I just add permissions, and then I run it into my user,
+
+135
+00:17:02,080 --> 00:17:08,400
+then we will see something interesting that is shown in Terraform, when I come in, then we can see here,
+
+136
+00:17:08,400 --> 00:17:15,760
+that for example, like this, like this, like this, principle, who should it be, so I click on the message here now,
+
+137
+00:17:15,760 --> 00:17:23,680
+and then I click on that, next, and next, create, we see, now my user is there, so we say now it goes to
+
+138
+00:17:23,680 --> 00:17:29,760
+secrets, we see, aha, I'm probably not in the backend, access key, now I have the opportunity to see, but
+
+139
+00:17:29,760 --> 00:17:36,160
+what is and is the whole screen with the use of infrastructure code, now I have done something in the
+
+140
+00:17:36,160 --> 00:17:42,080
+graphical user interface in Azure portal, change access policies for the key vault, so when I then go
+
+141
+00:17:42,080 --> 00:17:52,320
+back to this, run Terraform, land out, main, tfp, so we can now see that now the Terraform
+
+142
+00:17:52,320 --> 00:18:00,960
+state for the infrastructure that is set in the use of Terraform is a mismatch with what is
+
+143
+00:18:00,960 --> 00:18:07,840
+valid in the configuration in Azure, so then we see here, down here, it says, want to change, and what is it
+
+144
+00:18:07,840 --> 00:18:14,960
+to change, yes, it removes, then, the user is manually set to, with the rights on the key vault,
+
+145
+00:18:14,960 --> 00:18:20,160
+because it does not mean that I will now manually go in and do and set such instructions, because then
+
+146
+00:18:20,240 --> 00:18:25,360
+we actually lose the overview and the charm with the use of infrastructure as a code, because then
+
+147
+00:18:25,360 --> 00:18:29,680
+suddenly there will be someone who has done that, and someone who has done that, and not traceable, and then
+
+148
+00:18:29,680 --> 00:18:34,560
+the whole principle is gone, so what I want is that we should not do such things, I did it just to
+
+149
+00:18:34,560 --> 00:18:38,880
+demonstrate that I was going to say that I found access key, and I did it to demonstrate that
+
+150
+00:18:38,880 --> 00:18:47,120
+if I run any Terraform, aqua, main, tf, plan, then I want to remove something, the user who makes us go back
+
+151
+00:18:47,120 --> 00:18:52,640
+to the original and right after it on the key vault as we want it, now we see, want to change,
+
+152
+00:18:53,280 --> 00:19:00,480
+if we then go back to the key vault, we press the key vault, and then we can go to access policies,
+
+153
+00:19:00,480 --> 00:19:06,080
+we take a refresh, we see that it is now only my user principle or app registration that has the
+
+154
+00:19:06,080 --> 00:19:10,800
+access, and if I go to secret, then it will not happen, wait, refresh, not happen, so that is
+
+155
+00:19:10,880 --> 00:19:18,640
+simply illustrated how and why we use IAC, and how we are going to update our relationship to
+
+156
+00:19:18,640 --> 00:19:22,960
+configuration in order to do it in the user principle, or in the graphical principle of our
+
+157
+00:19:22,960 --> 00:19:28,560
+own portal, so then we have simply set up a new one, we have received the resource group, of course,
+
+158
+00:19:28,560 --> 00:19:33,440
+we should also have put a lock on it so that it can not be released, since this will be a
+
+159
+00:19:33,440 --> 00:19:38,160
+place where we will ensure that the state is available all the time, should not be released, so we can
+
+160
+00:19:38,160 --> 00:19:45,600
+see how we eventually set up a lock, but in the next one, we will now see how we take advantage of this backend.
+

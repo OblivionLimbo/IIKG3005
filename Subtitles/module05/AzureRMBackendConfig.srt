@@ -1,0 +1,96 @@
+1
+00:00:00,000 --> 00:00:09,160
+Okay, in the last video, we talked about the research group, storage count, key vault, and the access key in the key vault.
+
+2
+00:00:09,160 --> 00:00:17,560
+What we're going to use this storage count with the storage container in, is that we need a place to store TFState files.
+
+3
+00:00:17,560 --> 00:00:28,560
+For TFState files, when we're going to start with github and dive into github, we don't want all this information that's in TFState files to be in github.
+
+4
+00:00:28,720 --> 00:00:44,920
+This contains potentially sensitive information that can and shouldn't be lost or can cause damage or be a security risk, if it is accessible to people who are not supposed to have this access.
+
+5
+00:00:44,920 --> 00:00:57,360
+For example, access keys can be another type of information that is not supposed to be accessible, and it would be stupid if it was deleted and deleted, it would be positive.
+
+6
+00:00:57,360 --> 00:01:19,720
+It's a bit like, we also have a way to tag variables and values, what should be sensitive, so if we, for example, have a content that says sensitive, then we can, for example, true, and if we put something that says sensitive true, then it will not list it in the output.
+
+7
+00:01:19,720 --> 00:01:31,120
+It's also a way to make sure that the information is not shown on the screen, because suddenly it can be that something is not shown on the screen, or that there is information that should not have been shown.
+
+8
+00:01:31,120 --> 00:01:39,840
+So that's something we're going to take into account, in addition, when we start focusing on security and secure storage of TFState.
+
+9
+00:01:39,840 --> 00:02:01,920
+Because we have this file here, which is what identifies the infrastructure, we see it is very long, it's a bit of the resources that are now in it, and then we see that we have to store a place there, not on my machine, because it would be very difficult if more people were to work on the same infrastructure, if I have the TFState file stored on my machine, then it would be very difficult to change the relationship to the TFState file.
+
+10
+00:02:01,920 --> 00:02:23,040
+So therefore, we are going to configure now that we can also see that the backend is now something in the first, or in the starting point, we are going to use this infrastructure that we have set up to store the TFState file, and then we can also, in the way that we are going to have the next project, use this backend infrastructure as the backend for the TFState file.
+
+11
+00:02:23,040 --> 00:02:37,160
+Start by going to the documentation for the backend, srlm, storage, store the state, srblog, with the given key, blah blah blah, does not go into all of this, because then the video will be too long, just take a practical one, read, so you get information there.
+
+12
+00:02:37,160 --> 00:02:53,720
+That was to say, when authenticating srcly service principal, use either the following way, then we can see here that here we also have a subscription in it, but we can now just take and use the upper method, this one, backend, and then we put it in the Terraform block.
+
+13
+00:02:53,720 --> 00:03:05,000
+You can also just specify while we are here, of course, read it, but here we enter which backend we are going to use, if we, for example, want to get information on the data source configuration,
+
+14
+00:03:05,000 --> 00:03:29,480
+if we come to here, yes, data, Terraform remote state, then it is also a way where we can get the Terraform state, if we, for example, have several projects and want the values ​​from another project into this project, then we can get the information from the Terraform state file into this project, which makes us, for example, a very simple example.
+
+15
+00:03:29,480 --> 00:03:42,440
+We have a project that deploys virtual machines, of course, it will be just to illustrate it, not a good example for everyone, a project that deploys a lot of virtual machines, a project that deploys a network.
+
+16
+00:03:42,440 --> 00:04:06,760
+When we come to the deployment of the VMs, we need information from the VNet, ID, etc., so then we can get the state file from the project for these virtual networks, to get the subnet ID we need to hack on to get the machine on our network, quickly and easily, hopefully, done.
+
+17
+00:04:06,920 --> 00:04:31,560
+So what we are going to do first now is take this one, which we pasted into Terraform, and then we see here that resource group name, it must be changed, this must be changed, container name, it can also be set to a variable instead, and then we also have kina, which can then be, for example, that we set this one to backend Terraform state, like that, let's try again, the same thing.
+
+18
+00:04:31,560 --> 00:04:57,400
+What we basically do now is to run over, you want to copy existing state to the new backend, yes, that's what we're going to do now, we're going to move the Terraform state file to be moved from my machine, and it's not going to be with the GitHub, but over to a storage account, storage container, store it there, encrypt it and secure it in the best possible way.
+
+19
+00:04:57,400 --> 00:05:26,000
+So you see yes, copy, now to start with empty state, I want to have yes, since I'm going to have it with me, this state, and then we see that we now run a new configuration of a backend, which goes back to our resource group, storage account, and then under data storage containers, and then we go under there, we see no, tf state, here we have now got backend Terraform tf state.
+
+20
+00:05:26,000 --> 00:05:55,560
+This is now a representation of the infrastructure for the backend, as it is, if we go to edit, we see that we get all the information about the resources and what it is, which is for the backend, and then we also see here that it is now locked available, if I make any changes, if, for example, I want to just to test and show what's going on, if I take local redundant storage, it's of course better with given redundant, if it's a sensor, or if it's a file that is quite important that we have.
+
+21
+00:05:55,760 --> 00:06:19,880
+And everything I have, so we run a Terraform, yes, so we're just going to run a Terraform plan to see what happens when we run an apply, because it's bad if many run apply at the same time, so that when I run it, I want to lock the state file, so I have to make sure that it is locked, so it will not be changed while I'm at it.
+
+22
+00:06:19,880 --> 00:06:47,680
+Apply with a tf plan, then we can now go to it, then we see that it helps to run, we take a refresh there, we just didn't, but the thing is, at least, that the list status is set to locked, so that no one else can write and read to it while I'm applying the infrastructure.
+
+23
+00:06:47,680 --> 00:07:07,720
+Let's see, if we just get it with grs, take it back to it, and just take apply out to improve, so we take one like that, let's see, locked, released, then we see that now we have the possibility, or something else, for those of you who work on such a project, the possibility to do something with it.
+
+24
+00:07:07,720 --> 00:07:33,280
+Then our backend is in place, and of course it will be available as soon as my apply is finished and running, so then we have the possibility to also say that we can take this with us to the next project that we are going to run, so if we run a new one, we can use it in the backend.
+

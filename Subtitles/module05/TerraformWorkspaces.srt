@@ -1,0 +1,764 @@
+1
+00:00:00,000 --> 00:00:04,600
+Okay, now we have our backend in place. We have the GitHub repository in place.
+
+2
+00:00:04,600 --> 00:00:11,760
+We have also put in the necessary secrets in GitHub, so that we can use the GitHub Actions node
+
+3
+00:00:11,760 --> 00:00:16,080
+and initiate something that will happen using GitHub Actions.
+
+4
+00:00:16,080 --> 00:00:20,280
+What we have to watch out for now, or what is the gray policy and the relationship to it,
+
+5
+00:00:20,280 --> 00:00:25,320
+is that so far we have just been working with files locally on my machine.
+
+6
+00:00:25,360 --> 00:00:30,280
+Some of you have probably used GitHub or GitLab or Lignanes repository themselves.
+
+7
+00:00:30,280 --> 00:00:37,720
+But now I have prepared my own GitHub Terraform repository, which I use for this purpose.
+
+8
+00:00:37,720 --> 00:00:47,360
+And that is just to show that we should use a repository that makes it possible for more people to access the same repository.
+
+9
+00:00:47,360 --> 00:00:53,120
+Because there are often many who work with the same project, but sit out of the brain and work alone with projects.
+
+10
+00:00:53,120 --> 00:01:02,000
+And then we see here in the file here now, for example, if I go into the main, and then I just change, for example, from grs-lrs and store it in,
+
+11
+00:01:02,000 --> 00:01:06,320
+then it will eventually bring up a number on source control.
+
+12
+00:01:06,320 --> 00:01:15,640
+Then we can see here that if I just say ssa-lrs-local-with-a-storage-commit,
+
+13
+00:01:15,640 --> 00:01:19,960
+then I can then choose sync and changes, then it will synchronize it out to GitHub.
+
+14
+00:01:19,960 --> 00:01:26,360
+If you have not authenticated yourself against GitHub, because first you would get the chance to work with the net reader and authenticate yourself against GitHub.
+
+15
+00:01:26,360 --> 00:01:31,480
+So if I now go to GitHub, then I can now just see a refresh.
+
+16
+00:01:31,480 --> 00:01:40,600
+On that page, I would like to see here that now it says the last commit, or the last push, commit from me, ssa-lrs-local-with-a-storage,
+
+17
+00:01:40,600 --> 00:01:44,680
+and just change the backend, because I'm going to change it back to grs-lrs now, just to show.
+
+18
+00:01:44,680 --> 00:01:52,440
+Then we have our backend folder, now in GitHub, with the main, tf-plan, and variables.
+
+19
+00:01:52,440 --> 00:01:57,320
+This is, of course, just the one we have made, not least with the deployment of the backend.
+
+20
+00:01:57,320 --> 00:02:05,720
+But now we see that there are much fewer folders here, and files here, than there actually are in this GitHub-terraform-local-with-a-storage-commit,
+
+21
+00:02:05,720 --> 00:02:08,760
+where we have a .terraform with providers, etc., etc.
+
+22
+00:02:08,840 --> 00:02:15,000
+And that would be the file that we do not want to switch over to the repository in GitHub,
+
+23
+00:02:15,000 --> 00:02:20,680
+because then it's this one, because here you have some big files in here, and tf-vars, you can enter sensitive information,
+
+24
+00:02:20,680 --> 00:02:24,600
+which then takes it away, in addition to taking away a few other things that we do not want to have,
+
+25
+00:02:24,600 --> 00:02:26,760
+which we see in the GitHub-ignore file.
+
+26
+00:02:26,760 --> 00:02:33,160
+So, when that is said, we can now move on and start with what should be the theme for this passage here,
+
+27
+00:02:33,160 --> 00:02:35,320
+and that is then workspaces.
+
+28
+00:02:35,320 --> 00:02:42,520
+Workspaces is something that we should and should not be familiar with, at least with the use of Terraform,
+
+29
+00:02:42,520 --> 00:02:46,360
+and not least with the use of GitHub and GitHub Actions that are coming,
+
+30
+00:02:46,360 --> 00:02:55,240
+because it is what we have mentioned many times, that we must have different environments for the different resources that are deployed.
+
+31
+00:02:55,240 --> 00:03:00,760
+It could be that we have a developer dev, and we have staging, and we have a production environment.
+
+32
+00:03:00,760 --> 00:03:04,520
+And then we want to have different environments that we can work towards,
+
+33
+00:03:04,520 --> 00:03:14,920
+and that is a completely necessary approach, since you can't just do something and push it or deploy it to production without knowing that it actually works.
+
+34
+00:03:14,920 --> 00:03:21,000
+In developer HersheyCorp, it says a lot about workspaces, how it works.
+
+35
+00:03:21,000 --> 00:03:27,240
+Workspaces is one approach you can take to use different environments.
+
+36
+00:03:27,240 --> 00:03:32,840
+We use Terraform, there are several approaches that can be, including HersheyCorp Cloud or Terraform Cloud.
+
+37
+00:03:32,840 --> 00:03:36,280
+It can also be that you want to divide it up into separate folders and so on,
+
+38
+00:03:36,280 --> 00:03:42,360
+and there is a lot of this that is known from typical IAC terminology or best practices and so on,
+
+39
+00:03:42,360 --> 00:03:49,480
+and there is no one that is better or worse than the other, but it is more that you have to adapt it to your needs,
+
+40
+00:03:49,480 --> 00:03:55,800
+because it is often both the complexity of the size of the team and etc. that work with these projects,
+
+41
+00:03:55,800 --> 00:03:58,680
+which is a bit dependent on how the solution you go for.
+
+42
+00:03:58,840 --> 00:04:04,040
+Some can choose an approach that suggests that you clone the map and have a folder structure,
+
+43
+00:04:04,040 --> 00:04:08,760
+while others go for a workspaces approach.
+
+44
+00:04:08,760 --> 00:04:14,920
+So now we're going to build a little further and use workspaces with Terraform in VS Code.
+
+45
+00:04:14,920 --> 00:04:21,480
+So what we're just going to do really easy here is to show that we can use workspaces.
+
+46
+00:04:21,640 --> 00:04:31,560
+We can start by building a new map, not a back-end, but a new GitHub Terraform,
+
+47
+00:04:31,560 --> 00:04:39,560
+and then we can now just remove the back-end, or whatever we would like to have with what is here,
+
+48
+00:04:39,560 --> 00:04:44,040
+because we can now use the same back-end for what is done.
+
+49
+00:04:44,040 --> 00:04:50,440
+So if we just took it fast forward a little, we did it like this.
+
+50
+00:04:50,440 --> 00:04:51,720
+This is the user information.
+
+51
+00:04:51,720 --> 00:04:57,560
+If you have built a Terraform, you have built a main.tf, provider.tf, Terraform.tf.vars and variables.
+
+52
+00:04:57,560 --> 00:05:04,680
+The reason I built providers in addition now is to show that we can also divide it into even more divided pieces,
+
+53
+00:05:04,680 --> 00:05:08,680
+so that we can get a more transparent structure on our infrastructure,
+
+54
+00:05:08,680 --> 00:05:13,800
+so that if we were to integrate the main, for example, we have so far only used a few providers,
+
+55
+00:05:13,800 --> 00:05:18,760
+but it can also be good to take out the main and have your own provider.tf,
+
+56
+00:05:18,760 --> 00:05:24,040
+because there can be a lot of providers that we use, and then it gets a little confusing to have it in the main,
+
+57
+00:05:24,040 --> 00:05:28,040
+and then we can just have the resources in the main instead of the variables, or the modules that we picked up.
+
+58
+00:05:28,040 --> 00:05:32,120
+What is important when we look at the providers here now, I just copied the one from our back-end,
+
+59
+00:05:32,120 --> 00:05:37,080
+so we can not use the same Terraform state file key, because then we would try to overwrite it,
+
+60
+00:05:37,080 --> 00:05:41,080
+and then we would say, hey, I deleted everything from my back-end, and it would be a bit of a crisis,
+
+61
+00:05:41,080 --> 00:05:47,080
+so it's okay to use here now, that we can hack away just that one,
+
+62
+00:05:47,080 --> 00:05:51,720
+and then it could have been identified as a Kanoen application or a Lignan,
+
+63
+00:05:51,720 --> 00:05:55,640
+if you want this to be, but I can just get something, since I thought I was going to use
+
+64
+00:05:55,640 --> 00:06:00,360
+a very simple one-off of WorkSpaces, using and operating resource groups.
+
+65
+00:06:00,360 --> 00:06:04,600
+Of course, you can hack on as many resources, but I will show you how to operate a resource,
+
+66
+00:06:04,600 --> 00:06:10,760
+how you can use this type of information to do it with DevStaging, etc.
+
+67
+00:06:10,760 --> 00:06:15,320
+So now I have the providers, so if I then make sure that it is in the correct folders,
+
+68
+00:06:15,320 --> 00:06:22,520
+when I run Terraform, or here I have now both all the files I need,
+
+69
+00:06:22,520 --> 00:06:28,520
+and then I can write Terraform in it, in order to see that it gets the provider,
+
+70
+00:06:28,520 --> 00:06:31,720
+and everything works as it should with it.
+
+71
+00:06:31,800 --> 00:06:35,720
+It is good, and then we must of course develop what we are going to do.
+
+72
+00:06:35,720 --> 00:06:43,480
+It is very simple, resource, Azure RM, and then it is resource group,
+
+73
+00:06:43,480 --> 00:06:49,960
+we just write RG name, and then we take the location for the resource group,
+
+74
+00:06:49,960 --> 00:06:54,440
+we create the variable RG name, and then we create the variable RG location,
+
+75
+00:06:54,440 --> 00:06:58,120
+and then we have to remember that we must have them in the variables declaration,
+
+76
+00:06:58,200 --> 00:07:05,880
+so we say then write variable as string as, so we save it,
+
+77
+00:07:05,880 --> 00:07:08,920
+and then we go back to main again, because then we have taken it in,
+
+78
+00:07:08,920 --> 00:07:12,840
+and then the idea was that what was going to happen now,
+
+79
+00:07:12,840 --> 00:07:18,120
+if I deploy this resource group here, then it would get what is, for example,
+
+80
+00:07:18,120 --> 00:07:28,360
+set as value inside of here, and inside of there, and then we take the demo,
+
+81
+00:07:29,640 --> 00:07:33,400
+and then I would have gotten, if I were to deploy only the resource group there,
+
+82
+00:07:33,400 --> 00:07:39,080
+then if I have run in here, and then we take Terraform,
+
+83
+00:07:39,080 --> 00:07:44,920
+no, it has been run, Terraform plan, out, main to after plan,
+
+84
+00:07:44,920 --> 00:07:51,240
+and then of course forget the provider, and feature again, Terraform,
+
+85
+00:07:51,240 --> 00:07:56,360
+init, initialize the backend, the backend is done, we see here that now,
+
+86
+00:07:56,360 --> 00:08:01,480
+although it is a new file, a new file has been here, we can now quickly see in the resource group
+
+87
+00:08:01,480 --> 00:08:08,520
+now, for backend TFState, that there has actually come a new file in this storage container,
+
+88
+00:08:08,600 --> 00:08:15,080
+that contains these files for the TFState file for our backend,
+
+89
+00:08:15,080 --> 00:08:19,320
+if we go to the storage container, then we want to see that we have got a file,
+
+90
+00:08:19,320 --> 00:08:24,680
+which is called RG Terraform TFState, and it represents the infrastructure for Terraform
+
+91
+00:08:24,680 --> 00:08:32,920
+in VS Code, we can check here, that there is nothing, it's just a resource group,
+
+92
+00:08:33,800 --> 00:08:39,480
+which is going to be deployed, then we can start with main, then we take the resource group here,
+
+93
+00:08:39,480 --> 00:08:48,920
+and then we have Terraform plan out main to after plan, and then we will see, now if I run
+
+94
+00:08:48,920 --> 00:08:55,160
+this resource group here now, then we understand that it gets the name, which is defined in the variable
+
+95
+00:08:55,800 --> 00:09:03,000
+it is not clear, but if I now want to have more, more environment to work with,
+
+96
+00:09:03,000 --> 00:09:12,360
+that I do not want this to be always out, because if I take Terraform workspaces list,
+
+97
+00:09:12,360 --> 00:09:19,080
+then we see here that it is now in default workspace, if I create a, let's see, Terraform
+
+98
+00:09:19,160 --> 00:09:29,720
+workspaces, new, new, dev, and then we can write, just write that, and then we can then write
+
+99
+00:09:29,720 --> 00:09:37,080
+eventually test, or we can write prod, so if we then take and list out these again,
+
+100
+00:09:37,080 --> 00:09:43,160
+then we will see now that we have got three new workspaces, we have dev, prod and stage in
+
+101
+00:09:43,160 --> 00:09:51,640
+workspaces list, and then if we take Terraform, workspaces, select, dev, then we will now see that we
+
+102
+00:09:51,640 --> 00:09:56,360
+have switched to workspaces dev, and that is also how I want it, because now I use the same code repo
+
+103
+00:09:56,360 --> 00:10:01,560
+for all my projects, so I have to copy or think that it does not sync with making an
+
+104
+00:10:01,560 --> 00:10:06,200
+changes in dev or something like that, now I use one of the same repo, but I have different workspaces
+
+105
+00:10:06,200 --> 00:10:13,000
+instead, and that is fine, but if I now take and run and deploy here with dev, then it will still
+
+106
+00:10:13,000 --> 00:10:19,400
+be the same, if I do it with prod, then the resource group will also be the same, and that's how we want it,
+
+107
+00:10:19,400 --> 00:10:25,720
+one way we can solve that is that we can use something called Terraform workspace variable,
+
+108
+00:10:25,720 --> 00:10:33,560
+it is that we can enter something that is to be processed or run in this file, which can be a
+
+109
+00:10:33,560 --> 00:10:39,320
+local, so we want to create local that will do something, and that can for example be that we want to have
+
+110
+00:10:39,400 --> 00:10:47,000
+a base name, maybe a prefix or a suffix or something like that, so if I for example now write
+
+111
+00:10:47,000 --> 00:10:56,920
+workspaces suffix, so I want now that there will be an ending to the environment I am creating, which
+
+112
+00:10:56,920 --> 00:11:04,440
+will be a certain input, my suggestion from copilot here is that I can write in dev,
+
+113
+00:11:04,520 --> 00:11:09,800
+but then I again have the code, I now wish that Terraform should take the starting point in how
+
+114
+00:11:09,800 --> 00:11:16,840
+workspace it is I am standing in, so the way I do that is that I can write Terraform workspaces,
+
+115
+00:11:16,840 --> 00:11:22,920
+and what it will suggest then, that is, the check, if the workspace is default, then it does not take anything,
+
+116
+00:11:22,920 --> 00:11:30,840
+if it is not, then it takes the starting point in Terraform workspace content, this will then represent
+
+117
+00:11:30,840 --> 00:11:37,640
+the names that I have in the list, that is dev, prod and stage, so if I then for example
+
+118
+00:11:37,640 --> 00:11:49,640
+wish that the names in my resource group should be local.sa name, or yes no, I meant not sa name, but rg
+
+119
+00:11:49,640 --> 00:11:55,720
+name, then we can now see here something that if we then write name, like, then we can check
+
+120
+00:11:55,800 --> 00:12:02,680
+what we want this resource group name to be, and we have already declared a variable that
+
+121
+00:12:02,680 --> 00:12:07,480
+will give input, because we are going to give the name to this resource group, so what we can then do then,
+
+122
+00:12:07,480 --> 00:12:14,120
+as we are familiar with earlier, then we take that we use var, resource group name, so variable, what we
+
+123
+00:12:14,120 --> 00:12:19,960
+want to give the resource group name, so that would be, for example, rg demo 001, and then we
+
+124
+00:12:19,960 --> 00:12:26,920
+add a finish line, and local workspace suffix, so what I'm going to do, is that I'm going to
+
+125
+00:12:26,920 --> 00:12:36,440
+expand, or I'm expanding now, a local, no, sorry, it will be like that, so then we get local's
+
+126
+00:12:36,440 --> 00:12:44,040
+rg name as the name of that variable, and then I can change the resource group name here to local's
+
+127
+00:12:44,760 --> 00:12:50,840
+rg name, so then we get input from our variable, since we have declared that the variable resource
+
+128
+00:12:50,840 --> 00:12:56,840
+group name will come in, resource group name will come in, and then we have a local that processes that name,
+
+129
+00:12:56,840 --> 00:13:05,080
+and checks based on what kind of workspace we are in, so if I now run, I can now run an output,
+
+130
+00:13:05,800 --> 00:13:12,840
+let's see, like that, output resource group name, value, after that resource group rg name, which is then
+
+131
+00:13:12,840 --> 00:13:17,800
+this one, and then I want to see the name when I run it, so then I can see something, that now I get
+
+132
+00:13:17,800 --> 00:13:23,320
+different names on this folder, and that can be done on several resources, I could, for example,
+
+133
+00:13:23,320 --> 00:13:27,320
+if I were to experience a storage account now, then I could hack on that there will be a
+
+134
+00:13:27,320 --> 00:13:32,520
+base name, or a suffix behind it, that it should be a random number, because we have always learned that
+
+135
+00:13:32,520 --> 00:13:37,000
+you can hack on random numbers and stuff like that, but now I see that it says workspace dev,
+
+136
+00:13:37,000 --> 00:13:44,120
+so if I now take a terraform, plan, out, main, tf, plan, I could have tried to hack on that out,
+
+137
+00:13:44,120 --> 00:13:49,160
+it would be a main dev tf plan or something like that, but it really doesn't matter much,
+
+138
+00:13:49,160 --> 00:13:57,560
+and here we go, now let's see, it doesn't want to have the name behind it, wait a bit, of course,
+
+139
+00:13:57,560 --> 00:14:04,840
+forgot to store it, so, and then we run it again, and then we will now see that this
+
+140
+00:14:04,920 --> 00:14:11,000
+composition will then make it get a different resource group name, as you can see here, output,
+
+141
+00:14:11,000 --> 00:14:17,320
+resource group name, rgdemo01dev, so if I run now terraform, apply, main, tf, plan,
+
+142
+00:14:17,320 --> 00:14:23,080
+you can see quickly what happens, now the resource group rgdemo01dev has been created, you can quickly
+
+143
+00:14:23,080 --> 00:14:29,720
+verify it in the portal, that we then take here, give it two seconds, there, rgdemo01dev, and that's
+
+144
+00:14:29,720 --> 00:14:36,280
+how we want it, and now we have changed something here in the code, we have just changed how the
+
+145
+00:14:36,280 --> 00:14:40,200
+workspace we are in, and that's an elegant way to do it, if we think, okay, we're going to use the
+
+146
+00:14:40,200 --> 00:14:45,960
+repository, but we're going to make sure that when we're in a workspace, it's going to be maybe another one,
+
+147
+00:14:45,960 --> 00:14:50,680
+and it could be, for example, that if you store workspace dev, then you may not need a geodendron,
+
+148
+00:14:50,680 --> 00:14:57,320
+you can see that variables are dependent on which workspace you are in, you can have, for example,
+
+149
+00:14:57,320 --> 00:15:04,200
+your own tfware for each workspace, which makes you, if you are in dev, then you have a dev,
+
+150
+00:15:04,200 --> 00:15:09,640
+terraform, tfware, if you are in prod, then you have a little bit of different food that can be there,
+
+151
+00:15:09,640 --> 00:15:18,440
+but you can also make it based on the same, but adapted, so we can check it, if I write
+
+152
+00:15:19,400 --> 00:15:30,280
+now terraform works select prod, and then I run the same command here, plan out main tf plan,
+
+153
+00:15:30,280 --> 00:15:35,560
+then we look here, then for the resource group prod, and that's how we want it, so we can run
+
+154
+00:15:36,280 --> 00:15:42,760
+show by, and then we will apply the deployment of this resource, which will then be a resource group
+
+155
+00:15:43,240 --> 00:15:49,800
+there are just examples to make it as simple and minimal as possible, of course, there are a lot of
+
+156
+00:15:49,800 --> 00:15:57,160
+resources you can deploy here, and now we just show via vscode against azure, in addition, we can
+
+157
+00:15:57,160 --> 00:16:03,240
+now set up, or we will see later how we use triggers or get up actions, which is what triggers
+
+158
+00:16:03,240 --> 00:16:07,400
+or triggers which environment you are in, and that you may then have to go through some tests,
+
+159
+00:16:07,480 --> 00:16:12,840
+so you have to test, for example, if you have a very simple test, which is a manual test,
+
+160
+00:16:12,840 --> 00:16:19,720
+if I have now run the rgdemo under a dev, simple test, go to the graphical limit,
+
+161
+00:16:19,720 --> 00:16:25,160
+see the resource group, and then go up, great, then I know that it works, go right back,
+
+162
+00:16:25,160 --> 00:16:32,360
+run the prod, and then I get the prod resource group, then I have a manual test to check that this
+
+163
+00:16:32,360 --> 00:16:37,160
+has come up to run, of course, this is a manual, we do not want to do manual things, we want
+
+164
+00:16:37,160 --> 00:16:41,720
+that this should be a test that can go, for example, if we are going to deploy a website,
+
+165
+00:16:41,720 --> 00:16:47,800
+answer it to the import, give it a feedback, it can be a network configuration, answer it to
+
+166
+00:16:47,800 --> 00:16:52,200
+that traffic comes through, there is a lot of different things we can set up, so be part of this
+
+167
+00:16:52,200 --> 00:16:59,400
+infrastructure deployment, which means that we can only use the same code base, but we change
+
+168
+00:16:59,400 --> 00:17:05,960
+which workspace we are in, and then we can see that we get different instances of the infrastructure
+
+169
+00:17:06,040 --> 00:17:12,280
+in Azure report, so now I have done that, now I have just known what workspaces are, and then we can
+
+170
+00:17:12,280 --> 00:17:17,800
+then easily now take and run, and that is important to think about, it is quite one of, let's say,
+
+171
+00:17:17,800 --> 00:17:21,560
+the advantages of the exercise here, one of the disadvantages of using workspaces is that you have to be
+
+172
+00:17:21,560 --> 00:17:27,000
+clear all the time on which workspace you are actually standing in, suddenly you think you are standing in
+
+173
+00:17:27,000 --> 00:17:31,560
+dev, and then you are standing in prod, and then you start doing things like that, then it can be a little
+
+174
+00:17:31,560 --> 00:17:39,160
+scary, but if I now write, for example, terraform destroy here, now I am standing in
+
+175
+00:17:39,160 --> 00:17:46,120
+scopershow, in prod environment, then I would of course get a message that I am sure I want to do this,
+
+176
+00:17:46,120 --> 00:17:52,760
+I would then get, I could also show that I have used terraform plan destroy with a flag,
+
+177
+00:17:52,760 --> 00:17:58,120
+which plan that should be released, but if we now take yes here, then we clean up
+
+178
+00:17:58,200 --> 00:18:02,840
+this as well, because this is just to show how workspaces work, and then of course you have to
+
+179
+00:18:02,840 --> 00:18:15,960
+switch to dev workspace now, to release that workspace, prod is released, dev, we take and destroy,
+
+180
+00:18:15,960 --> 00:18:20,600
+and that's fine, or you have to be aware that what is default workspace, it will also be there if
+
+181
+00:18:20,600 --> 00:18:26,440
+you have operated resources under default workspace, which I had done with, in my case,
+
+182
+00:18:26,920 --> 00:18:32,600
+under the backend, so it does not belong to any workspace, some of it is on default
+
+183
+00:18:32,600 --> 00:18:38,040
+workspace, we can of course also use different terraform workspace commands, so we can,
+
+184
+00:18:38,040 --> 00:18:44,840
+we have used new, and then we have list, we have select, and we also have the option to of course
+
+185
+00:18:44,840 --> 00:18:52,040
+delete them, and so on, operation, so I can now double check how the status is in the portal,
+
+186
+00:18:53,000 --> 00:18:58,600
+now both resource groups are gone, both dev and prod are gone, and this was actually just a simple
+
+187
+00:18:58,600 --> 00:19:05,880
+way of using workspaces, how we can hack on suffix, which makes it easier that the same code base
+
+188
+00:19:06,520 --> 00:19:12,280
+is valid, because we could have had a lot of resources now with random, and for each workspace they have
+
+189
+00:19:12,280 --> 00:19:18,680
+got their own random string, so if we have had storage accounts, which I have built random on,
+
+190
+00:19:18,760 --> 00:19:22,840
+or other resources that I have been random on, then they will be valid within their workspace,
+
+191
+00:19:22,840 --> 00:19:26,520
+and those that are updated there, so that was really a simple way of using workspaces.
+
