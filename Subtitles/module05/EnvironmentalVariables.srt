@@ -4,7 +4,7 @@ In this video, we are going to look at the use of environmental variables.
 
 2
 00:00:03,360 --> 00:00:08,960
-We find under registry, terraform, IO providers, etc. etc. under RRM.
+We find under registry, terraform, IO providers, etc. etc. under AzureRM.
 
 3
 00:00:08,960 --> 00:00:18,600
@@ -12,7 +12,7 @@ The reason we want to use environmental variables is because we might let go of 
 
 4
 00:00:18,600 --> 00:00:30,720
-We will run a VC login, for example, because terraform has the necessary information through client ID, security, tenant ID, subscription ID in the environmental variable available.
+We also dont need an az login, for example, because terraform has the necessary information through client ID, secret, tenant ID, subscription ID in the environmental variable available.
 
 5
 00:00:30,720 --> 00:00:34,360
@@ -20,15 +20,15 @@ Then it understands and knows where it should perform the handling.
 
 6
 00:00:34,360 --> 00:00:43,320
-So if you look here, the way we use this value is that we are of course status 01 here with the input we have available.
+So if you look here, the way we use this value is that we of course replace these 0's here with the input we have available.
 
 7
 00:00:43,320 --> 00:00:46,520
-It will then be client ID, security, tenant ID and subscription ID.
+It will then be client ID, secret, tenant ID and subscription ID.
 
 8
 00:00:46,520 --> 00:00:52,920
-All of this is known to us, we have already used it via VC login, but we can now simply paste it in instead of in the terminal.
+All of this is known to us, we have already used it via az login, but we can now simply paste it in instead of in the terminal.
 
 9
 00:00:52,920 --> 00:00:58,680
@@ -40,7 +40,7 @@ So if I paste it in and have thought, as I said, paste in all of this, which was
 
 11
 00:01:08,760 --> 00:01:13,520
-So when I paste in and press enter now, and of course have the correct information, which is after for my user.
+So when I paste in and press enter now, and of course have the correct information, which is applicable for my user.
 
 12
 00:01:13,520 --> 00:01:19,520
@@ -59,12 +59,12 @@ The next time I open it, I have to paste it in.
 I also recommend that you store the information here in your own private key vault or encrypted information that you do not get access to here.
 
 16
-00:01:32,600 --> 00:01:40,240
-Of course, we are only dealing with a demo environment, but in a real world scenario, this would be the information that has been stored and secured.
+00:01:32,600 --> 00:01:48,240
+Of course, we are only dealing with a demo environment, but in a real world scenario, this would be the information that has been stored and secured. Optionally you would need to authenticate to gain access via RBAC or similar. 
 
 17
-00:01:40,240 --> 00:02:00,000
-So if I now press enter on this, I will put this as the variable, and then I can afterwards list out and see how the information that is in these variables.
+00:01:48,240 --> 00:02:00,000
+So if I now press enter on this, I will put this as the variable, and then I can afterwards list out and see what information that is in these variables.
 
 18
 00:02:00,000 --> 00:02:06,160
@@ -72,7 +72,7 @@ So what I do, if I paste it in and put it here, now it's just this one.
 
 19
 00:02:06,160 --> 00:02:20,560
-But if I paste it in, and then I write in, it's a bit different from the operating system, but then I see here now that I have the subscription client secret identity, which is in my environmental variables.
+But if I paste it in, and then I write in, it's a bit different from the operating system, but then I see here now that I have the subscription client secret and tenant ID, which is in my environmental variables.
 
 20
 00:02:20,560 --> 00:02:42,320
@@ -84,13 +84,13 @@ Of course, I would not want anything that is valid and functional here, but of c
 
 22
 00:02:49,040 --> 00:03:03,760
-And what I have to think about now, if I now press to just close this terminal, and then I take up a new one, then we can see that if I write in now, I do not have these environmental variables available anymore, because it is a new session.
+And what I have to think about now, if I now press to just close this terminal, and then I open up a new one, then we can see that if I write in now, I do not have these environmental variables available anymore, because it is a new session.
 
 23
 00:03:03,760 --> 00:03:18,400
-So that for each time I put it in here, and then I write in, then I see that I have them available at the bottom and can then just start rolling out the infrastructure via Terraform without having to do ac login and so on.
+So that for each time I put it in here, and then I write in, then I see that I have them available at the bottom and can then just start rolling out the infrastructure via Terraform without having to do az login and so on.
 
 24
 00:03:18,400 --> 00:03:28,640
-And this is the same information that we put into GitHub, which is the variables that we can use when we want to run GitHub Actions alone.
+And this is the same information that we put into GitHub, which is the variables that we can use when we want to run GitHub Actions etc.
 

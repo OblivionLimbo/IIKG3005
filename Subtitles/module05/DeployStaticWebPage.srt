@@ -20,7 +20,7 @@ How can you adapt this configuration to work with workspaces and deploy it so th
 
 6
 00:00:46,160 --> 00:00:55,680
-So what I bought here, web demo, main.tf, providers.tf, terraform.tf-vars, variables, providers first, our backend, which we have previously configured as a state file.
+So what I have here, web demo, main.tf, providers.tf, terraform.tf-vars, variables, providers first, our backend, which we have previously configured as a state file.
 
 7
 00:00:55,680 --> 00:01:04,560
@@ -28,11 +28,11 @@ The key must be specified for the project we are working with. Here I just have 
 
 8
 00:01:04,560 --> 00:01:09,600
-Add main, we go here, random string again, because we need it in the storage page.
+Add main, we go here, random string again, because we need it in the storage account.
 
 9
 00:01:09,600 --> 00:01:17,040
-A resource group, rgweb, var, rgname, location, var location, variable location, name on the storage page.
+A resource group, rgweb, var, rgname, location, var location, variable location, name of the storage account.
 
 10
 00:01:17,040 --> 00:01:22,480
@@ -40,7 +40,7 @@ Here we remember that we must have a unique name, so we take the variable as a n
 
 11
 00:01:22,480 --> 00:01:30,560
-The resource group is rgweb, location, rgweb, account here, standard, account, replication type, lrs, local redundant storage.
+The resource group is rgweb, location, rgweb, account tier, standard, account replication type, lrs, local redundant storage.
 
 12
 00:01:30,560 --> 00:01:37,680
@@ -48,7 +48,7 @@ Under the Azure storage account, we add a new block called static website.
 
 13
 00:01:37,680 --> 00:01:48,960
-That means that we specify the index document that will be on the static webpage, because the static webpage is a field or a function that we can add to and add to the storage account.
+That means that we specify the index document that will be on the static webpage, because the static webpage is a field or a function that we can add and add to the storage account.
 
 14
 00:01:48,960 --> 00:01:54,320
@@ -56,19 +56,19 @@ The index document, var index document, the reason I use variables here is becau
 
 15
 00:01:54,320 --> 00:02:04,240
-Here add an index.html file to the storage account, and then we see resource, resource.rm, storage page, index.html, we create var index document, the same as before.
+Here add an index.html file to the storage account, and then we see resource, resource.rm, storage blob, index.html, we create var index document, the same as before.
 
 16
 00:02:04,320 --> 00:02:13,520
-Where is this place going to be? The storage account name is asawebname, storage account web, storage container name, operate a dollar web that represents.
+Where is this place going to be? The storage account name is sa_web.name, storage account web, storage container name, create a $web that represents.
 
 17
 00:02:13,520 --> 00:02:23,440
-It has a written description if you go to the storage account, look at dollarweb, storage container name, it has a special function, which means to add static web pages.
+It has a written description if you go to the storage account, look at $web, storage container name, it has a special function, which means to add static web pages.
 
 18
 00:02:23,440 --> 00:02:31,600
-Type block, content type, text.html, and then source content, i.e. what is included in this html page that we operate.
+Type block, content type, text.html, and then source content, i.e. what is included in this html page that we create.
 
 19
 00:02:31,600 --> 00:02:37,840
@@ -76,15 +76,15 @@ Finally, we take an output. What are we outputting? Yes, we output the storage a
 
 20
 00:02:37,840 --> 00:02:48,080
-That means that a storage account has a primary web endpoint, and that is the html index html file we operate, and if we enter here, we will then get output on it.
+That means that a storage account has a primary web endpoint, and that is the html index html file we create, that we add here, we will then get output on it.
 
 21
 00:02:48,080 --> 00:02:55,360
-We have declared the variables, location, rgname, asaname, source content, index document.
+We have declared the variables, location, rgname, saname, source content, index document.
 
 22
 00:02:55,360 --> 00:03:06,080
-When we start the storage, we are in West Europe, rgweb, asaweb, here we see html, web page created with terraform, the end h1, i.e. overwritten h1, and this is source content.
+Below tfvars, we have West Europe, rgweb, saweb, here we see html, web page created with terraform, the end h1, i.e. title h1, and this is source content.
 
 23
 00:03:06,080 --> 00:03:11,280
@@ -96,11 +96,11 @@ Back to the main, I have to make sure that I am in the right folder, web demo, t
 
 25
 00:03:24,880 --> 00:03:36,800
-Sorry, wrong on var, forgot to store, so then it is stored, run it again, when the plan is run, we run for to add output, primary web endpoint, known after reply.
+Sorry, wrong on var, forgot to save, so then it is saved, run it again, when the plan is run, we run for to add output, primary web endpoint, known after apply.
 
 26
 00:03:36,800 --> 00:03:42,480
-Now we see that it is the resources that we have declared in the main that will be updated.
+Now we see that it is the resources that we have declared in the main that will be created.
 
 27
 00:03:42,480 --> 00:03:48,560
@@ -112,7 +112,7 @@ So, apply completed, notice that here the primary web endpoint comes out at once
 
 29
 00:04:02,240 --> 00:04:15,840
-But before I open it, I have to run the last code over to my repo, web demo, terraform, commit, and then I sync it out to github repo, so that I have the file there and not just locally.
+But before I open it, I have to push the last code over to my repo, web demo, terraform, commit, and then I sync it out to github repo, so that I have the file there and not just locally.
 
 30
 00:04:15,840 --> 00:04:26,000
@@ -128,23 +128,23 @@ When that is done, we take a look, maybe when we open the URL, open web page cre
 
 33
 00:04:50,400 --> 00:04:57,280
-Then we get our resource, a html page, and it contains the web page created in terraform with the transcripts.
+Then we get our resource, a html page, and it contains the web page created in terraform with header 1.
 
 34
 00:04:57,280 --> 00:05:15,760
-If we go to the resource group in the portal, search rgweb, we see here that it includes the storage account, and then on the left side, if we scroll down to the storage account, we find a static web page, and if we include the static web page, we get the primary endpoint.
+If we go to the resource group in the portal, search rgweb, we see here that it includes the storage account, and then on the left side, if we scroll down to the storage account, we find a static web page, and below static web page, we get the primary endpoint.
 
 35
 00:05:15,760 --> 00:05:30,480
-Here we also see index.document.name, index.html, which is the file we have created, and Azure Storage Container has been created to host your static website, and that is dollar web container, which is what represents the static app.
+Here we also see index.document.name, index.html, which is the file we have created, and Azure Storage Container has been created to host your static website, and that is $web container, which is what represents the static app.
 
 36
 00:05:30,480 --> 00:05:52,400
-So if I now go back to my code, I can now see that if I go to the storage, new, save, run a new terraform plan, we will see that I get a confirmation that it will be restarted, that is, the variable source content will be replaced with this one.
+So if I now go back to my code, I can now see that if I go to the tfvars, new, save, run a new terraform plan, we will see that I get a confirmation that it will be replaced, that is, the variable source content will be replaced with this one.
 
 37
 00:05:52,400 --> 00:06:00,080
-So if I now run one like that, it's done, then it has been taken out internally, look, there we see, now we have got new.
+So if I now run one like that, it's done, then the content has been replaced, look, there we see, now we have got new.
 
 38
 00:06:00,080 --> 00:06:14,640

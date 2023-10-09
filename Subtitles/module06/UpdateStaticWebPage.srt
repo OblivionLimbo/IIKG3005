@@ -20,7 +20,7 @@ And if we go into each of these resource groups, we see that we have the storage
 
 6
 00:00:25,200 --> 00:00:32,640
-which is located with this static web page available for the environment.
+available with this static web page available for the environment.
 
 7
 00:00:32,640 --> 00:00:38,520
@@ -48,7 +48,7 @@ Then I would get the opportunity to push it in.
 
 13
 00:01:13,600 --> 00:01:18,440
-Then just web content update del 1.
+Then just web content update del 1, commit.
 
 14
 00:01:19,400 --> 00:01:26,040
@@ -68,7 +68,7 @@ Or the trigger is that it has been changed, now the file in the repository for s
 
 18
 00:01:36,880 --> 00:01:44,280
-So when we then go to web content update del 1, we see here that now it will run through all the steps that we were used to and saw instead.
+So when we then go to web content update del 1, we see here that now it will run through all the steps that we were used to and saw earlier.
 
 19
 00:01:44,280 --> 00:01:47,960
@@ -100,7 +100,7 @@ So if we take curl like this, then we see that we get the content on the website
 
 26
 00:02:19,200 --> 00:02:27,760
-So if we also take curl 100% vntnu.no, then we see that we get the content that is on that site.
+So if we also take curl https://www.ntnu.no, then we see that we get the content that is on that site.
 
 27
 00:02:27,760 --> 00:02:36,400
@@ -220,31 +220,31 @@ Since this will only be a demonstration of how we do it with GitHub Workflows, w
 
 56
 00:04:28,680 --> 00:04:33,760
-And there we see, the web point is checked, so if we then take, for example, TestBroad.
+And there we see, the web point is checked, so if we then take, for example, TestProdd.
 
 57
 00:04:33,760 --> 00:04:39,440
-Here we also see that we need to update DLN, getWebEndPoint, since we want to have URN, we can now click on that.
+Here we also see that we need to update del 1, getWebEndPoint, since we want to have URL, we can now click on that.
 
 58
 00:04:39,440 --> 00:04:42,720
-And here we see that we get middle Terraform, CCD, update DLN.
+And here we see that we get made in Terraform, CI/CD, update del 1.
 
 59
 00:04:42,720 --> 00:04:46,560
-We can see that we have just started updating the site speedruns here.
+We can see that we have just started updating the site consecutively here.
 
 60
 00:04:46,560 --> 00:04:48,440
-There we see that we have updated DLN.
+There we see that we have updated it.
 
 61
 00:04:48,440 --> 00:04:52,480
-There we have previously updated DLN, and there we have previously updated DLN.
+There we have previously updated it, and there we have previously updated it.
 
 62
 00:04:52,480 --> 00:04:56,160
-So now we have Prod, Stage, Stage, and Dev.
+So now we have Prod, Stage, and Dev.
 
 63
 00:04:56,160 --> 00:04:58,200
@@ -260,9 +260,13 @@ Test it in Stage, and then when it is verified and tested correctly in Stage, yo
 
 66
 00:05:07,440 --> 00:05:15,800
-Of course, it is both tested on the Terraform code, tested on the infrastructure, and a lot that can be implemented on this type of CCD.
+Of course, it is both tested on the Terraform code, tested on the infrastructure, and a lot that can be implemented on this type of CI/CD.
 
 67
 00:05:15,800 --> 00:05:17,800
 But that's more we'll come to afterwards.
+
+68 
+00:05:17,800 --> 00:05:19,000
+Remember to delete the infrastructure after you have completed the module and testing :)
 
