@@ -4,7 +4,7 @@ Okay, now we have our backend in place. We have the GitHub repository in place.
 
 2
 00:00:04,600 --> 00:00:11,760
-We have also put in the necessary secrets in GitHub, so that we can use the GitHub Actions node
+We have also put in the necessary secrets in GitHub, so that we can use the GitHub Actions now
 
 3
 00:00:11,760 --> 00:00:16,080
@@ -12,7 +12,7 @@ and initiate something that will happen using GitHub Actions.
 
 4
 00:00:16,080 --> 00:00:20,280
-What we have to watch out for now, or what is the gray policy and the relationship to it,
+What we have to watch out for now, or what is a good policy to keep in mind
 
 5
 00:00:20,280 --> 00:00:25,320
@@ -20,7 +20,7 @@ is that so far we have just been working with files locally on my machine.
 
 6
 00:00:25,360 --> 00:00:30,280
-Some of you have probably used GitHub or GitLab or Lignanes repository themselves.
+Some of you have probably used GitHub or GitLab or similar repository themselves.
 
 7
 00:00:30,280 --> 00:00:37,720
@@ -32,11 +32,11 @@ And that is just to show that we should use a repository that makes it possible 
 
 9
 00:00:47,360 --> 00:00:53,120
-Because there are often many who work with the same project, but sit out of the brain and work alone with projects.
+Because there are often many who work with the same project, but dont normally sit alone and work with projects.
 
 10
 00:00:53,120 --> 00:01:02,000
-And then we see here in the file here now, for example, if I go into the main, and then I just change, for example, from grs-lrs and store it in,
+And then we see here in the file here now, for example, if I go into the main, and then I just change, for example, from grs-lrs and save it,
 
 11
 00:01:02,000 --> 00:01:06,320
@@ -44,7 +44,7 @@ then it will eventually bring up a number on source control.
 
 12
 00:01:06,320 --> 00:01:15,640
-Then we can see here that if I just say ssa-lrs-local-with-a-storage-commit,
+Then we can see here that if I just say ssa-lrs-local-with-a-storage commit,
 
 13
 00:01:15,640 --> 00:01:19,960
@@ -52,7 +52,7 @@ then I can then choose sync and changes, then it will synchronize it out to GitH
 
 14
 00:01:19,960 --> 00:01:26,360
-If you have not authenticated yourself against GitHub, because first you would get the chance to work with the net reader and authenticate yourself against GitHub.
+If you have not authenticated yourself against GitHub, you will get prompted with opening your browser and authenticate yourself against GitHub.
 
 15
 00:01:26,360 --> 00:01:31,480
@@ -60,11 +60,11 @@ So if I now go to GitHub, then I can now just see a refresh.
 
 16
 00:01:31,480 --> 00:01:40,600
-On that page, I would like to see here that now it says the last commit, or the last push, commit from me, ssa-lrs-local-with-a-storage,
+On that page, I will see here that now it says the last commit, or the last push, commit from me, ssa-lrs-local-with-a-storage,
 
 17
 00:01:40,600 --> 00:01:44,680
-and just change the backend, because I'm going to change it back to grs-lrs now, just to show.
+and just change the backend, because I'm going to change it back to grs now, just to show.
 
 18
 00:01:44,680 --> 00:01:52,440
@@ -72,11 +72,11 @@ Then we have our backend folder, now in GitHub, with the main, tf-plan, and vari
 
 19
 00:01:52,440 --> 00:01:57,320
-This is, of course, just the one we have made, not least with the deployment of the backend.
+This is, of course, just the one we have made, in relation to the deployment of the backend.
 
 20
 00:01:57,320 --> 00:02:05,720
-But now we see that there are much fewer folders here, and files here, than there actually are in this GitHub-terraform-local-with-a-storage-commit,
+But now we see that there are much fewer folders here, and files here, than there actually are in this GitHub-terraform folder on my local machine,
 
 21
 00:02:05,720 --> 00:02:08,760
@@ -84,7 +84,7 @@ where we have a .terraform with providers, etc., etc.
 
 22
 00:02:08,840 --> 00:02:15,000
-And that would be the file that we do not want to switch over to the repository in GitHub,
+And that would be the file that we do not want to push over to the repository in GitHub,
 
 23
 00:02:15,000 --> 00:02:20,680
@@ -96,7 +96,7 @@ which then takes it away, in addition to taking away a few other things that we 
 
 25
 00:02:24,600 --> 00:02:26,760
-which we see in the GitHub-ignore file.
+which we see in the Git-ignore file.
 
 26
 00:02:26,760 --> 00:02:33,160
@@ -108,7 +108,7 @@ and that is then workspaces.
 
 28
 00:02:35,320 --> 00:02:42,520
-Workspaces is something that we should and should not be familiar with, at least with the use of Terraform,
+Workspaces is something that we should and can be familiar with, at least with the use of Terraform,
 
 29
 00:02:42,520 --> 00:02:46,360
@@ -140,7 +140,7 @@ Workspaces is one approach you can take to use different environments.
 
 36
 00:03:27,240 --> 00:03:32,840
-We use Terraform, there are several approaches that can be, including HersheyCorp Cloud or Terraform Cloud.
+By using Terraform, there are several approaches that can be, including HersheyCorp Cloud or Terraform Cloud.
 
 37
 00:03:32,840 --> 00:03:36,280
@@ -160,7 +160,7 @@ because it is often both the complexity of the size of the team and etc. that wo
 
 41
 00:03:55,800 --> 00:03:58,680
-which is a bit dependent on how the solution you go for.
+which is a bit dependent on which solution you go for.
 
 42
 00:03:58,840 --> 00:04:04,040
@@ -180,7 +180,7 @@ So what we're just going to do really easy here is to show that we can use works
 
 46
 00:04:21,640 --> 00:04:31,560
-We can start by building a new map, not a back-end, but a new GitHub Terraform,
+We can start by building a new folder, not under back-end, but under GitHub Terraform,
 
 47
 00:04:31,560 --> 00:04:39,560
@@ -196,7 +196,7 @@ So if we just took it fast forward a little, we did it like this.
 
 50
 00:04:50,440 --> 00:04:51,720
-This is the user information.
+This is known information.
 
 51
 00:04:51,720 --> 00:04:57,560
@@ -240,11 +240,11 @@ and then we would say, hey, I deleted everything from my back-end, and it would 
 
 61
 00:05:41,080 --> 00:05:47,080
-so it's okay to use here now, that we can hack away just that one,
+so it's okay to use here now, that we can remove just that one,
 
 62
 00:05:47,080 --> 00:05:51,720
-and then it could have been identified as a Kanoen application or a Lignan,
+and then it could have been identified as a whatever application or similar,
 
 63
 00:05:51,720 --> 00:05:55,640
@@ -252,27 +252,27 @@ if you want this to be, but I can just get something, since I thought I was goin
 
 64
 00:05:55,640 --> 00:06:00,360
-a very simple one-off of WorkSpaces, using and operating resource groups.
+a very simple one-off of WorkSpaces, using and creating resource groups.
 
 65
 00:06:00,360 --> 00:06:04,600
-Of course, you can hack on as many resources, but I will show you how to operate a resource,
+Of course, you can add on as many resources, but I will show you how to create a resource,
 
 66
 00:06:04,600 --> 00:06:10,760
-how you can use this type of information to do it with DevStaging, etc.
+where you can use this type of information to do it with Dev, Staging, etc.
 
 67
 00:06:10,760 --> 00:06:15,320
-So now I have the providers, so if I then make sure that it is in the correct folders,
+So now I have the providers, so if I then make sure that I am in the correct folders,
 
 68
 00:06:15,320 --> 00:06:22,520
-when I run Terraform, or here I have now both all the files I need,
+when I run Terraform ls, here I have now all the files I need,
 
 69
 00:06:22,520 --> 00:06:28,520
-and then I can write Terraform in it, in order to see that it gets the provider,
+and then I can write Terraform init, in order to see that it gets the provider,
 
 70
 00:06:28,520 --> 00:06:31,720
@@ -328,7 +328,7 @@ then if I have run in here, and then we take Terraform,
 
 83
 00:07:39,080 --> 00:07:44,920
-no, it has been run, Terraform plan, out, main to after plan,
+no, it has been run, Terraform plan out main tfplan,
 
 84
 00:07:44,920 --> 00:07:51,240
@@ -340,7 +340,7 @@ init, initialize the backend, the backend is done, we see here that now,
 
 86
 00:07:56,360 --> 00:08:01,480
-although it is a new file, a new file has been here, we can now quickly see in the resource group
+although it is a new file, a new file has been made here, we can now quickly see in the resource group
 
 87
 00:08:01,480 --> 00:08:08,520
@@ -352,7 +352,7 @@ that contains these files for the TFState file for our backend,
 
 89
 00:08:15,080 --> 00:08:19,320
-if we go to the storage container, then we want to see that we have got a file,
+if we go to the storage container, then we will see that we have got a file,
 
 90
 00:08:19,320 --> 00:08:24,680
@@ -376,7 +376,7 @@ this resource group here now, then we understand that it gets the name, which is
 
 95
 00:08:55,800 --> 00:09:03,000
-it is not clear, but if I now want to have more, more environment to work with,
+it is pretty straight forward, but if I now want to have more environment to work with,
 
 96
 00:09:03,000 --> 00:09:12,360
@@ -388,7 +388,7 @@ then we see here that it is now in default workspace, if I create a, let's see, 
 
 98
 00:09:19,160 --> 00:09:29,720
-workspaces, new, new, dev, and then we can write, just write that, and then we can then write
+workspaces, new dev, and then we can write, just write that, and then we can then write
 
 99
 00:09:29,720 --> 00:09:37,080
@@ -408,7 +408,7 @@ have switched to workspaces dev, and that is also how I want it, because now I u
 
 103
 00:09:56,360 --> 00:10:01,560
-for all my projects, so I have to copy or think that it does not sync with making an
+for all my projects, so I don't have to copy or think that it does not sync with making an
 
 104
 00:10:01,560 --> 00:10:06,200
@@ -416,11 +416,11 @@ changes in dev or something like that, now I use one of the same repo, but I hav
 
 105
 00:10:06,200 --> 00:10:13,000
-instead, and that is fine, but if I now take and run and deploy here with dev, then it will still
+instead, and that is fine, but if I now take and run and deploy here with dev, then the resource group still
 
 106
 00:10:13,000 --> 00:10:19,400
-be the same, if I do it with prod, then the resource group will also be the same, and that's how we want it,
+be the same, if I do it with prod, then the resource group will also be the same, and that's not how we want it,
 
 107
 00:10:19,400 --> 00:10:25,720
@@ -432,7 +432,7 @@ it is that we can enter something that is to be processed or run in this file, w
 
 109
 00:10:33,560 --> 00:10:39,320
-local, so we want to create local that will do something, and that can for example be that we want to have
+local, so we want to create locals that will do something, and that can for example be that we want to have
 
 110
 00:10:39,400 --> 00:10:47,000
@@ -448,7 +448,7 @@ will be a certain input, my suggestion from copilot here is that I can write in 
 
 113
 00:11:04,520 --> 00:11:09,800
-but then I again have the code, I now wish that Terraform should take the starting point in how
+but then I again have hard coded it, I now wish that Terraform should take the starting point in how
 
 114
 00:11:09,800 --> 00:11:16,840
@@ -492,11 +492,11 @@ want to give the resource group name, so that would be, for example, rg demo 001
 
 124
 00:12:19,960 --> 00:12:26,920
-add a finish line, and local workspace suffix, so what I'm going to do, is that I'm going to
+add a dash, and local workspace suffix, so what I'm going to do, is that I'm going to
 
 125
 00:12:26,920 --> 00:12:36,440
-expand, or I'm expanding now, a local, no, sorry, it will be like that, so then we get local's
+create, or I'm creating now, a local, no, sorry, it will be like that, so then we get local's
 
 126
 00:12:36,440 --> 00:12:44,040
@@ -512,15 +512,15 @@ group name will come in, resource group name will come in, and then we have a lo
 
 129
 00:12:56,840 --> 00:13:05,080
-and checks based on what kind of workspace we are in, so if I now run, I can now run an output,
+and adds based on what kind of workspace we are in, so if I now run, I can now run an output,
 
 130
 00:13:05,800 --> 00:13:12,840
-let's see, like that, output resource group name, value, after that resource group rg name, which is then
+let's see, like that, output resource group name, value, azurerm resource group rg name, which is then
 
 131
 00:13:12,840 --> 00:13:17,800
-this one, and then I want to see the name when I run it, so then I can see something, that now I get
+this one, and then I will see the name when I run it, so then I can see something, that now I get
 
 132
 00:13:17,800 --> 00:13:23,320
@@ -528,7 +528,7 @@ different names on this folder, and that can be done on several resources, I cou
 
 133
 00:13:23,320 --> 00:13:27,320
-if I were to experience a storage account now, then I could hack on that there will be a
+if I were to create a storage account now, then I could add on that there will be a
 
 134
 00:13:27,320 --> 00:13:32,520
@@ -536,15 +536,15 @@ base name, or a suffix behind it, that it should be a random number, because we 
 
 135
 00:13:32,520 --> 00:13:37,000
-you can hack on random numbers and stuff like that, but now I see that it says workspace dev,
+you can add on random numbers and stuff like that, but now I see that it says workspace dev,
 
 136
 00:13:37,000 --> 00:13:44,120
-so if I now take a terraform, plan, out, main, tf, plan, I could have tried to hack on that out,
+so if I now take a terraform, plan, out, main, tfplan, I could have tried to add on that out,
 
 137
 00:13:44,120 --> 00:13:49,160
-it would be a main dev tf plan or something like that, but it really doesn't matter much,
+it would be a main dev tfplan or something like that, but it really doesn't matter much,
 
 138
 00:13:49,160 --> 00:13:57,560
@@ -552,7 +552,7 @@ and here we go, now let's see, it doesn't want to have the name behind it, wait 
 
 139
 00:13:57,560 --> 00:14:04,840
-forgot to store it, so, and then we run it again, and then we will now see that this
+forgot to save it, so, and then we run it again, and then we will now see that this
 
 140
 00:14:04,920 --> 00:14:11,000
@@ -560,7 +560,7 @@ composition will then make it get a different resource group name, as you can se
 
 141
 00:14:11,000 --> 00:14:17,320
-resource group name, rgdemo01dev, so if I run now terraform, apply, main, tf, plan,
+resource group name, rgdemo01dev, so if I run now terraform, apply, main, tfplan,
 
 142
 00:14:17,320 --> 00:14:23,080
@@ -572,7 +572,7 @@ verify it in the portal, that we then take here, give it two seconds, there, rgd
 
 144
 00:14:29,720 --> 00:14:36,280
-how we want it, and now we have changed something here in the code, we have just changed how the
+how we want it, and now we not changed anythihng here in the code, we have just changed how the
 
 145
 00:14:36,280 --> 00:14:40,200
@@ -584,19 +584,19 @@ repository, but we're going to make sure that when we're in a workspace, it's go
 
 147
 00:14:45,960 --> 00:14:50,680
-and it could be, for example, that if you store workspace dev, then you may not need a geodendron,
+and it could be, for example, that if you store workspace dev, then you may not need a georedundant,
 
 148
 00:14:50,680 --> 00:14:57,320
-you can see that variables are dependent on which workspace you are in, you can have, for example,
+you can set that variables to be dependent on which workspace you are in, you can have, for example,
 
 149
 00:14:57,320 --> 00:15:04,200
-your own tfware for each workspace, which makes you, if you are in dev, then you have a dev,
+your own tfvars for each workspace, which makes you, if you are in dev, then you have a dev,
 
 150
 00:15:04,200 --> 00:15:09,640
-terraform, tfware, if you are in prod, then you have a little bit of different food that can be there,
+terraform.tfvars, if you are in prod, then you have a little bit of different content that can be there,
 
 151
 00:15:09,640 --> 00:15:18,440
@@ -612,11 +612,11 @@ then we look here, then for the resource group prod, and that's how we want it, 
 
 154
 00:15:36,280 --> 00:15:42,760
-show by, and then we will apply the deployment of this resource, which will then be a resource group
+show by, and then we will apply the deployment of this resource, which will then be a resource group prod
 
 155
 00:15:43,240 --> 00:15:49,800
-there are just examples to make it as simple and minimal as possible, of course, there are a lot of
+these are just examples to make it as simple and minimal as possible, of course, there are a lot of
 
 156
 00:15:49,800 --> 00:15:57,160
@@ -624,7 +624,7 @@ resources you can deploy here, and now we just show via vscode against azure, in
 
 157
 00:15:57,160 --> 00:16:03,240
-now set up, or we will see later how we use triggers or get up actions, which is what triggers
+now set up, or we will see later how we use triggers or github actions, which is what triggers
 
 158
 00:16:03,240 --> 00:16:07,400
@@ -636,11 +636,11 @@ so you have to test, for example, if you have a very simple test, which is a man
 
 160
 00:16:12,840 --> 00:16:19,720
-if I have now run the rgdemo under a dev, simple test, go to the graphical limit,
+if I have now run the rgdemo001 dev, simple test, go to the graphical limit,
 
 161
 00:16:19,720 --> 00:16:25,160
-see the resource group, and then go up, great, then I know that it works, go right back,
+see the resource group, and it appears, great, then I know that it works, go right back,
 
 162
 00:16:25,160 --> 00:16:32,360
@@ -656,7 +656,7 @@ that this should be a test that can go, for example, if we are going to deploy a
 
 165
 00:16:41,720 --> 00:16:47,800
-answer it to the import, give it a feedback, it can be a network configuration, answer it to
+answer it this and this port, give it a feedback, it can be a network configuration, answer it to
 
 166
 00:16:47,800 --> 00:16:52,200
@@ -672,7 +672,7 @@ which workspace we are in, and then we can see that we get different instances o
 
 169
 00:17:06,040 --> 00:17:12,280
-in Azure report, so now I have done that, now I have just known what workspaces are, and then we can
+in the Azure portal, so now I have done that, now I have just known what workspaces are, and then we can
 
 170
 00:17:12,280 --> 00:17:17,800
@@ -692,11 +692,11 @@ dev, and then you are standing in prod, and then you start doing things like tha
 
 174
 00:17:31,560 --> 00:17:39,160
-scary, but if I now write, for example, terraform destroy here, now I am standing in
+scary, but if I now write, for example, terraform destroy here, now I am standing in,
 
 175
 00:17:39,160 --> 00:17:46,120
-scopershow, in prod environment, then I would of course get a message that I am sure I want to do this,
+in the prod environment, then I would of course get a message that I am sure I want to do this,
 
 176
 00:17:46,120 --> 00:17:52,760
@@ -704,7 +704,7 @@ I would then get, I could also show that I have used terraform plan destroy with
 
 177
 00:17:52,760 --> 00:17:58,120
-which plan that should be released, but if we now take yes here, then we clean up
+which plan that should be deleted, but if we now take yes here, then we clean up
 
 178
 00:17:58,200 --> 00:18:02,840
@@ -712,7 +712,7 @@ this as well, because this is just to show how workspaces work, and then of cour
 
 179
 00:18:02,840 --> 00:18:15,960
-switch to dev workspace now, to release that workspace, prod is released, dev, we take and destroy,
+switch to dev workspace now, to delete that workspace, prod is deleted, dev, we take and destroy,
 
 180
 00:18:15,960 --> 00:18:20,600
@@ -720,7 +720,7 @@ and that's fine, or you have to be aware that what is default workspace, it will
 
 181
 00:18:20,600 --> 00:18:26,440
-you have operated resources under default workspace, which I had done with, in my case,
+you have created resources under default workspace, which I had done with, in my case,
 
 182
 00:18:26,920 --> 00:18:32,600
@@ -736,7 +736,7 @@ we have used new, and then we have list, we have select, and we also have the op
 
 185
 00:18:44,840 --> 00:18:52,040
-delete them, and so on, operation, so I can now double check how the status is in the portal,
+delete them, and similar operations, so I can now double check what the status is in the portal,
 
 186
 00:18:53,000 --> 00:18:58,600
@@ -744,7 +744,7 @@ now both resource groups are gone, both dev and prod are gone, and this was actu
 
 187
 00:18:58,600 --> 00:19:05,880
-way of using workspaces, how we can hack on suffix, which makes it easier that the same code base
+way of using workspaces, how we can add on suffix, which makes it easier that the same code base
 
 188
 00:19:06,520 --> 00:19:12,280
@@ -752,7 +752,7 @@ is valid, because we could have had a lot of resources now with random, and for 
 
 189
 00:19:12,280 --> 00:19:18,680
-got their own random string, so if we have had storage accounts, which I have built random on,
+got their own random string, so if we have had storage accounts, which I have used random on,
 
 190
 00:19:18,760 --> 00:19:22,840
@@ -761,4 +761,3 @@ or other resources that I have been random on, then they will be valid within th
 191
 00:19:22,840 --> 00:19:26,520
 and those that are updated there, so that was really a simple way of using workspaces.
-
