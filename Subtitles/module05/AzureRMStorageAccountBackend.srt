@@ -4,11 +4,11 @@ Now it's a bit of a headache problem again. What should you do first to get it r
 
 2
 00:00:05,780 --> 00:00:11,960
-You should then upgrade the resources manually in Terraform, no, manually in Azure Portal
+You should then create the resources manually in Terraform, no, manually in Azure Portal
 
 3
 00:00:11,960 --> 00:00:17,560
-to get it available in the resources you need to make sure that it is secure deployment
+to get it available in the resources you need to make sure that it is a secure deployment
 
 4
 00:00:17,560 --> 00:00:23,280
@@ -16,7 +16,7 @@ or that you have a place to store all the information or the Terraform state fil
 
 5
 00:00:23,280 --> 00:00:25,280
-so that they do not get logged in.
+so that they do not get brought to GitHub.
 
 6
 00:00:25,440 --> 00:00:30,700
@@ -24,11 +24,11 @@ Or we can do it in Terraform, step by step, and then we can make the backend and
 
 7
 00:00:30,700 --> 00:00:34,780
-There are many approaches you can do here. You can upgrade in Terraform,
+There are many approaches you can do here. You can crfeate in Terraform,
 
 8
 00:00:34,780 --> 00:00:42,680
-you can upgrade in Azure Portal, and you can use Terraform to get already existing resources from Azure
+you can create in Azure Portal, and you can use Terraform to get already existing resources from Azure
 
 9
 00:00:42,680 --> 00:00:45,880
@@ -36,15 +36,15 @@ and use it, take it and use it. So there are many approaches you can do here.
 
 10
 00:00:45,880 --> 00:00:52,160
-But since we're getting started with Terraform, I think it might be a good idea to take a look at how to upgrade.
+But since we're getting started with Terraform, I think it might be a good idea to take a look at how to create.
 
 11
 00:00:52,160 --> 00:00:55,340
-Upgrading here is known. We have already upgraded storage accounts.
+How to create is known. We have already created storage accounts.
 
 12
 00:00:55,340 --> 00:00:58,760
-We can just upgrade the backend quickly and quickly now, but it will be like this.
+We can just create the backend quickly now, but it will be like this.
 
 13
 00:00:58,760 --> 00:01:05,640
@@ -52,7 +52,7 @@ We see something that we are managing things in plain text, which is because we 
 
 14
 00:01:05,640 --> 00:01:12,200
-I can show quickly and quickly now what I mean, because what we can do is that we see a resource group
+I can show quickly now what I mean, because what we can do is that we see a resource group
 
 15
 00:01:12,200 --> 00:01:18,440
@@ -60,7 +60,7 @@ or we see in Azure Portal where we have a resource group that is actually design
 
 16
 00:01:18,440 --> 00:01:22,600
-Under this resource group, there is a storage account that is operating.
+Under this resource group, there is a storage account that is already created.
 
 17
 00:01:22,600 --> 00:01:32,120
@@ -68,7 +68,7 @@ Inside this storage account again, there is a storage container that contains th
 
 18
 00:01:32,120 --> 00:01:47,320
-The name of it is tfstate, and under it we see that we find Terraform.tfstate, which is the file that is the backend for the file that represents the Terraform state to the infrastructure as it is perno in Azure.
+The name of it is tfstate, and under it we see that we find Terraform.tfstate, which is the file that is the backend for the file that represents the Terraform state to the infrastructure as it is per now in Azure.
 
 19
 00:01:47,320 --> 00:01:52,600
@@ -100,11 +100,11 @@ And here it could be sensitive information that we do not want to push, but then
 
 26
 00:02:48,800 --> 00:02:53,520
-What is important to think about with this approach now is, as I said, high-end.
+What is important to think about with this approach now is, as I said, the chicken and the egg.
 
 27
 00:02:53,520 --> 00:03:04,080
-If you implement Terraform backend in your Terraform configuration, then you can at some point risk that you will end up with this with a destroy.
+If you implement Terraform backend in your Terraform configuration, then you can at some point risk deleting this with a destroy.
 
 28
 00:03:04,080 --> 00:03:13,680
@@ -132,7 +132,7 @@ But for the sake of simplicity, we just take a new file, main.tf, and then we ta
 
 34
 00:03:54,160 --> 00:04:06,480
-The problem is that we need to save this main file, no, this backend.tf, backend.tf, so it will be local in this case.
+The problem is that we need to save this main file, no, this backend.tf, so it will be local in this case.
 
 35
 00:04:06,480 --> 00:04:17,920
@@ -152,11 +152,11 @@ Here we have the data, we take the data, we have to take the provider and the tr
 
 39
 00:04:48,080 --> 00:05:03,600
-Resource group, here we are, backend, var, dot, rk, again, no, location, and then we are here, var, and I said backend, again, no,
+Resource group, here we are, backend, var, dot, rgname, location, and then we are here, var, and I said rg_backend,
 
 40
 00:05:03,680 --> 00:05:10,000
-over with you, please do die, please do die, count here, g, redundant, great, thanks.
+there, paste that here, paste that here, count here, geo redundant, great, GRS.
 
 41
 00:05:10,000 --> 00:05:16,320
@@ -184,11 +184,11 @@ then we update the container with a name, including how the storage account shou
 
 47
 00:05:56,000 --> 00:06:05,600
-we see here, storage account, container, storage, container, backend, name, what is it, storage, container, backend,
+we see here, storage account, container, storage container backend, name var=storage container backend,
 
 48
 00:06:05,600 --> 00:06:14,640
-and it belongs to storage account, backend, name, and it is private, yes, we have to win something, and so we can take it a little bigger,
+and it belongs to storage account backend name, and it is private, yes, and so we can take it a little bigger,
 
 49
 00:06:14,720 --> 00:06:22,320
@@ -200,7 +200,7 @@ backend, name, the first thing we need to do is to put them in here, for that it
 
 51
 00:06:33,360 --> 00:06:40,240
-the key vault can be used to store, yes, for example, I use some passwords that are encrypted, which is not available to everyone,
+the key vault can be used to store, yes, for example, username and passwords that are encrypted, which is not available to everyone,
 
 52
 00:06:40,240 --> 00:06:48,800
@@ -240,7 +240,7 @@ we can now put it in the top, so then we will have Azure key vault, we can take 
 
 61
 00:07:58,160 --> 00:08:08,320
-our name, here is rg back end location, so the tenant ID, now I have the tenant ID for the current config,
+var name, here is rg back end location, so the tenant ID, now I have the tenant ID for the current config,
 
 62
 00:08:08,320 --> 00:08:14,080
@@ -252,7 +252,7 @@ so write down the name, standard, access policy, then you give how the access po
 
 64
 00:08:23,200 --> 00:08:30,320
-because it does not necessarily give the rights, or all the rights during the operation, so what happens here is key permissions,
+because it does not necessarily give the rights, or all the rights during the creation, so what happens here is key permissions,
 
 65
 00:08:30,320 --> 00:08:37,440
@@ -260,7 +260,7 @@ secrets, or secret permissions and storage permissions, and they are set for thi
 
 66
 00:08:37,520 --> 00:08:44,640
-so if I now take a look here, then I can now see how the possibilities are, or what is it that can be set according to the different ones here,
+so if I now take a look here, then I can now see what the possibilities are, or what is it that can be set according to the different ones here,
 
 67
 00:08:44,640 --> 00:08:51,840
@@ -272,11 +272,11 @@ and then we see here that this is what gives our app registration another option
 
 69
 00:08:57,840 --> 00:09:04,960
-so it can not, for example, if I update this one here, I have to specifically set it to have the option to list out,
+so it can not, for example, if I create this one here, I have to specifically set it to have the option to list out,
 
 70
 00:09:04,960 --> 00:09:15,520
-or set the different secrets, so if I can not update a secret in this one, then I have to update the key vault itself,
+or set the different secrets, so if I can not create a secret in this one, then I have to create the key vault itself,
 
 71
 00:09:15,520 --> 00:09:20,320
@@ -296,7 +296,7 @@ so when I have done that, I am done with my access policy, but there is still so
 
 75
 00:09:36,640 --> 00:09:45,840
-and that is that I would like to, as I talked about, I would like to have access skins that are operated in the storage account,
+and that is that I would like to, as I talked about, I would like to have access key that are operated in the storage account,
 
 76
 00:09:46,000 --> 00:09:52,640
@@ -304,7 +304,7 @@ as part of an information or put it in the key vault, which you can reuse later,
 
 77
 00:09:52,640 --> 00:09:58,160
-because that is a value I need to be able to use, and this storage backend,
+because that is a value I need to be able to use this storage backend,
 
 78
 00:09:58,160 --> 00:10:05,200
@@ -316,7 +316,7 @@ or set up your storage account access key in the key vault,
 
 80
 00:10:10,640 --> 00:10:15,680
-one of the things is that they have prepared the security that will be the access key for the storage account,
+one of the things is that we have to create the secret key that will be the access key for the storage account,
 
 81
 00:10:15,680 --> 00:10:20,560
@@ -336,7 +336,7 @@ and then we see here that this is the one we need, so if we paste that in,
 
 85
 00:10:37,840 --> 00:10:44,960
-and then we think that we will have a different name here, I said back end access key, the name on that,
+and then we think that we will have a different name here, I sa back end access key, the name on that,
 
 86
 00:10:44,960 --> 00:10:51,680
@@ -376,7 +376,7 @@ because then we can see, if we go to variables, then we have here rg backend nam
 
 95
 00:11:43,680 --> 00:11:49,280
-s a backend name, storage account backend name, string, if you look here, storage account backend name,
+sa backend name, storage account backend name, string, if you look here, storage account backend name,
 
 96
 00:11:49,280 --> 00:11:53,920
@@ -384,11 +384,11 @@ storage account backend, terraform state, and then comes the random string in th
 
 97
 00:11:54,880 --> 00:12:00,480
-storage account, storage container, backend name, tf state, and then we have a grid, then we are in
+storage account, storage container, backend name, tf state, and that is fine, then we are over
 
 98
 00:12:01,200 --> 00:12:08,320
-morning with it, because then we have to make sure that the key vault also gets a unique name, so then we can
+the finish line, because then we have to make sure that the key vault also gets a unique name, so then we can
 
 99
 00:12:08,320 --> 00:12:15,360
@@ -420,23 +420,23 @@ it's okay, then we have to go further down to our key vault, because here we can
 
 106
 00:13:05,120 --> 00:13:17,120
-want to have a y.storageaccount backend access key name, so we take with us stain variables,
+want to have a var.storageaccount backend access key name, so we take with us variables,
 
 107
 00:13:20,080 --> 00:13:26,480
-main, sheswan, in any case the value we are going to have here, what we are going to have is then
+main, szechuan, not really the value we are going to have here, what we are going to have is then
 
 108
 00:13:26,480 --> 00:13:36,720
-asher rm storageaccount.sa backend, just take with us stain, like that, like that, also like that, also key vault id,
+azure rm storageaccount.sa backend, just take it with us, like that, like that, also like that, also key vault id,
 
 109
 00:13:36,720 --> 00:13:45,520
-here it is kbbackend.id, then we can try to deploy this backend of ours, save all the files,
+here it is kvbackend.id, then we can try to deploy this backend of ours, save all the files,
 
 110
 00:13:45,520 --> 00:13:54,160
-then we make sure that we are on the right map, we take it like that, then we take a
+then we make sure that we are on the right folder, we take it like that, then we take a
 
 111
 00:13:54,160 --> 00:14:01,120
@@ -444,19 +444,19 @@ thread, if the subtitle comes, we take a form, init, initializing backend,
 
 112
 00:14:01,600 --> 00:14:10,880
-care, platform, plan, outs, yes, like that, we are going to declare it, we are going to see, variables,
+terraform plan outs, yes, like that, we are going to declare it, we are going to see, variables,
 
 113
 00:14:12,000 --> 00:14:22,800
-all the, name, clean, m key, save it, let's try again, we are going to see, it was not agree
+*fixes declaration of the variable and saves it*, try again
 
 114
 00:14:22,800 --> 00:14:33,360
-in an input variable, main, 49, resource, asher key vault, key vault backend, key vault backend, name,
+*another one did not work, follow along with the video to see what was wrong*, so there was a mismatch here
 
 115
 00:14:33,360 --> 00:14:42,640
-was not fan of, so if you look at line 49, name, lower, variable, key vault backend name,
+and it was not fan of, so if you look at line 49, name, lower, variable, key vault backend name,
 
 116
 00:14:42,640 --> 00:14:51,040
@@ -468,11 +468,11 @@ something like that, let's go again, when the plan is done, we see that we have 
 
 118
 00:15:00,800 --> 00:15:08,000
-6 to add, then it would be that it updates the storage account for our backend, it helps the resource
+6 to add, then it would be that it creates the storage account for our backend, it creates the resource
 
 119
 00:15:08,000 --> 00:15:13,840
-group for our backend, it helps the key vault for our backend, it helps the access key in the key vault
+group for our backend, it creates the key vault for our backend, it creates the access key in the key vault
 
 120
 00:15:13,840 --> 00:15:20,720
@@ -480,19 +480,19 @@ for our backend, and then I actually think it should be that, yes storage contai
 
 121
 00:15:21,040 --> 00:15:31,600
-this one, so if I then run terraform by main.txt, and after a while we will see that it is ready to
+this one, so if I then run terraform apply main.tfplan, and after a while we will see that it is ready to
 
 122
 00:15:31,600 --> 00:15:38,000
-update all the resources, so then we can go to the portal, just to see quickly what has happened there,
+create all the resources, so then we can go to the portal, just to see quickly what has happened there,
 
 123
 00:15:38,000 --> 00:15:46,080
-resource group backend tested, in under this resource group we have now got a storage account,
+resource group backend tfstate, in under this resource group we have now got a storage account,
 
 124
 00:15:46,080 --> 00:15:53,120
-we have also got a key vault, so if we just go into the storage account first, then something can happen here,
+we have also got a key vault, so if we just go into the storage account first, then we can see here,
 
 125
 00:15:53,120 --> 00:16:01,440
@@ -504,7 +504,7 @@ this container yet, because we are going to use it for the other resources we ar
 
 127
 00:16:08,320 --> 00:16:13,440
-or as a backend for the other states we are going to operate, we can of course add the state to
+or as a backend for the other states we are going to create, we can of course add the state to
 
 128
 00:16:13,440 --> 00:16:18,880
@@ -548,11 +548,11 @@ and then I click on that, next, and next, create, we see, now my user is there, 
 
 138
 00:17:23,680 --> 00:17:29,760
-secrets, we see, aha, I'm probably not in the backend, access key, now I have the opportunity to see, but
+secrets, we see, aha, storage account backend access key, now I have the opportunity to see, but
 
 139
 00:17:29,760 --> 00:17:36,160
-what is and is the whole screen with the use of infrastructure code, now I have done something in the
+what is and is the whole charm with the use of infrastructure as code, now I have done something in the
 
 140
 00:17:36,160 --> 00:17:42,080
@@ -560,7 +560,7 @@ graphical user interface in Azure portal, change access policies for the key vau
 
 141
 00:17:42,080 --> 00:17:52,320
-back to this, run Terraform, land out, main, tfp, so we can now see that now the Terraform
+back to this, run Terraform plan out main.tfplan, so we can now see that now the Terraform
 
 142
 00:17:52,320 --> 00:18:00,960
@@ -576,7 +576,7 @@ to change, yes, it removes, then, the user is manually set to, with the rights o
 
 145
 00:18:14,960 --> 00:18:20,160
-because it does not mean that I will now manually go in and do and set such instructions, because then
+because I am not meant to now manually go in and do and set such settings, because then
 
 146
 00:18:20,240 --> 00:18:25,360
@@ -596,11 +596,11 @@ demonstrate that I was going to say that I found access key, and I did it to dem
 
 150
 00:18:38,880 --> 00:18:47,120
-if I run any Terraform, aqua, main, tf, plan, then I want to remove something, the user who makes us go back
+if I run any Terraform apply main.tfplan, then I will to remove something, the user who makes us go back
 
 151
 00:18:47,120 --> 00:18:52,640
-to the original and right after it on the key vault as we want it, now we see, want to change,
+to the original and right after it on the key vault as we want it, now we see, one to change,
 
 152
 00:18:53,280 --> 00:19:00,480
@@ -616,25 +616,24 @@ access, and if I go to secret, then it will not happen, wait, refresh, not happe
 
 155
 00:19:10,880 --> 00:19:18,640
-simply illustrated how and why we use IAC, and how we are going to update our relationship to
+simply illustrated how and why we use IAC, and how we are going to update and relate to
 
 156
 00:19:18,640 --> 00:19:22,960
-configuration in order to do it in the user principle, or in the graphical principle of our
+configuration rather than doing it in our user interface, or in the graphical graphical interface of
 
 157
 00:19:22,960 --> 00:19:28,560
-own portal, so then we have simply set up a new one, we have received the resource group, of course,
+the Azure portal, so then we have simply set up a new one, we have received the resource group, of course,
 
 158
 00:19:28,560 --> 00:19:33,440
-we should also have put a lock on it so that it can not be released, since this will be a
+we should also have put a lock on it so that it can not be deleted, since this will be a
 
 159
 00:19:33,440 --> 00:19:38,160
-place where we will ensure that the state is available all the time, should not be released, so we can
+place where we will ensure that the state is available all the time, should not be deleted, so we can
 
 160
 00:19:38,160 --> 00:19:45,600
 see how we eventually set up a lock, but in the next one, we will now see how we take advantage of this backend.
-
