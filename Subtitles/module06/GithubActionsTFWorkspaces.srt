@@ -4,11 +4,11 @@ Now we are going to look at the use of Workspaces, so that we can get different 
 
 2
 00:00:08,760 --> 00:00:15,240
-We can quickly share this if we take a Terraform Workspace list, then we see here that we have set up Dev Prod and Stage.
+We can quickly see this if we take a Terraform Workspace list, then we see here that we have set up Dev Prod and Stage.
 
 3
 00:00:15,240 --> 00:00:24,880
-And that would then be the different Workspaces that we have available for this Terraform configuration, because we have used Terraform Minute on this one.
+And that would then be the different Workspaces that we have available for this Terraform configuration, because we have ran Terraform init on this one.
 
 4
 00:00:25,080 --> 00:00:34,640
@@ -20,15 +20,15 @@ I can now go back and create a new workflow, so we can now take a setup, choose 
 
 6
 00:00:45,760 --> 00:00:52,400
-So, test it now, the different Workspaces in Terraform, and then of course we have to have a little content here in Filloverase.
+So, test it now, the different Workspaces in Terraform, and then of course we have to have a little content here in our file.
 
 7
 00:00:52,400 --> 00:00:56,320
-I just took paste it in to almost like the one we saw in the previous video.
+I just pasted in almost like the one we saw in the previous video.
 
 8
 00:00:56,320 --> 00:01:03,000
-We call this workflow in that name, and then we say what it's going to look like.
+We call this workflow in that name, and then we say what it's going to look for.
 
 9
 00:01:03,000 --> 00:01:08,640
@@ -40,11 +40,11 @@ It's the one that's going to be the trigger for this workflow to start.
 
 11
 00:01:13,240 --> 00:01:19,640
-We also suggest that we can have a manual dispatch of this one, that we can go into Web GUI from the start.
+We also say that we can have a manual dispatch of this one, that we can go into Web GUI and start it.
 
 12
 00:01:19,640 --> 00:01:25,640
-This is known from the last time, Environmental Variables, Client ID, Client Secret, subscription ID at the time, Working Directory.
+This is known from the last time, Environmental Variables, Client ID, Client Secret, subscription ID, tenant ID, Working Directory.
 
 13
 00:01:25,640 --> 00:01:27,880
@@ -64,7 +64,7 @@ Then we have to set up some different stages, or some steps.
 
 17
 00:01:44,000 --> 00:01:52,360
-For the job in this workflow, it should be that it is going to deploy different environments based on the custom workspace we are in in Terraform.
+For the job in this workflow, it should be that it is going to deploy different environments based on the what workspace we are in in Terraform.
 
 18
 00:01:52,360 --> 00:01:55,280
@@ -72,11 +72,11 @@ So, the first one here is what we remember from last time.
 
 19
 00:01:55,280 --> 00:02:03,360
-It makes GitHub repo available for the runner, and it will then be an unbound image that is spinned up and run.
+It makes GitHub repo available for the runner, and it will then be an ubuntu image that is spun up and run.
 
 20
 00:02:03,360 --> 00:02:08,640
-Then we run the Terraform command that we are familiar with, and here we run it under Terraform.
+Then we run the Terraform command that we are familiar with, and we see here below terraform init.
 
 21
 00:02:08,640 --> 00:02:17,520
@@ -88,7 +88,7 @@ And if it does not have dev already existing, then it runs a Terraform Workspace
 
 23
 00:02:25,200 --> 00:02:29,920
-Now I would like to say that it will either select it, or run it in a new dev.
+Now I would like to say that it will either select it, or create a new dev.
 
 24
 00:02:29,920 --> 00:02:36,960
@@ -116,15 +116,15 @@ So of course, we could have added one more thing with a plan, but we run somethi
 
 30
 00:03:17,520 --> 00:03:31,600
-And then we run a check afterwards, where the check, that is, curl Terraform Output Draw Primary Web Endpoint, will then go and check the web page that is created in static web site in Azure, and check if it finds it and get an answer on your web site.
+And then we run a check afterwards, where the check, that is, curl Terraform Output Raw Primary Web Endpoint, will then go and check the web page that is created in static web site in Azure, and check if it finds it and get an answer on your web site.
 
 31
 00:03:31,600 --> 00:03:38,800
-When we run this shop us fast right after the plan is run, it will get the same message that the web site does not respond yet.
+When we run this shop us fast right after the apply is run, it will get the same message that the web site does not respond yet.
 
 32
 00:03:38,880 --> 00:03:47,280
-If we look at the scene later, we will update the content here, then we will see that we can get messages about changes in the content using this curl.
+If we look at it later, we will update the content here, then we will see that we can get messages about changes in the content using this curl.
 
 33
 00:03:47,280 --> 00:03:50,560
@@ -136,11 +136,11 @@ So, afterwards we run a stage to prod step, and we set this to needs, that is, t
 
 35
 00:04:04,480 --> 00:04:24,320
-It must then spin up a new image that we have started to test, take a check out to make the code available, run in it, select or create stage, run an apply to this one, and then run a test stage to the endpoint to check that this one actually comes out.
+It must then spin up a new image of ubuntu latest, take a check out to make the code available, run init, select or create stage, run an apply to this one, and then run a test stage to the endpoint to check that this one actually comes out.
 
 36
 00:04:24,880 --> 00:04:38,720
-So, we are on prod, and here we see that prod has seen that the stage should be full, we spin up a new runs on, that is, an unlimited image that we are going to run on, but here comes a new thing.
+So, we are on prod, and here we see that prod needs that stage has to be completed, we spin up a new runs on, that is, an ubuntu image that we are going to run on, but here comes a new thing.
 
 37
 00:04:38,720 --> 00:04:47,760
@@ -160,15 +160,15 @@ But that stage will then be a manual trigger where I go in and approve it, and t
 
 41
 00:05:19,360 --> 00:05:37,280
-Here it is known, check out, in it, create or select prod, run an apply prod, here we could have had a plan, and then be sure that we have something to look at in the workflow of ours, so we can see what infrastructure may be set up, but here it is just a static web page that we do not need.
+Here it is known, check out, init, create or select prod, run an apply prod, here we could have had a plan, and then be sure that we have something to look at in the workflow of ours, so we can see what infrastructure may be set up, but here it is just a static web page so we do not need to.
 
 42
 00:05:37,360 --> 00:05:46,400
-Then we run a check that we will test for the website, and then we want to list the website so that we get the warning that we can press at the end there.
+Then we run a check that we will test for the website, and then we want to list the website so that we get the URL that we can press at the end there.
 
 43
 00:05:46,400 --> 00:06:03,120
-So, when that is done, we can now just commit it here, we store it in, and we can also, at once, choose that if we go to actions, and then we go to all workflows, and then we see here that we have web,
+So, when that is done, we can now just commit it here, we save it, and we can also, at once, choose that if we go to actions, and then we go to all workflows, and then we see here that we have web,
 
 44
 00:06:03,120 --> 00:06:08,720
@@ -192,19 +192,19 @@ If you have a publicly available repo, then you get everything, but if you want 
 
 49
 00:07:18,720 --> 00:07:45,280
-but if there is some functionality that you do not find or lack, then it may happen that your repo is private and not public, so it does not matter to have it public, we do not hide anything in it anyway, so it may be okay to know that there is a slight difference in which possibilities you have if the repo is private or public, if you have a private repo, then it is welcome to get a paid subscription.
+but if there is some functionality that you do not find or lack, then it may happen that your repo is private and not public, so it does not matter to have it public, we do not hide anything in it anyway, so it may be okay to know that there is a slight difference in which possibilities you have if the repo is private or public, if you have a private repo, if often requires you to get a paid subscription.
 
 50
 00:07:45,280 --> 00:08:03,440
-So I write something in here, that I will be a reviewer of this environment, so I go to save production rules, and now I have set up this environment, I think I am the one who will review what comes to this environment.
+So I write something in here, that I will be a reviewer of this environment, so I go to save production rules, and now I have set up this environment, torivarm is the one who will review what comes to this environment.
 
 51
 00:08:03,440 --> 00:08:32,960
-If we go back to action now, then we see here below the phone, see our workflow, if we go back to our code, then we can see here that it was environment, down here on production, here environment name production is what should be what happens when we are going to deploy it to the probe, so then we can go back to our code, we see here that we want to pick up something, because it has now received a new file,
+If we go back to action now, then we see here below Terraform CI/CD, see our workflow, if we go back to our code, then we can see here that it was environment, down here on production, here environment name production is what should be what happens when we are going to deploy it to the prod, so then we can go back to our code, we see here that we want to pick up something, because it has now received a new file,
 
 52
 00:08:32,960 --> 00:08:53,360
-and here we have Dave's Stage Pro Web Workflow OS, which has been taken down from the repo, and then we see that we have it in the appropriate configuration here if we want, then we quickly go to the static website, then we can see what it is that you need to push out, so now we can go to, I take a clear here, I take it a little further up,
+and here we have our Dev Stage Pro Web Workflow, which has been gotten from the repo, and then we see that we have it in the appropriate configuration here if we want, then we quickly go to the static website, then we can see what it is that you need to push out, so now we can go to, I take a clear here, I take it a little further up,
 
 53
 00:08:53,360 --> 00:09:13,520
@@ -212,7 +212,7 @@ because we remember from the previous run, we have made this flexible enough now
 
 54
 00:09:13,520 --> 00:09:27,280
-we just change the content of the website, then we can say here that made with terraform, it's in CD, before we load it in, we see that we get a notification that we have a new change that we can push out the repo,
+we just change the content of the website, then we can say here that made with terraform CI/CD, before we load it in, we see that we get a notification that we have a new change that we can push out the repo,
 
 55
 00:09:27,280 --> 00:09:36,960
@@ -220,11 +220,11 @@ here we go, then we just go into it, and then we sync the changes, and then we s
 
 56
 00:09:37,120 --> 00:09:47,920
-under all workflows now, we see that it is started, we have a Tokyo update, and it had of course in the file, most of it was two that were started at once, maybe that was not so lucky,
+under all workflows now, we see that it is started, we made an update, and it had of course in the file, most of it was two that were started at once, maybe that was not so lucky,
 
 57
 00:09:47,920 --> 00:10:03,040
-we can now check the speed, under DevStageBlood ours, then we have the terraform ccd, and if we go to actions, then we see here now that it was just printed on terraform ccd, then we release the ccd,
+we can now check quickly, under our DevStageProd, then we have the terraform CI/CD, and if we go to actions, then we see here now that it was, choosing only Terraform CI/CD then we don't need to look at the others,
 
 58
 00:10:03,120 --> 00:10:11,920
@@ -236,19 +236,19 @@ source content, this one has now run through DevStage and Stage Prod, and then w
 
 60
 00:10:20,640 --> 00:10:30,240
-we can now go and see what has been done there now, then we see if we click on DevStage, has it gone through terraform in it, this one has checked and got the backend, terraform workspace,
+we can now go and see what has been done there now, then we see if we click on DevStage, has it gone through terraform init, this one has checked and got the backend, terraform workspace,
 
 61
 00:10:30,240 --> 00:10:40,480
-select dev, terraform apply, here I see that one content to another content, here we were without ccd, while here it comes with ccd,
+select dev, terraform apply, here I see that one content to another content, here we were without CI/CD, while here it comes with CI/CD,
 
 62
 00:10:40,480 --> 00:10:53,360
-then we see here the website url, and then we see under test dev, then we see that it has run a curl against the primary endpoint, and then it got this media terraform ccd and dev,
+then we see here the website url, and then we see under test dev, then we see that it has run a curl against the primary endpoint, and then it got this made with terraform CI/CD and dev,
 
 63
 00:10:53,440 --> 00:11:05,600
-if I click on this, then I get up, it was a bit of a side, so I click on the primary web endpoint, then we see here media terraform ccd and dev, now the dev side comes up,
+if I click on this, then I get up, what a page, so I click on the primary web endpoint, then we see here made with terraform CI/CD and dev, now the dev side comes up,
 
 64
 00:11:05,600 --> 00:11:14,400
@@ -256,11 +256,11 @@ then we can now go to Stage Prod to the left of the menu, then we see if it has 
 
 65
 00:11:14,480 --> 00:11:25,120
-and then we can see under workspace, we see selected stage, then it has gone through and opened the page with stage, ccd stage, and then we have a test,
+and then we can see under workspace, we see selected stage, then it has gone through and created the page with stage, CI/CD stage, and then we have a test,
 
 66
 00:11:25,120 --> 00:11:34,320
-where it shows that it has got it, and then if we then open here, then we will have the website down here, if we use it, then we will see that we also have a website for stage,
+where it shows that it has got it, and then if we then open here, then we will have the website down here, if we click it, then we will see that we also have a website for stage,
 
 67
 00:11:34,400 --> 00:11:42,640
@@ -276,11 +276,11 @@ and the same here, here we have storage account, web, dev, and random generated 
 
 70
 00:12:03,520 --> 00:12:13,600
-and here I have now got an e-post with warning that something is waiting for me, if I then go to my e-post, where I see here, I have got a warning,
+and here I have now got an e-mail with warning that something is waiting for me, if I then go to my e-mail, where I see here, I have got a warning,
 
 71
 00:12:13,600 --> 00:12:23,200
-terraform says that production is waiting for your review, so if I now click on this review pending deployments, then I can see what is actually waiting for me,
+terraform CI/CD production is waiting for your review, so if I now click on this review pending deployments, then I can see what is actually waiting for me,
 
 72
 00:12:23,280 --> 00:12:35,920
@@ -292,7 +292,7 @@ but what we can see then is that if we look under source content web, then we se
 
 74
 00:12:45,840 --> 00:12:54,800
-it is that it is going to put the ccd on this page, which from before only contains the terraform, because we remember that we edited it,
+it is that it is going to put the CI/CD on this page, which from before only contains made with terraform, because we remember that we edited it,
 
 75
 00:12:54,800 --> 00:13:06,240
@@ -300,7 +300,7 @@ we can see more on how we get new changes that can then be checked, now we see h
 
 76
 00:13:06,240 --> 00:13:13,600
-but of course there are a lot of tests that can be done on it with inbound, outbound, all together by network, etc., but here it is just a simple presentation,
+but of course there are a lot of tests that can be done on it with inbound, outbound, everything of network, etc., but here it is just a simple presentation,
 
 77
 00:13:13,600 --> 00:13:26,080
@@ -308,19 +308,19 @@ so then I can go back to, then I can go back and then I can run through that I w
 
 78
 00:13:26,080 --> 00:13:33,520
-ok, so here now I get a message that this is allowed to start here, and then I can just click on great, understand, start deploy,
+ok, so here now I get a message that this is allowed to start here, and then I can just click on okay, understand, start deploy,
 
 79
 00:13:33,520 --> 00:13:42,960
-when I start the deployment, we see that the test has started, there we were looking for update action, so if it now goes back to terraform ccd,
+when I start the deployment, we see that the prod has started, there we were looking for update action, so if it now goes back to terraform CI/CD,
 
 80
 00:13:42,960 --> 00:13:56,720
-then I see here that there is also source content on the web that is waiting for me, so if I click on that, then I can now see that it is exactly the same changes that are waiting for me, I'll try to deploy,
+then I see here that there is also source content on the web that is waiting for me, so if I click on that, then I can now see that it is exactly the same changes that are waiting for me, approve and deploy,
 
 81
 00:13:56,720 --> 00:14:05,440
-so now we have put in the manual security that Nokia will be deployed to a production environment,
+so now we have added the manual security that something will be deployed to a production environment,
 
 82
 00:14:05,440 --> 00:14:22,240
@@ -332,19 +332,19 @@ so here we get some error messages, let's see, it may be because as we saw, two 
 
 84
 00:14:40,800 --> 00:14:53,600
-but you can go back to this one, then we see the update job here, then we see that terraform init ran initialize add-in, and then we see that we have terraform workspace select all create prod,
+but you can go back to this one, then we see the update job here, then we see that terraform init ran initialize, and then we see that we have terraform workspace select or create prod,
 
 85
 00:14:53,600 --> 00:15:09,360
-deploy prod, run through and run prod, and then we can see here test prod, then run curl, but here we see that here we get error code, website is disabled, because the test runs too fast, the collection of energy has been failed,
+deploy prod, run through and run prod, and then we can see here test prod, then run curl, but here we see that here we get error code, website is disabled, because the test runs too fast, in comparison to when the page was done,
 
 86
 00:15:09,360 --> 00:15:22,160
-but if we click on the URL here, then the test itself is the best, we can of course see how we can do it differently later, so if I click on something, then we will see here that here we have made with terraform and prod,
+but if we click on the URL here, then the test itself is not the best, we can of course see how we can do it differently later, so if I click on it now, then we will see here that here we have made with terraform and prod,
 
 87
 00:15:22,160 --> 00:15:32,080
-so that means that we have prod side of ours, we have dev side of ours, and we have stage side of ours, here we see that it is missing the say-cd, so that was what changed ours,
+so that means that we have prod side of ours, we have dev side of ours, and we have stage side of ours, here we see that it is missing the CI/CD, so that was our change,
 
 88
 00:15:32,080 --> 00:15:45,120
@@ -352,7 +352,7 @@ we got a little error in addition to this now, but that was at least a review of
 
 89
 00:15:45,120 --> 00:15:56,720
-and an environment in github for deployment of dev, stage and prod, with a manual review of prod, then we go for deploy here,
+and an environment in github for deployment of dev, stage and prod, with a manual review of prod, where we can deploy this,
 
 90
 00:15:56,800 --> 00:16:08,320
@@ -360,13 +360,12 @@ then we will of course see more and further on how we can implement more securit
 
 91
 00:16:08,320 --> 00:16:19,200
-and as always, we must remember to install this infrastructure when we are done, we can do it by editing the workflow, as I said, that we add that it should, for example,
+and as always, we must remember to delete this infrastructure when we are done, we can do it by editing the workflow, as I said, that we add that it should, for example,
 
 92
 00:16:19,200 --> 00:16:27,280
-when there is a commit called delete, then it should be released, or we can also do it via CLI, or if you have the right to do it in the portal,
+when there is a commit called delete, then it should be released, or we can also do it via CLI, or if you have the rights to do it in the portal,
 
 93
 00:16:27,280 --> 00:16:32,480
-but as I said, I will run through an update of this in the next video, so I will not release it at once.
-
+but as I said, I will run through an update of this in the next video, so I will not delete it at once.

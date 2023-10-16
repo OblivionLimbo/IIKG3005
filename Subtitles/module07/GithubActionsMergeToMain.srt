@@ -1,0 +1,728 @@
+1
+00:00:00,000 --> 00:00:06,140
+But what I want now is that when this pull request is carried out,
+
+2
+00:00:06,140 --> 00:00:12,620
+that my new code is merged with the main repo branch,
+
+3
+00:00:12,620 --> 00:00:13,900
+then I want something new to happen.
+
+4
+00:00:13,900 --> 00:00:18,540
+And that will be in this case, for example, that the infrastructure is to be deployed.
+
+5
+00:00:18,540 --> 00:00:23,500
+So therefore I now have a deploy infrastructure action workflow,
+
+6
+00:00:23,500 --> 00:00:26,460
+which I call deploy.yml.
+
+7
+00:00:26,560 --> 00:00:32,980
+And that would mean that I want that when something is pushed to the main branch,
+
+8
+00:00:32,980 --> 00:00:37,880
+then it will, and it is this folder, since I am now working in module 7,
+
+9
+00:00:37,880 --> 00:00:40,820
+I want it to be this folder, then I want something else to be done.
+
+10
+00:00:40,820 --> 00:00:45,980
+And that would be, for example, this deployment that we intend to carry out.
+
+11
+00:00:45,980 --> 00:00:48,860
+So then we can see here, okay, here are the steps I want to do.
+
+12
+00:00:48,860 --> 00:00:55,260
+Do a checkout, do a terraform init, do a plan, and do an apply.
+
+13
+00:00:55,260 --> 00:00:58,620
+So that when, for example, the pull request is carried out,
+
+14
+00:00:58,620 --> 00:01:02,500
+then the main branch will get the updated configurations.
+
+15
+00:01:02,500 --> 00:01:05,060
+Then this will be triggered to deploy.
+
+16
+00:01:05,060 --> 00:01:09,060
+So then we can say something okay, this one we have to push.
+
+17
+00:01:09,060 --> 00:01:15,540
+If we go back to actions, deploy infrastructure, then we can enable workflow.
+
+18
+00:01:15,540 --> 00:01:21,180
+And then we have to remember that if we now push something to the main from the local VS code,
+
+19
+00:01:21,180 --> 00:01:24,140
+then it will trigger the redeploy.
+
+20
+00:01:24,140 --> 00:01:31,940
+So it's not quite a good CICD practice, that it shouldn't be possible for me to push things to the main.
+
+21
+00:01:31,940 --> 00:01:37,780
+It should go through new branches, run through defined sets with tests,
+
+22
+00:01:37,780 --> 00:01:42,380
+and then pull requests to the main, which again triggers the deployment of the infrastructure.
+
+23
+00:01:42,380 --> 00:01:46,420
+And it's pretty straight forward workflow here.
+
+24
+00:01:46,420 --> 00:01:50,460
+This one is just going to deploy, because all of this code is going to be verified, checked, blah, blah, blah, blah.
+
+25
+00:01:50,460 --> 00:01:58,460
+This pull request should only be allowed to run through after it has gone through the defined tests.
+
+26
+00:01:58,460 --> 00:02:01,740
+In our case, it's just very simple, just because we're testing something.
+
+27
+00:02:01,740 --> 00:02:04,940
+And then we can go back to our GitHub.
+
+28
+00:02:04,940 --> 00:02:08,860
+Because now we remember that we can go back to Edit Network.
+
+29
+00:02:08,860 --> 00:02:11,900
+There is something I forgot to edit.
+
+30
+00:02:11,900 --> 00:02:19,860
+For example, think that source or destination port range should be something else, or the priority rule was something else.
+
+31
+00:02:19,860 --> 00:02:23,460
+So if, for example, you have seen that this priority rule should be 1,
+
+32
+00:02:23,460 --> 00:02:27,700
+the priority rule only has a number of follow-ups on how the rules are read in NSGEN.
+
+33
+00:02:27,700 --> 00:02:32,620
+The first that hits is valid, so it's important to think about a number of follow-ups on such things.
+
+34
+00:02:32,620 --> 00:02:38,140
+So let's save this one now in that branch, remember, it's in the Edit Network branch now.
+
+35
+00:02:38,140 --> 00:02:46,060
+And then we can say that we get source control pending, edit, ssh, priority.
+
+36
+00:02:46,140 --> 00:02:51,580
+So, we commit to that, and then we sync changes.
+
+37
+00:02:51,580 --> 00:02:57,460
+When we sync these changes, we remember that it should trigger a workflow.
+
+38
+00:02:57,460 --> 00:03:02,060
+So if we go to all workflows now, you will see here, edit, ssh, priority.
+
+39
+00:03:02,060 --> 00:03:06,660
+That workflow is checked, or it is started.
+
+40
+00:03:06,660 --> 00:03:10,620
+So then the validate job is started.
+
+41
+00:03:10,660 --> 00:03:19,580
+Check out, run Terraform init, and then run a Terraform validate afterwards, just to verify if it is approved.
+
+42
+00:03:19,580 --> 00:03:21,820
+Great, it's a success.
+
+43
+00:03:21,820 --> 00:03:25,540
+The job is a success, we can also see that in our VS Code.
+
+44
+00:03:25,540 --> 00:03:28,660
+No, not that one, let's see, GitHub actions.
+
+45
+00:03:28,660 --> 00:03:36,300
+Here we see that we have got validate number 11.
+
+46
+00:03:36,300 --> 00:03:40,260
+It is approved, where we have run Terraform validate, and it has passed through.
+
+47
+00:03:40,260 --> 00:03:44,700
+We did not get all the same info here as in Web GUI.
+
+48
+00:03:44,700 --> 00:03:48,860
+Here we get this information as well.
+
+49
+00:03:48,860 --> 00:03:56,060
+So if we then go to Validate, Workflows, then we also have the opportunity to see all workflows.
+
+50
+00:03:56,060 --> 00:04:02,220
+But what we wanted now, that was great, the validation is checked green.
+
+51
+00:04:02,220 --> 00:04:05,740
+We can also take a test later on where we actually do not get checked green.
+
+52
+00:04:05,740 --> 00:04:09,460
+But then we have verified that great, now the check is approved.
+
+53
+00:04:09,460 --> 00:04:19,420
+So if we then go to our pull request, then we can prepare a new pull request for which thing.
+
+54
+00:04:19,420 --> 00:04:23,580
+We can quickly just show it in GUI how it looks there.
+
+55
+00:04:23,580 --> 00:04:28,380
+Because if we then go to pull request, then we can see new pull request.
+
+56
+00:04:28,380 --> 00:04:32,660
+Then we can see compare changes, what compare changes, across branches, blah, blah, blah.
+
+57
+00:04:32,660 --> 00:04:37,340
+Here, base main, compare edit network, compare edit network with main.
+
+58
+00:04:37,340 --> 00:04:43,940
+And then we see here, that here we find that resources, NSG, or network security rule, SSH inbound,
+
+59
+00:04:43,940 --> 00:04:46,700
+is changed from priority from 100 to 101.
+
+60
+00:04:46,700 --> 00:04:54,660
+So then I can also create a pull request here in Web GUI, which is also quite nice and transparent.
+
+61
+00:04:54,660 --> 00:04:58,660
+But I can still use VS Code, since that is what I'm doing now.
+
+62
+00:04:58,660 --> 00:05:02,980
+Now we remember that our action, deploy infrastructure, is active,
+
+63
+00:05:02,980 --> 00:05:07,220
+so that it will then deploy, both remove it from the NSG rule.
+
+64
+00:05:07,220 --> 00:05:12,380
+Adn apply the new rule to it, because if I look at it,
+
+65
+00:05:12,380 --> 00:05:16,180
+then I will see something that should be here, because in the previous change,
+
+66
+00:05:16,180 --> 00:05:18,580
+there was nothing that was changed in the infrastructure.
+
+67
+00:05:18,580 --> 00:05:23,620
+It was just updated repo, because there was no workflow that triggered it.
+
+68
+00:05:23,620 --> 00:05:28,380
+Then there is SSH, and priority, and RDIN, so RDIN will be removed.
+
+69
+00:05:28,380 --> 00:05:32,220
+The priority on SSH will change now, after we run through it here.
+
+70
+00:05:32,220 --> 00:05:36,140
+So let's see, create a new pull request.
+
+71
+00:05:36,140 --> 00:05:42,180
+Let's see, here we have base main on edit network, edit SSH priority.
+
+72
+00:05:42,180 --> 00:05:44,180
+Let's run a create on that.
+
+73
+00:05:44,180 --> 00:05:50,500
+And then we will get a new pull request, and then we can see edit SSH priority.
+
+74
+00:05:50,500 --> 00:05:56,660
+It will then pop up as the option to take and merge pull request.
+
+75
+00:05:56,660 --> 00:05:59,900
+We will get the option to see what can be changed.
+
+76
+00:05:59,900 --> 00:06:02,700
+And then you can take a merge pull request,
+
+77
+00:06:02,700 --> 00:06:07,660
+and then it will run through by creating merge commit.
+
+78
+00:06:07,660 --> 00:06:12,340
+Then we can jump over to this interface, workflows.
+
+79
+00:06:12,340 --> 00:06:19,100
+Here we see, merge pull request is initialized, and that is under deploy infrastructure.
+
+80
+00:06:19,100 --> 00:06:21,300
+Because deploy infrastructure was the one that was supposed to start,
+
+81
+00:06:21,300 --> 00:06:25,500
+when something had been changed in the main file.
+
+82
+00:06:25,500 --> 00:06:28,460
+So if we just open it, something will happen.
+
+83
+00:06:28,460 --> 00:06:32,460
+And here it takes to run through checkout, terraform plan, terraform apply,
+
+84
+00:06:32,460 --> 00:06:35,540
+in relation to the workflow that we have set up.
+
+85
+00:06:35,540 --> 00:06:40,540
+So now we have set up the flow of it,
+
+86
+00:06:40,540 --> 00:06:44,380
+by using a branch, make changes.
+
+87
+00:06:44,380 --> 00:06:47,140
+Here we see, change priority 100 to 101.
+
+88
+00:06:47,140 --> 00:06:51,940
+That was what was supposed to be changed, and then RDP is destroyed.
+
+89
+00:06:51,940 --> 00:06:55,060
+If we run terraform apply, it will go through.
+
+90
+00:06:55,060 --> 00:07:01,300
+And then we have actually run through everything we thought of in this CICD workflow.
+
+91
+00:07:01,300 --> 00:07:03,220
+And that was actually just with validate,
+
+92
+00:07:03,220 --> 00:07:07,340
+so that we ran through that validates should be in the only test.
+
+93
+00:07:07,340 --> 00:07:09,860
+We are now going to see,
+
+94
+00:07:09,860 --> 00:07:14,740
+there is a security rule conflict,
+
+95
+00:07:14,740 --> 00:07:20,060
+tried to change the rule priority before it had deleted it.
+
+96
+00:07:20,060 --> 00:07:22,580
+Okay, that's kinda fine.
+
+97
+00:07:22,580 --> 00:07:24,260
+And then we see here, we got an error here now.
+
+98
+00:07:24,260 --> 00:07:27,500
+So this test was not,
+
+99
+00:07:27,500 --> 00:07:31,220
+there were actually two changes that were waiting for each other.
+
+100
+00:07:31,220 --> 00:07:34,620
+One was to delete the rule, and the other to change the rule.
+
+101
+00:07:34,620 --> 00:07:36,300
+So we got an error now,
+
+102
+00:07:36,300 --> 00:07:40,180
+that we tried to set the rule to the same priority as the other rule,
+
+103
+00:07:40,180 --> 00:07:44,700
+before they deleted the other rule.
+
+104
+00:07:44,700 --> 00:07:47,180
+So if we now then go and check,
+
+105
+00:07:47,180 --> 00:07:49,580
+how should we tackle this problem?
+
+106
+00:07:49,580 --> 00:07:51,660
+I can now double check just on NSG.
+
+107
+00:07:51,660 --> 00:07:54,620
+Here you can see that the rule has actually been deleted.
+
+108
+00:07:54,620 --> 00:07:59,580
+But of course it tried first to change it here to one.
+
+109
+00:07:59,580 --> 00:08:03,980
+So if I now just go to this one,
+
+110
+00:08:03,980 --> 00:08:06,100
+and then rerun,
+
+111
+00:08:06,100 --> 00:08:09,380
+I can choose to rerun only this one.
+
+112
+00:08:09,380 --> 00:08:10,700
+So, let's see.
+
+113
+00:08:10,700 --> 00:08:14,460
+I'll just rerun the job, because I'm just going to deploy it.
+
+114
+00:08:14,460 --> 00:08:15,420
+It doesn't matter.
+
+115
+00:08:15,420 --> 00:08:20,620
+We just try to implement the changes that have been made once again.
+
+116
+00:08:20,620 --> 00:08:22,940
+But here we see that now we just rerun the job,
+
+117
+00:08:22,940 --> 00:08:24,420
+and then its able to implement it,
+
+118
+00:08:24,420 --> 00:08:28,340
+because now there is no other rule that has that priority now.
+
+119
+00:08:28,340 --> 00:08:29,500
+And when the job is done,
+
+120
+00:08:29,500 --> 00:08:33,700
+then we can now see here that it's under Terraform apply,
+
+121
+00:08:33,700 --> 00:08:36,860
+get run through, and apply completed.
+
+122
+00:08:36,860 --> 00:08:39,780
+And here we see that I just need to ignore it.
+
+123
+00:08:39,780 --> 00:08:42,740
+One changes, and that's one of the NSG rules.
+
+124
+00:08:42,740 --> 00:08:45,740
+Here we see that if we take a refresh on the NSG rule,
+
+125
+00:08:45,740 --> 00:08:48,620
+then we see here that the priority is set to 101.
+
+126
+00:08:48,620 --> 00:08:51,020
+So then we have seen a bit of the process,
+
+127
+00:08:51,020 --> 00:08:54,300
+where we get a new branch, make changes,
+
+128
+00:08:54,300 --> 00:08:59,780
+run the tests, deploy, no, and make a pull request to main.
+
+129
+00:08:59,780 --> 00:09:02,100
+When there is a merging with main,
+
+130
+00:09:02,100 --> 00:09:06,660
+then the infrastructure is deployed to Azure
+
+131
+00:09:06,660 --> 00:09:08,940
+using a deploy workflow.
+
+132
+00:09:08,940 --> 00:09:11,780
+So here we can have many different workflows,
+
+133
+00:09:11,780 --> 00:09:13,500
+which are triggered by different things,
+
+134
+00:09:13,500 --> 00:09:16,060
+which makes it automatized.
+
+135
+00:09:16,060 --> 00:09:19,100
+A good start with a preliminary definition,
+
+136
+00:09:19,100 --> 00:09:22,540
+set with rules and tests that are run on the code,
+
+137
+00:09:22,540 --> 00:09:26,380
+infrastructure, and similar before it is deployed.
+
+138
+00:09:26,380 --> 00:09:28,140
+But this was just a test now with Validate,
+
+139
+00:09:28,140 --> 00:09:30,300
+where we saw that Validate checked,
+
+140
+00:09:30,300 --> 00:09:32,460
+and then of course there are a lot of things
+
+141
+00:09:32,460 --> 00:09:33,860
+we can set up to test in addition.
+
+142
+00:09:33,860 --> 00:09:36,060
+But this was just to test it,
+
+143
+00:09:36,060 --> 00:09:40,540
+and if you are now done with this infrastructure
+
+144
+00:09:40,540 --> 00:09:42,820
+and testing here, then of course you can just
+
+145
+00:09:42,820 --> 00:09:45,380
+go back to the terminal,
+
+146
+00:09:45,380 --> 00:09:48,900
+and then of course you can just run terraform-destroy
+
+147
+00:09:48,900 --> 00:09:51,020
+from the terminal here as well.
+
+148
+00:09:51,020 --> 00:09:52,700
+When I'm in the folder there,
+
+149
+00:09:52,700 --> 00:09:55,540
+I can just run terraform-init and terraform-destroy
+
+150
+00:09:55,540 --> 00:09:56,940
+to delete it here,
+
+151
+00:09:56,940 --> 00:09:59,580
+because I have it as long as I have
+
+152
+00:09:59,580 --> 00:10:02,980
+environmental variables in it,
+
+153
+00:10:02,980 --> 00:10:06,460
+or that I have connected them up with az-login.
+
+154
+00:10:06,460 --> 00:10:10,060
+So then I have run through the simple Validate test.
+
+155
+00:10:10,060 --> 00:10:12,580
+Then we will see how we can build on it a bit,
+
+156
+00:10:12,580 --> 00:10:13,620
+with some more tests here,
+
+157
+00:10:13,620 --> 00:10:16,260
+that one approved test,
+
+158
+00:10:16,260 --> 00:10:17,460
+run a new test,
+
+159
+00:10:17,460 --> 00:10:19,340
+run a new test, etc.
+
+160
+00:10:19,340 --> 00:10:21,380
+But when I'm done with using this
+
+161
+00:10:21,380 --> 00:10:23,060
+Edit Network branch,
+
+162
+00:10:23,060 --> 00:10:27,020
+I can press Command-Shift-P for Mac,
+
+163
+00:10:27,020 --> 00:10:28,980
+and then I get this up,
+
+164
+00:10:28,980 --> 00:10:30,700
+and then I can start writing
+
+165
+00:10:30,700 --> 00:10:33,460
+Git-colon and then Delete branch.
+
+166
+00:10:33,460 --> 00:10:36,860
+If I have Windows or Ctrl-Shift-P,
+
+167
+00:10:36,860 --> 00:10:40,900
+then I want to get the same menu up at the top there,
+
+168
+00:10:40,900 --> 00:10:44,020
+and then I can write Git-delete-branch.
+
+169
+00:10:44,020 --> 00:10:45,620
+We press it, and then we see,
+
+170
+00:10:45,620 --> 00:10:47,580
+no, I might not want to delete the main,
+
+171
+00:10:47,580 --> 00:10:50,220
+I can go to the main first.
+
+172
+00:10:50,220 --> 00:10:51,420
+So, go to the main,
+
+173
+00:10:51,420 --> 00:10:54,940
+press Command-Shift-P,
+
+174
+00:10:54,940 --> 00:10:57,140
+or Ctrl-Shift-P for Windows,
+
+175
+00:10:57,140 --> 00:11:00,700
+select Git-delete-branch,
+
+176
+00:11:00,700 --> 00:11:02,580
+select delete this one,
+
+177
+00:11:02,580 --> 00:11:05,460
+and then we will see that we have deleted
+
+178
+00:11:05,460 --> 00:11:11,340
+the branch that we used to edit the network.
+
+179
+00:11:11,340 --> 00:11:12,460
+So, we're done with that,
+
+180
+00:11:12,460 --> 00:11:15,100
+and then we can have as many other branches
+
+181
+00:11:15,100 --> 00:11:15,820
+to keep track of
+
+182
+00:11:15,820 --> 00:11:17,820
+when we're done with the editing we've done.
+

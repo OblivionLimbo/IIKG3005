@@ -1,0 +1,264 @@
+1
+00:00:00,000 --> 00:00:03,560
+In this video, we will now begin to see how we can test our infrastructure,
+
+2
+00:00:03,560 --> 00:00:08,200
+so that it is certain that it meets the requirements we want it to meet
+
+3
+00:00:08,200 --> 00:00:13,400
+before it is deployed to Microsoft Azure in our context.
+
+4
+00:00:13,400 --> 00:00:19,320
+So the idea is that we can of course run some tests on the infrastructure
+
+5
+00:00:19,320 --> 00:00:22,920
+against our infrastructure via VS Code, as we use here,
+
+6
+00:00:22,920 --> 00:00:26,200
+before we eventually push it to the Git repository,
+
+7
+00:00:26,200 --> 00:00:32,400
+which is a trigger for a workflow that again goes through some different steps to get there.
+
+8
+00:00:32,400 --> 00:00:37,480
+But that's what the idea is here now, that we're going to get integrated tests
+
+9
+00:00:37,480 --> 00:00:45,080
+as part of this workflow, so that we, for example, now can run this infrastructure
+
+10
+00:00:45,080 --> 00:00:49,200
+through a number of tests in a different branch.
+
+11
+00:00:49,200 --> 00:00:53,600
+And when these tests are verified and eventually approved,
+
+12
+00:00:53,600 --> 00:01:01,720
+then we can run a pull request, that is, that we merge the branch that we have set up with main,
+
+13
+00:01:01,720 --> 00:01:07,200
+so that it becomes the relevant infrastructure for the infrastructure that is in Azure.
+
+14
+00:01:07,200 --> 00:01:11,120
+And there are some steps and some new things we are going to introduce now in this video,
+
+15
+00:01:11,120 --> 00:01:16,040
+and there are also some tools that we use, i.e. what we use to test it.
+
+16
+00:01:16,040 --> 00:01:19,680
+There are many different tools we can use to test our infrastructure,
+
+17
+00:01:19,680 --> 00:01:23,040
+so we can test the code, we can test the security of the code, etc.
+
+18
+00:01:23,040 --> 00:01:25,840
+But we take some that we are going through now,
+
+19
+00:01:25,840 --> 00:01:28,680
+and then of course we can also link to some different sites,
+
+20
+00:01:28,680 --> 00:01:31,600
+where we have several different tests that we can go through.
+
+21
+00:01:31,600 --> 00:01:37,360
+As you can see, there are a lot of reds that are screaming out in my VS code now,
+
+22
+00:01:37,360 --> 00:01:40,600
+and that's because I've installed something called Checkov.
+
+23
+00:01:40,600 --> 00:01:45,120
+Checkov is a tool that helps me, and so maybe a little in the strictest way,
+
+24
+00:01:45,120 --> 00:01:48,680
+for a demo test that we're going to do now,
+
+25
+00:01:48,680 --> 00:01:53,240
+because it is very much on what has to do with security, and that's good.
+
+26
+00:01:53,240 --> 00:01:57,960
+And then it comes with recommendations on what it is that it wants to do,
+
+27
+00:01:57,960 --> 00:02:01,560
+so that we can satisfy the potential security threats that are relevant.
+
+28
+00:02:01,560 --> 00:02:04,200
+But there are several tools, and there is one, as I said,
+
+29
+00:02:04,200 --> 00:02:07,920
+I have posted information on which tools I am testing now,
+
+30
+00:02:07,920 --> 00:02:10,840
+and the way we install them is in our own.
+
+31
+00:02:10,840 --> 00:02:15,240
+What we can start with, if we take Terraform validate,
+
+32
+00:02:15,240 --> 00:02:17,560
+so it is also a test that we can run.
+
+33
+00:02:17,560 --> 00:02:23,080
+We can integrate that Terraform validate is part of our test in GitHub Actions.
+
+34
+00:02:23,080 --> 00:02:25,440
+Because then you can see that if we run Terraform validate,
+
+35
+00:02:25,440 --> 00:02:28,880
+then you can check if the configuration is valid.
+
+36
+00:02:28,880 --> 00:02:35,880
+If it is not valid, then you will get a error message that this is not correct.
+
+37
+00:02:35,880 --> 00:02:38,360
+So if I, for example, on my main here,
+
+38
+00:02:38,360 --> 00:02:41,680
+this is a demo infrastructure that I have set up,
+
+39
+00:02:41,680 --> 00:02:43,640
+which I already run in Azure portal.
+
+40
+00:02:43,640 --> 00:02:48,400
+But then I have a slightly different approach here.
+
+41
+00:02:48,400 --> 00:02:53,400
+Here I only have different files that represent the different resources I have set up.
+
+42
+00:02:53,400 --> 00:02:59,960
+And then I have a main file where I have set up a resource group for all the resources here.
+
+43
+00:02:59,960 --> 00:03:01,680
+So you can take a look at that.
+
+44
+00:03:01,680 --> 00:03:06,200
+I have Provider, Main, Network, Storage Account, Variables and Key Vault,
+
+45
+00:03:06,200 --> 00:03:07,560
+which I use here now.
+
+46
+00:03:07,560 --> 00:03:11,960
+I have Terraform TF Wars and Secret TF Wars in addition to that.
+
+47
+00:03:12,000 --> 00:03:18,200
+So if I now, for example, have changed here that the resource group should be like this,
+
+48
+00:03:18,200 --> 00:03:19,560
+especially if something is written wrong,
+
+49
+00:03:19,560 --> 00:03:21,120
+if something is going to happen to the variable here,
+
+50
+00:03:21,120 --> 00:03:28,440
+so if I save it, then Terraform validate will now say that I use the name of a resource group
+
+51
+00:03:28,440 --> 00:03:31,080
+that is not declared from before.
+
+52
+00:03:31,080 --> 00:03:33,400
+So it will not get any names here.
+
+53
+00:03:33,400 --> 00:03:39,120
+And this can also be a simple test that we can implement in our GitHub Actions,
+
+54
+00:03:39,120 --> 00:03:45,680
+which then checks if this is approved to be deployed further.
+
+55
+00:03:45,680 --> 00:03:50,880
+So we can start with such a simple test as that we try to integrate Terraform validate,
+
+56
+00:03:50,880 --> 00:03:55,800
+and then we can then look further at different more advanced tests afterwards.
+
+57
+00:03:55,800 --> 00:04:00,800
+I just quickly change this back so that it is correct like that.
+
+58
+00:04:00,800 --> 00:04:03,160
+And then we can see here now that it validates,
+
+59
+00:04:03,160 --> 00:04:06,480
+because then it matches the way it is in our infrastructure now.
+
+60
+00:04:06,480 --> 00:04:10,640
+And then I just take Terraform plan out.
+
+61
+00:04:10,640 --> 00:04:13,680
+I can change Terraform plan because I have no changes.
+
+62
+00:04:13,680 --> 00:04:19,320
+I'm just going to show you that this is already running like this in Microsoft Azure
+
+63
+00:04:19,320 --> 00:04:22,320
+with some resources that are already created.
+
+64
+00:04:22,320 --> 00:04:25,080
+Infrastructure matches configuration, just go here.
+
+65
+00:04:25,080 --> 00:04:29,880
+RG Demo, here's Key Vault, NSG, Public IP, storage account, VM, disk,
+
+66
+00:04:29,880 --> 00:04:32,200
+NIC and the VM network to the machine.
+

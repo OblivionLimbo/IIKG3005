@@ -1,0 +1,163 @@
+1
+00:00:00,000 --> 00:00:10,360
+So then we jump over to github and github action. Here I have now gone under action and created a new workflow, and I call it Validate YAML.
+
+2
+00:00:10,360 --> 00:00:16,800
+I just took the starting point of one of the additional basic workflows for Terraform, which I have gone through.
+
+3
+00:00:16,800 --> 00:00:28,680
+What is different now is that I have created a trigger that is based on push to this folder here, but it will ignore main.
+
+4
+00:00:28,680 --> 00:00:43,880
+That would mean that the main branch or the main code of our repo should not be triggered here, because we now want to create a new branch where we make the changes we want to test, and then we will run the tests.
+
+5
+00:00:43,880 --> 00:00:56,240
+If the tests are approved, then we will run a pull request against the main that will start and deploy this to the environment we have in Microsoft Azure.
+
+6
+00:00:56,240 --> 00:01:12,120
+So then we have a way in which we can standardize our tests, so that many can run them, everyone who uses this github repo and has different branches they are testing on, because you often have a overview of things that will be implemented, things that will change, things that need to be improved.
+
+7
+00:01:12,120 --> 00:01:37,160
+So if you like to use a scrum board, or if you have a Jira tracker or something like that on things that will change, then you can say that you have set up a new branch for what you want to do and test and implement, and then run the pull request and get it implemented into the main branch, which can then be the relevant infrastructure for this environment we are in right now.
+
+8
+00:01:37,160 --> 00:02:04,480
+And then it's like that, I could have run all the tests on my machine, but it would be very stupid if I only have a lot of different tests, and then the tests are changed, new things are put on the tests, new things we are going to test, therefore we also have to run central validation of testing, so that everything that is changed and in the tests is valid for everyone who uses this infrastructure and wants to make changes to this infrastructure.
+
+9
+00:02:04,480 --> 00:02:23,200
+So what we do here, we make a workflow, a job, we call it for validate, what we are going to run on, run on an ubuntu, here we have the environmental variable, and these steps here are actually just very basic, run a checkout to ensure that the runner gets access to our repo, run terraform init for init, and then run terraform validate.
+
+10
+00:02:23,200 --> 00:02:53,200
+The thing here is to check, that is, validate is not a comprehensive or special good test, because, I'll come back to show you that it can, for example, approve even if something that has the same names, and that would not be lucky to accept, for example, that the NSG rules have the same priority, the same name and so on, but what we want, in any case, is that this one should validate or run a terraform validate, and then we will check if it
+
+11
+00:02:53,200 --> 00:03:22,960
+will be approved. The way we can do it is that we can go to actions, I have already created it, and it is available in repo, but here we will see, enable workflow, I disabled it, so what it does now, is that when you look back at our repo, here is the folder that is set to check if it is changed, and then it is this that is the infrastructure, there are some different new things that are introduced in this module,
+
+12
+00:03:22,960 --> 00:03:46,720
+as compared to the other time, for example, that we have a random password generator, where we also have override specials, so it should only these specials, if not, then you can get everything possible of specials, and it's a bit of a new thing I try to introduce all the time, if it takes time to look at the code that is put in the different modules,
+
+13
+00:03:46,720 --> 00:04:14,480
+but that is not fundamental for module 7, it should be that you will run this test now, and now we see down to the left, that in which branch I am in, I am in the main branch, so if I make some changes to this infrastructure, for example, if I go here now, then I remove a rule that is for main,
+
+14
+00:04:14,480 --> 00:04:42,000
+and I push it into the main repo, then no workflow will be triggered, but we do not want that we are going to push into the main, so we should of course have set up a test, or a secure or protected main branch, so that it protects the main branch, because I could basically change a lot of things and run it into Git at once, so just think about something else, if we can quickly look at it while we talk about it,
+
+15
+00:04:42,000 --> 00:04:55,120
+so if we go to settings, and then we choose branches, then we have the option, you haven't protected any of your branches, define a protecting branch rule to disable force pushing event, and prevent branches from being deleted, etc, etc,
+
+16
+00:04:55,120 --> 00:05:23,840
+So in that way, you can protect your main branch to avoid, for example, that if this is going to be for production or something that is going to happen, the main branch is used for something special, as it is most likely to do, then you can set rules against that main branch, for example, that not everyone who works on this project and uses this repo can push against main, but that it must, for example, via a set of tests set up in actions with workflows,
+
+17
+00:05:23,840 --> 00:05:42,960
+and if these tests are passed, that is, approved successfully, then you can do a pull request, a pull request means that you send a request to run the changes to the branch you have up to the main branch, or to the main branch, I'll show you a nice figure that shows you that,
+
+18
+00:05:42,960 --> 00:06:10,560
+but we can now first go back to action, and then see what happens, if we are now on the network, another important point is that if you are working in this way, with pull requests, or new , make changes, push then pull request, then you have to remember to pull down the newest changes to your main branch, so you make sure you get the last change on it,
+
+19
+00:06:11,120 --> 00:06:30,960
+because here I now actually only have an NSG rule that I have created, if I think "okay I'm going to delete this", but I don't want to do it on the main branch, because I'm going to run some tests first to verify that it's okay, and in this case, the test should just be a validate,
+
+20
+00:06:30,960 --> 00:06:55,840
+we'll just quickly update, create a new branch, edit network, I'll just update it, and then we'll go down to the left, is there any edit-network, we don't want to have a space, and then I can think okay, now I can also remove it here, now I'm not in the main branch, now I'm in another branch that is connected, to this git repo, so what I do here now will not affect the main branch,
+
+21
+00:06:55,840 --> 00:07:25,760
+so now I pull it in, so I see here that I only have SSH inbound rule, and then I can then choose to save it, and when I save this file, then you will see that in this source control, we have one pending change, and it will then be for network changes, so if I now commit it, remove NSG rule RDP, commit it, and then it will say here publish branch, because this is a new branch, this is not the main, and then we have to choose to publish it,
+
+22
+00:07:25,840 --> 00:07:48,240
+so then it will deploy this one to github, and what I like now is that I have installed pull request, or I have a lot of extensions that I use, and that is the github pull request, an issue tracker, or what is it called, let's see, we could have that now, if it disappears, then we have the notification there,
+
+23
+00:07:48,240 --> 00:08:15,440
+so a pull request will say that you can then ask if you want to carry out this migration to the main branch, but first we want to see something in what had happened here, here we see that under all workflows, we can now choose validate, which is the validate infrastructure, is then the review of the terraform validate command, remove NSG rule RDP,
+
+24
+00:08:15,440 --> 00:08:33,520
+so if we go to this one, and then we can see here, here is what is done, and then on push, and this is not to main, and if we had done it to main, nothing would happen. Here we see it run through, and then we can see here that validate is run, it runs terraform validate, and it is success, the configuration is valid,
+
+25
+00:08:33,520 --> 00:08:49,760
+so then we can say that great, then this simulates a part of many tests, it can be a lot of tests that we will trigger in the course of time after they are approved, and then we can say that great, this is approved, then I can create a pull request,
+
+26
+00:08:49,760 --> 00:09:11,520
+I can also do that from the wegbui of github, but I can also do it from VS Code if I have github pull request and issues extension, so that when I now then go to it, I can just press create pull request here, then open it in the left menu there, the window that is for extension pull request,
+
+27
+00:09:11,680 --> 00:09:37,680
+and if it now looks at my main repo in github, then I can now check here on code, take course material, here you can see that when a new branch is opened and pushed, then we see that it can choose compare and pull request here too, and it is the same, but I do it via VS Code, so I let it run and go via the browser all the time, since I have everything available there via the different extensions,
+
+28
+00:09:37,680 --> 00:10:02,840
+so if it now goes to network here, then we see below that here is still my rdp rule, of course with the wrong port here too, but the thing is that I have some pushes here, but I want the new code to be updated with the newest of the new ones, so that now I know that my tests are approved, so I take, and then we will see, I take, create a pull request,
+
+29
+00:10:07,680 --> 00:10:37,360
+and then I will now be able to see the github there, here we will see now, I also have the two githubs, you have github action and github pull request, and now we see that here pull request, it is now run through, and if we also press on this file here, then we will see what it is that has changed, then we see here that here is what the file was like we had it,
+
+30
+00:10:37,360 --> 00:11:03,680
+on the main, and here is what the file will be like after we have merged it, so if we now then, this has gone through successfully, then I can see quickly on the web GUI here, that under pull request, at the top it says here that it is one open, that is, it is one question about merging what is from Edit Network Branch to the main,
+
+31
+00:11:03,680 --> 00:11:19,920
+we can choose now, if we check* it, then we can choose that we want to approve it, and then we see here, all checks have passed, this branch has no conflict with the base branch, then we can merge a pull request,
+
+32
+00:11:19,920 --> 00:11:37,840
+and then we see that we can do this in VS Code, if we go to github extension, then we see here that we have pull requests under github, and then we have further down here, if we scroll, then we have one successful check,
+
+33
+00:11:37,840 --> 00:11:55,760
+then we can merge, yes, create merge commit, and merge pull request, merge, create merge commit, so what it does now, now we have first created a new branch, which we call Edit Network, then we have made the changes in the code, which we want to do,
+
+34
+00:11:55,760 --> 00:12:10,160
+then we have run a test, when we have made some changes to the folder that is not the main branch, the test for our part was just validates, so we saw that validates checkout, then we could then create a pull request,
+
+35
+00:12:10,160 --> 00:12:23,280
+which is a request to push this code that we have changed over to the main branch, now we dont have any changes to eb done when something is pushed to main,
+
+36
+00:12:23,280 --> 00:12:42,880
+but we will also see that, because then we can automate the next step, because now we have just done a check, and performed that some actually have to see what changes are asked to be made, so that we can say that yes, it is, but some can verify that this is a pull request that will be run through,
+
+37
+00:12:42,880 --> 00:12:57,280
+and then we can now see that here, when pull request is open, everything is run through, so if we then go to explorer, then we can now see that we are now in Edit Network,
+
+38
+00:12:57,280 --> 00:13:08,960
+but if we then go to our main branch, then we will suddenly see down here, okay, now there are two changes that this one wants to get down, so if we then press them, just close the pull request there,
+
+39
+00:13:08,960 --> 00:13:20,960
+then we can see now that under Network, then this rule that has been put in for RDP, disappears from the main branch, and that's how we want this to be now,
+
+40
+00:13:20,960 --> 00:13:33,600
+and then we see pull request successfully merged and closed, so then there are several things in several ways you can do, I can now delete the branch if I am not going to do anything with the network configuration,
+
+41
+00:13:33,600 --> 00:13:45,600
+and possibly there is no more tickets or something to do on the network part, then I can now just choose to delete it with this, but I can use it a little since I will try to show something new, or several things.
