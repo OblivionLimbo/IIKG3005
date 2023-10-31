@@ -9,7 +9,7 @@ module "keyvault" {
 
 module "StorageAccount" {
   source            = "./storageaccount"
-  sa_rgname         = var.sa_rgname
+  sa_rgname         = var.sa_rg_name
   sa_location       = var.sa_location
   sa_base_name      = var.sa_base_name
   sa_container_name = var.sa_container_name

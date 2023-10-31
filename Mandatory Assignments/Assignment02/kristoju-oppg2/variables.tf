@@ -1,133 +1,173 @@
 variable "company" {
   type        = string
   description = "Company name"
-  default = "LearnTF"
+  default = "Company"
 }
 
 variable "project" {
   type        = string
   description = "Project name"
-  default = "Project TF"
+  default = "Project"
 }
 
 variable "billing_code" {
   type        = string
   description = "Billing code"
-  default = "TF12345"
+  default = "Billing"
 }
 
 variable "kv_rgname" {
   type        = string
   description = "Key Vault Resource Group Name"
-  default = "rg-kv"
+  default     = "kv-rg"
 }
 
 variable "kv_location" {
   type        = string
   description = "location of the Key Vault"
-  default = "westeurope"
+  default     = "westeurope"
 }
 
 variable "kv_base_name" {
   type        = string
   description = "Name of the Key Vault"
-  default = "kvbn"
+  default     = "kv"
 }
 
 variable "sa_base_name" {
   type        = string
   description = "The name of the storage account"
-  default = "sabn"
+  default     = "sa"
 }
 
-variable "sa_rgname" {
+variable "sa_rg_name" {
   type        = string
   description = "The name of the resource group"
-  default = "rg-sa"
+  default     = "sa-rg"
 }
 
 variable "sa_location" {
   type        = string
   description = "The Azure region where resources will be created"
-  default = "westeurope"
+  default     = "westeurope"
 }
 
 variable "sa_container_name" {
   type        = string
   description = "The name of the storage container"
-  default = "sacn"
+  default     = "container"
+}
+
+variable "sa_account_tier" {
+  type        = string
+  description = "The storage account tier"
+  default     = "Standard"
+}
+
+variable "sa_replication_type" {
+  type        = string
+  description = "The storage account replication type"
+  default     = "GRS"
 }
 
 variable "vnet_rg_name" {
   type        = string
   description = "Resource group name"
-  default = "rg-vnet"
+  default     = "vnet-rg"
 }
 
 variable "vnet_rg_location" {
   type        = string
   description = "Resource group location"
-  default = "westeurope"
+  default     = "westeurope"
 }
 
 variable "vnet_name" {
   type        = string
-  description = "Virtual network name"
-  default = "vnet"
+  description = "Name of the virtual network"
+  default     = "vnet"
 }
 
-variable "nsg_name" {
-  type        = string
-  description = "Network security group name"
-  default = "nsg"
+variable "vnet_address_space" {
+  type        = list(string)
+  description = "Address space of the virtual network"
+}
+
+variable "vnet_dns_servers" {
+  type        = list(string)
+  description = "DNS servers of the virtual network"
 }
 
 variable "subnet_name" {
   type        = string
-  description = "Subnet name"
-  default = "subnet"
+  description = "Name of the subnet"
+  default     = "subnet"
+}
+
+variable "subnet_address_space" {
+  type        = list(string)
+  description = "Address space of the subnet"
+}
+
+variable "nsg_name" {
+  type        = string
+  description = "Name of the network security group"
+  default     = "nsg"
+}
+
+variable "vm_name" {
+  type        = string
+  description = "Name of the virtual machine"
+  default = "vm"
+}
+
+variable "vm_size" {
+  type        = string
+  description = "Size of the virtual machine"
+  default = "Standard_B2s"
 }
 
 variable "vm_rg_name" {
   type        = string
   description = "Resource group name"
-  default = "rg-vm"
+  default     = "vm-rg"
 }
 
 variable "vm_rg_location" {
   type        = string
   description = "Resource group location"
-  default = "westeurope"
+  default     = "westeurope"
 }
 
 variable "vm_nic_name" {
   type        = string
-  description = "Network interface name"
-  default = "nic"
-}
-
-variable "vm_name" {
-  type        = string
-  description = "Virtual machine name"
-  default = "vm"
+  description = "Name of the network interface"
+  default     = "vm-nic"
 }
 
 variable "pip_name" {
   type        = string
-  description = "public IP name"
-  default = "pip"
+  description = "Name of the public IP address"
+  default     = "vm-pip-name"
 }
 
 variable "vm_username" {
   type        = string
-  description = "Virtual machine username"
-  sensitive = true
-  default = "azureuser"
+  description = "Username of the virtual machine"
 }
 
 variable "vm_password" {
   type        = string
-  description = "Virtual machine password"
-  sensitive = true
-  default = "dsfSD_!EfdX12gfZ"
+  description = "Password of the virtual machine"
+}
+
+variable "kv_sku_name" {
+  type        = string
+  description = "SKU name for the Key Vault"
+  default     = "standard"
+}
+
+variable "my_ip" {
+  type        = string
+  description = "My IP address"
 }
