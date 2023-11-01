@@ -8,11 +8,11 @@ We have now been through Validate, that we look at how we can validate the infra
 
 3
 00:00:11,760 --> 00:00:20,960
-the infrastructure we have developed with Terraform, but of course there are many different test values available to us.
+the infrastructure we have developed with Terraform, but of course there are many different testing tools available to us.
 
 4
 00:00:20,960 --> 00:00:28,800
-Now we're going to look at a value T, i.e. TFSEC, which takes care of the security aspects of the infrastructure code that we have made.
+Now we're going to look at another tool, i.e. TFSEC, which takes care of the security aspects of the infrastructure code that we have made.
 
 5
 00:00:28,800 --> 00:00:37,680
@@ -24,23 +24,23 @@ but it is still developing and supports Terraform, Azure and what we're going to
 
 7
 00:00:43,760 --> 00:00:53,440
-But most of it is just to show that there is this type of value, and we can use GitHub Actions to run these tests via Workflows,
+But most of it is just to show that there is this type of tool, and we can use GitHub Actions to run these tests via Workflows,
 
 8
 00:00:53,440 --> 00:01:03,440
-which makes it that we get a central place where we will keep these tests, so that everyone who runs these tests will get the same criteria as is used.
+which makes it that we get a central place where we will keep these tests, so that everyone who runs these tests will get the same criteria being used.
 
 9
 00:01:03,440 --> 00:01:13,840
-I can first show here that I have installed TFSEC on my machine using Blue, but you can either use Blue or Chocolate and install it on your machine.
+I can first show here that I have installed TFSEC on my machine using Brew, but you can either use Brew or Chocolatey and install it on your machine.
 
 10
 00:01:13,840 --> 00:01:20,000
-There will be simple road signs in the links that connect to this module.
+There will be simple pointers in the links that correspond to this module.
 
 11
 00:01:20,000 --> 00:01:29,760
-So if we now take a look at my infrastructure, we can see here that I have now, I'm in my demo in front of me,
+So if we now take a look at my infrastructure, we can see here that I have now, I'm in my demo-infra folder,
 
 12
 00:01:29,760 --> 00:01:39,120
@@ -48,7 +48,7 @@ and I have here the infrastructure that I have installed, which I have previousl
 
 13
 00:01:39,120 --> 00:01:44,880
-and I have now installed a GitHub workflow called TFSEC.
+and I have now created a GitHub workflow called TFSEC.
 
 14
 00:01:44,880 --> 00:01:52,000
@@ -56,11 +56,11 @@ But first we can look at, if we go to this infrastructure that I have here,
 
 15
 00:01:52,000 --> 00:02:00,800
-if I go and run TFSEC here now in the existing folder, dot for the existing map, or we can just run TFSEC for the map we are in,
+if I go and run TFSEC here now in the existing folder, dot for the existing folder, or we can just run TFSEC for the folder we are in,
 
 16
 00:02:00,800 --> 00:02:07,200
-then it will look at all the Terraform configuration that is in this map.
+then it will look at all the Terraform configuration that is in this folder.
 
 17
 00:02:07,200 --> 00:02:16,800
@@ -68,11 +68,11 @@ So if I run TFSEC, it will now see that Terraform, no, TFSEC, gives me quite a l
 
 18
 00:02:16,800 --> 00:02:28,480
-I can first, what I mentioned at the beginning, that, let's see, TFSEC is joining Trivia family, so it will continue to be available,
+I can first, what I mentioned at the beginning, that, let's see, TFSEC is joining Trivy family, so it will continue to be available,
 
 19
 00:02:28,480 --> 00:02:36,720
-but it should say we are starting to go over to Trivia. Here now, Trivia, Terraform, Azure, not up and running.
+but it is starting to merge into Trivy. Here now, Trivy, Terraform, Azure, not up and running.
 
 20
 00:02:36,720 --> 00:02:46,640
@@ -80,11 +80,11 @@ Therefore, it will continue to be there. So if we scroll all the way down, then 
 
 21
 00:02:46,640 --> 00:02:59,280
-and what may be past potential problems. In addition, we can look at this type of critical, or the level of problems that occur in the code,
+and what may be potential problems. In addition, we can look at this type of critical, or the level of problems that occur in the code,
 
 22
 00:02:59,280 --> 00:03:14,880
-and we can see here that it has found several different levels, i.e. from low to medium to high, and then it can now think that we can evaluate based on what it is that we should take a position on.
+and we can see here that it has found several different levels, i.e. from low to medium to high, and then it can now think that we can evaluate based on what it is that we should take a stance on.
 
 23
 00:03:14,880 --> 00:03:20,640
@@ -96,11 +96,11 @@ Here we see that we get a warning that the network itself does not block access 
 
 25
 00:03:36,640 --> 00:03:46,080
-Azure Key Vault does not block access control list, does not block access by default.
+Azure Key Vault does not block access, does not have an ACL that blocks access by default.
 
 26
 00:03:46,160 --> 00:04:02,800
-What is nice, then, is that here we see that we can get more information about what has been performed, and we can also find the latest in Terraform, i.e. where we can find the configuration we can implement to check if this is being changed.
+What is nice, then, is that here we see that we can get more information about what has been performed, and we can also find the registry in Terraform, i.e. where we can find the configuration we can implement to check if this is being changed.
 
 27
 00:04:02,800 --> 00:04:11,520
@@ -108,11 +108,11 @@ And what happens here is that if we go to one of these links, then we come strai
 
 28
 00:04:11,520 --> 00:04:26,160
-We can now take out the security information that we get from the TFZ in addition, because it will explain what the problem is, what can be done to fix it.
+We can now take out the security information that we get from the TFsec in addition, because it will explain what the problem is, what can be done to fix it.
 
 29
 00:04:26,240 --> 00:04:36,720
-And of course, we have to take a position on the risk presented here, and is it something that is relevant to our infrastructure?
+And of course, we have to take a stance on the risk presented here, and is it something that is relevant to our infrastructure?
 
 30
 00:04:36,720 --> 00:04:44,000
@@ -124,7 +124,7 @@ Here we see that we should set the limitations on who gets access to this Key Va
 
 32
 00:04:51,040 --> 00:05:02,320
-Then it comes in with a source example, i.e. Network, ACLs, Bypass, Azure Services, i.e. as long as it is an Azure service that tries, then it is great, and then the default action is denied.
+Then it comes in with a source example, i.e. Network, ACLs, Bypass, Azure Services, i.e. as long as it is an Azure service that tries, then it is fine, and then the default action is deny.
 
 33
 00:05:02,320 --> 00:05:05,840
@@ -140,7 +140,7 @@ Here we have the Azure Key Vault, and we can put it there.
 
 36
 00:05:22,000 --> 00:05:37,200
-And if we now store it, then we can see something without pushing anything, we can scroll down here, we can see that if we click save, then we click TFZ again.
+And if we now save it, then we can see without pushing anything, we can scroll down here, we can see that if we click save, then we click TFsec again.
 
 37
 00:05:37,360 --> 00:05:48,400
@@ -152,7 +152,7 @@ But this is something run on my machine, this is not deployed or implemented to 
 
 39
 00:05:57,840 --> 00:06:09,280
-Of course, there can be a lot of security challenges by going through, see what the security issue is, what the explanation is, where it can be fixed, on all of these down here.
+Of course, there can be a lot of security challenges by going through, see what the security issue is, what the explanation is, how it can be fixed, on all of these down here.
 
 40
 00:06:09,280 --> 00:06:17,680
@@ -164,7 +164,7 @@ and it is the same conditions for all the tests that are run, and that you have 
 
 42
 00:06:28,240 --> 00:06:38,560
-So now I can quickly just take it away again, this one here, just to scroll down, like that.
+So now I can quickly just take it away again, this one here, just like that.
 
 43
 00:06:38,640 --> 00:06:53,280
@@ -176,15 +176,15 @@ For example, I have put in here now that it should check if Terraform Validate i
 
 45
 00:07:05,360 --> 00:07:18,800
-The thing is that you can put in, that you, for example, have some changes in repo or pushing or something like that, then you can check that Terraform Validate, for example, has passed through, and then you can also put in that it will run new things afterwards.
+The thing is that you can put in, that you, for example, have some changes in repo or pushing or something like that, then you can check that Terraform Validate, for example, has passed, and then you can also put in that it will run new things afterwards.
 
 46
 00:07:18,800 --> 00:07:34,080
-Now we want to see here, here we have a security test, spin up Ubuntu Latest, and here we also have an environmental variable among other things, and then we run the steps, checkout, name, tfsec, aqua, security, what we are going to do, working directory,
+Now we want to see here, here we have a security test, spin up Ubuntu Latest, and here we also have an environmental variable among other things, and then we run the steps, checkout, name, tfsec, aquasecurity, what we are going to do, working directory,
 
 47
 00:07:34,240 --> 00:07:47,680
-and GitHub Actions to make sure that we do not, and GitHub Tokenant, which is there to prevent that we get a rate limit on the GitHub API when we run through all these checks.
+and GitHub Actions to make sure that we do not, and GitHub Token, which is there to prevent that we get a rate limit on the GitHub API when we run through all these checks.
 
 48
 00:07:47,680 --> 00:07:52,000
@@ -196,15 +196,15 @@ Here we see, we have GitHub.com Marketplace, type Actions, here we look at tfsec
 
 50
 00:08:11,520 --> 00:08:28,000
-and then we also have optional input, working directory, version, format, etc., etc., and here also GitHub Tokenant, as we talked about, and then we can also choose to put the arguments we want it to be, for example working directory, which I have put in.
+and then we also have optional input, working directory, version, format, etc., etc., and here also GitHub Token, as we talked about, and then we can also choose to put the arguments we want, for example working directory, which I have put in.
 
 51
 00:08:28,000 --> 00:08:40,320
-So when we have done that, we can now look at our workflow in GitHub, go to GitHub.com, our repo, go into Actions, so here we see now that I have run this file already,
+So when we have done that, we can now look at our workflows in GitHub, go to GitHub.com, our repo, go into Actions, so here we see now that I have created this file already,
 
 52
 00:08:40,400 --> 00:08:54,720
-tfsec, and then I have a workflow dispatch event trigger, so that I can run it manually now, just to see that I get to run it here, but of course there can be other things that should be checked, that it has gone through,
+tfsec, and then I have a workflow dispatch event trigger, so that I can run it manually now, just to see that I get to run it here, but of course there can be other things that should be the check, that it has gone through,
 
 53
 00:08:54,720 --> 00:09:00,400
@@ -212,19 +212,19 @@ that it can be, for example, finished with Validate, and that it is part of a la
 
 54
 00:09:00,400 --> 00:09:11,840
-So if we just take a look at this one now, we know, of course, that it has failed, but the thing is that we just want to check that this security check gives us a response,
+So if we just take a look at this one now, we akready know the outcome, but the thing is that we just want to check that this security check gives us a response,
 
 55
 00:09:11,840 --> 00:09:24,080
-so if we go back to all workflows, we see that the workflow has started, turn from security check, and then manually by me, and then we see here that we get a red cross on the security check,
+so if we go back to all workflows, we see that the workflow has started, terraform security check, and then manually by me, and then we see here that we get a red cross on the security check,
 
 56
 00:09:24,080 --> 00:09:36,960
-status failure, and that would be that if we look at tfsec now, then we can see that it will be a very long list here, because it loads a lot of different types of t-runners when it is to run through.
+status failure, and that would be that if we look at tfsec now, then we can see that it will be a very long list here, because it downloads a lot of different things to the runner when it is to run through.
 
 57
 00:09:36,960 --> 00:09:46,880
-Let's see, so if we press this one, we scroll all the way down to the beginning, then we release, this one is long, and then this one is complete.
+Let's see, so if we press this one, we scroll all the way down to the bottom, this one is long, and then this one is complete.
 
 58
 00:09:46,880 --> 00:09:57,520
@@ -232,15 +232,15 @@ So now we are back, here is a familiar display, which is the same as when we saw
 
 59
 00:09:57,520 --> 00:10:04,480
-so an unwanted one, which spins up for this formula, run the test for us, and give us the answer back.
+so an Ubuntu, which is spun up for this objective, run the test for us, and give us the answer back.
 
 60
 00:10:04,480 --> 00:10:12,400
-Here we see that we have two criticals, and the only critical is the one we remember from the CDT, this key vault of ours,
+Here we see that we have two criticals, and the one critical is the one we remember; the ACL to this key vault of ours,
 
 61
 00:10:12,560 --> 00:10:21,600
-which made it not, or we thought it was very stupid that we had open access to the ACN from anywhere.
+which made it not, or it thought it was very stupid that we had open access to the ACL from anywhere.
 
 62
 00:10:21,600 --> 00:10:28,960
@@ -252,7 +252,7 @@ But there are quite a few here that make this one fail, so we should of course o
 
 64
 00:10:40,720 --> 00:10:50,640
-and medium may not even need to do anything about it, so we can see, for example, that high and critical is what should be triggered,
+and medium may not even need to do anything about it, so we can set for example, that high and critical is what should trigger,
 
 65
 00:10:50,640 --> 00:10:58,320
@@ -260,9 +260,9 @@ and not approve the infrastructure, but that this can be something we evaluate a
 
 66
 00:10:58,320 --> 00:11:06,560
-So it's really just a simple news on how to operate a workflow for security check-in, and how we can look at Teleform Configure,
+So it's really just a simple news on how to create a workflow for the security check, and how we can look at Terraform configuration,
 
 67
 00:11:06,560 --> 00:11:16,800
-which is to solve these security challenges, and TF6's explanation of what the security problem is, and why it is important to take part in it.
+which is to solve these security challenges, and TFsec's explanation of what the security problem is, and why it is important to take a stance on it.
 
