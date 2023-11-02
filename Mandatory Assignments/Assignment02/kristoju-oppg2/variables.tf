@@ -1,19 +1,19 @@
 variable "company" {
   type        = string
   description = "Company name"
-  default = "Company"
+  default     = "Company"
 }
 
 variable "project" {
   type        = string
   description = "Project name"
-  default = "Project"
+  default     = "Project"
 }
 
 variable "billing_code" {
   type        = string
   description = "Billing code"
-  default = "Billing"
+  default     = "Billing"
 }
 
 variable "kv_rgname" {
@@ -118,13 +118,13 @@ variable "nsg_name" {
 variable "vm_name" {
   type        = string
   description = "Name of the virtual machine"
-  default = "vm"
+  default     = "vm"
 }
 
 variable "vm_size" {
   type        = string
   description = "Size of the virtual machine"
-  default = "Standard_B2s"
+  default     = "Standard_B2s"
 }
 
 variable "vm_rg_name" {
