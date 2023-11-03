@@ -7,7 +7,7 @@ provider "azurerm" {
   }
 }
 resource "random_string" "random_string" {
-  length  = 10
+  length  = 7
   special = false
   upper   = false
 }
@@ -21,7 +21,7 @@ resource "azurerm_resource_group" "kv_rg" {
 }
 
 resource "azurerm_key_vault" "kv" {
-  name                        = "${var.kv_base_name}${random_string.random_string.result}${var.kv_location}"
+  name                        = "${var.kv_base_name}${random_string.random_string.result}-we"
   location                    = azurerm_resource_group.kv_rg.location
   resource_group_name         = azurerm_resource_group.kv_rg.name
   enabled_for_disk_encryption = true
@@ -36,16 +36,16 @@ resource "azurerm_key_vault" "kv" {
     object_id = data.azurerm_client_config.current.object_id
 
     key_permissions = [
-      "Get",
+      "Get","List","Create",
     ]
 
     secret_permissions = [
-      "Get", "Set", "List",
+      "Get","Set","Delete","Purge","Recover","List",
     ]
 
-    storage_permissions = [
-      "Get", "Set", "List",
-    ]
+    certificate_permissions = [ 
+      "Get","List",
+     ]
   }
 }
 
