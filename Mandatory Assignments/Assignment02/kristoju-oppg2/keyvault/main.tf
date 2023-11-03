@@ -7,9 +7,9 @@ provider "azurerm" {
   }
 }
 resource "random_string" "random_string" {
-    length = 10
-    special = false
-    upper = false
+  length  = 10
+  special = false
+  upper   = false
 }
 
 
@@ -40,11 +40,11 @@ resource "azurerm_key_vault" "kv" {
     ]
 
     secret_permissions = [
-      "Get","Set","List",
+      "Get", "Set", "List",
     ]
 
     storage_permissions = [
-      "Get","Set","List",
+      "Get", "Set", "List",
     ]
   }
 }
@@ -55,5 +55,5 @@ resource "azurerm_key_vault_secret" "sa_accesskey" {
   key_vault_id = azurerm_key_vault.kv.id
   depends_on = [
     var.sa_name
-]
+  ]
 }

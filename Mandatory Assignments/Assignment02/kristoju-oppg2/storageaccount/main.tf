@@ -1,7 +1,7 @@
 resource "random_string" "random_string" {
-    length = 10
-    special = false
-    upper = false
+  length  = 10
+  special = false
+  upper   = false
 }
 
 resource "azurerm_resource_group" "sa_rg" {
