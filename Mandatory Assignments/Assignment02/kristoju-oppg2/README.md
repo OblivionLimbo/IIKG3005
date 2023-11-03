@@ -6,6 +6,10 @@
 
 # Mandatory Assignment 02 - IaC IIKG3005
 
+## Prerequisites
+
+### Terraform
+
 First, you need to create the backend storage account and container in Azure. This can be done by running the following commands:
 
 ```bash
@@ -22,3 +26,38 @@ Then, you need to create a service principal with the following command:
 az ad sp create-for-rbac --name <service_principal_name> --role contributor --scopes /subscriptions/<subscription_id>/resourceGroups/<resource_group_name>/providers/Microsoft.Storage/storageAccounts/<storage_account_name>
 ```
 
+It's also benificial to create environment variables for the service principal credentials, the different values can be gotten when creating the service principal:
+
+```bash
+$env:ARM_CLIENT_ID="<client_id>"
+$env:ARM_CLIENT_SECRET="<client_secret>"
+$env:ARM_CLIENT_TENANT_ID="<tenant_id>"
+$env:ARM_SUBSCRIPTION_ID="<subscription_id>"
+```
+
+### GitHub
+
+You also need to create GitHub repository secrets for the service principal credentials, the following have to be created.  
+Go to the repository, then Settings -> Secrets and Variables -> Actions -> New repository secret.
+
+```bash
+AZURE_CLIENT_ID
+AZURE_CLIENT_SECRET
+AZURE_TENANT_ID
+AZURE_SUBSCRIPTION_ID
+
+AZURE_CREDENTIALS
+
+{
+  "clientId": "",
+  "clientSecret": "",
+  "subscriptionId": "",
+  "tenantId": "",
+  "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
+  "resourceManagerEndpointUrl": "https://management.azure.com/",
+  "activeDirectoryGraphResourceId": "https://graph.windows.net/",
+  "sqlManagementEndpointUrl": "https://management.core.windows.net:8443/",
+  "galleryEndpointUrl": "https://gallery.azure.com/",
+  "managementEndpointUrl": "https://management.core.windows.net/"
+}
+```
