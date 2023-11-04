@@ -13,7 +13,7 @@ terraform {
     resource_group_name  = "rg-backend-kristofferj"
     storage_account_name = "sabackendkristofferj"
     container_name       = "tfstate"
-    key                  = "backend.terraform.tfstate"
+    key                  = "infra.terraform.tfstate"
   }
 }
 
