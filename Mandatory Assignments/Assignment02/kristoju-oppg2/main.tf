@@ -44,3 +44,5 @@ module "VirtualMachine" {
   vm_password    = var.vm_password
   common_tags    = local.common_tags
 }
+
+# Run terraform apply to create the resources.
