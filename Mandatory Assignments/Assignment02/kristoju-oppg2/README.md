@@ -15,7 +15,7 @@ First, you need to create the backend storage account and container in Azure. Th
 ```bash
 az login
 az account set --subscription <subscription_id>
-az group create --name <resource_group_name> --location <location>
+az group create --resource-group <resource_group_name> --location <location>
 az storage account create --name <storage_account_name> --resource-group <resource_group_name> --location <location> --sku Standard_LRS
 az storage container create --name <container_name> --account-name <storage_account_name>
 ```
