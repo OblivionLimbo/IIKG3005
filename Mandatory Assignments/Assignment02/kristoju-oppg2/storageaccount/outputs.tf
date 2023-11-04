@@ -13,3 +13,8 @@ output "primary_access_key_output" {
   sensitive   = true
   description = "Azure Storage Account - Primary access key"
 }
+
+output "primary_web_endpoint" {
+  value       = azurerm_storage_account.sa.primary_web_endpoint
+  description = "Azure Storage Account - Primary web endpoint"
+}
