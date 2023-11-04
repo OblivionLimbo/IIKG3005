@@ -187,5 +187,5 @@ variable "source_content" {
 variable "web_sa_name" {
   type        = string
   description = "The name of the web storage account"
-  default     = "web-sa"
+  default     = "websa"
 }
