@@ -17,7 +17,8 @@ module "StorageAccount" {
   sa_base_name      = "${var.sa_base_name}${local.workspaces_suffix}"
   sa_container_name = "${var.sa_container_name}-${local.workspaces_suffix}"
   index_document = var.index_document
-  source_content = var.source_content
+  source_content = "${var.source_content}${local.web_suffix}"
+  web_sa_name = "${var.web_sa_name}${local.workspaces_suffix}"
   common_tags = local.common_tags
 }
 
