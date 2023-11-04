@@ -18,7 +18,7 @@ data "azurerm_client_config" "current" {}
 resource "azurerm_resource_group" "kv_rg" {
   name     = var.kv_rgname
   location = var.kv_location
-  tags = var.common_tags
+  tags     = var.common_tags
 }
 
 resource "azurerm_key_vault" "kv" {
@@ -37,16 +37,16 @@ resource "azurerm_key_vault" "kv" {
     object_id = data.azurerm_client_config.current.object_id
 
     key_permissions = [
-      "Get","List","Create",
+      "Get", "List", "Create",
     ]
 
     secret_permissions = [
-      "Get","Set","Delete","Purge","Recover","List",
+      "Get", "Set", "Delete", "Purge", "Recover", "List",
     ]
 
-    certificate_permissions = [ 
-      "Get","List",
-     ]
+    certificate_permissions = [
+      "Get", "List",
+    ]
   }
 }
 

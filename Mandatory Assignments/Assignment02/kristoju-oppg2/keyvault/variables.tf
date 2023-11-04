@@ -46,7 +46,7 @@ variable "kv_sku_name" {
 variable "common_tags" {
   description = "A map of common tags for resources."
   type        = map(string)
-  default     = {
+  default = {
     company      = ""
     project      = ""
     billing_code = ""
