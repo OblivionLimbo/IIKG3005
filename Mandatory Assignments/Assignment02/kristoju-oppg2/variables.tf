@@ -181,7 +181,7 @@ variable "index_document" {
 variable "source_content" {
   type        = string
   description = "The content of the index document"
-  default     = "<html><head><title>Hello World</title></head><body><h1>Hello World!</h1></body></html>"
+  default     = "<h1>Made with Terraform - CI/CD pipeline</h1>"
 }
 
 variable "web_sa_name" {
