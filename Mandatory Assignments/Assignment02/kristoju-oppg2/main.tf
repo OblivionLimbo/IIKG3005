@@ -1,23 +1,24 @@
 module "keyvault" {
   source        = "./keyvault"
-  kv_rgname     = var.kv_rgname
+  kv_rgname     = "${var.kv_rgname}-${local.workspaces_suffix}"
   kv_location   = var.kv_location
-  kv_base_name  = var.kv_base_name
+  kv_base_name  = "${var.kv_base_name}-${local.workspaces_suffix}"
   sa_access_key = module.StorageAccount.primary_access_key_output
   sa_name       = module.StorageAccount.storage_account_name_output
 }
 
 module "StorageAccount" {
   source            = "./storageaccount"
-  sa_rgname         = var.sa_rg_name
+  sa_rg_name         = "${var.sa_rg_name}-${local.workspaces_suffix}"
   sa_location       = var.sa_location
-  sa_base_name      = var.sa_base_name
-  sa_container_name = var.sa_container_name
+  sa_base_name      = "${var.sa_base_name}${local.workspaces_suffix}"
+  sa_container_name = "${var.sa_container_name}-${local.workspaces_suffix}"
+  common_tags = local.common_tags
 }
 
 module "Network" {
   source           = "./network"
-  vnet_rg_name     = var.vnet_rg_name
+  vnet_rg_name     = "${var.vnet_rg_name}-${local.workspaces_suffix}"
   vnet_rg_location = var.vnet_rg_location
   vnet_name        = var.vnet_name
   nsg_name         = var.nsg_name
@@ -26,7 +27,7 @@ module "Network" {
 
 module "VirtualMachine" {
   source         = "./virtualmachine"
-  vm_name        = var.vm_name
+  vm_name        = "${var.vm_name}-${local.workspaces_suffix}"
   vm_rg_name     = var.vm_rg_name
   vm_rg_location = var.vm_rg_location
   vm_nic_name    = var.vm_nic_name
