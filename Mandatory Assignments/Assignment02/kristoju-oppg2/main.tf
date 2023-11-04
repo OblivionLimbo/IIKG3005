@@ -35,7 +35,7 @@ module "Network" {
 module "VirtualMachine" {
   source         = "./virtualmachine"
   vm_name        = terraform.workspace == "default" ? "${var.vm_name}" : "${var.vm_name}-${local.workspaces_suffix}"
-  vm_rg_name     = var.vm_rg_name
+  vm_rg_name     = terraform.workspace == "default" ? "${var.vm_rg_name}" : "${var.vm_rg_name}-${local.workspaces_suffix}"
   vm_rg_location = var.vm_rg_location
   vm_nic_name    = var.vm_nic_name
   vm_subnet_id   = module.Network.subnet_id_output
