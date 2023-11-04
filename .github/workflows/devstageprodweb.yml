@@ -28,6 +28,9 @@ jobs:
         run: terraform workspace select dev || terraform workspace new dev
         working-directory: ${{ env.WORKING_DIR }}
       
+      - name: 'Check last commit message'
+        id: commit
+        run: echo "::set-output name=message::$(git log --format=%B -n 1)"
       - name: 'Conditionally run Terraform action'
         run: |
           if [[ "${{ steps.commit.outputs.message }}" == *"destroy"* ]]; then
@@ -57,6 +60,9 @@ jobs:
         run: terraform workspace select stage || terraform workspace new stage
         working-directory: ${{ env.WORKING_DIR }}
       
+      - name: 'Check last commit message'
+        id: commit
+        run: echo "::set-output name=message::$(git log --format=%B -n 1)"
       - name: 'Conditionally run Terraform action'
         run: |
           if [[ "${{ steps.commit.outputs.message }}" == *"destroy"* ]]; then
@@ -93,6 +99,9 @@ jobs:
         run: terraform apply -auto-approve
         working-directory: ${{ env.WORKING_DIR }}
 
+      - name: 'Check last commit message'
+        id: commit
+        run: echo "::set-output name=message::$(git log --format=%B -n 1)"
       - name: 'Conditionally run Terraform action'
         run: |
           if [[ "${{ steps.commit.outputs.message }}" == *"destroy"* ]]; then
