@@ -32,11 +32,8 @@ resource "azurerm_storage_container" "storage_container" {
 resource "azurerm_storage_blob" "index_html" {
   name                  = var.index_document
   storage_account_name  = azurerm_storage_account.sa.name
-  storage_container_name = azurerm_storage_container.storage_container.name
+  storage_container_name = "$web"
   type                  = "Block"
   source                = var.source_content
   content_type          = "text/html"
-  depends_on = [  
-    azurerm_storage_container.storage_container
-  ]
 }
