@@ -91,6 +91,7 @@ variable "vnet_name" {
 variable "vnet_address_space" {
   type        = list(string)
   description = "Address space of the virtual network"
+  default = [ "10.0.0.0/16" ]
 }
 
 variable "subnet_name" {
@@ -102,6 +103,7 @@ variable "subnet_name" {
 variable "subnet_address_space" {
   type        = list(string)
   description = "Address space of the subnet"
+  default = [ "10.0.0.0/24" ]
 }
 
 variable "nsg_name" {
@@ -149,11 +151,13 @@ variable "pip_name" {
 variable "vm_username" {
   type        = string
   description = "Username of the virtual machine"
+  default     = "azureuser"
 }
 
 variable "vm_password" {
   type        = string
   description = "Password of the virtual machine"
+  default    = "SPF535aLf&6!Ro^^Z7#"
 }
 
 variable "kv_sku_name" {
@@ -165,6 +169,7 @@ variable "kv_sku_name" {
 variable "my_ip" {
   type        = string
   description = "My IP address"
+  default = "10.0.0.6"
 }
 
 variable "index_document" {
