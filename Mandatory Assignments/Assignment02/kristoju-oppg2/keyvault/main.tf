@@ -7,7 +7,7 @@ provider "azurerm" {
   }
 }
 resource "random_string" "random_string" {
-  length  = 7
+  length  = 5
   special = false
   upper   = false
 }
@@ -22,7 +22,7 @@ resource "azurerm_resource_group" "kv_rg" {
 }
 
 resource "azurerm_key_vault" "kv" {
-  name                        = "${var.kv_base_name}${random_string.random_string.result}-we"
+  name                        = "${var.kv_base_name}${random_string.random_string.result}"
   location                    = azurerm_resource_group.kv_rg.location
   resource_group_name         = azurerm_resource_group.kv_rg.name
   enabled_for_disk_encryption = true
