@@ -33,7 +33,7 @@ jobs:
         working-directory: ${{ env.WORKING_DIR }}
 
       - name: Test dev
-          run: |
+          run:
           primary_web_endpoint=$(terraform output -raw module.StorageAccount.primary_web_endpoint)
           curl $primary_web_endpoint
         working-directory: ${{ env.WORKING_DIR }}
