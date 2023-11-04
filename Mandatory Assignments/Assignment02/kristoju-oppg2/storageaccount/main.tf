@@ -17,10 +17,6 @@ resource "azurerm_storage_account" "sa" {
   location                 = azurerm_resource_group.sa_rg.location
   account_tier             = "Standard"
   account_replication_type = "GRS"
-
-  static_website {
-    index_document = var.index_document
-  }
 }
 
 resource "azurerm_storage_container" "storage_container" {
