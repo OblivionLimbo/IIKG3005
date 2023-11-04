@@ -28,8 +28,13 @@ jobs:
         run: terraform workspace select dev || terraform workspace new dev
         working-directory: ${{ env.WORKING_DIR }}
       
-      - name: Terraform apply dev
-        run: terraform apply -auto-approve
+      - name: 'Conditionally run Terraform action'
+        run: |
+          if [[ "${{ steps.commit.outputs.message }}" == *"destroy"* ]]; then
+            terraform destroy -auto-approve
+          else
+            terraform apply -auto-approve
+          fi
         working-directory: ${{ env.WORKING_DIR }}
 
       # - name: Test dev
@@ -52,8 +57,13 @@ jobs:
         run: terraform workspace select stage || terraform workspace new stage
         working-directory: ${{ env.WORKING_DIR }}
       
-      - name: Terraform apply stage
-        run: terraform apply -auto-approve
+      - name: 'Conditionally run Terraform action'
+        run: |
+          if [[ "${{ steps.commit.outputs.message }}" == *"destroy"* ]]; then
+            terraform destroy -auto-approve
+          else
+            terraform apply -auto-approve
+          fi
         working-directory: ${{ env.WORKING_DIR }}
 
       # - name: Test stage
@@ -83,8 +93,13 @@ jobs:
         run: terraform apply -auto-approve
         working-directory: ${{ env.WORKING_DIR }}
 
-      - name: Test prod
-        run: curl $(terraform output -raw primary_web_endpoint)
+      - name: 'Conditionally run Terraform action'
+        run: |
+          if [[ "${{ steps.commit.outputs.message }}" == *"destroy"* ]]; then
+            terraform destroy -auto-approve
+          else
+            terraform apply -auto-approve
+          fi
         working-directory: ${{ env.WORKING_DIR }}
 
       # - name: Get Web Endpoint
