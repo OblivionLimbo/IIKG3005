@@ -7,5 +7,5 @@ locals {
   }
 
   workspaces_suffix = terraform.workspace == "default" ? "" : "${terraform.workspace}"
-  web_suffix = "<h1>${terraform.workspace}</h1>"
+  web_suffix        = "<h1>${terraform.workspace}</h1>"
 }

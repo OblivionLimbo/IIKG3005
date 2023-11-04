@@ -176,7 +176,7 @@ variable "index_document" {
 variable "source_content" {
   type        = string
   description = "The content of the index document"
-  default     = "<html><head><title>Hello World</title></head><body><h1>Hello World!</h1></body></html>"  
+  default     = "<html><head><title>Hello World</title></head><body><h1>Hello World!</h1></body></html>"
 }
 
 variable "web_sa_name" {
