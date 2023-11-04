@@ -14,7 +14,7 @@ output "primary_access_key_output" {
   description = "Azure Storage Account - Primary access key"
 }
 
-output "primary_web_endpoint" {
+output "primary_web_endpoint_output" {
   value       = azurerm_storage_account.sa.primary_web_endpoint
   description = "Azure Storage Account - Primary web endpoint"
 }
