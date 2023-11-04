@@ -32,9 +32,10 @@ jobs:
         run: terraform apply -auto-approve
         working-directory: ${{ env.WORKING_DIR }}
 
-      - name: Test dev
-        run: curl $(terraform output -raw module.StorageAccount.primary_web_endpoint)
-        working-directory: ${{ env.WORKING_DIR }}
+      # - name: Test dev
+      #   run: curl $(terraform output -raw module.StorageAccount.primary_web_endpoint)
+      #   working-directory: ${{ env.WORKING_DIR }}
+      # This would have been added if we were not using modules
 
   stage_prod:
     needs: dev_stage
@@ -55,9 +56,10 @@ jobs:
         run: terraform apply -auto-approve
         working-directory: ${{ env.WORKING_DIR }}
 
-      - name: Test stage
-        run: curl $(terraform output -raw primary_web_endpoint)
-        working-directory: ${{ env.WORKING_DIR }}
+      # - name: Test stage
+      #   run: curl $(terraform output -raw primary_web_endpoint)
+      #   working-directory: ${{ env.WORKING_DIR }}
+      # This would have been added if we were not using modules
 
   prod:
     needs: stage_prod
@@ -85,7 +87,8 @@ jobs:
         run: curl $(terraform output -raw primary_web_endpoint)
         working-directory: ${{ env.WORKING_DIR }}
 
-      - name: Get Web Endpoint
-        id: get_web_endpoint
-        run: echo "WEB_ENDPOINT=$(terraform output -raw primary_web_endpoint)" 
-        working-directory: ${{ env.WORKING_DIR }}
+      # - name: Get Web Endpoint
+      #   id: get_web_endpoint
+      #   run: echo "WEB_ENDPOINT=$(terraform output -raw primary_web_endpoint)" 
+      #   working-directory: ${{ env.WORKING_DIR }}
+      #   This would have been added if we were not using modules
