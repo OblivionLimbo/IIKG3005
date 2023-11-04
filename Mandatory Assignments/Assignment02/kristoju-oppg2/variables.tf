@@ -93,11 +93,6 @@ variable "vnet_address_space" {
   description = "Address space of the virtual network"
 }
 
-variable "vnet_dns_servers" {
-  type        = list(string)
-  description = "DNS servers of the virtual network"
-}
-
 variable "subnet_name" {
   type        = string
   description = "Name of the subnet"
@@ -170,4 +165,16 @@ variable "kv_sku_name" {
 variable "my_ip" {
   type        = string
   description = "My IP address"
+}
+
+variable "index_document" {
+  type        = string
+  description = "The name of the index document"
+  default     = "index.html"
+}
+
+variable "source_content" {
+  type        = string
+  description = "The content of the index document"
+  default     = "<html><head><title>Hello World</title></head><body><h1>Hello World!</h1></body></html>"  
 }
