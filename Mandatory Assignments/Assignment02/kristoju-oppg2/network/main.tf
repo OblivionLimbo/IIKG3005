@@ -1,6 +1,7 @@
 resource "azurerm_resource_group" "vnet_rg" {
   name     = var.vnet_rg_name
   location = var.vnet_rg_location
+  tags = var.common_tags
 }
 
 resource "azurerm_network_security_group" "nsg" {

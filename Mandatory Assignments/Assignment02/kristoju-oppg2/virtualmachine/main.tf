@@ -1,6 +1,7 @@
 resource "azurerm_resource_group" "vm_rg" {
   name     = var.vm_rg_name
   location = var.vm_rg_location
+  tags    = var.common_tags
 }
 
 resource "azurerm_public_ip" "pip_vm" {

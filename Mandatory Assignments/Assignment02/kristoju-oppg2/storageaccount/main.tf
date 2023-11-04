@@ -5,8 +5,10 @@ resource "random_string" "random_string" {
 }
 
 resource "azurerm_resource_group" "sa_rg" {
-  name     = var.sa_rgname
+  name     = var.sa_rg_name
   location = var.sa_location
+
+  tags = var.common_tags
 }
 
 resource "azurerm_storage_account" "sa" {
