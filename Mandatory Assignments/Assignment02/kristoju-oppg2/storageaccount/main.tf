@@ -18,10 +18,22 @@ resource "azurerm_storage_account" "sa" {
   account_tier             = "Standard"
   account_replication_type = "GRS"
 
+  static_website {
+    index_document = var.index_document
+  }
 }
 
 resource "azurerm_storage_container" "storage_container" {
   name                  = var.sa_container_name
   storage_account_name  = azurerm_storage_account.sa.name
   container_access_type = "private"
+}
+
+resource "azurerm_storage_blob" "index_html" {
+  name                  = var.index_document
+  storage_account_name  = azurerm_storage_account.sa.name
+  storage_container_name = azurerm_storage_container.storage_container.name
+  type                  = "Block"
+  source                = var.index_document
+  content_type          = "text/html"
 }
