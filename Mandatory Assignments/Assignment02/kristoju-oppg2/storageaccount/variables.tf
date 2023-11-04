@@ -28,6 +28,11 @@ variable "source_content" {
   description = "The source content"
 }
 
+variable "web_sa_name" {
+  type        = string
+  description = "The name of the web storage account"
+}
+
 variable "common_tags" {
   description = "A map of common tags for resources."
   type        = map(string)
