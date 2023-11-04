@@ -6,6 +6,8 @@
 
 # Mandatory Assignment 02 - IaC IIKG3005
 
+## HOWTO
+
 ## Prerequisites
 
 ### Terraform
@@ -61,3 +63,20 @@ AZURE_CREDENTIALS
   "managementEndpointUrl": "https://management.core.windows.net/"
 }
 ```
+
+### Terraform Workspaces
+
+The following workspaces have to be created:
+
+```bash
+terraform workspace new dev
+terraform workspace new stage
+terraform workspace new prod
+```
+
+### Terraform Variables
+
+The terraform.tfvars file has to be filled out correctly, for the delivery this will be provided in the zip file.  
+Note that the backend storage account and container has to be created before running the terraform scripts.
+
+## Showcase of Successful Workflow
