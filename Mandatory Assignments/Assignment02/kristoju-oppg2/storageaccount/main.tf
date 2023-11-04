@@ -49,3 +49,5 @@ resource "azurerm_storage_blob" "index_html" {
   content_type           = "text/html"
   source_content         = var.source_content
 }
+
+# Destroy
