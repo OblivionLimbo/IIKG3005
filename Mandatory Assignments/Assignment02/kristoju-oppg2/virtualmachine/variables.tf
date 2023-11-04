@@ -39,3 +39,14 @@ variable "vm_password" {
   description = "Virtual machine password"
   sensitive   = true
 }
+
+variable common_tags {
+  description = "A map of common tags for resources."
+  type        = map(string)
+  default     = {
+    company      = ""
+    project      = ""
+    billing_code = ""
+    environment  = ""
+  }
+}

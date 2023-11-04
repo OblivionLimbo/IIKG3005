@@ -22,3 +22,14 @@ variable "sa_name" {
   type        = string
   description = "storage account name"
 }
+
+variable "common_tags" {
+  description = "A map of common tags for resources."
+  type        = map(string)
+  default     = {
+    company      = ""
+    project      = ""
+    billing_code = ""
+    environment  = ""
+  }
+}
