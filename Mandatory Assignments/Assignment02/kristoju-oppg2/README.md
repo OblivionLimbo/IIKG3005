@@ -6,8 +6,6 @@
 
 # Mandatory Assignment 02 - IaC IIKG3005
 
-## HOWTO
-
 ## Prerequisites
 
 ### Terraform
@@ -78,5 +76,48 @@ terraform workspace new prod
 
 The terraform.tfvars file has to be filled out correctly, for the delivery this will be provided in the zip file.  
 Note that the backend storage account and container has to be created before running the terraform scripts.
+
+## HOWTO
+
+Below is a guide on how to use the Terraform scripts, and how it is set up with GitHub Actions.
+
+### GitHub
+
+This repository is set up with GitHub Actions, and the workflow can be found in the .github/workflows folder.  
+The following workflows are set up:
+
+* **terraform-plan.yml** - This workflow is triggered when a pull request is created, and will run terraform plan on the code.  
+  This is done to check if the code is valid, and if it is, the pull request can be merged.
+
+### Terraform
+
+The Terraform scripts are set up with the following structure:
+
+```bash
+.
+├───.terraform
+├───keyvault
+│   ├─main.tf
+│   ├─outputs.tf
+│   └─variables.tf
+├───network
+│   ├─main.tf
+│   ├─outputs.tf
+│   └─variables.tf
+├───storageaccount
+│   ├─main.tf
+│   ├─outputs.tf
+│   └─variables.tf
+├───virtualmachine
+│   ├─main.tf
+│   ├─outputs.tf
+│   └─variables.tf
+├─main.tf
+├─locals.tf
+├─outputs.tf
+├─terraform.tfvars
+├─providers.tf
+└─variables.tf
+```
 
 ## Showcase of Successful Workflow
