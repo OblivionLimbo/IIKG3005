@@ -2,22 +2,24 @@ name: Deploy infrastructure
 on:
   push:
     branches:
-      - 'main'
+      - "dev"
+      - "stage"
+      - "prod"
     paths:
-      - 'Mandatory Assignments/Assignment02/kristoju-oppg2/**'
-      
+      - "Mandatory Assignments/Assignment02/kristoju-oppg2/**"
+
 jobs:
   terraform:
     runs-on: ubuntu-latest
-    
-    name: 'deploy infrastructure'
+
+    name: "deploy infrastructure"
     env:
       ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
       WORKING_DIR: ./Mandatory Assignments/Assignment02/kristoju-oppg2
-      
+
     steps:
       - uses: actions/checkout@v4
 
@@ -25,12 +27,12 @@ jobs:
         id: init
         run: terraform init
         working-directory: ${{ env.WORKING_DIR }}
-      
+
       - name: Terraform plan
         id: plan
         run: terraform plan
         working-directory: ${{ env.WORKING_DIR }}
-      
+
       - name: Terraform apply
         id: apply
         run: terraform apply -auto-approve
