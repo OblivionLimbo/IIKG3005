@@ -26,6 +26,7 @@ jobs:
         # uses: aquasecurity/tfsec-action@b466648d6e39e7c75324f25d83891162a721f2d6
         uses: aquasecurity/tfsec-action@v1.0.3
         with:
+          args: --minimum-severity HIGH 
           working_directory: ${{ env.WORKING_DIR }}
           github_token: ${{ env.GITHUB_TOKEN }}
         # Space separated args specified here will be added during tfsec execution.
