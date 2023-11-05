@@ -4,6 +4,10 @@ on:
   push:
     paths:
       - "Mandatory Assignments/Assignment02/kristoju-oppg2/**"
+    branches:
+      - "dev"
+      - "stage"
+      - "prod"
   workflow_dispatch:
 
 env:
