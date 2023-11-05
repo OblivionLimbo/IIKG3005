@@ -1,13 +1,13 @@
 variable "company" {
   type        = string
   description = "Company name"
-  default     = "Company"
+  default     = "OpenTerra"
 }
 
 variable "project" {
   type        = string
   description = "Project name"
-  default     = "Project"
+  default     = "Github Actions"
 }
 
 variable "billing_code" {

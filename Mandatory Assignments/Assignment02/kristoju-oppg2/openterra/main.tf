@@ -1,6 +1,7 @@
 resource "azurerm_resource_group" "openterra_rg" {
   name     = terraform.workspace == "default" ? "${var.rg_name}" : "${var.rg_name}-${local.workspaces_suffix}"
   location = var.rg_location
+  tags     = local.common_tags
 }
 
 module "keyvault" {
