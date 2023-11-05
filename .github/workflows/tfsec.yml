@@ -1,3 +1,4 @@
+# Taken from https://github.com/torivarm/iac-terraform/blob/main/.github/workflows/tfsec.yml and modified to fit my needs
 name: Terraform Security Check
 on:
   workflow_run:

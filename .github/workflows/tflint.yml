@@ -1,3 +1,4 @@
+# Taken from https://github.com/torivarm/iac-terraform/blob/main/.github/workflows/tflint.yml and modified to fit my repo
 name: Terraform Linter
 on:
   workflow_run:
