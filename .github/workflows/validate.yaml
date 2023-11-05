@@ -1,0 +1,35 @@
+# Workflow to validate Terraform Configuraiton
+
+name: Validate Terraform Configuration
+
+on:
+  push:
+    branches-ignore:
+      - main
+  paths: 
+    - 'Mandatory Assignments/Assignment02/kristoju-oppg2/**'
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+
+    env: 
+      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      WORKING_DIR: 'Mandatory Assignments/Assignment02/kristoju-oppg2'
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+        working-directory: ${{ env.WORKING_DIR }}
+        
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate
+        working-directory: ${{ env.WORKING_DIR }}
