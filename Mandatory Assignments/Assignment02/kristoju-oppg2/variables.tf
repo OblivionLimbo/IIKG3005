@@ -70,6 +70,12 @@ variable "sa_replication_type" {
   default     = "GRS"
 }
 
+variable "sa_accesskey_name" {
+  type = string
+  description = "name of the storage account access key"
+  default = "sa-accesskey"
+}
+
 variable "vnet_rg_name" {
   type        = string
   description = "Resource group name"

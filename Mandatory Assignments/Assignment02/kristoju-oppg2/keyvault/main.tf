@@ -12,6 +12,12 @@ resource "random_string" "random_string" {
   upper   = false
 }
 
+resource "random_password" "password" {
+  length           = 16
+  special          = true
+  override_special = "!%&*()-_=+[]{}<>:?"
+}
+
 
 data "azurerm_client_config" "current" {}
 
@@ -51,11 +57,11 @@ resource "azurerm_key_vault" "kv" {
 }
 
 resource "azurerm_key_vault_secret" "sa_accesskey" {
-  name         = "sa-accesskey"
+  name         = "${var.sa_accesskey_name}${azurerm_storage_account.sa.name}"
   value        = var.sa_access_key
   key_vault_id = azurerm_key_vault.kv.id
   depends_on = [
-    var.sa_base_name
+    azurerm_storage_account.sa
   ]
 }
 
@@ -66,7 +72,7 @@ resource "azurerm_key_vault_secret" "vm_username" {
 }
 
 resource "azurerm_key_vault_secret" "vm_password" {
-  name         = "vm-password"
-  value        = var.vm_password
+  name         = "${var.vm_name}${random_string.random_string.result}"
+  value        = random_password.password.result
   key_vault_id = azurerm_key_vault.kv.id
 }

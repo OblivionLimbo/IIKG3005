@@ -21,6 +21,11 @@ variable "sa_access_key" {
   description = "Storage account access key"
 }
 
+variable "sa_accesskey_name" {
+  type = string
+  description = "name of the storage account access key"
+}
+
 variable "sa_base_name" {
   type        = string
   description = "base storage account name"
@@ -35,6 +40,11 @@ variable "vm_password" {
 variable "vm_username" {
   type        = string
   description = "Username for the VM"
+}
+
+variable "vm_name" {
+  type        = string
+  description = "Name of the VM"
 }
 
 variable "kv_sku_name" {
