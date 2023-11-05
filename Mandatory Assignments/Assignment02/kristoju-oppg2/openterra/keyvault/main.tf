@@ -21,16 +21,10 @@ resource "random_password" "password" {
 
 data "azurerm_client_config" "current" {}
 
-resource "azurerm_resource_group" "kv_rg" {
-  name     = var.rg_name
-  location = var.rg_location
-  tags     = var.common_tags
-}
-
 resource "azurerm_key_vault" "kv" {
   name                        = "${var.kv_base_name}${random_string.random_string.result}"
-  location                    = azurerm_resource_group.kv_rg.location
-  resource_group_name         = azurerm_resource_group.kv_rg.name
+  location                    = var.rg_location
+  resource_group_name         = var.rg_name
   enabled_for_disk_encryption = true
   tenant_id                   = data.azurerm_client_config.current.tenant_id
   soft_delete_retention_days  = 7
@@ -38,26 +32,27 @@ resource "azurerm_key_vault" "kv" {
 
   sku_name = "standard"
 
+  tags = var.common_tags
+
   access_policy {
     tenant_id = data.azurerm_client_config.current.tenant_id
     object_id = data.azurerm_client_config.current.object_id
 
-    key_permissions = [
-      "Get", "List", "Create", "Delete", "Recover", "Backup", "Restore", "UnwrapKey", "WrapKey", "Encrypt", "Decrypt",
+     key_permissions = [
+      "Backup", "Create", "Decrypt", "Delete", "Encrypt", "Get", "Import", "List", "Purge", "Recover", "Restore", "Sign", "UnwrapKey", "Update", "Verify", "WrapKey", "Release", "Rotate", "GetRotationPolicy", "SetRotationPolicy"
     ]
 
     secret_permissions = [
-      "Get", "Set", "Delete", "Purge", "Recover", "List", "Backup", "Restore",
+      "Backup", "Delete", "Get", "List", "Purge", "Recover", "Restore", "Set"
+    ]
+
+    storage_permissions = [
+      "Backup", "Delete", "DeleteSAS", "Get", "GetSAS", "List", "ListSAS", "Purge", "Recover", "RegenerateKey", "Restore", "Set", "SetSAS", "Update"
     ]
 
     certificate_permissions = [
-      "Get", "List", "Create", "Delete", "Import", "Update", "ManageContacts", "GetIssuers", "ListIssuers", "SetIssuers", "DeleteIssuers", "ManageIssuers", "Recover", "Purge",
-    ]
-  }
-
-  network_acls {
-         bypass = "AzureServices"
-         default_action = "Deny"
+      "Backup", "Create", "Delete", "DeleteIssuers", "Get", "GetIssuers", "Import", "List", "ListIssuers", "ManageContacts", "ManageIssuers", "Purge", "Recover", "Restore", "SetIssuers", "Update"
+     ]
   }
 }
 
