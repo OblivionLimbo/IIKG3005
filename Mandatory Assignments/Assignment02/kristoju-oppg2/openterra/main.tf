@@ -22,7 +22,7 @@ module "keyvault" {
 module "StorageAccount" {
   source            = "./storageaccount"
   rg_name           = azurerm_resource_group.openterra_rg.name
-  rg_location       = azurerm_resource_group.openterra_rg.name
+  rg_location       = azurerm_resource_group.openterra_rg.location
   sa_base_name      = terraform.workspace == "default" ? "${var.sa_base_name}" : "${var.sa_base_name}${local.workspaces_suffix}"
   sa_container_name = terraform.workspace == "default" ? "${var.sa_container_name}" : "${var.sa_container_name}-${local.workspaces_suffix}"
   index_document    = var.index_document
