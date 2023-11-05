@@ -95,11 +95,12 @@ The following workflows are set up:
   * The **prod** workspace is protected, so the workflow will not run the terraform apply command for this workspace until it is manually approved.
 
 * **validate.yml** - This workflow is triggered when a push is done to a different branch than the **main** branch, and all it does is validate the terraform configuration with the `terraform validate` command. 
-  * After it has been validated, it will create a pull request to the **main** branch, and wait for it to be merged.
+  * After it has been validated, you can create a pull request to the **main** branch, and the **devstageprod.yml** workflow will run.
 
+In the future I would like to set up a workflow that runs the terraform validate command when a pull request is created, and then run the terraform apply command when the pull request is merged.
+But I have not been able to figure out how to do this yet, and did not have time to do it for this assignment.
 
-
-In this repository I have protected my main branch, so any changes must be done through pull requests.  
+In this repository I have protected my main branch, so any changes must be done through pull requests, unless you force it to main.  
 This is done to ensure that the code is valid, and that the pull request can be merged.  
 
 ### Terraform
