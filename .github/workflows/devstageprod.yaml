@@ -125,10 +125,6 @@ jobs:
         run: terraform workspace select prod || terraform workspace new prod
         working-directory: ${{ env.WORKING_DIR }}
 
-      - name: Terraform apply prod
-        run: terraform apply -auto-approve
-        working-directory: ${{ env.WORKING_DIR }}
-
       - name: "Check last commit message"
         id: commit
         run: echo "::set-output name=message::$(git log --format=%B -n 1)"
