@@ -15,7 +15,7 @@ OperaTerra AS has caught traction in the IT market and famous for its skilled ju
 * For infrastructure configuration it should be created branches (remember good naming convention and life cycle) that should undergo code reviews (terraform fmt, terraform validate and tflint) before they are merged into the environment branches (e.g., dev, staging, prod), which providing a layer of quality assurance.
 * Create Pull Request to perform merging with environment branches.
   * Merging with environment branches should trigger a workflow that will plan and apply infrastructure to workspaces except prod
-    * For deoployment of infrastructure in prod it must be aproved by a minimum of one person.
+    * For deployment of infrastructure in prod it must be aproved by a minimum of one person.
  
  
 ## Deliverables
