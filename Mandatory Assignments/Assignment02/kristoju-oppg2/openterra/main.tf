@@ -61,5 +61,3 @@ output "openterra_rg_name" {
 output "openterra_rg_location" {
   value = azurerm_resource_group.openterra_rg.location
 }
-
-# apply all
