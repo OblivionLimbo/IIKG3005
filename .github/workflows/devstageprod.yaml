@@ -63,9 +63,8 @@ jobs:
           draft: false
           signoff: false
           delete-branch: true
-          target: "dev"
-          changes: "Apply changes to dev"
-          path: "Mandatory Assignments/Assignment02/kristoju-oppg2/**"
+          path: "Mandatory Assignments/Assignment02/kristoju-oppg2"  # Specify the correct directory path
+        
 
       # - name: Test dev
       #   run: curl $(terraform output -raw module.StorageAccount.primary_web_endpoint)
