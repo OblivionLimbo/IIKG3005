@@ -15,7 +15,7 @@ resource "azurerm_virtual_network" "vnet" {
 resource "azurerm_subnet" "subnet" {
   name                 = var.subnet_name
   resource_group_name  = var.rg_name
-  virtual_network_name = var.vnet_name
+  virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["10.0.0.0/24"]
 }
 
@@ -35,5 +35,9 @@ resource "azurerm_network_security_rule" "ssh_inbound_myIP" {
   source_address_prefix       = "178.164.109.225"
   destination_address_prefix  = "*"
   resource_group_name         = var.rg_name
-  network_security_group_name = var.rg_location
+  network_security_group_name = azurerm_network_security_group.nsg.name
+
+  depends_on = [
+    var.rg_name
+  ]
 }

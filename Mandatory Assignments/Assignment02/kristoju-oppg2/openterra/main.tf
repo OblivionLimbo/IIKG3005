@@ -35,9 +35,9 @@ module "Network" {
   source      = "./network"
   rg_name     = azurerm_resource_group.openterra_rg.name
   rg_location = azurerm_resource_group.openterra_rg.location
-  vnet_name   = var.vnet_name
-  nsg_name    = var.nsg_name
-  subnet_name = var.subnet_name
+  vnet_name   = terraform.workspace == "default" ? "${var.vnet_name}" : "${var.vnet_name}-${local.workspaces_suffix}"
+  nsg_name    = terraform.workspace == "default" ? "${var.nsg_name}" : "${var.nsg_name}-${local.workspaces_suffix}"
+  subnet_name = terraform.workspace == "default" ? "${var.subnet_name}" : "${var.subnet_name}-${local.workspaces_suffix}"
   common_tags = local.common_tags
 }
 
@@ -46,9 +46,9 @@ module "VirtualMachine" {
   vm_name      = terraform.workspace == "default" ? "${var.vm_name}" : "${var.vm_name}-${local.workspaces_suffix}"
   rg_name      = azurerm_resource_group.openterra_rg.name
   rg_location  = azurerm_resource_group.openterra_rg.location
-  vm_nic_name  = var.vm_nic_name
+  vm_nic_name  = terraform.workspace == "default" ? "${var.vm_nic_name}" : "${var.vm_nic_name}-${local.workspaces_suffix}"
   vm_subnet_id = module.Network.subnet_id_output
-  pip_name     = var.pip_name
+  pip_name     = terraform.workspace == "default" ? "${var.pip_name}" : "${var.pip_name}-${local.workspaces_suffix}"
   vm_username  = var.vm_username
   vm_password  = var.vm_password
   common_tags  = local.common_tags

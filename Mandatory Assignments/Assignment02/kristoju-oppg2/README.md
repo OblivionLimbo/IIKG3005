@@ -86,16 +86,22 @@ Below is a guide on how to use the Terraform scripts, and how it is set up with 
 This repository is set up with GitHub Actions, and the workflow can be found in the .github/workflows folder.  
 The following workflows are set up:
 
-* **devstageprodweb.yml** - This workflow is triggered when a pull request is created, and will run the terraform init and plan command for each terraform workspace.
+* **devstageprodweb.yml** - This workflow is triggered when a push is done, or on a pull request, and will run the terraform init and plan command for each terraform workspace.
   * It will then check the commit message for the following keywords:
-    * **[apply]** - This will run the terraform apply command, and deploy the infrastructure.
-    * **[destroy]** - This will cancel the terraform destroy command, and destroy the infrastructure.
+    * **[apply dev]** - This will run the terraform apply command on dev, and deploy the dev infrastructure.
+    * **[destroy dev]** - This will cancel the terraform destroy command on dev, and destroy the dev infrastructure.
+  * The same goes for **stage** and **prod**.
+    * **[apply all]** - This will run the terraform apply command on all workspaces, and deploy the infrastructure for all workspaces.
+    * **[destroy all]** - This will cancel the terraform destroy command on all workspaces, and destroy the infrastructure for all workspaces.
   * Anything else will not cause the workflow to apply the infrastructure, but only validate the terraform scripts.
   * The **dev** and **stage** workspace do not have any protection rules, so the workflow will run the terraform apply command for these workspaces.
   * The **prod** workspace is protected, so the workflow will not run the terraform apply command for this workspace until it is manually approved.
 
 * **validate.yml** - This workflow is triggered when a push is done to a different branch than the **main** branch, and all it does is validate the terraform configuration with the `terraform validate` command. 
   * After it has been validated, you can create a pull request to the **main** branch, and the **devstageprod.yml** workflow will run.
+* **tfsec.yml** - This workflow is triggered when **validate.yml** is finished, and will run the `tfsec` command to check for security issues in the terraform scripts.
+  * This currently fails as there are some security issues in the terraform scripts, but I have not fixed them. 
+* **tflint.yml** - This workflow is triggered when **validate.yml** is finished, and will run the `tflint` command to check for errors in the terraform scripts.
 
 In the future I would like to set up a workflow that runs the terraform validate command when a pull request is created, and then run the terraform apply command when the pull request is merged.
 But I have not been able to figure out how to do this yet, and did not have time to do it for this assignment.

@@ -47,6 +47,10 @@ resource "azurerm_key_vault" "kv" {
     storage_permissions = [
       "Backup", "Delete", "DeleteSAS", "Get", "GetSAS", "List", "ListSAS", "Purge", "Recover", "RegenerateKey", "Restore", "Set", "SetSAS", "Update"
     ]
+
+    certificate_permissions = [ 
+      "Get", "List", "Update", "Create", "Import", "Delete", "Recover", "Backup", "Restore"
+     ]
   }
 }
 
