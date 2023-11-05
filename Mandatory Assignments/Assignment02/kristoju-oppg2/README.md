@@ -23,7 +23,7 @@ az storage container create --name <container_name> --account-name <storage_acco
 Then, you need to create a service principal with the following command:
 
 ```bash
-az ad sp create-for-rbac --name <service_principal_name> --role contributor --scopes /subscriptions/<subscription_id>/resourceGroups/<resource_group_name>/providers/Microsoft.Storage/storageAccounts/<storage_account_name>
+az ad sp create-for-rbac --name <service_principal_name> --role contributor --scopes /subscriptions/<subscription_id>/resourceGroups/<resource_group_name>
 ```
 
 It's also benificial to create environment variables for the service principal credentials, the different values can be gotten when creating the service principal:
@@ -139,5 +139,29 @@ The Terraform scripts are set up with the following structure:
 ├─providers.tf
 └─variables.tf
 ```
+
+When everything is deployed, there will be three resource groups that contain resources for each workspace.  
+These resources and resource groups are named with the workspace as a suffix, so that they are easily identifiable.  
+Most resources also have a tag with the workspace name, so that they are also easily identifiable in the Azure portal.  
+
+You can run the terraform commands manually, or you can use the GitHub Actions workflow to run the commands.  
+
+To run the terraform commands manually, you can use the following commands:
+
+```bash
+terraform init
+terraform plan -var-file="terraform.tfvars" -out="planfile"
+terraform apply "planfile"
+```
+
+To destroy the infrastructure, you can use the following commands:
+
+```bash
+terraform destroy
+```
+
+Make sure this is done in the correct workspace, or else you will destroy the wrong infrastructure, or get an error.
+
+
 
 ## Showcase of Successful Workflow
