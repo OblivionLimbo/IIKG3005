@@ -1,0 +1,32 @@
+name: Terraform Linter
+on:
+  workflow_run:
+    workflows: ["Terraform Validate"]
+    types:
+      - completed
+  workflow_dispatch:
+
+jobs:
+  terraform:
+    name: 'tflint'
+    runs-on: ubuntu-latest
+    
+    env:
+      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      WORKING_DIR: ./Mandatory Assignments/Assignment02/kristoju-oppg2
+      
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup TFLint
+      # uses: terraform-linters/setup-tflint@19a52fbac37dacb22a09518e4ef6ee234f2d4987
+        uses: terraform-linters/setup-tflint@v4.0.0
+        with:
+          # TFLint version to install
+          tflint_version: default
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Installs a wrapper script to wrap subsequent calls to `tflint` and expose `stdout`, `stderr`, and `exitcode` outputs
+          tflint_wrapper: false # optional, default is false
