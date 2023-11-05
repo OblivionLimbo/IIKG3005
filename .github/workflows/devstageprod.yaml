@@ -63,7 +63,7 @@ jobs:
           draft: false
           signoff: false
           delete-branch: true
-          path: "/"  # Specify the correct directory path
+          path: "./"  # Specify the correct directory path
         
 
       # - name: Test dev
