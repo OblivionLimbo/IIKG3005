@@ -3,16 +3,6 @@ variable "sa_base_name" {
   description = "The name of the storage account"
 }
 
-variable "sa_rg_name" {
-  type        = string
-  description = "The name of the resource group"
-}
-
-variable "sa_location" {
-  type        = string
-  description = "The Azure region where resources will be created"
-}
-
 variable "sa_container_name" {
   type        = string
   description = "The name of the storage container"
@@ -36,10 +26,14 @@ variable "web_sa_name" {
 variable "common_tags" {
   description = "A map of common tags for resources."
   type        = map(string)
-  default = {
-    company      = ""
-    project      = ""
-    billing_code = ""
-    environment  = ""
-  }
+}
+
+variable "rg_location" {
+  type        = string
+  description = "The Azure region where resources will be created"
+}
+
+variable "rg_name" {
+  type        = string
+  description = "The name of the resource group"
 }

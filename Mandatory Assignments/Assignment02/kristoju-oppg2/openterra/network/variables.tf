@@ -1,13 +1,3 @@
-variable "vnet_rg_name" {
-  type        = string
-  description = "Resource group name"
-}
-
-variable "vnet_rg_location" {
-  type        = string
-  description = "Resource group location"
-}
-
 variable "vnet_name" {
   type        = string
   description = "Virtual network name"
@@ -26,10 +16,14 @@ variable "subnet_name" {
 variable "common_tags" {
   description = "A map of common tags for resources."
   type        = map(string)
-  default     = {
-    company      = ""
-    project      = ""
-    billing_code = ""
-    environment  = ""
-  }
+}
+
+variable "rg_location" {
+  type        = string
+  description = "The Azure region where resources will be created"
+}
+
+variable "rg_name" {
+  type        = string
+  description = "The name of the resource group"
 }

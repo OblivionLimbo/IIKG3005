@@ -1,13 +1,3 @@
-variable "vm_rg_name" {
-  type        = string
-  description = "Resource group name"
-}
-
-variable "vm_rg_location" {
-  type        = string
-  description = "Resource group location"
-}
-
 variable "vm_nic_name" {
   type        = string
   description = "Network interface name"
@@ -43,10 +33,14 @@ variable "vm_password" {
 variable common_tags {
   description = "A map of common tags for resources."
   type        = map(string)
-  default     = {
-    company      = ""
-    project      = ""
-    billing_code = ""
-    environment  = ""
-  }
+}
+
+variable "rg_location" {
+  type        = string
+  description = "The Azure region where resources will be created"
+}
+
+variable "rg_name" {
+  type        = string
+  description = "The name of the resource group"
 }

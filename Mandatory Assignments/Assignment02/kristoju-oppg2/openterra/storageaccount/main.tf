@@ -4,17 +4,10 @@ resource "random_string" "random_string" {
   upper   = false
 }
 
-resource "azurerm_resource_group" "sa_rg" {
-  name     = var.sa_rg_name
-  location = var.sa_location
-
-  tags = var.common_tags
-}
-
 resource "azurerm_storage_account" "sa" {
   name                     = "${lower(var.sa_base_name)}${random_string.random_string.result}"
-  resource_group_name      = azurerm_resource_group.sa_rg.name
-  location                 = azurerm_resource_group.sa_rg.location
+  resource_group_name      = var.rg_name
+  location                 = var.rg_location
   account_tier             = "Standard"
   account_replication_type = "GRS"
   min_tls_version          = "TLS1_2"
@@ -28,8 +21,8 @@ resource "azurerm_storage_container" "storage_container" {
 
 resource "azurerm_storage_account" "sa_web" {
   name                     = "${lower(var.web_sa_name)}${random_string.random_string.result}"
-  resource_group_name      = azurerm_resource_group.sa_rg.name
-  location                 = azurerm_resource_group.sa_rg.location
+  resource_group_name      = var.rg_name
+  location                 = var.rg_location
   account_tier             = "Standard"
   account_replication_type = "GRS"
   min_tls_version          = "TLS1_2"

@@ -1,20 +1,14 @@
-resource "azurerm_resource_group" "vm_rg" {
-  name     = var.vm_rg_name
-  location = var.vm_rg_location
-  tags    = var.common_tags
-}
-
 resource "azurerm_public_ip" "pip_vm" {
   name                = var.pip_name
-  resource_group_name = azurerm_resource_group.vm_rg.name
-  location            = azurerm_resource_group.vm_rg.location
+  resource_group_name = var.rg_name
+  location            = var.rg_location
   allocation_method   = "Static"
 }
 
 resource "azurerm_network_interface" "vm_nic" {
   name                = var.vm_nic_name
-  location            = azurerm_resource_group.vm_rg.location
-  resource_group_name = azurerm_resource_group.vm_rg.name
+  location            = var.rg_location
+  resource_group_name = var.rg_name
 
   ip_configuration {
     name                          = "internal"
@@ -26,8 +20,8 @@ resource "azurerm_network_interface" "vm_nic" {
 
 resource "azurerm_linux_virtual_machine" "linux_vm" {
   name                            = var.vm_name
-  resource_group_name             = azurerm_resource_group.vm_rg.name
-  location                        = azurerm_resource_group.vm_rg.location
+  resource_group_name             = var.rg_name
+  location                        = var.rg_location
   size                            = "Standard_F2"
   admin_username                  = var.vm_username
   admin_password                  = var.vm_password

@@ -22,8 +22,8 @@ resource "random_password" "password" {
 data "azurerm_client_config" "current" {}
 
 resource "azurerm_resource_group" "kv_rg" {
-  name     = var.kv_rgname
-  location = var.kv_location
+  name     = var.rg_name
+  location = var.rg_location
   tags     = var.common_tags
 }
 

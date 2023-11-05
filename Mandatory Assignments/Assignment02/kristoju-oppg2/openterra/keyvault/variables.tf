@@ -1,15 +1,3 @@
-variable "kv_rgname" {
-  type        = string
-  description = "Key Vault Resource Group Name"
-  default     = "kv-rg"
-}
-
-variable "kv_location" {
-  type        = string
-  description = "location of the Key Vault"
-  default     = "westeurope"
-}
-
 variable "kv_base_name" {
   type        = string
   description = "Base name of the Key Vault"
@@ -50,16 +38,19 @@ variable "vm_name" {
 variable "kv_sku_name" {
   type        = string
   description = "SKU name for the Key Vault"
-  default     = "standard"
 }
 
 variable "common_tags" {
   description = "A map of common tags for resources."
   type        = map(string)
-  default = {
-    company      = ""
-    project      = ""
-    billing_code = ""
-    environment  = ""
-  }
+}
+
+variable "rg_location" {
+  type        = string
+  description = "The Azure region where resources will be created"
+}
+
+variable "rg_name" {
+  type        = string
+  description = "The name of the resource group"
 }
