@@ -47,4 +47,4 @@ module "VirtualMachine" {
   common_tags    = local.common_tags
 }
 
-# Destroy it again
+# Destroy it
