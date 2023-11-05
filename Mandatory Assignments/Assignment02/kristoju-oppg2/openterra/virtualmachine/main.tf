@@ -3,6 +3,8 @@ resource "azurerm_public_ip" "pip_vm" {
   resource_group_name = var.rg_name
   location            = var.rg_location
   allocation_method   = "Static"
+
+  tags = var.common_tags
 }
 
 resource "azurerm_network_interface" "vm_nic" {
@@ -16,6 +18,8 @@ resource "azurerm_network_interface" "vm_nic" {
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.pip_vm.id
   }
+
+  tags = var.common_tags
 }
 
 resource "azurerm_linux_virtual_machine" "linux_vm" {
@@ -41,4 +45,6 @@ resource "azurerm_linux_virtual_machine" "linux_vm" {
     sku       = "20_04-lts"
     version   = "latest"
   }
+
+  tags = var.common_tags
 }
