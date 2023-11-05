@@ -36,22 +36,17 @@ resource "azurerm_key_vault" "kv" {
     tenant_id = data.azurerm_client_config.current.tenant_id
     object_id = data.azurerm_client_config.current.object_id
 
-    key_permissions = [
-      "Get", "List", "Create", "Delete", "Recover", "Backup", "Restore", "UnwrapKey", "WrapKey", "Encrypt", "Decrypt",
+     key_permissions = [
+      "Backup", "Create", "Decrypt", "Delete", "Encrypt", "Get", "Import", "List", "Purge", "Recover", "Restore", "Sign", "UnwrapKey", "Update", "Verify", "WrapKey", "Release", "Rotate", "GetRotationPolicy", "SetRotationPolicy"
     ]
 
     secret_permissions = [
-      "Get", "Set", "Delete", "Purge", "Recover", "List", "Backup", "Restore",
+      "Backup", "Delete", "Get", "List", "Purge", "Recover", "Restore", "Set"
     ]
 
-    certificate_permissions = [
-      "Get", "List", "Create", "Delete", "Import", "Update", "ManageContacts", "GetIssuers", "ListIssuers", "SetIssuers", "DeleteIssuers", "ManageIssuers", "Recover", "Purge",
+    storage_permissions = [
+      "Backup", "Delete", "DeleteSAS", "Get", "GetSAS", "List", "ListSAS", "Purge", "Recover", "RegenerateKey", "Restore", "Set", "SetSAS", "Update"
     ]
-  }
-
-  network_acls {
-         bypass = "AzureServices"
-         default_action = "Deny"
   }
 }
 
