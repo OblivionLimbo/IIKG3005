@@ -54,6 +54,11 @@ resource "azurerm_key_vault" "kv" {
       "Get", "List", "Create", "Delete", "Import", "Update", "ManageContacts", "GetIssuers", "ListIssuers", "SetIssuers", "DeleteIssuers", "ManageIssuers", "Recover", "Purge",
     ]
   }
+
+  network_acls {
+         bypass = "AzureServices"
+         default_action = "Deny"
+  }
 }
 
 resource "azurerm_key_vault_secret" "sa_accesskey" {
