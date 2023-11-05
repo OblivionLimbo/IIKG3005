@@ -3,7 +3,7 @@ name: Terraform CI/CD
 on:
   push:
     paths:
-      - 'Mandatory Assignments/Assignment02/kristoju-oppg2/**'
+      - "Mandatory Assignments/Assignment02/kristoju-oppg2/**"
   workflow_dispatch:
 
 env:
@@ -19,28 +19,53 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      
+
       - name: Terraform init
         run: terraform init
         working-directory: ${{ env.WORKING_DIR }}
-        
+
       - name: Terraform workspace select or create dev
         run: terraform workspace select dev || terraform workspace new dev
         working-directory: ${{ env.WORKING_DIR }}
-      
-      - name: 'Check last commit message'
+
+      - name: "Check last commit message"
         id: commit
         run: echo "::set-output name=message::$(git log --format=%B -n 1)"
-      - name: 'Conditionally run Terraform action'
+      - name: "Conditionally run Terraform action"
         run: |
-          if [[ "${{ steps.commit.outputs.message }}" == *"destroy"* ]]; then
+          if [[ "${{ steps.commit.outputs.message }}" == *"destroy dev"* ]]; then
             terraform destroy -auto-approve
-          elif [[ "${{ steps.commit.outputs.message }}" == *"apply"* ]]; then
+          elif [[ "${{ steps.commit.outputs.message }}" == *"apply dev"* ]]; then
             terraform apply -auto-approve
+          elif [[ "${{ steps.commit.outputs.message }}" == *"apply all"* ]]; then
+            terraform apply -auto-approve
+          elif [[ "${{ steps.commit.outputs.message }}" == *"destroy all"* ]]; then
+            terraform destroy -auto-approve
           else
-            echo "No changes to apply"
+            echo "No changes will be applied"
           fi
         working-directory: ${{ env.WORKING_DIR }}
+
+      # Create a pull request and automatically apply changes to the dev branch
+
+      - name: Create pull request for dev
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Automatically apply changes to dev"
+          title: "Automatically apply changes to dev"
+          body: "Automatically apply changes to dev"
+          branch: "dev"
+          branch-suffix: "dev"
+          labels: "dev"
+          reviewers: "kristoju"
+          assignees: "kristoju"
+          draft: false
+          signoff: false
+          delete-branch: true
+          target: "dev"
+          changes: "Apply changes to dev"
+          path: "Mandatory Assignments/Assignment02/kristoju-oppg2/**"
 
       # - name: Test dev
       #   run: curl $(terraform output -raw module.StorageAccount.primary_web_endpoint)
@@ -53,26 +78,30 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      
+
       - name: Terraform init
         run: terraform init
         working-directory: ${{ env.WORKING_DIR }}
-        
+
       - name: Terraform workspace select or create stage
         run: terraform workspace select stage || terraform workspace new stage
         working-directory: ${{ env.WORKING_DIR }}
-      
-      - name: 'Check last commit message'
+
+      - name: "Check last commit message"
         id: commit
         run: echo "::set-output name=message::$(git log --format=%B -n 1)"
-      - name: 'Conditionally run Terraform action'
+      - name: "Conditionally run Terraform action"
         run: |
-          if [[ "${{ steps.commit.outputs.message }}" == *"destroy"* ]]; then
+          if [[ "${{ steps.commit.outputs.message }}" == *"destroy stage"* ]]; then
             terraform destroy -auto-approve
-          elif [[ "${{ steps.commit.outputs.message }}" == *"apply"* ]]; then
+          elif [[ "${{ steps.commit.outputs.message }}" == *"apply stage"* ]]; then
             terraform apply -auto-approve
+          elif [[ "${{ steps.commit.outputs.message }}" == *"apply all"* ]]; then
+            terraform apply -auto-approve
+          elif [[ "${{ steps.commit.outputs.message }}" == *"destroy all"* ]]; then
+            terraform destroy -auto-approve
           else
-            echo "No changes to apply"
+            echo "No changes will be applied"
           fi
         working-directory: ${{ env.WORKING_DIR }}
 
@@ -84,41 +113,45 @@ jobs:
   prod:
     needs: stage_prod
     runs-on: ubuntu-latest
-    environment: 
+    environment:
       name: production
       url: ${{ steps.get_web_endpoint.outputs.WEB_ENDPOINT }} # replace deploy_prod and web_url with actual output variables
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      
+
       - name: Terraform init
         run: terraform init
         working-directory: ${{ env.WORKING_DIR }}
-        
+
       - name: Terraform workspace select or create prod
         run: terraform workspace select prod || terraform workspace new prod
         working-directory: ${{ env.WORKING_DIR }}
-      
+
       - name: Terraform apply prod
         run: terraform apply -auto-approve
         working-directory: ${{ env.WORKING_DIR }}
 
-      - name: 'Check last commit message'
+      - name: "Check last commit message"
         id: commit
         run: echo "::set-output name=message::$(git log --format=%B -n 1)"
-      - name: 'Conditionally run Terraform action'
+      - name: "Conditionally run Terraform action"
         run: |
-          if [[ "${{ steps.commit.outputs.message }}" == *"destroy"* ]]; then
+          if [[ "${{ steps.commit.outputs.message }}" == *"destroy prod"* ]]; then
             terraform destroy -auto-approve
-          elif [[ "${{ steps.commit.outputs.message }}" == *"apply"* ]]; then
+          elif [[ "${{ steps.commit.outputs.message }}" == *"apply prod"* ]]; then
             terraform apply -auto-approve
+          elif [[ "${{ steps.commit.outputs.message }}" == *"apply all"* ]]; then
+            terraform apply -auto-approve
+          elif [[ "${{ steps.commit.outputs.message }}" == *"destroy all"* ]]; then
+            terraform destroy -auto-approve
           else
-            echo "No changes to apply"
+            echo "No changes will be applied"
           fi
         working-directory: ${{ env.WORKING_DIR }}
 
       # - name: Get Web Endpoint
       #   id: get_web_endpoint
-      #   run: echo "WEB_ENDPOINT=$(terraform output -raw primary_web_endpoint)" 
+      #   run: echo "WEB_ENDPOINT=$(terraform output -raw primary_web_endpoint)"
       #   working-directory: ${{ env.WORKING_DIR }}
       #   This would have been added if we were not using modules
