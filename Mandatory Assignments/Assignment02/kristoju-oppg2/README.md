@@ -86,8 +86,21 @@ Below is a guide on how to use the Terraform scripts, and how it is set up with 
 This repository is set up with GitHub Actions, and the workflow can be found in the .github/workflows folder.  
 The following workflows are set up:
 
-* **terraform-plan.yml** - This workflow is triggered when a pull request is created, and will run terraform plan on the code.  
-  This is done to check if the code is valid, and if it is, the pull request can be merged.
+* **devstageprodweb.yml** - This workflow is triggered when a pull request is created, and will run the terraform init and plan command for each terraform workspace.
+  * It will then check the commit message for the following keywords:
+    * **[apply]** - This will run the terraform apply command, and deploy the infrastructure.
+    * **[destroy]** - This will cancel the terraform destroy command, and destroy the infrastructure.
+  * Anything else will not cause the workflow to apply the infrastructure, but only validate the terraform scripts.
+  * The **dev** and **stage** workspace do not have any protection rules, so the workflow will run the terraform apply command for these workspaces.
+  * The **prod** workspace is protected, so the workflow will not run the terraform apply command for this workspace until it is manually approved.
+
+* **validate.yml** - This workflow is triggered when a push is done to a different branch than the **main** branch, and all it does is validate the terraform configuration with the `terraform validate` command. 
+  * After it has been validated, it will create a pull request to the **main** branch, and wait for it to be merged.
+
+
+
+In this repository I have protected my main branch, so any changes must be done through pull requests.  
+This is done to ensure that the code is valid, and that the pull request can be merged.  
 
 ### Terraform
 
