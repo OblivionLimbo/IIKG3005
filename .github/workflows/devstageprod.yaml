@@ -32,6 +32,11 @@ jobs:
         run: terraform workspace select dev || terraform workspace new dev
         working-directory: ${{ env.WORKING_DIR }}
 
+      - name: Terraform plan
+        id: plan
+        run: terraform plan
+        working-directory: ${{ env.WORKING_DIR }}
+
       - name: "Check last commit message"
         id: commit
         run: echo "::set-output name=message::$(git log --format=%B -n 1)"
@@ -88,6 +93,11 @@ jobs:
         run: terraform workspace select stage || terraform workspace new stage
         working-directory: ${{ env.WORKING_DIR }}
 
+      - name: Terraform plan
+        id: plan
+        run: terraform plan
+        working-directory: ${{ env.WORKING_DIR }}
+
       - name: "Check last commit message"
         id: commit
         run: echo "::set-output name=message::$(git log --format=%B -n 1)"
@@ -127,6 +137,11 @@ jobs:
 
       - name: Terraform workspace select or create prod
         run: terraform workspace select prod || terraform workspace new prod
+        working-directory: ${{ env.WORKING_DIR }}
+
+      - name: Terraform plan
+        id: plan
+        run: terraform plan
         working-directory: ${{ env.WORKING_DIR }}
 
       - name: "Check last commit message"
