@@ -7,6 +7,8 @@ module "keyvault" {
   sa_base_name  = module.StorageAccount.storage_account_name_output
   vm_username   = var.vm_username
   vm_password   = var.vm_password
+  vm_name       = terraform.workspace == "default" ? "${var.vm_name}" : "${var.vm_name}-${local.workspaces_suffix}"
+  sa_accesskey_name = terraform.workspace == "default" ? "${var.sa_accesskey_name}" : "${var.sa_accesskey_name}-${local.workspaces_suffix}"
   common_tags   = local.common_tags
 }
 

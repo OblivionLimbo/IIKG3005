@@ -12,6 +12,12 @@ resource "random_string" "random_string" {
   upper   = false
 }
 
+resource "random_password" "password" {
+  length           = 16
+  special          = true
+  override_special = "!%&*()-_=+[]{}<>:?"
+}
+
 
 data "azurerm_client_config" "current" {}
 
@@ -67,6 +73,6 @@ resource "azurerm_key_vault_secret" "vm_username" {
 
 resource "azurerm_key_vault_secret" "vm_password" {
   name         = "vm-password"
-  value        = var.vm_password
+  value        = random_password.password.result
   key_vault_id = azurerm_key_vault.kv.id
 }
