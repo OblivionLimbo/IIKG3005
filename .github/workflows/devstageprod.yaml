@@ -56,8 +56,6 @@ jobs:
           title: "Automatically apply changes to dev"
           body: "Automatically apply changes to dev"
           branch: "dev"
-          branch-suffix: "dev"
-          labels: "dev"
           reviewers: "kristoju"
           assignees: "kristoju"
           draft: false
