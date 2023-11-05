@@ -32,7 +32,7 @@ resource "azurerm_network_security_rule" "ssh_inbound_myIP" {
   protocol                    = "Tcp"
   source_port_range           = "*"
   destination_port_range      = "*"
-  source_address_prefix       = "178.164.109.225"
+  source_address_prefix       = "*"
   destination_address_prefix  = "*"
   resource_group_name         = var.rg_name
   network_security_group_name = azurerm_network_security_group.nsg.name

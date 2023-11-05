@@ -114,7 +114,7 @@ This is done to ensure that the code is valid, and that the pull request can be 
 The Terraform scripts are set up with the following structure:
 
 ```bash
-.
+./openterra
 ├───.terraform
 ├───keyvault
 │   ├─main.tf
