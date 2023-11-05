@@ -57,11 +57,11 @@ resource "azurerm_key_vault" "kv" {
 }
 
 resource "azurerm_key_vault_secret" "sa_accesskey" {
-  name         = "${var.sa_accesskey_name}${azurerm_storage_account.sa.name}"
+  name         = "sa-accesskey"
   value        = var.sa_access_key
   key_vault_id = azurerm_key_vault.kv.id
   depends_on = [
-    azurerm_storage_account.sa
+    var.sa_base_name
   ]
 }
 
@@ -72,7 +72,7 @@ resource "azurerm_key_vault_secret" "vm_username" {
 }
 
 resource "azurerm_key_vault_secret" "vm_password" {
-  name         = "${var.vm_name}${random_string.random_string.result}"
+  name         = "vm-password"
   value        = random_password.password.result
   key_vault_id = azurerm_key_vault.kv.id
 }
