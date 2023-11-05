@@ -162,8 +162,6 @@ terraform destroy
 
 Make sure this is done in the correct workspace, or else you will destroy the wrong infrastructure, or get an error.
 
-
-
 ## Showcase of Successful Workflow
 
 The following screenshots show the successful workflow and the deployed infrastructure.  
@@ -271,3 +269,11 @@ The full workflow can be viewed [here](https://github.com/OblivionLimbo/IIKG3005
 
 **Prod**  
 ![prod](https://cdn.discordapp.com/attachments/1156933138828759111/1170755975599370250/image.png?ex=655a3278&is=6547bd78&hm=b41cead6769a29a14959eac7c6fa04937ac2abb6251b1ea70cb7631790f86f55&)
+
+### Merge to Main
+
+https://github.com/OblivionLimbo/IIKG3005/pull/11
+
+![pull request](https://cdn.discordapp.com/attachments/1156933138828759111/1170756927597318305/image.png?ex=655a335b&is=6547be5b&hm=e3f2020ff6203e2d3ad0c68b1c545f9b27a5bcab7f208e61398fd2809abe760b&)
+
+![merge ready](https://cdn.discordapp.com/attachments/1156933138828759111/1170757131801211010/image.png?ex=655a338b&is=6547be8b&hm=66be86476febc62169906045d6d5eddb8889978d8fe4720f766063500e3a64fe&)
