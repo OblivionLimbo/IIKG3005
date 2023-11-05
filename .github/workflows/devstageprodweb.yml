@@ -35,8 +35,10 @@ jobs:
         run: |
           if [[ "${{ steps.commit.outputs.message }}" == *"destroy"* ]]; then
             terraform destroy -auto-approve
-          else
+          else if [[ "${{ steps.commit.outputs.message }}" == *"apply"* ]]; then
             terraform apply -auto-approve
+          else
+            echo "No changes to apply"
           fi
         working-directory: ${{ env.WORKING_DIR }}
 
@@ -67,8 +69,10 @@ jobs:
         run: |
           if [[ "${{ steps.commit.outputs.message }}" == *"destroy"* ]]; then
             terraform destroy -auto-approve
-          else
+          else if [[ "${{ steps.commit.outputs.message }}" == *"apply"* ]]; then
             terraform apply -auto-approve
+          else
+            echo "No changes to apply"
           fi
         working-directory: ${{ env.WORKING_DIR }}
 
@@ -106,8 +110,10 @@ jobs:
         run: |
           if [[ "${{ steps.commit.outputs.message }}" == *"destroy"* ]]; then
             terraform destroy -auto-approve
-          else
+          else if [[ "${{ steps.commit.outputs.message }}" == *"apply"* ]]; then
             terraform apply -auto-approve
+          else
+            echo "No changes to apply"
           fi
         working-directory: ${{ env.WORKING_DIR }}
 
