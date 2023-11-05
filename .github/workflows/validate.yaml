@@ -32,3 +32,7 @@ jobs:
         id: validate
         run: terraform validate
         working-directory: ${{ env.WORKING_DIR }}
+      - name: Set Validation Completed
+        id: validation_completed
+        run: echo "Validation Completed" # This step signals the completion of the workflow
+        continue-on-error: true
