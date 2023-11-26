@@ -14,7 +14,11 @@
     - [Modularizing Infrastructure](#modularizing-infrastructure)
     - [Drawing Boundaries Between Components](#drawing-boundaries-between-components)
 - [Understanding Terraform HCL](#understanding-terraform-hcl)
+  - [About HCL](#about-hcl)
+  - [Structuring Blocks in Terraform](#structuring-blocks-in-terraform)
+  - [Terraform Best Practices](#terraform-best-practices)
 - [Terraform Providers](#terraform-providers)
+  - [Providers Overview](#providers-overview)
 - [Terraform Modules](#terraform-modules)
 - [Terraform State File](#terraform-state-file)
 - [Analyzing Terraform Configurations](#analyzing-terraform-configurations)
@@ -308,6 +312,20 @@ If you want to read more about it, please refer to the book (p. 256 - 270).
 
 https://aidanfinn.com/?p=22549 (Add pros and cons of modularizing infrastructure)
 
+#### Benefits of Modularization <!-- omit from toc -->
+- You write less code because the code is written once and can be reused.
+- Code is standardised, and you can go from one workload or client to another, and know how the code works.
+- Governance is built into the code, such as naming conventions, tagging, and security.
+- Smaller code is easier to troubleshoot and understand.
+- Breaking your code into smaller modules makes collaboration easier.
+
+#### Challenges of Modularization <!-- omit from toc -->
+- No matter how well you write a module, it will always require updates.
+  - New code means new versions.
+- Trying to create a one-size-fits-all module is hard.
+- The code length is compounded by code complexity.
+- You will have to create a code release and versioning system that must be maintained. 
+
 ### Drawing Boundaries Between Components
 
 The following is listed when it comes to drawing boundaries between components:
@@ -355,19 +373,196 @@ The following is listed when it comes to drawing boundaries between components:
 
 Delve into how Terraform HashiCorp Language (HCL) operates, focusing on its declarative nature, idempotency, and the structuring of blocks. This knowledge is crucial for writing effective and efficient Terraform code.
 
-https://www.linode.com/docs/guides/introduction-to-hcl/
+## About HCL
 
-https://developer.hashicorp.com/terraform/tutorials/configuration-language
+Taken from [Terraform Language Documentation](https://developer.hashicorp.com/terraform/language). 
+
+The main purpose of the Terraform language is declaring [resources](https://developer.hashicorp.com/terraform/language/resources), which represent infrastructure objects. All other language features exist only to make the definition of resources more flexible and convenient.  
+A *Terraform configuration* is a complete document in the Terraform language that tells Terraform how to manage a given collection of infrastructure. A configuration can consist of multiple files and directories.
+
+The syntax of the Terraform language consists of only a few basic elements:
+
+```json
+resource "azurerm_virtual_network" "example-network" {
+  name                = "example-network"
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
+  address_space       = ["10.0.0.0/16"]
+
+  tags = var.common_tags
+}
+
+<BLOCK TYPE> "<BLOCK LABEL>" "<BLOCK LABEL>" {
+  # Block body
+  <IDENTIFIER> = <EXPRESSION> # Argument
+}
+```
+
+- *Blocks* are containers for other content and usually represent the configuration of some kind of object, like a resource. 
+  - Blocks have a *block type*, can have zero or more *labels*, and have a body that contains any number of arguments and nested blocks. 
+  - Most of Terraform's features are controlled by top-level blocks in a configuration file.
+- *Arguments* assign a value to a name. They appear within blocks.
+- *Expressions* represent a value, either literally or by referencing and combining other values. They appear as values for arguments, or within other expressions.
+
+The terraform langauge is declarative, describing an intended goal rather than the steps to reach that goal. 
+The ordering of blocks and the files they are organized into are generally not significant; Terraform only considers implicit and explicit relationships between resources when determining an order of operations.
+
+### Declarative Language <!-- omit from toc -->
+
+As mentioned in the section about [Infrastrucure Coding Languages](#infrastructure-coding-languages), declarative code specifies what you want, without specifying how to make it happen.
+
+### Idempotency in Terraform <!-- omit from toc -->
+
+Idempotency is the property of a system that ensures that if you run the same code multiple times, you get the same result.
+
+## Structuring Blocks in Terraform 
+
+As provided in the documentation about [Standard Module Structure](https://developer.hashicorp.com/terraform/language/modules/develop/structure), the standard module structure is a directory with any number of files ending in **.tf** and **.tf.json** that contain Terraform configuration code.
+Furthermore, each directory that contains Terraform configuration must contain a file named **main.tf**, which serves as the entry point for the module.  
+In addition to this, each each terraform file is built from blocks, that are containers for other content and usually represent the configuration of some kind of object, like a resource.
+
+### Resource Blocks <!-- omit from toc -->
+
+The syntax for these can be found in this documentation about [Resource Blocks](https://developer.hashicorp.com/terraform/language/resources/syntax)  
+Resource blocks have two strings before the block: the resource type and the resource name.   
+Depending on your provider, more values may be required to create a resource. 
+
+Resources are the most important element in the Terraform language. 
+Each resource block describes one or more infrastructure objects, such as virtual networks, compute instances, or higher-level components such as DNS records.
+
+### Data Blocks (Data Sources) <!-- omit from toc -->
+
+*Data sources* allow Terraform to use information defined outside of Terraform, defined by another separate Terraform configuration, or modified by functions.
+
+A data source is accessed via a special kind of resource known as a data resource, declared using a **data** block:
+```json
+data "azurerm_resources" "example" {
+  resource_group_name = "example-resources"
+}
+```
+
+### Provider Blocks <!-- omit from toc -->
+
+Will de described in detail in the [Terraform Providers](#terraform-providers) section.
+
+```json
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "=3.0.0"
+    }
+  }
+}
+
+provider "azurerm" {
+  skip_provider_registration = true # This is only required when the User, Service Principal, or Identity running Terraform lacks the permissions to register Azure Resource Providers.
+  features {}
+}
+```
+
+### Variable Blocks <!-- omit from toc -->
+
+The Terraform language includes a few kinds of blocks for requesting or publishing named values.
+- [Input Variables](#input-variables) serve as parameters for a Terraform module, so users can customize behavior without editing the source.
+- [Output Values](#output-values) are like return values for a Terraform module.
+- [Local Values](#local-values) are a convenience feature for assigning a short name to an expression.
+
+Variables should always have a **description**, to help users understand what they are for.  
+They can also have a **default** value, which will be used if no value is set when calling the module.
+
+#### [Input Variables](https://developer.hashicorp.com/terraform/language/values/variables) <!-- omit from toc -->
+
+When you declare variables in the root module of your configuration, you can set their values using CLI options and environment variables.
+
+Each input variable accepted by a module must be declared using a **variable** block:
+```json
+variable "resource_group_name" {
+  default = "myTFResourceGroup"
+}
+```
+
+#### [Output Values](https://developer.hashicorp.com/terraform/language/values/outputs) <!-- omit from toc -->
+
+Output values make information about your infrastructure available on the command line, and can expose information for other Terraform configurations to use.  
+Output values have several uses:
+- A child module can use outputs to expose a subset of its resource attributes to a parent module.
+- A root module can use outputs to print certain values in the CLI output after running **terraform apply**.
+- When using [remote state](https://developer.hashicorp.com/terraform/language/state/remote), root module outputs can be accessed by other configurations via a [**terraform_remote_state** data source](https://developer.hashicorp.com/terraform/language/state/remote-state-data).
+
+In addition to the **value** argument, an output can also have a **sensitive** argument, which marks the value as sensitive and thus prevents it from being shown when the plan is applied.
+
+```json
+output "resource_group_id" {
+  value = azurerm_resource_group.rg.id
+}
+```
+
+#### [Local Values](https://developer.hashicorp.com/terraform/language/values/locals) <!-- omit from toc -->
+
+A local value assigns a name to an expression, so you can use the name multiple times within a module instead of repeating the expression.
+
+```json
+locals {
+  service_name = "forum"
+  owner        = "Community Team"
+}
+```
+
+Local values can be helpful to avoid repeating the same values or expressions multiple times in a configuration, but if overused they can also make a configuration hard to read by future maintainers by hiding the actual values used.
+
+### Module Blocks <!-- omit from toc -->
+
+Will be described in detail in the [Terraform Modules](#terraform-modules) section.
+
+## Terraform Best Practices
+
+As can be read in [this article](https://developer.hashicorp.com/well-architected-framework/operational-excellence/operational-excellence-workspaces-projects), how you structure your Terraform configuration affects your workspace design and scope. 
+Some considerations, such as the file structure of your configuration and version-control repositories, will depend on your team's needs and preferences. 
+There are best practices that we recommend to all Terraform users that help teams develop Terraform configuration more efficiently.
 
 <div style="page-break-after: always;"></div>
 
 # Terraform Providers
 
-Investigate the role and functionality of Terraform providers in managing resources across various service providers.
+Investigate the role and functionality of Terraform providers in managing resources across various service providers.  
+As specified in this documentation about [Providers](https://developer.hashicorp.com/terraform/language/providers), Terraform relies on plugins called providers to interact with cloud providers, SaaS providers, and other APIs.
 
-https://developer.hashicorp.com/terraform/tutorials/it-saas
+Configurations need to declare which providers they require so that Terraform can install and use them.
 
-https://developer.hashicorp.com/terraform/language/providers
+## Providers Overview
+
+Each Terraform module must declare which providers it requires, so that Terraform can install and use them. Provider requirements are declared in a **required_providers** block.
+
+```json
+terraform {
+  required_providers {
+    mycloud = {
+      source  = "mycorp/mycloud"
+      version = "~> 1.0"
+    }
+  }
+}
+```
+
+Each provider has two identifiers:
+- A unique *source address*, which is only used when requiring a provider.
+- A *local name*, which is used everywhere else in a Terraform module.
+
+### What Providers Do <!-- omit from toc -->
+Each provider adds a set of resource types and/or data sources that Terraform can manage.  
+Every resource type is implemented by a provider; without providers, Terraform can't manage any kind of infrastructure. 
+Most providers configure a specific infrastructure platform (either cloud or self-hosted). Providers can also offer local utilities for tasks like generating random numbers for unique resource names.
+
+### Where Providers Come From <!-- omit from toc -->
+Providers are distributed separately from Terraform itself, and each provider has its own release cadence and version numbers.  
+The [Terraform Registry](https://registry.terraform.io/browse/providers) is the main directory of publicly available Terraform providers, and hosts providers for most major infrastructure platforms.
+
+### Provider Documentation <!-- omit from toc -->
+Each provider has its own documentation, describing its resource types and their arguments.  
+The [Terraform Registry](https://registry.terraform.io/browse/providers) includes documentation for a wide range of providers developed by HashiCorp, third-party vendors, and our Terraform community. Use the "Documentation" link in a provider's header to browse its documentation.  
+Provider documentation in the Registry is versioned; you can use the version menu in the header to change which version you're viewing.  
+For details about writing, generating, and previewing provider documentation, see the [provider publishing documentation](https://developer.hashicorp.com/terraform/registry/providers/docs).
 
 <div style="page-break-after: always;"></div>
 
