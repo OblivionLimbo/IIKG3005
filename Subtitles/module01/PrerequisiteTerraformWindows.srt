@@ -1,0 +1,184 @@
+1
+00:00:00,000 --> 00:00:05,600
+In this video, we're going to get our Windows machine ready, so we're ready to take a look at the infrastructure as a code.
+
+2
+00:00:05,600 --> 00:00:12,360
+That means that we're going to install the necessary programs, the extensions to the VS Code, and we're going to look at how we do all this via command line.
+
+3
+00:00:12,360 --> 00:00:24,680
+It may not be that this is a repetition for some of you, but the repetition is always going to be something else, so I'm starting to get through it a little more if I'm not sure what and how to do it.
+
+4
+00:00:24,680 --> 00:00:34,280
+Not least, you have to be sure that you have everything in place before you get started with the subject, so you don't have to face any problems with the use of the tools we're going to use.
+
+5
+00:00:34,280 --> 00:00:38,520
+So, when that's said, I think I'll just jump over to the desktop.
+
+6
+00:00:38,520 --> 00:00:43,400
+Here you can see that I'm using the same program as I did in the last video for macOS.
+
+7
+00:00:43,400 --> 00:00:50,320
+I'll also take a look at how I install the program or package manager that I'm going to use, which is chocolate.
+
+8
+00:00:50,320 --> 00:00:51,960
+It's probably familiar to several of you.
+
+9
+00:00:51,960 --> 00:00:55,960
+If you don't have it, you can install VS Code.
+
+10
+00:00:55,960 --> 00:00:59,360
+I use some VS Code, so I have VS Code, but I can't upgrade it yet.
+
+11
+00:00:59,360 --> 00:01:01,640
+Install PowerShell, if I need PowerShell.
+
+12
+00:01:01,640 --> 00:01:04,720
+Install Terraform and install Azure Seal.
+
+13
+00:01:04,720 --> 00:01:15,560
+Finally, we look at some extensions that we can use to get the best possible assistance that is available for developing our code.
+
+14
+00:01:15,560 --> 00:01:22,360
+When that's said, you can also just remember to run the VS Code as administrator.
+
+15
+00:01:22,360 --> 00:01:28,760
+To get the terminal up, you can just drag it from the beginning up, so we see here that it starts on a different terminal window.
+
+16
+00:01:28,760 --> 00:01:35,640
+Of course, you can also run PowerShell, zoom in on a different terminal without running it via VS Code, but I'm doing something here via VS Code.
+
+17
+00:01:35,640 --> 00:01:38,600
+The first thing is to run the Z-Execution policy.
+
+18
+00:01:38,600 --> 00:01:41,920
+I can quickly show you where I find the command.
+
+19
+00:01:41,960 --> 00:01:54,240
+I just press Enter first, and then I see that I have already installed Choco here, so if you want to install Choco, you have to run an upgrade of that Choco instead.
+
+20
+00:01:54,240 --> 00:01:56,200
+But where do I find this command?
+
+21
+00:01:56,200 --> 00:02:08,880
+Yes, if I go to chocolate.org, select Install, then I get to see that this command is Choose your installation method, and then I can scroll down.
+
+22
+00:02:08,880 --> 00:02:12,800
+And here we see if we don't use PowerShell, then we have this command that you can copy with us.
+
+23
+00:02:12,800 --> 00:02:19,160
+So then I go back to VS Code, and then I run it. If I were to have installed VS Code now, I run it.
+
+24
+00:02:19,160 --> 00:02:24,920
+So if I install PowerShell Core, I can show you what the whole command is.
+
+25
+00:02:24,920 --> 00:02:31,000
+Then we see that Choco says here that there is nothing that will be installed because it is already installed.
+
+26
+00:02:31,000 --> 00:02:37,280
+And if we then run an upgrade, then we can check if we actually have the last version of this command.
+
+27
+00:02:37,280 --> 00:02:39,280
+No, of this PowerShell.
+
+28
+00:02:39,280 --> 00:02:46,440
+Then we see a little question installed, the same thing for Terraform. We can see what happens if we run Terraform.
+
+29
+00:02:46,440 --> 00:02:54,080
+I have already installed Terraform here on the machine earlier, but I just run it through to check that I have the last version of everything,
+
+30
+00:02:54,080 --> 00:03:06,480
+so that I am sure that I am able to take advantage of the latest functions and everything that has come in the recent release of Terraform, Azure CLI and PowerShell.
+
+31
+00:03:06,480 --> 00:03:08,480
+Then we will see.
+
+32
+00:03:08,480 --> 00:03:15,040
+Here I check Azure CLI, then I run the last version, and then we can go to Extensions.
+
+33
+00:03:15,040 --> 00:03:20,680
+Here we see that we want to have HashiCorp Terraform Extensions.
+
+34
+00:03:20,680 --> 00:03:25,240
+Then we just take this one, then we see here that we have to press Install.
+
+35
+00:03:25,240 --> 00:03:31,240
+In addition, we want to have PowerShell Extensions with us.
+
+36
+00:03:31,240 --> 00:03:33,240
+Search for that.
+
+37
+00:03:33,240 --> 00:03:35,240
+Then we see PowerShell.
+
+38
+00:03:35,240 --> 00:03:37,240
+We want to have that with us.
+
+39
+00:03:37,240 --> 00:03:40,960
+Azure CLI, not like that.
+
+40
+00:03:40,960 --> 00:03:44,880
+Then we have Azure CLI Tools, we take this one with us.
+
+41
+00:03:45,040 --> 00:03:58,080
+Then I use Rainbow CSV just to get a kind of color-coating on all my CSV files, or it can be tab, comma-separated, semicolon, or whatever you want.
+
+42
+00:03:58,080 --> 00:04:04,920
+What is advantageous is that you can easily see from the headline what is contained in the different columns.
+
+43
+00:04:04,920 --> 00:04:11,040
+So then I have taken and installed what I really need to get started with infrastructure as code with Terraform.
+
+44
+00:04:11,080 --> 00:04:18,360
+We can quickly verify that we have what we need, run it and work with it.
+
+45
+00:04:18,360 --> 00:04:28,760
+So if we just take and write Terraform version, then we see here that Terraform has been installed and is ready to use with version 1.5.4.
+
+46
+00:04:28,760 --> 00:04:34,600
+That was all I wanted to go through with you in this video, so just make sure to install everything, so that we are ready for infrastructure as code.
+

@@ -1,0 +1,256 @@
+1
+00:00:00,000 --> 00:00:06,320
+In this video, we're going to see how we can connect to our Azure tenant using Azure Seal Eye.
+
+2
+00:00:06,320 --> 00:00:08,720
+Now we have access to the portal.
+
+3
+00:00:08,720 --> 00:00:12,320
+We have made sure that our users have enough rights in the portal.
+
+4
+00:00:12,320 --> 00:00:15,760
+We have set up an app registration or a service principle.
+
+5
+00:00:15,760 --> 00:00:19,280
+We have given our service principle enough rights.
+
+6
+00:00:19,280 --> 00:00:25,760
+So the last thing we do now is to make sure that we can actually connect to our tenant using Azure Seal Eye.
+
+7
+00:00:25,760 --> 00:00:29,360
+We have continued to work with Azure Service Principle using Azure Seal Eye.
+
+8
+00:00:29,360 --> 00:00:36,160
+So if we click on view file more, we can see to sign in with the service principle in the app in the tenant to the password.
+
+9
+00:00:36,160 --> 00:00:39,920
+And that is the information we have now after we have set up our service principle.
+
+10
+00:00:39,920 --> 00:00:42,320
+And then we can either go and copy and paste.
+
+11
+00:00:42,320 --> 00:00:44,800
+Then we can go to Visual Studio Code.
+
+12
+00:00:44,800 --> 00:00:46,800
+And here I have just pasted again.
+
+13
+00:00:46,800 --> 00:00:49,040
+Here I have some of my information in color text.
+
+14
+00:00:49,040 --> 00:00:52,640
+I'm going to remove this so it's not any sensitive information anyway.
+
+15
+00:00:52,640 --> 00:00:57,280
+I have the display name and the rename, but I'm not going to use it anyway either.
+
+16
+00:00:57,280 --> 00:01:01,200
+So what I have to do now is that I have to have an app in mine.
+
+17
+00:01:01,200 --> 00:01:03,200
+We have to paste it in there.
+
+18
+00:01:03,200 --> 00:01:06,720
+Then we have to have the secret, then we have to have it in there.
+
+19
+00:01:06,720 --> 00:01:09,120
+And then we have to have the tenant in ours.
+
+20
+00:01:09,120 --> 00:01:11,280
+We have to have it in there.
+
+21
+00:01:11,280 --> 00:01:14,400
+So then when we have everything we need, we have the command we need.
+
+22
+00:01:14,400 --> 00:01:16,800
+We specify how we are going to log in.
+
+23
+00:01:16,800 --> 00:01:20,800
+We have the username, we have the password, we have the tenant we are going to use.
+
+24
+00:01:20,800 --> 00:01:23,520
+Then we can just run this command.
+
+25
+00:01:23,520 --> 00:01:26,880
+Just right-click and choose Run Line in Terminal.
+
+26
+00:01:26,880 --> 00:01:28,080
+Let's see.
+
+27
+00:01:28,080 --> 00:01:32,080
+So, it was just that I was wrong.
+
+28
+00:01:32,080 --> 00:01:33,520
+Then we see that we have logged in.
+
+29
+00:01:33,520 --> 00:01:35,520
+Now we are connected to the tenant in it.
+
+30
+00:01:35,520 --> 00:01:40,320
+Then we do a quick check to confirm that we are actually logged in to the tenant.
+
+31
+00:01:40,320 --> 00:01:44,480
+It is that we can go back to this documentation for Azure CLI.
+
+32
+00:01:44,480 --> 00:01:46,960
+You can find the different commands you can use.
+
+33
+00:01:46,960 --> 00:01:50,000
+For example, EC account manager, Azure subscription information.
+
+34
+00:01:50,000 --> 00:01:56,560
+Then we can click on the different ones if we want to go into the different commandlets.
+
+35
+00:01:56,560 --> 00:01:59,440
+To see how they are going to be used.
+
+36
+00:01:59,440 --> 00:02:04,720
+One thing that can happen is, for example, the resource groups as a main on this tenant.
+
+37
+00:02:04,720 --> 00:02:07,520
+So we can just search for group.
+
+38
+00:02:07,520 --> 00:02:09,520
+EC group, we see here.
+
+39
+00:02:09,520 --> 00:02:12,000
+Manage resource group, then template deployments.
+
+40
+00:02:12,000 --> 00:02:13,360
+We click on that.
+
+41
+00:02:13,360 --> 00:02:17,920
+Then we can see over here how the commandlets we have.
+
+42
+00:02:17,920 --> 00:02:19,920
+Here we have, for example, EC group list.
+
+43
+00:02:19,920 --> 00:02:23,920
+Then we see that list resource groups.
+
+44
+00:02:23,920 --> 00:02:25,920
+If we just take that one.
+
+45
+00:02:25,920 --> 00:02:28,960
+Back to VS Code and paste it.
+
+46
+00:02:28,960 --> 00:02:35,200
+Then we see that it is going to list out the resource groups you have in the tenant.
+
+47
+00:02:35,200 --> 00:02:42,080
+We see here that the format is that you have both the subscription, the height of the subscription, the resource group and where it is located.
+
+48
+00:02:42,080 --> 00:02:44,800
+What location it is in.
+
+49
+00:02:45,360 --> 00:02:49,760
+But if you, for example, only want to know the names.
+
+50
+00:02:49,760 --> 00:02:57,200
+Then you can write, for example, EC group list dash table.
+
+51
+00:02:57,200 --> 00:03:01,920
+Then we see here that we list out the resource groups in a more readable form.
+
+52
+00:03:01,920 --> 00:03:04,960
+Instead of getting it in such a JSON format.
+
+53
+00:03:04,960 --> 00:03:10,720
+And if you see here now, you see that we have the resource group that was set up in conjunction with the fact that we needed a resource group.
+
+54
+00:03:10,880 --> 00:03:16,960
+To be able to operate a storage account that was necessary to run the cloud shell we used to operate the service principle.
+
+55
+00:03:16,960 --> 00:03:20,080
+So then we see here that we have this available.
+
+56
+00:03:20,080 --> 00:03:24,320
+We can also, for example, go into the tenant via Azure portal.
+
+57
+00:03:24,320 --> 00:03:25,840
+So we open Azure portal.
+
+58
+00:03:25,840 --> 00:03:27,840
+Then we see here, tenant 01.
+
+59
+00:03:27,840 --> 00:03:29,840
+Then we go to resource groups.
+
+60
+00:03:29,840 --> 00:03:31,200
+We use there.
+
+61
+00:03:31,200 --> 00:03:35,840
+Then we see here that we also have a list and a list of which resource groups are in this tenant.
+
+62
+00:03:35,840 --> 00:03:38,720
+And then we see that we have some connected tenants in the portal.
+
+63
+00:03:38,720 --> 00:03:42,080
+We are also connected to the VS code.
+
+64
+00:03:42,080 --> 00:03:45,760
+And then we have done everything together so that we can begin to deploy resources.
+

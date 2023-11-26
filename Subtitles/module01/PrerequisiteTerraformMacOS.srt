@@ -1,0 +1,220 @@
+1
+00:00:00,000 --> 00:00:07,700
+In this video, we are going to go through what we need from prerequisites to be able to get started with the use of Terraform in the course Infrastructure as a Code.
+
+2
+00:00:07,700 --> 00:00:15,840
+We are going to install the necessary software, including Azure CLI, Terraform, and we are going to install some extensions to VS Code,
+
+3
+00:00:15,840 --> 00:00:20,680
+because we use VS Code as a program to perform these tasks.
+
+4
+00:00:20,680 --> 00:00:24,820
+What we do first is that we can jump over to Visual Studio Code.
+
+5
+00:00:24,820 --> 00:00:32,540
+If I don't have Visual Studio Code, I can add a link that makes it possible to get some guidance on how to install VS Code.
+
+6
+00:00:32,540 --> 00:00:35,940
+You can also use Brew to install VS Code.
+
+7
+00:00:35,940 --> 00:00:39,900
+I'm here now in my Visual Studio Code, and I'm going to install something called Homebrew.
+
+8
+00:00:39,900 --> 00:00:46,260
+What is Homebrew? Homebrew is a package manager that makes it possible to install the software,
+
+9
+00:00:46,260 --> 00:00:52,780
+just by using command lines instead of going online, loading the installation file, and running the installation on the machine.
+
+10
+00:00:52,780 --> 00:00:59,780
+What we can do is, like the title says, Homebrew is the missing package manager for Mac OS and Word Linux.
+
+11
+00:00:59,780 --> 00:01:05,980
+We can just copy this command and run it in VS Code or Terminal.
+
+12
+00:01:05,980 --> 00:01:13,500
+I could of course write Terminal and open Terminal and run the command here, but since it is now in VS Code, I use one of them.
+
+13
+00:01:13,500 --> 00:01:20,100
+Here we have the command we run is this one. I can just copy it from here.
+
+14
+00:01:20,100 --> 00:01:27,740
+Here we see that I have opened an active Terminal window. If you don't have a Terminal window, you can just stand like this,
+
+15
+00:01:27,740 --> 00:01:34,300
+or if you are at the very beginning of VS Code, you can just drag to the beginning and it will show up in the Terminal window.
+
+16
+00:01:34,300 --> 00:01:43,180
+If you want to change which shell you are in, I'm now in Seashell, for example, let's see, there was a bit of guidance like this.
+
+17
+00:01:43,340 --> 00:01:52,540
+Here we see that we get the different shells we are in. We can be in Bash, PowerShell, Seashell, Azure Cloud Shell, Azure Cloud Shell, PowerShell, etc.
+
+18
+00:01:52,540 --> 00:02:01,940
+I'm now in Seashell, because I'm going to install it here, and then I just run the command that makes it get the installation file,
+
+19
+00:02:01,940 --> 00:02:06,380
+or run the installation script that is necessary to install Homebrew.
+
+20
+00:02:06,380 --> 00:02:09,220
+Let it just stand and go a bit, and then we'll see what happens when it's done.
+
+21
+00:02:09,220 --> 00:02:20,900
+Write in my password on the Mac, like this, and then we'll see. It will mostly say that I already have it, but it can just stand and go, and then we'll see what it is.
+
+22
+00:02:20,900 --> 00:02:26,940
+When Brew is installed, it's okay to always do Brew Update, because it ensures that you get the last packages available,
+
+23
+00:02:26,940 --> 00:02:33,180
+so that you can always update it, possibly if it's Azure Shell, or PowerShell, or something to the latest version.
+
+24
+00:02:33,180 --> 00:02:37,860
+Also, it's important that you have the latest version of Package Manager in addition.
+
+25
+00:02:37,860 --> 00:02:44,740
+So, the first thing that stands here is PowerShell. Most of us may not have PowerShell from before, but I'll just install it now,
+
+26
+00:02:44,740 --> 00:02:47,020
+because it may come up that we need to use PowerShell.
+
+27
+00:02:47,020 --> 00:02:55,060
+I just run Brew Install, PowerShell, and then I just show here that if we also have PowerShell, and there is a new version of PowerShell,
+
+28
+00:02:55,060 --> 00:02:58,140
+then we can also run a Brew Upgrade PowerShell to implement it.
+
+29
+00:02:58,180 --> 00:03:02,740
+I show here below in Azure CLI that there are several ways you can do this.
+
+30
+00:03:02,740 --> 00:03:09,060
+You can run a Brew Upgrade and install Azure CLI in one and the same command.
+
+31
+00:03:09,060 --> 00:03:13,060
+To run a Brew Upgrade, install Azure CLI, we run through it.
+
+32
+00:03:13,060 --> 00:03:22,060
+I already have it, and this command should be, I should say, only if you need to update, and then you can just paste it in.
+
+33
+00:03:22,100 --> 00:03:32,780
+As you can see, there is a large number of text files in the repository for the color, so you can simply copy in the commands you want.
+
+34
+00:03:32,780 --> 00:03:36,740
+Once we're done running Azure CLI, we're going to install Terraform.
+
+35
+00:03:36,740 --> 00:03:46,540
+Then we can first start by installing HersheyCorpTap, which is a repository for HersheyCorp's program.
+
+36
+00:03:46,540 --> 00:03:52,580
+Then we just run it in, and then we can install HersheyCorpTap Terraform.
+
+37
+00:03:52,580 --> 00:04:01,580
+As you can see, I have installed most of the things here, but I can admit that some of them have to be updated, so I do it in the same way.
+
+38
+00:04:01,580 --> 00:04:12,500
+Here we also see that you can run an update and an install, or you can run an upgrade here instead of if you run a Brew Upgrade and a Brew Update.
+
+39
+00:04:12,500 --> 00:04:19,060
+We can run it in the same way, just to show that we can run it in the same command if we want to, already up to date.
+
+40
+00:04:19,060 --> 00:04:27,860
+This is fine. So then we have what we need from Terraform, we have what we need from Azure CLI on our own, but the highlight is Extensions.
+
+41
+00:04:27,860 --> 00:04:40,420
+We also need the necessary help we need in Visual Studio Code, so we can also go under Extensions, and here we can search for Terraform.
+
+42
+00:04:40,420 --> 00:04:50,500
+Under Terraform, we see that there will be a HersheyCorpTap Terraform extension, and we want to have it, so we can just add it to the prerequisites here.
+
+43
+00:04:50,500 --> 00:05:00,820
+So we do like this, and then we will have PowerShell, and then we will have Azure CLI, and then we can just see that it is under Extensions now.
+
+44
+00:05:00,820 --> 00:05:12,980
+So if you are going to install it, it does not say disabled or uninstalled, it says installed, so if you also take PowerShell in the same line, then we see here that PowerShell, I already have that.
+
+45
+00:05:12,980 --> 00:05:19,300
+Azure CLI Tools, and I already have that installed.
+
+46
+00:05:19,300 --> 00:05:31,700
+In addition, I also use something called Rainbow CSV, which means that if I work with CSV files, then I get a much more visual presentation of these CSV files, so this one is color-coded.
+
+47
+00:05:31,700 --> 00:05:40,260
+They separate, or they are the columns, so we release and then count parentheses, or tabs, or semicolons, or whatever should be over there.
+
+48
+00:05:40,420 --> 00:05:47,940
+Look here, Rainbow CSV, this one can color-code all types of files that have a certain space between the contents.
+
+49
+00:05:47,940 --> 00:05:52,180
+So then we can go back to the prerequisites, and then we can just write on this one, and so on.
+
+50
+00:05:52,180 --> 00:06:04,100
+And then we have received the installation of our necessary programs, Brew is of course just the macOS package manager, which means that we can easily install and update the software we use.
+
+51
+00:06:04,260 --> 00:06:17,700
+If you do not have VS Code after Brew, then we can put it here like this, and then we have Brew, and then I can show you how to find these commands, because it's like, how do I know what to write?
+
+52
+00:06:17,700 --> 00:06:33,620
+Yes, but then you can go to Brew on the side, and then we just write VS Code, and here we see that OK, Access VS Code, Visual Studio Code, it goes out to you, and then we see here Brew install, Visual Studio Code, just take it with you, paste it in.
+
+53
+00:06:33,620 --> 00:07:01,780
+In addition, if you are going to update VS Code with Brew, then we have the same command, we can take this one, and then we can see here now that if we then run this command here, then it will maybe say that OK, Visual Studio Code is not installed, it is probably because I have installed it via Brew, the first time I did.
+
+54
+00:07:01,780 --> 00:07:14,260
+But enough about that, if you choose to do it that way, then at least I have the opportunity to manage it via Brew instead of running and downloading the versions that are available on the website, and then you have to install it manually.
+
+55
+00:07:14,260 --> 00:07:21,620
+And that was actually all I wanted to go through in this video, so see you in the next video to get started with the use of Terraform for infrastructure as a code.
+

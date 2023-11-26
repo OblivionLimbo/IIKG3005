@@ -1,0 +1,596 @@
+1
+00:00:00,000 --> 00:00:07,320
+In this video, we're going to go through how we set up our first resource group, and a resource within this resource group.
+
+2
+00:00:07,320 --> 00:00:14,400
+For those who aren't familiar with Azure before, there is a resource group, a place where all the resources we set up in Azure must be.
+
+3
+00:00:14,400 --> 00:00:18,400
+You can't set up a resource without it being within a resource group.
+
+4
+00:00:18,400 --> 00:00:26,440
+So what we have to do, is that we have to make sure that this resource group is set up, and that the resource ends up in this resource group.
+
+5
+00:00:26,840 --> 00:00:37,760
+What we can do first, is that we jump over to Visual Studio Code, and here we can also set up, under course material, so under module 1, I can set up a new folder.
+
+6
+00:00:37,760 --> 00:00:44,000
+Then I can just write first deploy, just to test now that this is my first deploy.
+
+7
+00:00:44,000 --> 00:00:48,600
+Under first deploy, I set up a new file called main.tf.
+
+8
+00:00:48,640 --> 00:00:58,200
+tf is, as you probably know, Terraform's file name, and when we set it up, we see that when we have the extension and everything in place, installed on the machine, then we get this icon.
+
+9
+00:00:58,200 --> 00:01:07,760
+So where do we get this from? Where do I start now? Now I'm completely blank, main.tf file, and then the trick is to go to terraform.io.
+
+10
+00:01:07,840 --> 00:01:19,360
+Under terraform.io, we can now go under registry. Under registry, we see here, zoom in a little, that we get an option to browse providers.
+
+11
+00:01:19,360 --> 00:01:28,040
+Providers is a bit like CAC, so it's the way we can communicate with the provider we want to communicate with.
+
+12
+00:01:28,040 --> 00:01:37,040
+And here we see that we have the option to both buy official partners and community providers, and these are the big ones, and we can now click on Azure.
+
+13
+00:01:37,040 --> 00:01:44,680
+That's the Azure we're going to use in this area. Under Azure, we see up to the right that we have overview, documentation, and use provider.
+
+14
+00:01:44,680 --> 00:01:53,440
+If we click on use provider, we see here how to use this provider, and then we can see, maybe I'll take away something from my head, Terraform, required provider,
+
+15
+00:01:53,440 --> 00:02:03,560
+Azure RM, source, hash, Azure RM, version, that is, what kind of version of this provider we use, and then we can specify, for example,
+
+16
+00:02:03,560 --> 00:02:13,720
+whether it should be greater than, or equal, or similar, because it can be functionality, or it should, for example, be minimum up to a certain level,
+
+17
+00:02:13,720 --> 00:02:18,520
+to be able to use the code or your terraform file that we're going to use.
+
+18
+00:02:18,520 --> 00:02:28,080
+But we're going to use this, because this is the last version, so we're going to look at provider, Azure RM, because this is a required provider, and here we have the provider we're going to use.
+
+19
+00:02:28,080 --> 00:02:38,960
+So if we, for example, have taken the required provider, Azure RM, and then we haven't had Azure RM here, but AWS, then the terraform code wouldn't have worked.
+
+20
+00:02:38,960 --> 00:02:49,680
+If we take this with us, VS Code, paste it in, and then we can see that, okay, we have two blocks here now, we have the terraform block, and then we have the provider block.
+
+21
+00:02:49,680 --> 00:03:02,320
+And we also see that when we have installed this extension, we get some help from VS Code on how we can format, or what the content of this block is.
+
+22
+00:03:02,320 --> 00:03:08,960
+If we go to provider, then we can see that it's used to specify a provider configuration. Okay, what is provider configuration?
+
+23
+00:03:08,960 --> 00:03:18,080
+If we go back to this one, then we can now click on documentation, and then we see, the first thing we enter in documentation is then Azure RM provider.
+
+24
+00:03:18,160 --> 00:03:29,040
+We can just remove it, and then here we find that if we are now only going to be used by this provider, then it is important to find out what, for example, it is now.
+
+25
+00:03:29,040 --> 00:03:40,880
+Obligatory parameters or content that should and must be included, and then it is important that we then check, for example, on this one now, then we can see, okay, here we have example use, and then we can see, here we have, yes, great.
+
+26
+00:03:40,880 --> 00:03:53,040
+It's a lot like this, provider configuration, Microsoft Azure Provider, how I have done it, here I have an example of a resource, a group, here I have an example of a network that needs to be set up.
+
+27
+00:03:53,040 --> 00:04:09,680
+If we now go further down, then we can see where we come to argument references, because that is what determines what should be included within the different blocks, and here we see, in this provider block, then we have features that stand as required.
+
+28
+00:04:09,760 --> 00:04:27,760
+A features block as defined below, which can be used to customize the behavior of a certain Azure Provider resource, and then it is important that if we try something like this, we have copied it here with providers, then it will say that no, here I have it without a feature block, so it will only feature content, so then it will not work as it should, because it stands as required.
+
+29
+00:04:27,840 --> 00:04:48,320
+If we press it, then we just see that it is just information about it, but then we can look back at the example, scroll back, press back, then we see here that it is actually just a feature with scroll brackets, so we have actually satisfied the provider with its content.
+
+30
+00:04:48,320 --> 00:05:03,680
+So if we just save this file here now, then we have saved the first Terraform file of ours with the Terraform block, with the required provider, and the provider with the Azure RM Provider.
+
+31
+00:05:03,840 --> 00:05:30,880
+Then we can see that if we are going to set up a resource group and a resource, then it goes above, and then look at, for example, the example, zoom was given here, or we can go into filters here, then we can for example write resource group, and then we get Azure RM resource group, and when we press it, then we want to see that we get an example of how we can be used by Azure resource group content.
+
+32
+00:05:30,880 --> 00:05:49,040
+Here we have, the following arguments are supported, location required, then we understand where it should be located in the world, in which data center, in which region it should actually be set up, the name we must of course have, we must have a name for this resource group, so that we can refer to it later, and we can understand what is inside it.
+
+33
+00:05:49,200 --> 00:06:02,960
+And then we have optional tags managed by, and this is for those who are familiar with Azure from before, then we understand that if we are going to set up a resource group via the portal, then we must of course also specify which location it is, and a name for this resource group.
+
+34
+00:06:02,960 --> 00:06:18,960
+I can show you that in the Azure portal later, so then I just take this example, paste it in like this, and then we see here that we have a resource, it's an Azure RM resource group, this is information that defines what it is for now.
+
+35
+00:06:18,960 --> 00:06:31,360
+So we can't change this one, because then we don't want to understand anything about it, we can't give this one a new name, because this is the name that makes this provider understand what it is that needs to be set up in Azure, if not, then I don't know what.
+
+36
+00:06:31,360 --> 00:06:38,880
+This is a name that we can use to refer to this resource group later in our terraform code.
+
+37
+00:06:38,880 --> 00:06:55,760
+So if I, for example, call this one just something for RG, or first deploy RG, because then I can just think now that OK, this name should of course have been a bit like describing so that I understand what it is, and then just do it something to do it as an example.
+
+38
+00:06:55,760 --> 00:07:10,400
+Name, that would then be the name of the resource group, it should be called RG demo, or RG demo West Europe. Location is then West Europe, that would mean that it is the same in the data center that is in West Europe, the region for this for Azure.
+
+39
+00:07:10,400 --> 00:07:26,160
+And then we see that we now in our code have terraform, we have a provider, we have a resource, and the resource is a resource group. If we have run this now, then we would have been able to deploy this resource group, but there has not been any content in the resource group itself.
+
+40
+00:07:26,160 --> 00:07:37,280
+So if you want to have any content in this one now, the content I am going to take with you is storage account. A storage account is then, as the name suggests, a place where you can set up storage resources.
+
+41
+00:07:37,280 --> 00:07:51,680
+The reason for the storage account is that it is a small resource, fast to deploy, fast to delete, and it is easy to manage. It also has a lot of parameters that we can play with, so then it is good to know that we have the opportunity to test something with it.
+
+42
+00:07:51,680 --> 00:08:03,040
+And then we see here, here we have an example use of storage account, and here we also have of course that we must have a resource group that is operated first, and then we must then define the resource.
+
+43
+00:08:03,040 --> 00:08:18,720
+I have already had it with me in the resource group here now. The reason it does it like this is that, for example, you see under the name here now, and then you see under it there, so it refers to that, but I will take it now when I take it with me here in VS Code.
+
+44
+00:08:18,880 --> 00:08:44,480
+For now we see, great, now we talk about the resource, Azure storage account, then you can now just write, I said demo, that is, storage account, or a storage account demo, and what the name of the storage account should be, and then we have to specify a unique name globally, because this name is only small letters and numbers, not big, not intermediate, not special characters, and it must be globally unique, so that if you think that you are going to take storage 01, then it is taken.
+
+45
+00:08:44,560 --> 00:08:54,720
+So here I take for example my initials, demo, 123, and then I write that it is maybe I take my 4, and then I give it a name here, and then I want to assume that no one has it now.
+
+46
+00:08:54,720 --> 00:09:13,680
+And then we come to this part here, resource group, where are we going to set up this resource? Here we see that we have an Azure RM resource group dot example dot name, but we do not have a name that is example, and therefore we can take away here now, and write Azure resource group,
+
+47
+00:09:13,680 --> 00:09:43,680
+and then we see that we get an example of what it is that can be the right content, so if I now press it, then we see that we get Azure resource group dot FDRG, that is, first deploy resource group, and then I write, then you get an example, so I press dot, just now what I should use in this context, and then it is the name of the screen, resource group name, and then I can choose name, so when I see here, great, I take a name, so then this terraform code will now say that this resource, the storage account, is going to be
+
+48
+00:09:43,680 --> 00:10:13,320
+resource group name, which is Azure resource group, first deploy resource group dot name, which is this one, and then terraform will understand that this depends on that resource group it has set up first, because if I have not specified it, but if I have written for example instead of here now, if I have written, I have done that resource group, rgdemo, west Europe, then terraform will then just say go when it gets this one, and then I can say, no, I have not found this resource group, it does not exist.
+
+49
+00:10:13,320 --> 00:10:16,720
+because it tries to open a storage account at once, but it is not a resource group as it is called.
+
+50
+00:10:16,720 --> 00:10:24,960
+But when we specify in this way Azure Resource Group with the name we have defined in our terraform code, which is there,
+
+51
+00:10:24,960 --> 00:10:28,480
+and that it is a name that we use,
+
+52
+00:10:28,480 --> 00:10:33,600
+then Terraform understands that this storage account is dependent on the resource group.
+
+53
+00:10:33,600 --> 00:10:39,280
+Location, then we can do the same on it now, then we take Azure Resource Group and then we write location,
+
+54
+00:10:39,280 --> 00:10:43,600
+because if it should be there, then it must be in the same location as the resource group.
+
+55
+00:10:43,600 --> 00:10:49,520
+So now we have specified something, the name of the resource group should be the name of the resource group it operates in front of,
+
+56
+00:10:49,520 --> 00:10:52,640
+and location should be in the same location as the resource group.
+
+57
+00:10:52,640 --> 00:10:58,440
+Account tier, account replication type, it has information that is Azure specific,
+
+58
+00:10:58,440 --> 00:11:04,280
+i.e. what type of tiering you want to operate, and GRS stands for global redundant storage,
+
+59
+00:11:04,320 --> 00:11:09,040
+i.e. that you, for example, operate storage that has global redundancy,
+
+60
+00:11:09,040 --> 00:11:13,520
+i.e. that it can have data in two different geographical different data centers.
+
+61
+00:11:13,520 --> 00:11:17,880
+We will come back to a lot of this information later, but this is just to get back to.
+
+62
+00:11:17,880 --> 00:11:23,640
+Tags, I don't really need tags now, we just have to test it, and there we go, now we are in the resource group.
+
+63
+00:11:23,640 --> 00:11:30,840
+And then we have realized that we have both the resource group, we have the storage account, and we are actually ready to run.
+
+64
+00:11:30,840 --> 00:11:35,520
+The first thing we do is to initiate the folder we are in.
+
+65
+00:11:35,520 --> 00:11:40,840
+I don't go so deep into both Terraform, Plan, Apply, and Destroy here,
+
+66
+00:11:40,840 --> 00:11:49,560
+and now I'm just doing it to explain a little around, but you can of course read about both the different Terraform commands in your own readable pencil,
+
+67
+00:11:49,560 --> 00:11:53,960
+because it is much better to just take the practical one that I go through in the video,
+
+68
+00:11:53,960 --> 00:11:58,320
+so that there is not too much talking about the theoretical one in addition.
+
+69
+00:11:58,320 --> 00:12:02,680
+So the first thing we have to do, we have to make sure that in my command prompt, down here,
+
+70
+00:12:02,680 --> 00:12:07,440
+I make sure that I am in the folder First Deploy, because that's where I'm going to initiate Terraform.
+
+71
+00:12:07,440 --> 00:12:12,880
+If I write rsno or dir, it depends on whether you are in Windows or Mac,
+
+72
+00:12:12,880 --> 00:12:19,280
+but if I'm in Atlas now, I see that it goes into Course Material, and of course you now have a map structure that you relate to in the first place.
+
+73
+00:12:19,280 --> 00:12:26,400
+And then we see that we go to Module 1, Atlas, and then I see that it goes to First Deploy, Atlas,
+
+74
+00:12:26,400 --> 00:12:31,800
+and then I see here that this is my file, so if I now write terraform init,
+
+75
+00:12:31,800 --> 00:12:37,680
+then an initiation of terraform is run against this map, which means that it loads it down,
+
+76
+00:12:37,680 --> 00:12:43,880
+or the necessary configuration for terraform to work with this provider that is defined in here.
+
+77
+00:12:43,880 --> 00:12:47,640
+So if I have updated and changed the provider here, then I have to have run a terraform init update,
+
+78
+00:12:47,640 --> 00:12:55,600
+or update init, to ensure that I have the last version of what I have had in this file for this deployment.
+
+79
+00:12:55,600 --> 00:13:01,200
+In addition, we see on the left that we have updated a folder.terraform, a terraform.locke.hcl,
+
+80
+00:13:01,200 --> 00:13:04,960
+which is a terraform-specific file that we need to talk about a little more about later.
+
+81
+00:13:04,960 --> 00:13:14,440
+First of all, we must of course remember to log on Azure, so that we have access or the opportunity to update this resource.
+
+82
+00:13:14,440 --> 00:13:18,160
+And that's the same progress as I did in the previous video, so I just log on the ForteGuard.
+
+83
+00:13:18,160 --> 00:13:25,400
+And when I have logged on Azure CLI against Azure, we also see that we are in the right time.
+
+84
+00:13:26,360 --> 00:13:33,400
+And with the name that we are invited to enter, then I can complete this with also run a terraform plan.
+
+85
+00:13:33,400 --> 00:13:37,880
+Again, I do not go through all the specific information around the different commands here,
+
+86
+00:13:37,880 --> 00:13:41,280
+now we do it in practice, read about it later, or before.
+
+87
+00:13:41,280 --> 00:13:49,000
+Terraform plan, that means that you plan or make a file now, which identifies what is actually to be done.
+
+88
+00:13:49,000 --> 00:13:55,080
+Because it is important for us to run here, and then get confirmation or get information about what is actually to be done.
+
+89
+00:13:55,080 --> 00:14:00,200
+And then we see here that terraform will perform the following actions.
+
+90
+00:14:00,200 --> 00:14:03,760
+Resource group will be created, storage account will be created.
+
+91
+00:14:03,760 --> 00:14:10,400
+Here we see all the information that can be configured and set on this storage account, and as we see, there is quite a lot.
+
+92
+00:14:10,400 --> 00:14:15,920
+The only thing we have set up so far, global account replication type, global redundant storage,
+
+93
+00:14:15,920 --> 00:14:19,440
+and that it is an account type or account tier standard.
+
+94
+00:14:19,440 --> 00:14:25,320
+So when we run terraform apply, it will actually perform this deployment.
+
+95
+00:14:25,320 --> 00:14:30,840
+The plan is to find out what is actually to be done, apply, perform this action.
+
+96
+00:14:30,840 --> 00:14:36,800
+And now it says add, but if we for example are following something, we will see that we can for example change, or we can delete,
+
+97
+00:14:36,800 --> 00:14:40,920
+and then of course there will be another information under the plan.
+
+98
+00:14:40,920 --> 00:14:46,760
+I must confirm that I want to perform this, yes, and then start the deployment itself.
+
+99
+00:14:46,760 --> 00:14:53,680
+Now this deployment of the resource group in Azure is performed against the internet that we are connected to.
+
+100
+00:14:53,680 --> 00:14:59,160
+The storage account is set up in this resource group, which makes it available to us as a resource in Azure.
+
+101
+00:14:59,160 --> 00:15:06,160
+It could have been a project to store files, it could be anything for a web application that picked up whatever,
+
+102
+00:15:06,160 --> 00:15:10,360
+it was a video of a file or whatever, it is a lot of use area for a storage account.
+
+103
+00:15:10,360 --> 00:15:14,800
+But this is something we just test with, we will see what type of resource it is later.
+
+104
+00:15:14,840 --> 00:15:18,920
+Then we see apply completed to added zero changes, zero destroyed.
+
+105
+00:15:18,920 --> 00:15:25,240
+So if we then go back to the Azure portal, then we can see when we log in to Azure portal,
+
+106
+00:15:25,240 --> 00:15:29,680
+now I am on my tenant that I am connected to, with Azure sealer, go into the resource group again,
+
+107
+00:15:29,680 --> 00:15:32,920
+no, we are not going to see Azure of it, but go to resource groups,
+
+108
+00:15:32,920 --> 00:15:41,720
+see that now RG Demo West Europe, it is my resource group, and here if we now refresh,
+
+109
+00:15:41,720 --> 00:15:45,320
+then we see here that RG Demo 12345, the storage account has been set up.
+
+110
+00:15:45,320 --> 00:15:50,440
+This is then a simple deployment of a resource group and a resource out in Azure.
+
+111
+00:15:50,440 --> 00:15:56,400
+What we can do now is of course, or what we should do, what we can do now is to change the settings here,
+
+112
+00:15:56,400 --> 00:16:00,680
+and we can also, for example, drag it in and so on, but it can also show here,
+
+113
+00:16:00,680 --> 00:16:04,760
+if we go to resource groups, if we were to set up a resource group in Azure portal, many of you have done it before,
+
+114
+00:16:04,760 --> 00:16:10,680
+but then we have to press create, come in here, resource group, yes great, we must have a name, mandatory, region mandatory,
+
+115
+00:16:10,720 --> 00:16:13,400
+and then this is the information that we know again, something for the Terraform.
+
+116
+00:16:13,400 --> 00:16:20,800
+In the same way, if we have to go back, create a resource, write here storage account,
+
+117
+00:16:20,800 --> 00:16:27,680
+we see here, if we click on storage account, choose storage account here, we can then see create,
+
+118
+00:16:27,680 --> 00:16:34,320
+then we have a resource group, where it should be located, we have a name, region, performance, redundancy, and so on.
+
+119
+00:16:34,320 --> 00:16:39,200
+And this is also what happens, if we can try to change it from GRS to LRS,
+
+120
+00:16:39,200 --> 00:16:44,760
+then we get to see how we can change a resource, and then we can drag it in and so on,
+
+121
+00:16:44,760 --> 00:16:46,400
+it does not stand there dragging any costs.
+
+122
+00:16:46,400 --> 00:16:52,840
+So if I just cancel this one here, because I'm not going to do it like that, go to VS Code, scroll down,
+
+123
+00:16:52,840 --> 00:17:00,480
+change here from GRS to local redundant storage, then it's just redundant storage input in the data center itself.
+
+124
+00:17:00,480 --> 00:17:10,120
+Go to the Terraform plan, then we see if you understand now, that okay, there is a difference in my Terraform code,
+
+125
+00:17:10,120 --> 00:17:15,800
+and the existing infrastructure that we had deployed, the infrastructure is a resource group and a storage account,
+
+126
+00:17:15,800 --> 00:17:19,720
+but this is what happens now, now I check, okay, what is the infrastructure in Azure,
+
+127
+00:17:19,720 --> 00:17:24,160
+compared to the Terraform code we have developed, and then it will happen, is it the same?
+
+128
+00:17:24,160 --> 00:17:30,040
+If it is the same, it does nothing, if there is a difference, then it will tell us what may change,
+
+129
+00:17:30,040 --> 00:17:38,880
+and if we have run a destroy, then it would have told us that, oh, I forgot to save, so we have to save, Terraform plan,
+
+130
+00:17:38,880 --> 00:17:45,280
+now when we run Terraform plan and save, then we see here that Terraform will perform the following actions,
+
+131
+00:17:45,280 --> 00:17:52,760
+account replication type changes from GRS to LRS, and then we change a storage account, a storage account,
+
+132
+00:17:52,760 --> 00:17:58,000
+from being global redundant to local redundant storage, Terraform apply,
+
+133
+00:17:58,040 --> 00:18:06,400
+because we ask now if we want to execute it, yes, it's a bit like what we can see at the top here,
+
+134
+00:18:06,400 --> 00:18:14,240
+we see here, note you didn't use the out option to save this plan, Terraform can't guarantee to take this action if you run Terraform plan now,
+
+135
+00:18:14,240 --> 00:18:20,040
+we come back to the out flag, as we will see, this is just for us to try and test now,
+
+136
+00:18:20,040 --> 00:18:23,960
+in our first, we will come back to more advanced use of Terraform, now we just have to test,
+
+137
+00:18:23,960 --> 00:18:27,760
+we have to update the resource group, or we have to be connected to Azure, we have to update the resource group,
+
+138
+00:18:27,760 --> 00:18:33,720
+update the resource and delete the resource group and resource, go back to our resource group,
+
+139
+00:18:33,720 --> 00:18:41,360
+we see here now under the storage account, here it was GRS before, now we have local redundant storage,
+
+140
+00:18:41,360 --> 00:18:45,160
+and we have updated the infrastructure, perfect, just as we thought,
+
+141
+00:18:45,240 --> 00:18:54,320
+there after we run Terraform destroy, and what it does then, it deletes everything that is in Azure,
+
+142
+00:18:54,320 --> 00:19:01,880
+which is like the Terraform infrastructure our code is, so then it sees, ok, this infrastructure is in Azure,
+
+143
+00:19:01,880 --> 00:19:07,240
+and we delete it, it doesn't take any cost, it's a bit of the screen with the infrastructure as code,
+
+144
+00:19:07,240 --> 00:19:15,120
+we can build up, delete the shortcuts as we want, yes, I will delete everything I have in Azure portal,
+
+145
+00:19:15,120 --> 00:19:20,080
+so we let it stand and take some costs, and after a bit of time, we see here destroy completed,
+
+146
+00:19:20,080 --> 00:19:25,520
+resources to destroy, go back to portal, we can run something under home, resource groups,
+
+147
+00:19:25,520 --> 00:19:31,840
+refresh, we see here that it will happen, there, our resource group is gone, and everything is gone,
+
+148
+00:19:31,840 --> 00:19:37,400
+and nothing is left to pull costs in Azure, so that was what I was actually going to go through with you in this video,
+
+149
+00:19:37,400 --> 00:19:41,880
+connect to Azure, deploy infrastructure, change infrastructure and delete infrastructure.
+

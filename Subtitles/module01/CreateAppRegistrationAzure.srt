@@ -1,0 +1,500 @@
+1
+00:00:00,000 --> 00:00:04,280
+In this video, we're going to set up a service principle, or an app registration,
+
+2
+00:00:04,280 --> 00:00:08,000
+which allows us to connect to our internet via Visual Studio Code,
+
+3
+00:00:08,000 --> 00:00:14,000
+which we use to push or to set up our infrastructure using Terraform later in this class.
+
+4
+00:00:14,000 --> 00:00:17,800
+To do this, you can see here, we go to the documentation for Microsoft,
+
+5
+00:00:17,800 --> 00:00:21,800
+which is in Work with Azure Service Principle using the Azure CLI.
+
+6
+00:00:21,800 --> 00:00:27,000
+Azure CLI is a command line network that makes it possible for us to communicate with Azure,
+
+7
+00:00:27,000 --> 00:00:32,000
+and we can do that via Web GUI when we're going to set up this service principle.
+
+8
+00:00:32,000 --> 00:00:36,000
+So if we now click on the link Create Service Principle,
+
+9
+00:00:36,000 --> 00:00:40,000
+we see here that when you create a service principle, and use this command line,
+
+10
+00:00:40,000 --> 00:00:46,000
+it will output credentials that are in plain text, which we have to take care of.
+
+11
+00:00:46,000 --> 00:00:49,000
+This is important, we have to take care of it, because it will show up at some point,
+
+12
+00:00:49,000 --> 00:00:55,000
+so we don't have to set up a new secret password later to log in.
+
+13
+00:00:56,000 --> 00:00:59,000
+If you're a little unsure about what a service principle or an app registration is,
+
+14
+00:00:59,000 --> 00:01:01,000
+it says a little bit about what it is about here.
+
+15
+00:01:01,000 --> 00:01:03,000
+You can read it if you want.
+
+16
+00:01:03,000 --> 00:01:08,000
+Here it just quickly goes through how we set it up, so that we can see and connect
+
+17
+00:01:08,000 --> 00:01:11,000
+to our Azure tenant with Visual Studio Code.
+
+18
+00:01:11,000 --> 00:01:14,000
+What we do is that it takes with us this command here,
+
+19
+00:01:14,000 --> 00:01:17,000
+for this, Create a Service Principle with the required parameters.
+
+20
+00:01:17,000 --> 00:01:20,000
+Then we see here that MySubscriptionID is the one we're going to have with us,
+
+21
+00:01:20,000 --> 00:01:26,000
+to be able to choose where we're going to have the rights with the service principle that we set up.
+
+22
+00:01:26,000 --> 00:01:29,000
+I just copy it in, and then I go here.
+
+23
+00:01:29,000 --> 00:01:32,000
+Here we see that we have something called, up at the top there,
+
+24
+00:01:32,000 --> 00:01:34,000
+we have a command line limit.
+
+25
+00:01:34,000 --> 00:01:36,000
+What we see is, welcome to Azure Cloud Shell.
+
+26
+00:01:36,000 --> 00:01:40,000
+We now just press bash, and then I choose that I must have a storage account,
+
+27
+00:01:40,000 --> 00:01:42,000
+because there are some files that are going to be set up,
+
+28
+00:01:42,000 --> 00:01:44,000
+so then I just choose Create Storage Account.
+
+29
+00:01:44,000 --> 00:01:45,000
+We don't need to think so much about it now.
+
+30
+00:01:45,000 --> 00:01:48,000
+Now we go through what we need to get it in place,
+
+31
+00:01:48,000 --> 00:01:50,000
+so that we can get started.
+
+32
+00:01:50,000 --> 00:01:52,000
+A storage account comes back to what it is,
+
+33
+00:01:52,000 --> 00:01:56,000
+but as the name suggests, it's a place where we can and need it.
+
+34
+00:01:56,000 --> 00:02:00,000
+This can take a while, but when it comes and is set up,
+
+35
+00:02:00,000 --> 00:02:02,000
+we get a command prompt that we can use.
+
+36
+00:02:02,000 --> 00:02:04,000
+When the Cloud Shell is ready to use,
+
+37
+00:02:04,000 --> 00:02:07,000
+we're going to paste in this command of ours,
+
+38
+00:02:07,000 --> 00:02:09,000
+and then we're going to hack the subscription ID,
+
+39
+00:02:09,000 --> 00:02:11,000
+because that's what we see that we need.
+
+40
+00:02:11,000 --> 00:02:13,000
+Now I have MySubscriptionID,
+
+41
+00:02:13,000 --> 00:02:16,000
+and then we have it available in our tenant.
+
+42
+00:02:16,000 --> 00:02:17,000
+And then it looks like this.
+
+43
+00:02:17,000 --> 00:02:19,000
+Now the Cloud Shell is ready.
+
+44
+00:02:19,000 --> 00:02:21,000
+I can just paste in my command.
+
+45
+00:02:21,000 --> 00:02:23,000
+In addition, I have to go to Subscription,
+
+46
+00:02:23,000 --> 00:02:25,000
+because I need this ID now,
+
+47
+00:02:25,000 --> 00:02:27,000
+so I just take it with me with it,
+
+48
+00:02:27,000 --> 00:02:29,000
+and then I choose to paste it in.
+
+49
+00:02:29,000 --> 00:02:31,000
+And when I press Enter now,
+
+50
+00:02:31,000 --> 00:02:35,000
+I will ... Sorry, we have to have Roll, of course.
+
+51
+00:02:37,000 --> 00:02:39,000
+Roll, and that should then be Contributor.
+
+52
+00:02:39,000 --> 00:02:42,000
+Contributor means that you have the ability
+
+53
+00:02:42,000 --> 00:02:45,000
+to remove or add new rights,
+
+54
+00:02:45,000 --> 00:02:47,000
+but you have to have full Contributor,
+
+55
+00:02:47,000 --> 00:02:50,000
+that is, contribute to the subscription ID that gives it.
+
+56
+00:02:50,000 --> 00:02:53,000
+So you can update and delete all kinds of resources in there,
+
+57
+00:02:53,000 --> 00:02:55,000
+but you can't remove resources,
+
+58
+00:02:55,000 --> 00:02:57,000
+no, access for others with Contributor.
+
+59
+00:02:57,000 --> 00:02:59,000
+So, we just press Enter on it,
+
+60
+00:02:59,000 --> 00:03:01,000
+a little script file on it.
+
+61
+00:03:03,000 --> 00:03:04,000
+Like that.
+
+62
+00:03:04,000 --> 00:03:06,000
+Then I think it will work much better.
+
+63
+00:03:06,000 --> 00:03:09,000
+And there we see that now the service principle is updated,
+
+64
+00:03:09,000 --> 00:03:11,000
+and then we see here that we get our App ID,
+
+65
+00:03:11,000 --> 00:03:12,000
+we get the display name,
+
+66
+00:03:12,000 --> 00:03:14,000
+we also get the password or the secret,
+
+67
+00:03:14,000 --> 00:03:16,000
+and this is the one we have to take care of.
+
+68
+00:03:16,000 --> 00:03:19,000
+So now it is important that the one who updates this service principle
+
+69
+00:03:19,000 --> 00:03:21,000
+takes care of this information.
+
+70
+00:03:21,000 --> 00:03:24,000
+I like to store it in a place where you don't
+
+71
+00:03:24,000 --> 00:03:26,000
+share and have all the information,
+
+72
+00:03:26,000 --> 00:03:27,000
+for example, the alternate ID,
+
+73
+00:03:27,000 --> 00:03:29,000
+or sometimes you don't need to have stored together
+
+74
+00:03:29,000 --> 00:03:31,000
+with the App ID and password,
+
+75
+00:03:31,000 --> 00:03:33,000
+because that's what usually connects to the tenant.
+
+76
+00:03:33,000 --> 00:03:34,000
+If you use a password manager,
+
+77
+00:03:34,000 --> 00:03:35,000
+please put it in there,
+
+78
+00:03:35,000 --> 00:03:37,000
+because then you can see here now that I need to take
+
+79
+00:03:37,000 --> 00:03:38,000
+this information with me,
+
+80
+00:03:38,000 --> 00:03:40,000
+because it will not be available to me.
+
+81
+00:03:40,000 --> 00:03:43,000
+Later, when I close this window,
+
+82
+00:03:43,000 --> 00:03:46,000
+then we can see that this one has a display name,
+
+83
+00:03:46,000 --> 00:03:47,000
+then this is the display name,
+
+84
+00:03:47,000 --> 00:03:49,000
+I can show you right here that we have a commandlet
+
+85
+00:03:49,000 --> 00:03:51,000
+that makes it possible to set a name
+
+86
+00:03:51,000 --> 00:03:53,000
+so that we do not get a random name,
+
+87
+00:03:53,000 --> 00:03:55,000
+but if we go to Azure Active Directory,
+
+88
+00:03:55,000 --> 00:03:57,000
+then we scroll down to App Registrations,
+
+89
+00:03:57,000 --> 00:03:58,000
+All App Applications,
+
+90
+00:03:58,000 --> 00:04:01,000
+then we see here that now it has Azure CLI
+
+91
+00:04:01,000 --> 00:04:04,000
+with today's data and so on.
+
+92
+00:04:04,000 --> 00:04:05,000
+If I click on this one,
+
+93
+00:04:05,000 --> 00:04:06,000
+then I can, for example,
+
+94
+00:04:06,000 --> 00:04:08,000
+choose to change the name,
+
+95
+00:04:08,000 --> 00:04:10,000
+for example, to App Tim,
+
+96
+00:04:10,000 --> 00:04:11,000
+just like that,
+
+97
+00:04:11,000 --> 00:04:14,000
+to make it so that the initials
+
+98
+00:04:14,000 --> 00:04:16,000
+show that it is mine,
+
+99
+00:04:16,000 --> 00:04:19,000
+because you want to share this tenant with several,
+
+100
+00:04:19,000 --> 00:04:21,000
+so it's stupid if you have a lot of different names,
+
+101
+00:04:21,000 --> 00:04:24,000
+and now it shows that now I have an App Tim
+
+102
+00:04:24,000 --> 00:04:25,000
+that is mine,
+
+103
+00:04:25,000 --> 00:04:27,000
+and then there would like to be more down there,
+
+104
+00:04:27,000 --> 00:04:30,000
+because students can share the tenant with you.
+
+105
+00:04:30,000 --> 00:04:33,000
+If you want to set this up in the same line,
+
+106
+00:04:33,000 --> 00:04:36,000
+then you can see that under the command that is run now,
+
+107
+00:04:36,000 --> 00:04:39,000
+then we have a service principal,
+
+108
+00:04:39,000 --> 00:04:42,000
+where we can specify both the names
+
+109
+00:04:42,000 --> 00:04:43,000
+on our service principal,
+
+110
+00:04:43,000 --> 00:04:45,000
+how the role it should have,
+
+111
+00:04:45,000 --> 00:04:46,000
+and the scope.
+
+112
+00:04:46,000 --> 00:04:48,000
+Here you can see that the example in this one
+
+113
+00:04:48,000 --> 00:04:50,000
+shows a resource group,
+
+114
+00:04:50,000 --> 00:04:53,000
+but we can still just stop the subscription in it,
+
+115
+00:04:53,000 --> 00:04:55,000
+so if we just take this,
+
+116
+00:04:55,000 --> 00:04:57,000
+write a name as we want,
+
+117
+00:04:57,000 --> 00:04:59,000
+write that it should be contributor,
+
+118
+00:04:59,000 --> 00:05:02,000
+and then we take subscription and subscription ID,
+
+119
+00:05:02,000 --> 00:05:05,000
+then we get all the information at once,
+
+120
+00:05:05,000 --> 00:05:06,000
+so we let go,
+
+121
+00:05:06,000 --> 00:05:08,000
+and think that we have to rename it in the portal.
+
+122
+00:05:08,000 --> 00:05:11,000
+But again, now we have set up our service principal,
+
+123
+00:05:11,000 --> 00:05:12,000
+we need to take care of this,
+
+124
+00:05:12,000 --> 00:05:14,000
+because then we will see how to connect us up
+
+125
+00:05:14,000 --> 00:05:16,000
+with SLCLI via VS Code later.
+
