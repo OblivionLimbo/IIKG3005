@@ -306,6 +306,8 @@ Finally, use **Testing** to drive **Design Decisions**.
 Whilst being a large part of the chapter, I believe this part mostly consists of **how** to modularize your infrastructure, and not the concepts around it, so I will not go into detail about this. 
 If you want to read more about it, please refer to the book (p. 256 - 270).
 
+https://aidanfinn.com/?p=22549 (Add pros and cons of modularizing infrastructure)
+
 ### Drawing Boundaries Between Components
 
 The following is listed when it comes to drawing boundaries between components:
