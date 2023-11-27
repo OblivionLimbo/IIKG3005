@@ -80,7 +80,7 @@ IaC solves many common problems with provisioning Infrastructure.
 - **Productivity will increase** due to a combination of all the benefits of using IaC.
 - As the code is held in your version control system, it **gains all the benefits of the VCS**. More on that in the next section.
 
-### Challenges and Limitatoins with IaC <!-- omit from toc -->
+### Challenges and Limitations with IaC <!-- omit from toc -->
 - Traditional infrastructure or operations teams within organizations may not be familiar with version control systems. 
 - The learning curve for IaC can be steep for some teams.
 - Skills in IaC and DevOps are highly sought after, so therefore it may be difficult to hire people with these skills. 
@@ -704,7 +704,7 @@ Or it can be more complex, like this:
 ```
 
 ## Module Best Practices
-1. Name your provider **terraform-<PROVIDER>-<NAME>**.
+1. Name your provider **terraform-\<PROVIDER\>-\<NAME\>**.
 2. Start writing your configuration with modules in mind. 
    - You'll find the benefits of using modules outweigh the time it takes to make them properly, even for modestly complex Terraform configurations. 
 3. Use local modules to organize and encapsulate your code. 
