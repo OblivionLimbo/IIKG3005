@@ -1,6 +1,7 @@
 # Table of Contents <!-- omit in toc -->
 - [Examination Content](#examination-content)
 - [Core Principles of Infrastructure as Code](#core-principles-of-infrastructure-as-code)
+  - [What is Infrastructure as Code?](#what-is-infrastructure-as-code)
   - [Define Everything as Code](#define-everything-as-code)
     - [What Can You Define as Code?](#what-can-you-define-as-code)
     - [Infrastructure Coding Languages](#infrastructure-coding-languages)
@@ -20,9 +21,17 @@
 - [Terraform Providers](#terraform-providers)
   - [Providers Overview](#providers-overview)
 - [Terraform Modules](#terraform-modules)
+  - [Modules Overview](#modules-overview)
+  - [What are Modules for?](#what-are-modules-for)
+  - [Module Best Practices](#module-best-practices)
 - [Terraform State File](#terraform-state-file)
+  - [Purpose of Terraform State](#purpose-of-terraform-state)
 - [Analyzing Terraform Configurations](#analyzing-terraform-configurations)
 - [CI/CD in Infrastructure as Code](#cicd-in-infrastructure-as-code)
+  - [What is a CI/CD Pipeline?](#what-is-a-cicd-pipeline)
+  - [Stages of a CI/CD Pipeline](#stages-of-a-cicd-pipeline)
+  - [CI/CD Pipeline Benefits](#cicd-pipeline-benefits)
+  - [Infrastructure as Code and CI/CD Pipelines](#infrastructure-as-code-and-cicd-pipelines)
 - [GitHub and GitHub Actions](#github-and-github-actions)
 
 <div style="page-break-after: always;"></div>
@@ -50,12 +59,38 @@ Wishing you all the very best in your preparations.
 
 Reflect on the three core principles outlined in our course textbook. These principles form the foundational understanding of Infrastructure as Code and its application in real-world scenarios.
 
-**The Four Key Metrics**
-> DORA's Accelerate research team has identified four key metrics that are highly correlated with software delivery and operational performance. These metrics are:
+## [What is Infrastructure as Code?](https://spacelift.io/blog/infrastructure-as-code)
 
+Using code, you define the infrastructure that needs to be deployed in a descriptive model.  
+The code for the infrastructure becomes part of the project and is stored inside your version control system (or VCS).
+
+### Benefits of Infrastructure as Code <!-- omit from toc -->
+IaC solves many common problems with provisioning Infrastructure.
+- New environments or infrastructure can be provisioned easily from your IaC configuration code. Infrastructure deployments with IaC are **repeatable**.
+- Manually configured environments are difficult to scale. With environments provisioned using IaC, they can be **deployed and scaled rapidly**.
+- If you want to make changes to the existing infrastructure that has been deployed with IaC, this can be done in code, and the changes will be **tracked**.
+-When IaC is used with a declarative tool (it describes the state you want your environment to look like), you can **detect and correct environment drift**. If a part of the infrastructure is modified manually outside of the code, it can be brought back in line with the desired state on the next run.
+- Changes can be applied multiple times without changing the result beyond the initial application. This is known as **idempotence**.
+- **Avoid manual configuration** of environments which can typically introduce mistakes due to human error.
+- IaC is a means to achieve **consistency** across environments and infrastructure. The code can be reused.
+- Infrastructure **costs are lowered** as the time to deploy and effort to manage, administer and maintain environments decrease.
+- IaC can be used in Continuous Integration / Continuous Deployment (or CI/CD) pipelines. The main benefit of doing this is to **automate** your Infrastructure deployments.
+- DevOps teams can **test applications** in production-like environments early in the development cycle.
+- With your Infrastructure configuration code held in your version control system alongside your application source code, commonly in the same repository. Now everything can be **held together**.
+- **Productivity will increase** due to a combination of all the benefits of using IaC.
+- As the code is held in your version control system, it **gains all the benefits of the VCS**. More on that in the next section.
+
+### Challenges and Limitatoins with IaC <!-- omit from toc -->
+- Traditional infrastructure or operations teams within organizations may not be familiar with version control systems. 
+- The learning curve for IaC can be steep for some teams.
+- Skills in IaC and DevOps are highly sought after, so therefore it may be difficult to hire people with these skills. 
+- Migration from traditional infrastructure to IaC can be difficult and time-consuming.
+
+### **Four Key Metrics** <!-- omit from toc -->
+> DORA's Accelerate research team has identified four key metrics that are highly correlated with software delivery and operational performance. These metrics are:
 - *Delivery Lead Time*: The elapsed time it takes to implement, test, and deliver changes to the production environment.
 - *Deployment Frequency*: How often you deploy changes to the production environment.
-- *Change Fail Percentage*: What percentage of changes either cause and impaired service or need immediate correctoin (hotfix, rollback, fix forward, etc.)
+- *Change Fail Percentage*: What percentage of changes either cause and impaired service or need immediate correction (hotfix, rollback, fix forward, etc.)
 - *Mean Time to Recovery*: How long does it take to restore a service when there is an unplanned outage or impairment.
 
 ## Define Everything as Code
@@ -67,7 +102,7 @@ This principle can be read about in detail in the [book](https://dl.ebooksworld.
 Defining all your stuff as code is a core practice for making changes rapidly and reliably. Some concepts that support this is: 
 
 - *Reusability*: If you define a thing as code, you can create many instances of it. You can repair and rebuild things quickly, and other people can build identical instances of the thing. 
-- *Consistency*: Things built from code are built the same way every time. Thismakes system behaviour predictable, makes testing more reliable, and enables continouous testing and delivery.
+- *Consistency*: Things built from code are built the same way every time. This makes system behaviour predictable, makes testing more reliable, and enables continuous testing and delivery.
 - *Transparency*: Everyone can see how the thing is built by looking at the code. People can review the code and suggest improvements. They can learn things to use in other code, gain insight to use when troubleshooting, and review and audit for compliance. 
 
 **Why Define Everything as Code?**  
@@ -88,7 +123,7 @@ Infrastructure code specifies both the infrastructure elements you want and how 
 If you’re defining your stuff as code, then putting that code into a version control system (VCS) is simple and powerful. By doing this, you get:
 - *Traceability*: You can see who changed what, when, and why.
 - *Rollback*: You can revert to a previous version of the code if something breaks.
-- *Correlation*: Keeping script, specifications, and configuration in version contro helps when tracing and fixing gnarly problems. 
+- *Correlation*: Keeping script, specifications, and configuration in version control helps when tracing and fixing gnarly problems. 
 - *Visibility*: You can see the history of changes to the code, providing situational awareness.
 - *Actionability*: You can use the code history to trigger an automatic action for each change committed, triggers enable CI jobs and CD pipelines.
 
@@ -136,19 +171,18 @@ This principle can be read about in detail in the [book](https://dl.ebooksworld.
 
 Effective infrastructure teams are rigorous about testing. They use automation to deploy and test each component of their system, and integrate all the work everyone has in progress. They test as they work, rather than waiting until they've finished.   
 The idea is to *build quality in* rather than trying to *test quality in*.  
-One part of this that people often overlook is that in involves integrating and testing *all work in progress*. CI involves merg‐
-ing and testing everyone’s code throughout development. CD takes this further, keeping the merged code always production-ready.
+One part of this that people often overlook is that in involves integrating and testing *all work in progress*. CI involves merging and testing everyone’s code throughout development. CD takes this further, keeping the merged code always production-ready.
 
 ### Why Continuous Testing and Delivery?
 The motivation for continuously testing and delivering all work in progress is to make it easier to change things in the future. While initial investment in creating an automated test suite for infrastructure might seem daunting, the long term benefits heavily outweigh the upfront effort. 
 
-The traditional view of infrastructure development as a one-off activity is challenged by the reality that ongoing changes and optimizations are an integral port of maintaining a robust system. 
-Continuous Delivery (CD) plays a crucial role in blurring the distinction between the "build" and "run" phases, emphazising the need for automated testing throughout the system's lifecycle. There will be a continous need for patching, upgrand, fixing, and improving the system after it has been deployed. 
+The traditional view of infrastructure development as a one-off activity is challenged by the reality that ongoing changes and optimizations are an integral part of maintaining a robust system. 
+Continuous Delivery (CD) plays a crucial role in blurring the distinction between the "build" and "run" phases, emphazising the need for automated testing throughout the system's lifecycle. There will be a continuous need for patching, upgrade, fixing, and improving the system after it has been deployed. 
 
 #### What Continuous Testing Means <!-- omit from toc -->
 
 The main focus is to *build quality in*, rather than trying to *test quality in*. This means that you should test as you work, rather than waiting until you've finished. Finding problems more quickly means spending less time going back to investigate problems, and less time fixing and rewriting code.
-Fixing problems continuously avoids accumilating technical debt. 
+Fixing problems continuously avoids accumulating technical debt. 
 
 **Immediate Testing**
 - Happens when you push your code
@@ -156,10 +190,10 @@ Fixing problems continuously avoids accumilating technical debt.
   - Validation activities, such as linting, syntax checking, or running unit tests
 - Pair programming is a great way to do this
   - Essentially a code review that happens as you work
-  - Provides much faster feedback tahn code reviews that happens when you finished workin on a story or feature
+  - Provides much faster feedback than code reviews that happens when you finished working on a story or feature
 
 **Eventual Testing**
-- Happens after some delay, perhaps after a manuel review, or on a schedule
+- Happens after some delay, perhaps after a manual review, or on a schedule
 
 #### What Should You Test? <!-- omit from toc -->
 
@@ -211,7 +245,7 @@ For more detail, please review the book (p. 115 - 127).
   - Models include the Test Pyramid and Swisss Cheese Model
   - The guiding principle is to get fast, accurate feedback. 
     - This means running faster tests with a narrower scope and fewer dependencies first. 
-    - This way small errors are quickly visislb eso they can be fixed and retested. 
+    - This way small errors are quickly visble so they can be fixed and retested. 
   - **Test Pyramid**
     - The key idea of the test pyramid is that you should have more tests at the lower layers, which are the earlier stages in your progression, and fewer tests in the later stages.
   - **Swiss Cheese Model**
@@ -227,7 +261,7 @@ For more detail, please review the book (p. 115 - 127).
       - *Build Server*: Jenkins, Team City, Bamboo, or Github Actions
       - *CD Software*: Define each stage as part of a pipeline, and code versions and artifacts are associated with the pipeline so you can trace them forward and backward
       - *SaaS Services*: CircleCI, TravisCI, and CodeShip
-      - **Cloud Platform Services*: AWS CodeBuild (CI) and AWS CodePipeline (CD), and Azure Pipelines. 
+      - *Cloud Platform Services*: AWS CodeBuild (CI) and AWS CodePipeline (CD), and Azure Pipelines. 
       - *Source Code Repository Services*: Github Actions, GitLab CI and CD. 
 - **Testing in Production**
   - As systems increase in complexity and scale, the scope of risks that you can practically check for outside of production shrinks.
@@ -568,11 +602,117 @@ For details about writing, generating, and previewing provider documentation, se
 
 # Terraform Modules
 
-Understand what Terraform modules are, including their benefits and best practices in modularizing infrastructure code.
+Understand what [Terraform modules](https://developer.hashicorp.com/terraform/language/modules) are, including their benefits and best practices in modularizing infrastructure code.
 
-https://developer.hashicorp.com/terraform/tutorials/modules
+*Modules* are containers for multiple resources that are used together. 
+A module consists of a collection of **.tf** and/or **.tf.json** files kept together in a directory.  
+Modules are the main way to package and reuse resource configurations with Terraform.
 
-https://developer.hashicorp.com/terraform/language/modules
+## [Modules Overview](https://developer.hashicorp.com/terraform/tutorials/modules)
+
+As your infrastructure grows in Terraform, the complexity of your Terraform codebase grows with it.
+There is no limit to the complexity of a single Terraform configuration, and you can keep writing and updating configuration files in a single directy, but you will encounter some problems: 
+- Understanding and navigating the configuration files will become increasingly difficult.
+- Updating the configuration will become more risky, as an update to one section may cause unintended consequences to other parts of your configuration.
+- There will be an increasing amount of duplication of similar blocks of configuration, for instance when configuring separate dev/staging/production environments, which will cause an increasing burden when updating those parts of your configuration.
+- You may wish to share parts of your configuration between projects and teams, and will quickly find that cutting and pasting blocks of configuration between projects is error prone and hard to maintain.
+- Engineers will need more Terraform expertise to understand and modify your configuration. This makes self-service workflows for other teams more difficult, slowing down their development.
+
+### Root Module <!-- omit from toc -->
+
+Every Terraform configuration has at least one module, known as its *root module*, which consists of the resources defined in the **.tf** files in the main working directory.
+
+### Child Modules <!-- omit from toc -->
+
+A Terraform module (usually the root module of a configuration) can call other modules to include their resources into the configuration. A module that has been called by another module is often referred to as a child module.
+
+Child modules can be called multiple times within the same configuration, and multiple configurations can use the same child module.
+```json
+module "servers" {
+  source = "./source"
+
+  servers = 5
+}
+```
+
+## What are Modules for?
+
+**Organize Configuration**
+- Modules make it easier to navigate, understand, and update your configuration by keeping related parts of your configuration together. 
+
+**Encapsulate Configuration**
+- Encapsulation can help prevent unintended consequences, such as a change to one part of your configuration accidentally causing changes to other infrastructure, and reduce the chances of simple errors like using the same name for two different resources.
+
+**Re-use Configuration**
+- Using modules can save time and reduce costly errors by re-using configuration written either by yourself, other members of your team, or other Terraform practitioners who have published modules for you to use.
+- You can also share modules that you have written with your team or the general public, giving them the benefit of your hard work.
+
+**Provide Consistency and Ensure Best Practices**
+- Not only does consistency make complex configurations easier to understand, it also helps to ensure that best practices are applied across all of your configuration.
+- There have been many high-profile security incidents involving incorrectly secured object storage, and given the number of complex configuration options involved, it's easy to accidentally misconfigure these services.
+
+**Self Service**
+- Modules make your configuration easier for other teams to use. The Terraform Cloud registry lets other teams find and re-use your published and approved Terraform modules.
+- You can also build and publish no-code ready modules, which let teams without Terraform expertise provision their own infrastructure that complies with your organization's standards and policies.
+
+Using modules can help reduce these errors. For example, you might create a module to describe how all of your organization's public website buckets will be configured, and another module for private buckets used for logging applications.
+
+If a configuration for a type of resource needs to be updated, using modules allows you to make that update in a single place and have it be applied to all cases where you use that module.
+
+### What is a Terraform Module? <!-- omit from toc -->
+- A set of Terraform configuration files in a single directory.
+- Even a simple configuration with only a single directory is a module.
+- When you run terraform commands directly from such a directory, it is considered the *root module* of your configuration.
+
+A simple set can look something like this: 
+```sh
+.
+├── LICENSE
+├── README.md
+├── main.tf
+├── variables.tf
+├── outputs.tf
+```
+
+Or it can be more complex, like this: 
+
+```sh
+.
+├───keyvault
+│   ├─main.tf
+│   ├─outputs.tf
+│   └─variables.tf
+├───network
+│   ├─main.tf
+│   ├─outputs.tf
+│   └─variables.tf
+├───storageaccount
+│   ├─main.tf
+│   ├─outputs.tf
+│   └─variables.tf
+├───virtualmachine
+│   ├─main.tf
+│   ├─outputs.tf
+│   └─variables.tf
+├─main.tf
+├─locals.tf
+├─outputs.tf
+├─terraform.tfvars
+├─providers.tf
+├─variables.tf
+└─README.md
+```
+
+## Module Best Practices
+1. Name your provider **terraform-<PROVIDER>-<NAME>**.
+2. Start writing your configuration with modules in mind. 
+   - You'll find the benefits of using modules outweigh the time it takes to make them properly, even for modestly complex Terraform configurations. 
+3. Use local modules to organize and encapsulate your code. 
+   - Organizing your configuration in terms of modules from the beginning will reduce the burden of maintaining and updating your configuration as the infrastructure grows in complexity.
+4. Use the public Terraform Registry to find useful modules. 
+   - More quickly and confidently implement your configuration by relying on work of others to implement common infrastructure scenarios.
+5. Publish and share modules with your team. 
+   - Most infrastructure is managed by a team of people, and modules are important way that teams can work together to create and maintain infrastructure.
 
 <div style="page-break-after: always;"></div>
 
@@ -580,9 +720,61 @@ https://developer.hashicorp.com/terraform/language/modules
 
 Examine the purpose and significance of the Terraform state file and what it represents in the context of infrastructure management.
 
-https://developer.hashicorp.com/terraform/tutorials/state
+The following documentation about [State](https://developer.hashicorp.com/terraform/language/state), provides useful insight as to what the state file is, and what it does.
 
-https://developer.hashicorp.com/terraform/language/state
+**State**
+
+The configuration state is used by Terraform to map real world resources to your configuration, keep track of metadata, and to improve performance for large infrastructures.
+- Stored in a local file named "terraform.tfstate" by default, but it can also be stored remotely, which works better in a team environment.
+- Used to determine which changes to make to your infrastructure. 
+- Store bindings between objects in a remote system and resource instances declared in your configuration.
+
+While the format of the state files are just JSON, direct file editing of the state is discouraged.  
+Terraform expects a one-to-one mapping between configured resource instances and remote objects.
+
+## [Purpose of Terraform State](https://developer.hashicorp.com/terraform/language/state/purpose)
+
+State is a necessary requirement for Terraform to function.  
+Terraform may be able to get away without state, but doing so would require shifting massive amounts of complexity from one place (state) to another place (the replacement concept).
+
+### Mapping to the Real World <!-- omit from toc -->
+Terraform requires some sort of database to map Terraform config to the real world.
+- This makes it possible for Terraform to know what real world objects it is managing. 
+- It maps the configuration to real world objects with instance ID's that correlate to the declarative resources to the real world objects.
+
+Terraform expects that each remote object is bound to only one resource instance in the configuration. 
+- If a remote object is bound to multiple resource instances, the mapping from configuration to the remote object in the state becomes ambiguous, and Terraform may behave unexpectedly.
+
+### Metadata <!-- omit from toc -->
+
+Alongside the mappings between resources and remote objects, Terraform must also track metadata such as resource dependencies.
+- Terraform typically uses configuration to determine dependency order. 
+- However, when you delete a resource from configuration, Terraform has to know how to delete that resource from the remote system.
+- Terraform retains a coy of the most recent dependencies within the state. 
+  - This is to ensure that Terraform can determine the correct order of destruction from the state. 
+- Terraform also stores other metadata for similar reasons, such as a pointer to the provider configuration that was most recently used with the resource in situations where multiple aliased providers are present.
+
+### Performance <!-- omit from toc -->
+
+Terraform stores a cache of the attribute values for all resources in the state.
+This is the most optional feature of Terraform state and is done only as a performance improvement.
+
+- Terraform must know the current state of resources in order to effectively determine the changes that it needs to make to reach the desired state.
+- Terraform can query your providers and sync latest attributes from all your resources for small infrastructures. 
+- For larger infrastructures, querying every resource is too slow. 
+  - Many cloud providers do not provide APIs to query multiple resources at once. 
+  - Cloud providers almost always have API rate limiting so Terraform can only request a certain number of resources in a period of time.
+- Terraform stores the latest known attributes for all resources in the state.
+  - If you use the **-refresh=false** flag, this cache is used instead of querying the provider.
+
+### Syncing <!-- omit from toc -->
+
+Terraform stores the state in a file in the current working directory where Terraform was run by default.
+- When using Terraform as a team, it is important for everyone to be working with the same state. 
+- This ensures operations will be applied to the same remote objects. 
+- [Remote state](https://developer.hashicorp.com/terraform/language/state/remote) is then used to store the state in a remote data store such as Terraform Cloud, Amazon S3, or HashiCorp Consul.
+
+With a fully-featured state backend, Terraform can use remote locking as a measure to avoid two or more different users accidentally running Terraform at the same time, and thus ensure that each Terraform run begins with the most recent updated state.
 
 <div style="page-break-after: always;"></div>
 
@@ -590,13 +782,84 @@ https://developer.hashicorp.com/terraform/language/state
 
 Be prepared to analyze examples of Terraform configurations, identifying their strengths and areas for improvement.
 
+For this I suggest reading your own terraform code, and checking out what could be done better, or how it looks, to ensure you know what do expect. 
+
+There are however, some tips and tricks that can be used to analyze Terraform configurations, which can be found in this documentation about [Static Analysis](https://dev.to/miketysonofthecloud/3-ways-to-perform-static-analysis-on-terraform-code-2c51).
+
+1. **Type of analysis**: There are different types of static analysis that can be performed on Terraform code, including syntax checking, code formatting, and security scanning. It's important to choose tools and methods that are appropriate for the type of analysis you want to perform.
+2. **Compatibility with Terraform**: Not all static analysis tools and methods are compatible with Terraform. It's significant to decide tools and methods that are specifically designed for use with Terraform, or that have been tested and proven to work with Terraform.
+3. **Integration with the development process**: It's often most effective to integrate static analysis into the development process, rather than trying to perform it as a separate step. Choose tools and methods that can be easily integrated into your existing workflows, such as by using a plugin or extension for your code editor or continuous integration tool.
+4. **Accuracy and reliability**: It's important to choose tools and methods that are accurate and reliable, and that produce results that are actionable and easy to understand.
+5. **Cost and resource requirements**: Consider the cost and resource requirements of different tools and methods, including any licensing fees, hardware or software requirements, and maintenance costs.
+
+Some things that can be mentioned here to analyze Terraform configurations are:
+
+1. **Code review**: Manually reviewing your Terraform code as part of a code review process can also help identify issues and improve the quality of your code. Using pull requests with GitLab, GitHub, Azure DevOps, and Bitbucket, allows you to get feedback on your code changes from multiple reviewers and helps ensure that your code is of high quality before it is merged into the repository.
+2. **Terraform commands**: Terraform validate and Terraform Plan can be used to check the syntax and overall structure of your Terraform configuration. They can help you identify issues such as missing required fields, invalid values, and syntax errors, and can be used to ensure that your configuration is correct and well-formed.
+3. **Code scanners**: Terrascan and/or Tfsec can be used to analyze your Terraform code for security vulnerabilities and best practices violations. It uses a combination of rule sets and custom checks to identify potential issues with your code and provides detailed feedback to help you fix any issues that are found.
+
 <div style="page-break-after: always;"></div>
 
-# CI/CD in Infrastructure as Code
+# [CI/CD in Infrastructure as Code](https://medium.com/@l.halicki/how-to-implement-ci-cd-for-iac-in-practice-part-0-introduction-f76b4700818a)
 
 Explore the concept of Continuous Integration and Continuous Deployment (CI/CD), focusing on its benefits and how it integrates with Infrastructure as Code practices.
 
-https://spacelift.io/blog/ci-cd-pipeline
+This [blog post](https://spacelift.io/blog/ci-cd-pipeline) explains the concept of CI/CD pipelines in a very good way.  
+CI/CD pipelines enhance the software delivery process by automating key stages such as building, testing, delivery and deployment. 
+
+## What is a CI/CD Pipeline?
+
+A CI/CD pipeline is used to automate software or infrastructure-as-code delivery, from source code to production.  
+
+**CI** stands for **Continuous Integration**, and **CD** stands for **Continuous Delivery** or **Continuous Deployment**. 
+- **CI** covers the build and test stages of the pipeline. Each change in code should trigger an automated build and test, allowing the developer of the code to get quick feedback. 
+- **CD** takes place after the code successfully passes the testing stage of the pipeline.
+  - Continuous delivery refers to the automatic release to a repository after the CI stage.   
+  - Continuous deployment refers to the automatic deployment of the artifact that has been delivered.  
+
+**Pipeline** refers to a set of automated processes that are executed in a specific order, consisting of build, test, delivery, and deployment stages.
+
+A build server (or build agent) is normally used to enable CI/CD runs.
+These often take the form of cloud-hosted virtual machines or containers.  
+When using containers, each step of the pipeline is executed in a separate container, which is then destroyed after the step is completed.
+- This also enables pipelines to make full use of all the benefits containerization orchestration affords, such as resilience and scaling where required.
+
+## Stages of a CI/CD Pipeline
+
+Pipeline runs are usually triggered automatically by a change in the code, but can also be run on a schedule, run manually by a user, or triggered after another pipeline has run.
+
+The **four parts** of a CI/CD pipeline are:
+- **Build**: The build stage is where the code is written, typically by multiple people working on the same codebase.
+  - The artifact is a deployable version of the code that can be deployed to a production environment.
+- **Test**: The test stage is where the artifact is tested to ensure that it is ready for deployment. 
+  - This stage can include unit tests, integration tests, end-to-end tests, smoke tests, and compliance tests.
+- **Deliver**: The delivery stage is where the artifact is delivered to a repository, ready for deployment.
+- **Deploy**: The deployment stage is where the artifact is deployed to a production environment.
+
+![CI/CD Pipeline Diagram](https://spacelift.io/_next/image?url=https%3A%2F%2Fspaceliftio.wpcomstaging.com%2Fwp-content%2Fuploads%2F2022%2F06%2Fcicd-pipeline-diagram.png&w=1080&q=75)
+
+## CI/CD Pipeline Benefits
+
+Adopting the use of CI/CD pipelines brings many **benefits**, including:
+- **Reduced costs**: Reducing the time it takes the app or infrastructure to get coded and deployed means less human resources are taken up. 
+- **Reduced time to deployment**: The entire process, from coding to deployment, is streamlined, reducing the total process length and making it more efficient.
+- **Enabling continuous feedback**: The pipeline provides feedback on the code, allowing developers to make changes and improvements quickly.
+- **Improving team collaboration**: The team has visibility into problems, can view feedback, and make changes where appropriate.
+- **Audit trails**: Each stage of the pipeline generates logs and can enable accountability and traceability.
+
+## Infrastructure as Code and CI/CD Pipelines
+
+CI/CD can be applied to infrastructure as code (IaC) to automate the provisioning and management of infrastructure. 
+By using a CI/CD pipeline for IaC, teams can automate the process of testing and deploying changes to their infrastructure. 
+This can help reduce errors and downtime, as modifications are thoroughly tested before they are deployed to production.
+
+A good CI/CD Pipeline for IaC is: 
+- **Fast**: The pipeline should be fast enough to allow developers to get feedback quickly.
+  - Optimizing a pipeline to run as quickly as possible ensures that the developer of the code can get feedback on the success or failure of the pipeline run quickly, making them more efficient, reducing the chance of distractions and ‘context switching’.
+- **Reliable**: A pipeline should run reliably each time, without any errors, or unexpected intermittent errors.
+  - A reliable pipeline will produce the same result, given the same input.
+- **Accurate**: The pipeline should be accurate enough to ensure that the code is tested and deployed correctly.
+  - Ironing out errors in repetitive tasks is where CI/CD pipelines can really shine to improve the overall quality of a product.
 
 <div style="page-break-after: always;"></div>
 
