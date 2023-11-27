@@ -73,7 +73,7 @@ IaC solves many common problems with provisioning Infrastructure.
 - New environments or infrastructure can be provisioned easily from your IaC configuration code. Infrastructure deployments with IaC are **repeatable**.
 - Manually configured environments are difficult to scale. With environments provisioned using IaC, they can be **deployed and scaled rapidly**.
 - If you want to make changes to the existing infrastructure that has been deployed with IaC, this can be done in code, and the changes will be **tracked**.
--When IaC is used with a declarative tool (it describes the state you want your environment to look like), you can **detect and correct environment drift**. If a part of the infrastructure is modified manually outside of the code, it can be brought back in line with the desired state on the next run.
+- When IaC is used with a declarative tool (it describes the state you want your environment to look like), you can **detect and correct environment drift**. If a part of the infrastructure is modified manually outside of the code, it can be brought back in line with the desired state on the next run.
 - Changes can be applied multiple times without changing the result beyond the initial application. This is known as **idempotence**.
 - **Avoid manual configuration** of environments which can typically introduce mistakes due to human error.
 - IaC is a means to achieve **consistency** across environments and infrastructure. The code can be reused.
