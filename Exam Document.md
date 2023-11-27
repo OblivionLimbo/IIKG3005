@@ -1,38 +1,42 @@
+<div style="width:100%; text-align: center"><font size="6"><b>IIKG3005 - Infrastructure as Code</b></font></div>
+
 # Table of Contents <!-- omit in toc -->
-- [Examination Content](#examination-content)
-- [Core Principles of Infrastructure as Code](#core-principles-of-infrastructure-as-code)
-  - [What is Infrastructure as Code?](#what-is-infrastructure-as-code)
-  - [Define Everything as Code](#define-everything-as-code)
-    - [What Can You Define as Code?](#what-can-you-define-as-code)
-    - [Infrastructure Coding Languages](#infrastructure-coding-languages)
-    - [Implementation Principles](#implementation-principles)
-  - [Continuously Test and Deliver All Work in Progress](#continuously-test-and-deliver-all-work-in-progress)
-    - [Why Continuous Testing and Delivery?](#why-continuous-testing-and-delivery)
-    - [Challenges with Testing Infrastructure](#challenges-with-testing-infrastructure)
-    - [Testing](#testing)
-  - [Build Small, Simple Pieces That You Can Change Independently](#build-small-simple-pieces-that-you-can-change-independently)
-    - [Designing for Modularity](#designing-for-modularity)
-    - [Modularizing Infrastructure](#modularizing-infrastructure)
-    - [Drawing Boundaries Between Components](#drawing-boundaries-between-components)
-- [Understanding Terraform HCL](#understanding-terraform-hcl)
-  - [About HCL](#about-hcl)
-  - [Structuring Blocks in Terraform](#structuring-blocks-in-terraform)
-  - [Terraform Best Practices](#terraform-best-practices)
-- [Terraform Providers](#terraform-providers)
-  - [Providers Overview](#providers-overview)
-- [Terraform Modules](#terraform-modules)
-  - [Modules Overview](#modules-overview)
-  - [What are Modules for?](#what-are-modules-for)
-  - [Module Best Practices](#module-best-practices)
-- [Terraform State File](#terraform-state-file)
-  - [Purpose of Terraform State](#purpose-of-terraform-state)
-- [Analyzing Terraform Configurations](#analyzing-terraform-configurations)
-- [CI/CD in Infrastructure as Code](#cicd-in-infrastructure-as-code)
-  - [What is a CI/CD Pipeline?](#what-is-a-cicd-pipeline)
-  - [Stages of a CI/CD Pipeline](#stages-of-a-cicd-pipeline)
-  - [CI/CD Pipeline Benefits](#cicd-pipeline-benefits)
-  - [Infrastructure as Code and CI/CD Pipelines](#infrastructure-as-code-and-cicd-pipelines)
-- [GitHub and GitHub Actions](#github-and-github-actions)
+- [Examination Content](#examination-content) (p. 2)
+- [Core Principles of Infrastructure as Code](#core-principles-of-infrastructure-as-code) (p. 3)
+  - [What is Infrastructure as Code?](#what-is-infrastructure-as-code) (p. 3)
+  - [Define Everything as Code](#define-everything-as-code) (p. 4)
+    - [What Can You Define as Code?](#what-can-you-define-as-code) (p. 4)
+    - [Infrastructure Coding Languages](#infrastructure-coding-languages) (p. 5)
+    - [Implementation Principles](#implementation-principles) (p. 5)
+  - [Continuously Test and Deliver All Work in Progress](#continuously-test-and-deliver-all-work-in-progress) (p. 6)
+    - [Why Continuous Testing and Delivery?](#why-continuous-testing-and-delivery) (p. 6)
+    - [Challenges with Testing Infrastructure](#challenges-with-testing-infrastructure) (p. 7)
+    - [Testing](#testing) (p. 8)
+  - [Build Small, Simple Pieces That You Can Change Independently](#build-small-simple-pieces-that-you-can-change-independently) (p. 9)
+    - [Designing for Modularity](#designing-for-modularity) (p. 10)
+    - [Modularizing Infrastructure](#modularizing-infrastructure) (p. 11)
+    - [Drawing Boundaries Between Components](#drawing-boundaries-between-components) (p. 12)
+- [Understanding Terraform HCL](#understanding-terraform-hcl) (p. 14)
+  - [About HCL](#about-hcl) (p. 14)
+  - [Structuring Blocks in Terraform](#structuring-blocks-in-terraform) (p. 15)
+  - [Terraform Best Practices](#terraform-best-practices) (p. 17)
+- [Terraform Providers](#terraform-providers) (p. 19)
+  - [Providers Overview](#providers-overview) (p. 19)
+- [Terraform Modules](#terraform-modules) (p. 21)
+  - [Modules Overview](#modules-overview) (p. 21)
+  - [What are Modules for?](#what-are-modules-for) (p. 22)
+  - [Module Best Practices](#module-best-practices) (p. 24)
+- [Terraform State File](#terraform-state-file) (p. 25)
+  - [Purpose of Terraform State](#purpose-of-terraform-state) (p. 25)
+- [Analyzing Terraform Configurations](#analyzing-terraform-configurations) (p. 27)
+- [CI/CD in Infrastructure as Code](#cicd-in-infrastructure-as-code) (p. 28)
+  - [What is a CI/CD Pipeline?](#what-is-a-cicd-pipeline) (p. 28)
+  - [Stages of a CI/CD Pipeline](#stages-of-a-cicd-pipeline) (p. 28)
+  - [CI/CD Pipeline Benefits](#cicd-pipeline-benefits) (p. 29)
+  - [Infrastructure as Code and CI/CD Pipelines](#infrastructure-as-code-and-cicd-pipelines) (p. 29)
+- [GitHub and GitHub Actions](#github-and-github-actions) (p. 31)
+  - [GitHub Actions](#github-actions) (p. 31)
+  - [Benefits of using IaC and automation for deployments](#benefits-of-using-iac-and-automation-for-deployments) (p. 32)
 
 <div style="page-break-after: always;"></div>
 
@@ -287,9 +291,11 @@ This principle can be read about in detail in the [book](https://dl.ebooksworld.
 You struggle when your systems are large and tighty coupled. The larger the system, the harder it is to change, and the easier it is to break.   
 When you look at the codebase of a high-performing team, you'll see that their system is composed of small, simple pieces. Each piece is easy to understand and easy to change, as well as having clearly defined interfaces. Each component can independently be deployed and tested (in isolation), and can be changed without affecting other components.
 
-As a system expands, the challenges of managing changes increase, leadingn to greater complexity and risk. 
+As a system expands, the challenges of managing changes increase, leading to greater complexity and risk. 
 The resulting process hinders the system's ability to evolve, fostering techincal debt and compromising quailty. 
 Composing systems from smaller pieces facilitates a faster rate of change without sacrificing quality. 
+
+<div style="page-break-after: always;"></div>
 
 ### Designing for Modularity
 
@@ -364,7 +370,7 @@ https://aidanfinn.com/?p=22549 (Add pros and cons of modularizing infrastructure
 
 The following is listed when it comes to drawing boundaries between components:
 
-> To divide infrastructure, as with any system, you should look for seams. A *seam* is a place where you can alter behavior in your system without editing in that place. The idea is to find natural places to draw boundaries between parts of your systems,where you can create simple, clean integration points.
+> To divide infrastructure, as with any system, you should look for seams. A *seam* is a place where you can alter behavior in your system without editing in that place. The idea is to find natural places to draw boundaries between parts of your systems, where you can create simple, clean integration points.
 
 #### **Align Boundaries with Natural Change Patterns** <!-- omit from toc -->
 - **Natural Change Patterns**: Optimize component boundaries by understanding their natural patterns of change, treating these patterns as seams or natural boundaries.
@@ -440,6 +446,8 @@ resource "azurerm_virtual_network" "example-network" {
 
 The terraform langauge is declarative, describing an intended goal rather than the steps to reach that goal. 
 The ordering of blocks and the files they are organized into are generally not significant; Terraform only considers implicit and explicit relationships between resources when determining an order of operations.
+
+<div style="page-break-after: always;"></div>
 
 ### Declarative Language <!-- omit from toc -->
 
@@ -555,6 +563,36 @@ As can be read in [this article](https://developer.hashicorp.com/well-architecte
 Some considerations, such as the file structure of your configuration and version-control repositories, will depend on your team's needs and preferences. 
 There are best practices that we recommend to all Terraform users that help teams develop Terraform configuration more efficiently.
 
+### Configuration Structure <!-- omit from toc -->
+- Avoid duplicate configuration
+- Determine repository scope
+- Evaluate module convenience vs flexibility
+- Limit child modules
+
+### Workspace Structure <!-- omit from toc -->
+- Group by volatility
+- Determine stateful vs stateless infrastructure
+- Separate privileges and responsibilities
+- Avoid large Terraform plans and applies
+- Determine workspace concurrency vs Terraform parallelism
+
+### Projects <!-- omit from toc -->
+- **Increased workspace organization**: You can add related workspaces to projects to simplify and organize a team's workspace view.
+- **Simplified management**: You can create project-level permissions and variable sets that apply to all current and future workspaces in the project. For example, you can create a project variable set containing your cloud provider credentials and all workspaces in the project will have access to them.
+- **Reduced risk with centralized control**: You can scope project permissions to only grant teams administrator access to the projects and workspaces they need.
+- **Efficiency through self-service**: Granting users project-level administrator permissions lets them create and manage workspaces.
+
+When using projects, the following is recommended:
+- Automate the creation of projects, variable sets, and teams together using the TFE provider.
+- Restrict the number of project administrators similar to maintain least privilege.
+- Designate a “landing zone” project that will contain workspaces used to create all other projects, teams, and workspaces. 
+
+Decide on the logical boundaries for your projects:
+- **Provider boundaries**: For smaller organizations, creating one project per cloud account may make it easier to manage access.
+- **Least privilege**: You can create teams and grant them access to projects with workspaces of similar levels of criticality.
+- **Variable set usage**: Project-wide variable sets let you configure and reuse values such as default tags for cost-codes, owners, and support contacts.
+- **Practitioner efficiency**: Consider if it makes sense for a practitioner to need to visit multiple projects to complete a deployment.
+
 <div style="page-break-after: always;"></div>
 
 # Terraform Providers
@@ -663,6 +701,7 @@ If a configuration for a type of resource needs to be updated, using modules all
 - A set of Terraform configuration files in a single directory.
 - Even a simple configuration with only a single directory is a module.
 - When you run terraform commands directly from such a directory, it is considered the *root module* of your configuration.
+<div style="page-break-after: always;"></div>
 
 A simple set can look something like this: 
 ```sh
@@ -702,6 +741,8 @@ Or it can be more complex, like this:
 ├─variables.tf
 └─README.md
 ```
+
+<div style="page-break-after: always;"></div>
 
 ## Module Best Practices
 1. Name your provider **terraform-\<PROVIDER\>-\<NAME\>**.
@@ -867,8 +908,105 @@ A good CI/CD Pipeline for IaC is:
 
 Understand how GitHub and GitHub Actions can enhance team productivity and contribute to the delivery of reliable infrastructure.
 
-https://docs.github.com/en/actions
+Github helps teams to collaborate on projects, acting as a central repository for code, documentation, and other files.
 
-https://spacelift.io/blog/infrastructure-as-code-with-github-actions
+GitHub Actions is a continuous integration and continuous delivery (CI/CD) platform that allows you to automate your build, test, and deployment pipeline. You can create workflows that build and test every pull request to your repository, or deploy merged pull requests to production.  
+GitHub provides Linux, Windows, and macOS virtual machines to run your workflows, or you can host your own self-hosted runners in your own data center or cloud infrastructure.
 
-https://learn.microsoft.com/en-us/devops/deliver/iac-github-actions
+## [GitHub Actions](https://docs.github.com/en/actions)
+
+You can configure a GitHub Actions workflow to be triggered when an event occurs in your repository, such as a pull request being opened or an issue being created.  
+Your workflow contains one or more jobs which can run in sequential order or in parallel.  
+Each job will run inside its own virtual machine runner, or inside a container, and has one or more steps that either run a script that you define or run an action, which is a reusable extension that can simplify your workflow.
+
+![Github Actions](https://docs.github.com/assets/cb-25535/mw-1440/images/help/actions/overview-actions-simple.webp)
+
+### Workflows <!-- omit from toc -->
+
+A workflow is a configurable automated process that will run one or more jobs.
+- Defined by a YAML file in your repository's **.github/workflows** directory.
+- A repository can have multiple workflows, each of which can perform a different set of tasks. 
+
+### Events <!-- omit from toc -->
+
+An event is a specific activity in a repository that triggers a workflow run.
+- Activity can originate from GitHub when someone creates a pull request, opens an issue, or pushes a commit to a repository.
+- You can also trigger workflows to run on a schedule. 
+
+### Jobs <!-- omit from toc -->
+
+A job is a set of steps in a workflow that is executed on the same runner.
+- Each step is either a shell script that will be executed, or an *action* that will be run. 
+- Steps are executed in order and depend on each other. 
+- Steps are executed in the same runner, and therefore share data from one step to another. 
+
+You can configure a job's dependencies with other jobs
+- By default, jobs have no dependencies and run in parallel.
+- When a job takes a dependency on another job, it will wait for the dependent job to complete before it can run.
+
+### Actions <!-- omit from toc -->
+
+An *action* is a custom application for the GitHub Actions platform that performs a complex but frequently repeated task.
+- Helps reduce the amount of repetetive code that you write in your workflow files. 
+- An action can pull your git repository from GitHub, set up the correct toolchain for your build environment, or set up the authentication to your cloud provider.
+
+### Runners <!-- omit from toc -->
+
+A runner is a server that runs your workflows when they're triggered. 
+- Each runner can run a single job at a time. 
+- Each workflow run is executed in a fresh instance of a virtual machine or container, called a *runner instance*. 
+
+## [Benefits of using IaC and automation for deployments](https://learn.microsoft.com/en-us/devops/deliver/iac-github-actions)
+
+- **Declarative**: When you define your infrastructure and deployment process in code, it can be versioned and reviewed using the standard software development lifecycle. IaC also helps prevent any drift in your configuration.
+- **Consistency**: Following an IaC process ensures that the whole organization follows a standard, well-established method to deploy infrastructure that incorporates best practices and is hardened to meet your security needs. Any improvements made to the central templates can easily be applied across the organization.
+- **Security**: Centrally managed templates can be hardened and approved by a cloud operations or security team to meet internal standards.
+- **Self-Service**: Teams can be empowered to deploy their own infrastructure by utilizing centrally managed templates.
+- **Improved Productivity**: By utilizing standard templates, teams can quickly provision new environments without needing to worry about all the implementation details.
+
+<div style="page-break-after: always;"></div>
+
+### Architecture <!-- omit from toc -->
+
+![Architecture](https://learn.microsoft.com/en-us/devops/_img/iac-github-actions.png)
+
+### Dataflow <!-- omit from toc -->
+
+1. Create a new branch and check in the needed IaC code modifications.
+2. Create a Pull Request (PR) in GitHub once you're ready to merge your changes into your environment.
+3. A GitHub Actions workflow will trigger to ensure your code is well formatted, internally consistent, and produces secure infrastructure. In addition, a Terraform Plan or Bicep what-if analysis will run to generate a preview of the changes that will happen in your Azure environment.
+4. Once appropriately reviewed, the PR can be merged into your main branch.
+5. Another GitHub Actions workflow will trigger from the main branch and execute the changes using your IaC provider.
+6. A regularly scheduled GitHub Action workflow should also run to look for any configuration drift in your environment and create a new issue if changes are detected (*exclusive to Terraform*).
+
+### Prerequisites <!-- omit from toc -->
+> This is for Terraform and Azure
+
+1. **Configure a Terraform State Location**
+2. **Create a GitHub environment**
+3. **Set up Azure Identity**
+4. **Add GitHub Secrets**
+   - **AZURE_CLIENT_ID**: The application (client) ID of the app registration in Azure.
+   - **AZURE_TENANT_ID**: The tenant ID of Azure Active Directory where the app registration is defined.
+   - **AZURE_CLIENT_SECRET**: The secret of the service principal.
+   - **AZURE_SUBSCRIPTION_ID**: The subscription ID where the app registration is defined.
+
+<div style="page-break-after: always;"></div>
+
+### Deployment <!-- omit from toc -->
+> This is for Terraform and Azure
+
+1. [Terraform Unit Tests](https://github.com/azure-samples/terraform-github-actions/blob/main/.github/workflows/tf-unit-tests.yml)
+   - This workflow runs on every commit and is composed of a set of unit tests on the infrastructure code.
+   - It runs the following commands:
+     - **terraform fmt**: Ensures the code is properly linted and follows terraform best practices.
+     - **terraform validate**: Checks that the code is syntactically correct and internally consistent.
+     - **checkov**: An open source static code analysis tool for IaC, will run to detect security and compliance issues.
+2. [Terraform Plan / Apply](https://github.com/azure-samples/terraform-github-actions/blob/main/.github/workflows/tf-plan-apply.yml)
+   - This workflow runs on every pull request and on each commit to the main branch.
+   - It runs the following commands:
+     - **terraform init**: Initializes the Terraform working directory.
+     - **terraform plan**: Generates an execution plan for Terraform.
+     - **terraform apply**: Builds or changes infrastructure after a manual review. 
+3. [Terraform Drift Detection](https://github.com/azure-samples/terraform-github-actions/blob/main/.github/workflows/tf-drift.yml)
+   - This workflow runs on a periodic basis to scan your environment for any configuration drift or changes made outside of Terraform. 
